@@ -10,6 +10,13 @@
   <%= @user.email %>
 </p>
 
+<ul>
+  <% @user.statuses.each do |status| %>
+    <li><%= status.state %> - <%= status.created_at %></li>
+  <% end %>
+</ul>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
+
+<%= link_to 'Edit User Info', edit_user_path(@user) %> |
+<%= link_to 'Edit User Status', new_user_statu_path(@user) %>
 <%= link_to 'Back', users_path %>

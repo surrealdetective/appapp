@@ -1,8 +1,7 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :name, :dossiers
   has_many :dossiers
-  has_many :user_statuses
-  has_many :statuses#, :through => :user_statuses
+  has_many :statuses
 
   def save_with_status(status_text)
     self.statuses.build(state: status_text)

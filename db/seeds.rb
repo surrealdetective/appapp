@@ -6,14 +6,15 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+#joe is created
 joe = User.new
 joe.name = "Joe Giralt"
 joe.email = "joegiralt@gmail.com"
 joe.save_with_status("created") #update the status
-joes_dossier = Dossier.new
-joes_dossier.tagline = "I need a better tagline!"
-joe.dossiers << joes_dossier
-joe.save_with_status("submitted")
+# joes_dossier = Dossier.new
+# joes_dossier.tagline = "I need a better tagline!"
+# joe.dossiers << joes_dossier
+# joe.save_with_status("submitted")
 
 max = User.new
 max.name = "Max Jacobson"
@@ -38,5 +39,34 @@ sam.save_with_status("created")
 sam.dossiers.build(tagline: "Stun me")
 sam.save_with_status("submitted")
 
+#miley is submitted
+miley = User.new
+miley.name = "Miley Cyrus"
+miley.email = "miley@twerk.com"
+miley.save_with_status("created")
+miley.dossiers.build(tagline: "Just can't stop")
+miley.save_with_status("submitted")
+
+dhh = User.new
+dhh.name = "DHH"
+dhh.email = "dhh@icreatedrails.com"
+dhh.save_with_status("created")
+dhh.dossiers.build(tagline: "Racecars")
+dhh.save_with_status("submitted")
+
+#alex is reviewed
 alex.save_with_status("reviewed")
 sam.save_with_status("reviewed")
+dhh.save_with_status("reviewed")
+
+#sam is accepted
+#max is deferred
+#dhh is declined
+sam.save_with_status("accepted")
+max.save_with_status("deferred")
+dhh.save_with_status("declined")
+
+
+
+
+

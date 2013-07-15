@@ -1,8 +1,10 @@
 Appapp::Application.routes.draw do
   resources :dossiers
-
-
-  resources :users
+  resources :users do
+    resources :status, :only => [:new, :create]
+  end
+  root :to => 'users#new'
+  # get 'users/:id/status/edit', :as => "users#status"
 
 
   # The priority is based upon order of creation:
