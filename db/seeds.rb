@@ -9,14 +9,23 @@
 joe = User.new
 joe.name = "Joe Giralt"
 joe.email = "joegiralt@gmail.com"
+# joe.save_with_status("created") #update the status
 
-joe.save_user #update the status
+joes_dossier = Dossier.new
+joes_dossier.tagline = "I need a better tagline!"
+joe.dossiers << joes_dossier
+joe.save
 
-joe.application = Application.new
-# joe.current_status = "created" by default
-# user has_one application (??)
-joe.user_attributes.build(:tagline => "From there to here")
-joe_app.save_app #this updates the status again
+# joe.dossiers.build(tagline: "I need a better tagline")
+# joe.save_with_status("filled out dossier")
 
-#joe.statuses.build(:name => "submitted")
-#joe_app.save
+
+
+# joe.application = Application.new
+# # joe.current_status = "created" by default
+# # user has_one application (??)
+# joe.user_attributes.build(:tagline => "From there to here")
+# joe_app.save_app #this updates the status again
+
+# #joe.statuses.build(:name => "submitted")
+# #joe_app.save

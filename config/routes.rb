@@ -1,4 +1,7 @@
 Appapp::Application.routes.draw do
+  resources :dossiers
+
+
   resources :users
 
 
