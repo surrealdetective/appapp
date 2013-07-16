@@ -15,6 +15,13 @@ class DossierStatusesController < ApplicationController
   end
 
   def create
+
+    @dossier = Dossier.find(params[:dossier_id])
+    @dossier.add_status(params[:dossier_status])
+    redirect_to @dossier.user
+
+
+    # raise params.inspect
     # @user = User.find_by_id(params[:user_id])
     # @user.save_with_status(params[:status])
 

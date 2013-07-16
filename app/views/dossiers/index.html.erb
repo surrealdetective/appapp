@@ -6,7 +6,7 @@
 <% @dossiers.each do |dossier| %> 
 
 <li>
-		<%= dossier.user.name %> | <%= dossier.user.email %> | <%= dossier.tagline %> | <%= link_to 'Edit Dossier Status', new_dossier_dossier_status_path(dossier) %>
+		<%= link_to dossier.user.name, dossier.user %> | <%= dossier.user.email %> | <%= dossier.tagline %> | <%= link_to 'Edit Dossier Status', new_dossier_dossier_status_path(dossier) %>
 </li>
 
 <% end %> 

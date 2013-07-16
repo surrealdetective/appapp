@@ -26,8 +26,8 @@
 
   <% DossierStatus.list.each do |status| %>
     <div class="field">
-      <%= label_tag(:status, status) %>
-      <%= radio_button_tag(:status, status) %>
+      <%= label_tag(:dossier_status, status) %>
+      <%= radio_button_tag(:dossier_status, status) %>
     </div>
   <% end %>
 
