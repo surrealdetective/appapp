@@ -1,6 +1,6 @@
 Appapp::Application.routes.draw do
-  resources :dossiers
   resources :users do
+    resources :dossiers, :only => [:new, :create]
     resources :status, :only => [:new, :create]
   end
   root :to => 'users#new'

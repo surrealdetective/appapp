@@ -43,8 +43,8 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
 
     respond_to do |format|
-      if @user.save_with_status("created")
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+      if @user.save#_with_status("created")
+        format.html { redirect_to new_user_dossier_path(@user), notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }
