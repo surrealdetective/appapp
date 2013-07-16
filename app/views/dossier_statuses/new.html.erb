@@ -1,0 +1,38 @@
+<h1>Change User Status</h1>
+
+<h2>Status History for <%= @user.name %>'s Application</h2>
+
+<ul>
+<% @dossier.dossier_statuses.each do |status| %>
+  <li><%= status.state %> | <%= status.created_at %></li>
+<% end %>
+</ul>
+
+<%= form_for(@dossier, :url => dossier_dossier_statuses_path, :method => "POST") do |f| %>
+
+  <% if @dossier.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@dossier.errors.count, "error") %> prohibited this dossier from being saved:</h2>
+
+      <ul>
+      <% @dossier.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <h2>Change <%= @user.name %>'s status</h2>
+
+  <% DossierStatus.list.each do |status| %>
+    <div class="field">
+      <%= label_tag(:status, status) %>
+      <%= radio_button_tag(:status, status) %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>

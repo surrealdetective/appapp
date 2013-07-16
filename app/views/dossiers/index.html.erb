@@ -5,8 +5,8 @@
 <ul><h2> NAME | EMAIL | TAGLINE </h2> </ul>
 <% @dossiers.each do |dossier| %> 
 
-<ul>
-		<%= dossier.user.name %> | <%= dossier.user.email %> | <%= dossier.tagline %> 
-</ul>
+<li>
+		<%= dossier.user.name %> | <%= dossier.user.email %> | <%= dossier.tagline %> | <%= link_to 'Edit Dossier Status', new_dossier_dossier_status_path(dossier) %>
+</li>
 
 <% end %> 

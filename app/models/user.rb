@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  
+  scope :early_adopters, -> { where(:id => [1..5]) }
+
   attr_accessible :email, :name, :dossiers
   has_many :dossiers
 

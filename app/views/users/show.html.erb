@@ -1,7 +1,6 @@
-
-
-
 <p id="notice"><%= notice %></p>
+
+<h2>User Info</h2>
 
 <p>
   <b>Name:</b>
@@ -12,6 +11,16 @@
   <b>Email:</b>
   <%= @user.email %>
 </p>
+
+
+<h2>Dossier Info</h2>
+
+<p>
+  <b>Tagline:</b>
+  <%= @user.last_dossier.tagline %>
+</p>
+
+
 <h2>Dossier Timeline</h2>
 <ul>
   <% @user.last_dossier.dossier_statuses.each do |status| %>
@@ -23,5 +32,4 @@
 
 
 <%= link_to 'Edit User Info', edit_user_path(@user) %> |
-<%= link_to 'Edit User Status', new_user_statu_path(@user) %>
 <%= link_to 'Back', users_path %>
