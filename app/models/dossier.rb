@@ -7,4 +7,15 @@ class Dossier < ActiveRecord::Base
   	self.dossier_statuses.build(state: status_text)
   	self.save
   end
+
+  def self.sort_by(attribute)
+		User.all_sorted ||= self.all.sort_by(&attribute)
+  end
+
+  def self.sort_by_tagline
+  	self.all.sort_by{|dossier|dossier.tagline}
+  end 
+
+
+
 end
