@@ -1,3 +1,6 @@
+
+
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -9,8 +12,12 @@
   <b>Email:</b>
   <%= @user.email %>
 </p>
-
+<h2>Dossier Timeline</h2>
 <ul>
+  <% @user.last_dossier.dossier_statuses.each do |status| %>
+  <li><%= status.state %> on <%= status.updated_at %> 
+  </li>    
+  <% end %>
   
 </ul>
 
