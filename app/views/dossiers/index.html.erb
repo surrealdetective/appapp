@@ -1,0 +1,12 @@
+<h1> Applications </h1> 
+<br>
+
+
+<ul><h2> NAME | EMAIL | TAGLINE </h2> </ul>
+<% @dossiers.each do |dossier| %> 
+
+<ul>
+		<%= dossier.user.name %> | <%= dossier.user.email %> | <%= dossier.tagline %> 
+</ul>
+
+<% end %> 

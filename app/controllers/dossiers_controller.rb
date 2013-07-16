@@ -6,5 +6,9 @@ class DossiersController < ApplicationController
   def create
   end
 
+  def index
+  	@dossiers=Dossier.all 
+  end
+
 
 end

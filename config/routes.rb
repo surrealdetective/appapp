@@ -4,6 +4,7 @@ Appapp::Application.routes.draw do
     resources :status, :only => [:new, :create]
   end
   root :to => 'users#new'
+  resources :dossiers, :only => [:index]
   # get 'users/:id/status/edit', :as => "users#status"
 
 
