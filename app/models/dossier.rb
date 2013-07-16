@@ -9,7 +9,8 @@ class Dossier < ActiveRecord::Base
   end
 
   def self.sort_by(attribute)
-		User.all_sorted ||= self.all.sort_by(&attribute)
+		#User.all_sorted ||= 
+		self.all.sort_by(&attribute)
   end
 
   def self.sort_by_tagline
@@ -20,6 +21,10 @@ class Dossier < ActiveRecord::Base
   	User.all.keep_if{|user|user.status.state == status_text}
   end 
 
-
+  def self.sort_by_user(attribute = :name)
+  	User.all_sorted(attribute).collect do |user|
+  		user.last_dossier
+  	end
+  end
 
 end
