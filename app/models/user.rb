@@ -21,10 +21,15 @@ class User < ActiveRecord::Base
   end
 
   def self.filter_by_status(status_state)
-    self.all.keep_if{|user| user.statuses.last.state == status_state}
+    self.all.keep_if{|user| user.status.state == status_state}
   end
 
   def status
-    self.last_dossier.dossier_statuses.last
+    if self.last_dossier
+      self.last_dossier.dossier_statuses.last
+    else
+      DossierStatus.new
+    end
   end
+
 end
