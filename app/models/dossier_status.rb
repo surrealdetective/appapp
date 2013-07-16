@@ -1,4 +1,4 @@
-class Status < ActiveRecord::Base
+class DossierStatus < ActiveRecord::Base
   attr_accessible :state, :user_id
   belongs_to :user
 

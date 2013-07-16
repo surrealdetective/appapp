@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :name, :dossiers
   has_many :dossiers
-  has_many :statuses
+  
 
   validates :email, :presence => true, :uniqueness => true   
   validates :name, :presence => true  
