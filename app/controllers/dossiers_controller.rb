@@ -9,7 +9,7 @@ class DossiersController < ApplicationController
   def create
     @user = User.find(params[:user_id])
     @user.dossiers.build(params[:dossier])
-    @user.save
+    @user.save_with_dossier_status("submitted")
     
     redirect_to @user
   end 
