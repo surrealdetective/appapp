@@ -1,1 +1,10 @@
-_form.html.erb
+
+
+
+
+
+<%= form_tag user_dossiers_path do %>
+	<%= label_tag "tagline" %>
+	<%= text_field_tag "dossier[tagline]" %>
+  <%= submit_tag "Submit Dossier"%>
+<%end%>  
