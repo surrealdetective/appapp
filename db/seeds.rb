@@ -49,9 +49,10 @@ dhh.email = "dhh@icreatedrails.com"
 dhh.dossiers.build(tagline: "Racecars")
 dhh.save_with_dossier_status("submitted")
 
-#alex is reviewed
+# some applicants are reviewed
 alex.save_with_dossier_status("reviewed")
 sam.save_with_dossier_status("reviewed")
+max.save_with_dossier_status("reviewed")
 dhh.save_with_dossier_status("reviewed")
 
 #sam is accepted
@@ -60,8 +61,4 @@ dhh.save_with_dossier_status("reviewed")
 sam.save_with_dossier_status("accepted")
 max.save_with_dossier_status("deferred")
 dhh.save_with_dossier_status("declined")
-
-
-
-
 
