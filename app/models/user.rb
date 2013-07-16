@@ -3,6 +3,9 @@ class User < ActiveRecord::Base
   has_many :dossiers
   has_many :statuses
 
+  validates :email, :presence => true, :uniqueness => true   
+  validates :name, :presence => true  
+
   def save_with_status(status_text)
     self.statuses.build(state: status_text)
     self.save
