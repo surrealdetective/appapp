@@ -16,6 +16,10 @@ class Dossier < ActiveRecord::Base
   	self.all.sort_by{|dossier|dossier.tagline}
   end 
 
+  def self.sort_by_status(status_text)
+  	User.all.keep_if{|user|user.status.state == status_text}
+  end 
+
 
 
 end
