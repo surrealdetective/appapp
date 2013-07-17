@@ -16,8 +16,37 @@ class DossiersController < ApplicationController
 
 
   def index
-  	@dossiers=Dossier.all 
+    case params[:sort_by]
+    when "name"
+      @dossiers = Dossier.sort_by_user
+    when "reviewed"
+      @dossiers = Dossier.sort_by_status("reviewed")
+    when "app created at"
+      @dossiers = Dossier.sort_by(:created_at)
+    else
+    	@dossiers = Dossier.all 
+    end
+    # raise @dossiers.inspect
+    # @sorters = ["name", "status", "created_at"]
+    # options_from_collection_for_select(@sorters, "id", "name")
+    # raise params.inspect
   end
+  
+  # def filter
+  #   raise params.inspect
+  # end
 
+  def filter_by
+    case params[:sort_by]
+    when "name"
+      @dossiers = Dossier.sort_by_user
+    when "reviewed"
+      @dossiers = Dossier.sort_by_status("reviewed")
+    when "app created at"
+      @dossiers = Dossier.sort_by(:created_at)
+    else
+      @dossiers = Dossier.all 
+    end
+  end
   
 end

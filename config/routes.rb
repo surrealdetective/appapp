@@ -11,8 +11,9 @@ Appapp::Application.routes.draw do
   end
 
   get '/admin' => 'dossiers#index'
+  get '/dossiers/filter_by/:filter' => 'dossiers#filter_by', as: :dossiers_filter_by
 
-
+  get '/dossiers/filter' => 'dossiers#_filter', as: :dossiers_filter
 
 
 

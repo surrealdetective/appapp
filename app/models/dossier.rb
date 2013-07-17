@@ -18,13 +18,11 @@ class Dossier < ActiveRecord::Base
   end 
 
   def self.sort_by_status(status_text)
-  	User.all.keep_if{|user|user.status.state == status_text}
+  	User.all.keep_if{|user|user.status.state == status_text}.collect {|user| user.last_dossier }.compact
   end 
 
   def self.sort_by_user(attribute = :name)
-  	User.all_sorted(attribute).collect do |user|
-  		user.last_dossier
-  	end
+  	User.all_sorted(attribute).collect {|user| user.last_dossier }.compact
   end
 
 end
