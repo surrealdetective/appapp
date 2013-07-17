@@ -14,7 +14,8 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-    if @user.last_dossier == nil
+    @dossier = @user.last_dossier
+    if @dossier == nil
       redirect_to new_user_dossier_path(@user)
     else
       respond_to do |format|

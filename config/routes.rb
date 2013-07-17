@@ -8,12 +8,13 @@ Appapp::Application.routes.draw do
 
   resources :dossiers, :only => [:index] do
     resources :dossier_statuses, :only => [:new, :create]
+    resources :dossier_comments, :only => [:create, :edit, :update, :destroy]
   end
 
   get '/admin' => 'dossiers#index'
   get '/dossiers/filter_by/:filter' => 'dossiers#filter_by', as: :dossiers_filter_by
 
-  get '/dossiers/filter' => 'dossiers#_filter', as: :dossiers_filter
+  get '/dossiers/filter' => 'dossiers#filter', as: :dossiers_filter
 
 
 

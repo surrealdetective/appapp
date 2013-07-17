@@ -17,18 +17,31 @@
 
 <p>
   <b>Tagline:</b>
-  <%= @user.last_dossier.tagline %>
+  <%= @dossier.tagline %>
 </p>
 
 
 <h2>Dossier Timeline</h2>
 <ul>
-  <% @user.last_dossier.dossier_statuses.each do |status| %>
+  <% @dossier.dossier_statuses.each do |status| %>
   <li><%= status.state %> on <%= status.updated_at %> 
   </li>    
   <% end %>
-  
 </ul>
+
+
+<h2>Comments</h2>
+<% @dossier.dossier_comments.each do |comment| %>
+  <li><%= comment.content %></li>
+<% end %>
+
+
+<%= form_tag dossier_dossier_comments_path(@dossier) do %>
+  <%= label_tag "Comment" %>
+  <%= text_area_tag "dossier_comments[content]" %>
+  <%= hidden_field_tag "dossier_comments[dossier_id]", @dossier.id  %>
+  <%= submit_tag "Submit Comment" %>
+<% end %>
 
 
 <%= link_to 'Edit User Info', edit_user_path(@user) %> |
