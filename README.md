@@ -1,3 +1,27 @@
+#Things to Do
+
+1. Comments
+2. Emailer
+3. Themes
+
+# Comments
+1. Where does it belong?
+- Dossier model
+-- bc when dossier being passed btwn flatiron teachers, comments are on the dossier.
+
+1st Draft:
+migration for dossier
+to add t.text :comment
+
+2nd Draft:
+migration for comment
+
+dossier_id:integer
+content:text
+#user_id add this later.
+
+
+
 # Things to Do
 
 ## dashboard
