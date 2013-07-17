@@ -1,8 +1,14 @@
 <h1> Applications </h1> 
-<br>
+
+<h2>Sort by</h2>
+<%= form_tag dossiers_path, :method => "get" do %>
+  <%= select_tag "sort_by", "<option>name</option><option>app created at</option>".html_safe %>
+  <%= submit_tag "Sort now!" %>
+  <%= link_to "filters", dossiers_filter_by_path("all") %>
+<% end %>
 
 
-<ul><h2> NAME | EMAIL | TAGLINE </h2> </ul>
+
 <% @dossiers.each do |dossier| %> 
 
 <li>
@@ -11,10 +17,4 @@
 
 <% end %>
 
-<h2>Sort by</h2>
-
-<%= form_tag dossiers_path, :method => "get" do %>
-  <%= select_tag "sort_by", "<option>name</option><option>reviewed</option><option>app created at</option>".html_safe %>
-  <%= submit_tag "Sort now!" %>
-<% end %>
 

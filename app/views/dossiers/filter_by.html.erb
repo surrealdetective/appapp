@@ -1,19 +1,26 @@
-<h1> Applications </h1> 
-<br>
+<h2>Application Status Filters:</h2>
+<% DossierStatus.list.each do |status_text| %>
+  <a href="/dossiers/filter_by/<%= status_text %>"><%= status_text %></a>
+<% end %>
 
+<h1> Applications </h1> 
 
 <ul><h2> NAME | EMAIL | TAGLINE </h2> </ul>
 <% @dossiers.each do |dossier| %> 
 
 <li>
-    <%= link_to dossier.user.name, dossier.user %> | <a href='mailto:<%=dossier.user.email%>'><%= dossier.user.email %></a> | <%= dossier.tagline %> | <%= link_to 'Edit Dossier Status', new_dossier_dossier_status_path(dossier) %>
+    <%= link_to dossier.user.name, dossier.user %> | <a href='mailto:<%=dossier.user.email%>'><%= dossier.user.email %></a> | <%= dossier.tagline %> | <%= dossier.user.status.state %> | <%= link_to 'Edit Dossier Status', new_dossier_dossier_status_path(dossier) %>
 </li>
 
 <% end %>
 
+
+
+<!-- 
 <h2>Sort by</h2>
 
 <%= form_tag dossiers_path, :method => "get" do %>
-  <%= select_tag "sort_by", "<option>name</option><option>reviewed</option><option>app created at</option>".html_safe %>
+  <%= select_tag "sort_by", "<option>name</option><option>app created at</option>".html_safe %>
   <%= submit_tag "Sort now!" %>
 <% end %>
+-->

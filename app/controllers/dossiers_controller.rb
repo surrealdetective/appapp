@@ -19,8 +19,6 @@ class DossiersController < ApplicationController
     case params[:sort_by]
     when "name"
       @dossiers = Dossier.sort_by_user
-    when "reviewed"
-      @dossiers = Dossier.sort_by_status("reviewed")
     when "app created at"
       @dossiers = Dossier.sort_by(:created_at)
     else
@@ -37,15 +35,10 @@ class DossiersController < ApplicationController
   # end
 
   def filter_by
-    case params[:sort_by]
-    when "name"
-      @dossiers = Dossier.sort_by_user
-    when "reviewed"
-      @dossiers = Dossier.sort_by_status("reviewed")
-    when "app created at"
-      @dossiers = Dossier.sort_by(:created_at)
+    if DossierStatus.list.include? params[:filter]
+      @dossiers = Dossier.filter_by_status(params[:filter])
     else
-      @dossiers = Dossier.all 
+      @dossiers = Dossier.all
     end
   end
   

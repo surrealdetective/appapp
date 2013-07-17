@@ -9,7 +9,6 @@ class Dossier < ActiveRecord::Base
   end
 
   def self.sort_by(attribute)
-		#User.all_sorted ||= 
 		self.all.sort_by(&attribute)
   end
 
@@ -17,7 +16,7 @@ class Dossier < ActiveRecord::Base
   	self.all.sort_by{|dossier|dossier.tagline}
   end 
 
-  def self.sort_by_status(status_text)
+  def self.filter_by_status(status_text)
   	User.all.keep_if{|user|user.status.state == status_text}.collect {|user| user.last_dossier }.compact
   end 
 
