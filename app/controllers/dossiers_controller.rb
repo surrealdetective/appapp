@@ -16,14 +16,7 @@ class DossiersController < ApplicationController
 
 
   def index
-    case params[:sort_by]
-    when "name"
-      @dossiers = Dossier.sort_by_user
-    when "app created at"
-      @dossiers = Dossier.sort_by(:created_at)
-    else
-    	@dossiers = Dossier.all 
-    end
+    @dossiers = Dossier.sort_by(params[:sort_by])
     # raise @dossiers.inspect
     # @sorters = ["name", "status", "created_at"]
     # options_from_collection_for_select(@sorters, "id", "name")

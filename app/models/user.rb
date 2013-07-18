@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
     self.save
   end
 
+  def most_recent_dossier_by_status(status = "reviewed")
+    self.dossiers.most_recent.filter_by(status).first
+  end
+
   def last_dossier
     self.dossiers.last
   end

@@ -9,20 +9,23 @@ class Dossier < ActiveRecord::Base
   	self.save
   end
 
-  def self.sort_by(attribute)
-		self.all.sort_by(&attribute)
+  def self.sort_by(column = :date, direction = "ASC")
+    case column.to_sym
+    when :user
+      self.joins(:user).order("users.name #{direction}")
+    when :date
+      self.order("created_at #{direction}")
+    else
+      self.order("#{column} #{direction}")
+    end
   end
 
-  def self.sort_by_tagline
-  	self.all.sort_by{|dossier|dossier.tagline}
-  end 
+  def self.filter_by(status)
+    self.joins(:dossier_statuses).where(:dossier_statuses => {:state => status})
+  end
 
-  def self.filter_by_status(status_text)
-  	User.all.keep_if{|user|user.status.state == status_text}.collect {|user| user.last_dossier }.compact
-  end 
-
-  def self.sort_by_user(attribute = :name)
-  	User.all_sorted(attribute).collect {|user| user.last_dossier }.compact
+  def self.most_recent
+    sort_by(:date, "DESC").limit(1)
   end
 
 end
