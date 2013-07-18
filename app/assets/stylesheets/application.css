@@ -10,4 +10,6 @@
  *
  *= require_self
  *= require_tree .
+ *= require ../../../vendor/assets/detailadmin/bootstrap.css
+ *= require ../../../vendor/assets/detailadmin/layout.css
  */
