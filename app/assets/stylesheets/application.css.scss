@@ -8,6 +8,15 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require_self
+
+
+ *= require ../../../vendor/assets/detailwrap/css/bootstrap/bootstrap.css
+ *= require ../../../vendor/assets/detailwrap/css/bootstrap/bootstrap-responsive.css
+ *= require ../../../vendor/assets/detailwrap/css/bootstrap/bootstrap-overrides.css
+ *= require ../../../vendor/assets/detailwrap/css/layout.css
+ *= require ../../../vendor/assets/detailwrap/css/elements.css
+ *= require ../../../vendor/assets/detailwrap/css/icons.css
+ *= require ../../../vendor/assets/detailwrap/css/signin.css
  *= require_tree .
+ *= require_self
  */

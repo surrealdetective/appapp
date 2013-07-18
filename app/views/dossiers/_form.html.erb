@@ -1,10 +1,12 @@
+<div class="container">
+ <!--  <form class="new_user_form inline-input"> -->
 
-
-
-
-
-<%= form_tag user_dossiers_path do %>
-	<%= label_tag "tagline" %>
-	<%= text_field_tag "dossier[tagline]" %>
-  <%= submit_tag "Submit Dossier"%>
+  <%= form_tag user_dossiers_path, :class => 'new_user_form inline-input' do %>
+	<div class="span12 field-box">
+    <%= label_tag "tagline", nil, :class=>'span3' %>
+    <%= text_field_tag "dossier[tagline]", nil, :class => 'span9' %>
+    <%= submit_tag "Submit Dossier"%>
+  </div>
 <%end%>  
+
+</div>
