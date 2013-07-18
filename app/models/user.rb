@@ -41,12 +41,17 @@ class User < ActiveRecord::Base
     end
 
     # lets rewrite with joins
-
     # when you call like... User.first.status
     # it should find that users' last status
     # join this user to its dossiers, and its dossiers to *its* statuses
     # then find the most recent status
     # if there are no statuses, return a new status still?
+    # self.dossiers.order("created_at ASC").joins(:dossier_statuses).order("dossier_statuses.created_at ASC").limit(1)
+    # self.dossiers.includes(:dossier_statuses).order("created_at ASC").limit(1)
+
+
+
+
   end
 
 
