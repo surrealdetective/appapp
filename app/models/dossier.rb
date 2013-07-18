@@ -10,11 +10,13 @@ class Dossier < ActiveRecord::Base
   end
 
   def self.sort_by(column = :date, direction = "ASC")
+    column ||= :date # because sometimes we send in nil (eg, dossiers#index)
     case column.to_sym
     when :user
       self.joins(:user).order("users.name #{direction}")
     when :date
       self.order("created_at #{direction}")
+      # extend in future to sort by more stuff
     else
       self.order("#{column} #{direction}")
     end
@@ -25,7 +27,11 @@ class Dossier < ActiveRecord::Base
   end
 
   def self.most_recent
-    sort_by(:date, "DESC").limit(1)
+    self.sort_by(:date, "DESC").limit(1)#.first
+  end
+
+  def last_status
+    self.dossier_statuses.last
   end
 
 end

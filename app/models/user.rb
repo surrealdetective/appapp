@@ -13,30 +13,40 @@ class User < ActiveRecord::Base
     self.save
   end
 
-  def most_recent_dossier_by_status(status = "reviewed")
-    self.dossiers.most_recent.filter_by(status).first
-  end
+  # def most_recent_dossier_by_status(status = "reviewed")
+  #   self.dossiers.most_recent.filter_by(status).first#.tagline or whatever
+  # end
 
   def last_dossier
     self.dossiers.last
   end
 
-  def self.all_sorted(attribute = :name)
-    # pass a symbol to sort by
-    # or :created_at maybe
-    self.all.sort_by(&attribute)
+  def self.all_sorted(attribute = "name", direction = "ASC")
+    self.order("#{attribute} #{direction}")
   end
 
   def self.filter_by_status(status)
     self.all.keep_if{|user| user.status.status == status}
   end
 
+  def has_dossiers?
+    self.dossiers.count > 0
+  end
+
   def status
-    if self.last_dossier
-      self.last_dossier.dossier_statuses.last
+    if has_dossiers?
+      last_dossier.last_status
     else
       DossierStatus.new
     end
+
+    # lets rewrite with joins
+
+    # when you call like... User.first.status
+    # it should find that users' last status
+    # join this user to its dossiers, and its dossiers to *its* statuses
+    # then find the most recent status
+    # if there are no statuses, return a new status still?
   end
 
 

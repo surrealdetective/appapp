@@ -2,8 +2,6 @@ class DossiersController < ApplicationController
 
   def new
     @user= User.find(params[:user_id])
-    #raise @user.inspect
-
   end
 
   def create
@@ -14,13 +12,9 @@ class DossiersController < ApplicationController
     redirect_to @user
   end 
 
-
   def index
+    raise params.inspect
     @dossiers = Dossier.sort_by(params[:sort_by])
-    # raise @dossiers.inspect
-    # @sorters = ["name", "status", "created_at"]
-    # options_from_collection_for_select(@sorters, "id", "name")
-    # raise params.inspect
   end
   
   # def filter
@@ -29,10 +23,12 @@ class DossiersController < ApplicationController
 
   def filter_by
     if DossierStatus.list.include? params[:filter]
-      @dossiers = Dossier.filter_by_status(params[:filter])
+      @dossiers = Dossier.filter_by(params[:filter])
+    elsif params[:filter] == "all"
+      @dossiers = Dossier.find(:all)
     else
-      @dossiers = Dossier.all
+      @dossiers = []
     end
   end
-  
+    
 end
