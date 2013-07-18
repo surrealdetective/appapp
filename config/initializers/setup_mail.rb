@@ -1,4 +1,5 @@
 ActionMailer::Base.smtp_settings = {
+  # so we're committing our password.... lol
   :address              => "smtp.gmail.com",
   :port                 => 587,
   :domain               => "gmail.com",
