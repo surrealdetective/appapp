@@ -13,7 +13,7 @@ class DossiersController < ApplicationController
   end 
 
   def index
-    raise params.inspect
+    # raise params.inspect
     @dossiers = Dossier.sort_by(params[:sort_by])
   end
   
