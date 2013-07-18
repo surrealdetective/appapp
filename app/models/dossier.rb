@@ -5,7 +5,7 @@ class Dossier < ActiveRecord::Base
   has_many :dossier_comments
 
   def add_status(status_text)
-  	self.dossier_statuses.build(state: status_text)
+  	self.dossier_statuses.build(status: status_text)
   	self.save
   end
 
@@ -21,7 +21,7 @@ class Dossier < ActiveRecord::Base
   end
 
   def self.filter_by(status)
-    self.joins(:dossier_statuses).where(:dossier_statuses => {:state => status})
+    self.joins(:dossier_statuses).where(:dossier_statuses => {:status => status})
   end
 
   def self.most_recent

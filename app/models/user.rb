@@ -27,8 +27,8 @@ class User < ActiveRecord::Base
     self.all.sort_by(&attribute)
   end
 
-  def self.filter_by_status(status_state)
-    self.all.keep_if{|user| user.status.state == status_state}
+  def self.filter_by_status(status)
+    self.all.keep_if{|user| user.status.status == status}
   end
 
   def status

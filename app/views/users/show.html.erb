@@ -24,7 +24,7 @@
 <h2>Dossier Timeline</h2>
 <ul>
   <% @dossier.dossier_statuses.each do |status| %>
-  <li><%= status.state %> on <%= status.updated_at %> 
+  <li><%= status.status %> on <%= status.updated_at %> 
   </li>    
   <% end %>
 </ul>
