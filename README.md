@@ -1,3 +1,12 @@
+#Themes
+--how do you have a custom background for the new user page?
+----set it to root, make a new resource, then re-reference it? (nooo)
+----wait for ashley.
+
+1. Integrate Index Page
+2. Integrate Form Page
+3. 
+
 #Things to Do
 
 1. Comments
