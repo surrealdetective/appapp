@@ -8,3 +8,5 @@ class CreateDossiers < ActiveRecord::Migration
     end
   end
 end
+
+
