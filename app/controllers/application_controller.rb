@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_filter :login_required #check this
 
   def current_user
-    @current_user = User.where(:email => params[:email]).first
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
   #2 methods for login bc
@@ -15,6 +15,20 @@ class ApplicationController < ActionController::Base
   end
 
   def login_required
-    login
+    redirect_to login_path, :notice => "You must be logged in!" if !logged_in?
   end
+
+  def logged_in?
+    !!current_user
+  end
+
+
+
+
+
+
+
+
+
+
 end
