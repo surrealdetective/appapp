@@ -1,0 +1,14 @@
+<h1>Login to App App</h1>
+<%= form_tag '/login', method: "POST" do %>
+  <div class="field">
+    <%= label_tag "Name:" %>
+    <%= text_field_tag "user[name]" %>
+  </div>
+  <div class="field">
+    <%= label_tag "E-mail:" %>
+    <%= text_field_tag "user[email]" %>
+  </div>
+  <div class="actions">
+    <%= submit_tag "Login" %>
+  </div>
+<% end %>
