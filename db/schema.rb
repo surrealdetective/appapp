@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130719090758) do
+ActiveRecord::Schema.define(:version => 20130719151959) do
 
   create_table "dossier_comments", :force => true do |t|
     t.integer  "dossier_id"
@@ -30,21 +30,21 @@ ActiveRecord::Schema.define(:version => 20130719090758) do
   create_table "dossiers", :force => true do |t|
     t.integer  "user_id"
     t.string   "tagline"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.string   "phone_number"
-    t.text     "city_location"
-    t.string   "twitter_URL"
-    t.string   "linkedin_URL"
-    t.string   "blog_URL"
-    t.string   "github_url"
-    t.string   "website_URL"
+    t.text     "city"
+    t.string   "twitter"
+    t.string   "linkedin"
+    t.string   "blog"
+    t.string   "github"
+    t.string   "website"
     t.text     "other_links"
-    t.text     "question_1"
-    t.text     "question_2"
-    t.text     "question_3"
-    t.text     "question_4"
-    t.text     "question_5"
+    t.text     "career"
+    t.text     "purpose"
+    t.text     "code_skills"
+    t.text     "analytic_skills"
+    t.text     "tidbits"
   end
 
   create_table "users", :force => true do |t|

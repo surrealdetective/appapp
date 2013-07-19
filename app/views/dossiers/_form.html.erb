@@ -1,42 +1,64 @@
-<body class="dossier-form-bg">
   <div class="container">
-    <div class="dossier-form-container">
-      <h1> <%= @user.name %>'s Application</h1>
+    <div class="dossier-form-container new-user">
+      <div class = "form-wrapper">
+        <h1> <%= @user.name %>'s Application</h1>
+        <br>
+        <br>
+   <!--  <form class="new_user_form inline-input"> -->  <%= form_tag user_dossiers_path, :class => 'new_user_form inline-input' do %>
+  <h3> Account Information </h3>
+  <!-- NAME -->
+    <div class="span12 field-box">
       <br>
       <br>
- <!--  <form class="new_user_form inline-input"> -->  <%= form_tag user_dossiers_path, :class => 'new_user_form inline-input' do %>
-<h3> Account Information </h3>
-<!-- NAME -->
-  <div class="span12 field-box">
-    <br>
-    <br>
-    <%= label_tag "Name:", nil, :class=>'span3' %>
-    <%= @user.name %>
-  </div>
-<!-- EMAIL  -->
-  <div class="span12 field-box">
-    <%= label_tag "Email Address:", nil, :class=>'span3' %>
-    <%= @user.email %>
-  </div>
-_________________________________________________________________________________________________________________________________________________   <!-- Just being lazy here will save it as an image and make it a class in CSS just wanted to see what it'd look like-->
-<br>
-<br>
-<h3> Flatiron School Application </h3>
-<br>
-<br>
-<!-- TAGLINE -->
-  <div class="span12 field-box">
-  <%= label_tag "tagline", nil, :class=>'span3' %>
-  <%= text_field_tag "dossier[tagline]", nil, :class => 'span3' %>
-  </div>
-<br>
-<br>
+      <%= label_tag "Name:", nil, :class=>'span3' %>
+      <%= @user.name %>
+    </div>
+  <!-- EMAIL  -->
+    <div class="span12 field-box">
+      <%= label_tag "Email Address:", nil, :class=>'span3' %>
+      <%= @user.email %>
+    </div>
 
-  <div class="span12 field-box">
-  <%= submit_tag "Submit Application", :class=>'span3' %>
+  <hr> <!-- Horizontal Rule -->
+
+  <br>
+  <br>
+  <h3> Flatiron School Application </h3>
+  <br>
+  <br>
+  <!-- TAGLINE -->
+    <div class="span12 field-box">
+    <%= label_tag "tagline", nil, :class=>'span3' %>
+    <%= text_field_tag "dossier[tagline]", nil, :class => 'span3' %>
+    </div>
+  <br>
+  <br>
+    <div class="span12 field-box">
+    <%= label_tag "phone_number", nil, :class=>'span3' %>
+    <%= text_field_tag "dossier[phone_number]", nil, :class => 'span3' %>
+    </div>
+
+    <div class="span12 field-box">
+    <%= label_tag "city", nil, :class=>'span3' %>
+    <%= text_field_tag "dossier[city]", nil, :class => 'span3' %>
+    </div>
+
+    <div class="span12 field-box">
+    <%= label_tag "twitter", nil, :class=>'span3' %>
+    <%= text_field_tag "dossier[twitter]", nil, :class => 'span3' %>
+    </div>
+
+    <div class="span12 field-box">
+    <%= label_tag "github", nil, :class=>'span3' %>
+    <%= text_field_tag "dossier[github]", nil, :class => 'span3' %>
+    </div>
+
+    <div class="span12 field-box">
+    <%= submit_tag "Submit Application", :class=>'btn-glow primary'  %>
+    </div>
   </div>
+
 </div>
-</body>
 
 
 

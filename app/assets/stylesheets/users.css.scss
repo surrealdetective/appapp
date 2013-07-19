@@ -1,5 +1,5 @@
 
-.login-bg {
+body.users.new {
   background: url(flatiron.png);
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -7,8 +7,8 @@
   background-size: cover;
 }
 
-.dossier-form-bg {
-  background: url(code.png);
+body.dossiers.new {
+  background: url(flatiron_building.jpg);
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -18,12 +18,16 @@
 .dossier-form-container{
   padding: 50px;
   background-color: white;
-  position:absolute;
+  position:relative;
   margin: auto;
-  width:70%;
-  height: 700px;
+  width:40%;
+  height: 40%;
   overflow: scroll;
-  opacity: .8;
-  border: 6px solid #60BDDB;
+  opacity: .95;
+  border: 2px solid #60BDDB;
 }
 
+textarea {
+  width:100%;
+  height: 30px;
+}

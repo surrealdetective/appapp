@@ -1,5 +1,5 @@
 class Dossier < ActiveRecord::Base
-  attr_accessible :tagline, :phone_number, :city_location, :twitter_URL, :linkedin_URL, :blog_URL, :github_url, :website_URL, :other_links, :question_1, :question_2, :question_3, :question_4, :question_5, :user_id
+  attr_accessible :tagline, :phone_number, :city, :twitter, :linkedin, :blog, :github, :website, :other_links, :career, :purpose, :code_skills, :analytic_skills, :tidbits, :user_id
   belongs_to :user
   has_many :dossier_statuses
   has_many :dossier_comments

@@ -1,4 +1,7 @@
-#Themes
+
+
+# Themes
+
 --how do you have a custom background for the new user page?
 ----set it to root, make a new resource, then re-reference it? (nooo)
 ----wait for ashley.
