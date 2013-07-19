@@ -1,12 +1,16 @@
 class User < ActiveRecord::Base
   
-  scope :early_adopters, -> { where(:id => [1..5]) }
-
-  attr_accessible :email, :name, :dossiers
   has_many :dossiers
 
+  attr_accessible :email, :name, :dossiers, :password, :password_confirmation
+  
+  attr_accessor :password
+  before_save :encrypt_password
+
   validates :email, :presence => true, :uniqueness => true   
-  validates :name, :presence => true  
+  validates :name, :presence => true 
+  validates_confirmation_of :password
+  validates_presence_of     :password, :on => :create
 
   def save_with_dossier_status(status_text)
     last_dossier.add_status(status_text)  
@@ -47,12 +51,32 @@ class User < ActiveRecord::Base
     # then find the most recent status
     # if there are no statuses, return a new status still?
     # self.dossiers.order("created_at ASC").joins(:dossier_statuses).order("dossier_statuses.created_at ASC").limit(1)
-    # self.dossiers.includes(:dossier_statuses).order("created_at ASC").limit(1)
-
-
-
+    # self.dossiers.includes(:dossier_statuses).order("created_at ASC").limit(1
 
   end
+
+  def self.authenticate(email, password)
+    user = find_by_email(email)
+    if user && user.password_hash == Bcrypt::Engine.hash_secret(password, user.password_salt)
+      user
+    else
+      nil
+    end
+  end
+  
+  def encrypt_password
+    if password.present?
+      self.password_salt = Bcrypt::Engine.genereate_salt
+      self.password_hasg = Bcrypt::Engine.hash_secret(password, password_salt)
+    end
+  end
+
+
+
+
+
+
+
 
 
 end
