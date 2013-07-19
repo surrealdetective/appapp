@@ -1,7 +1,11 @@
+<body class="dossier-form-bg">
+  <div class="container">
+    <div class="dossier-form-container">
+
 <p id="notice"><%= notice %></p>
 
-<h2>User Info</h2>
-
+<h2>User Information</h2>
+<br>
 <p>
   <b>Name:</b>
   <em><%= @user.name %></em>
@@ -13,7 +17,8 @@
 </p>
 
 
-<h2>Dossier Info</h2>
+<h2>Application Responses</h2>
+<br>
 
 <p>
   <b>Tagline:</b>
@@ -21,16 +26,17 @@
 </p>
 
 
-<h2>Dossier Timeline</h2>
-<ul>
+<h2>Application Status</h2>
+<br>
+<p>
   <% @dossier.dossier_statuses.each do |status| %>
-  <li><%= status.status %> on <%= status.updated_at %> 
-  </li>    
+ <%= status.status %> on <%= status.updated_at %> 
   <% end %>
-</ul>
+</p>
 
 
 <h2>Comments</h2>
+<br>
 <% @dossier.dossier_comments.each do |comment| %>
   <li><%= comment.content %></li>
 <% end %>
@@ -46,3 +52,7 @@
 
 <%= link_to 'Edit User Info', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
+
+</div>
+</div>
+</body>

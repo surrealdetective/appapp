@@ -1056,9 +1056,11 @@ input,
 button,
 select,
 textarea {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: normal;
   line-height: 20px;
+  text-transform: uppercase;
+  font-family: 'Arial'
 }
 
 input,
