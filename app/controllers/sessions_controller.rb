@@ -2,14 +2,14 @@ class SessionsController < ApplicationController
   def new #this happens when you login
   end
 
-  def create #this is the post, which creates your login
-    #if login success, continue to page
-    #if login fail, go to new
-    if current_user
-      session[:user_id] = @current_user.id
-      redirect_to user_path(current_user) #goto your user#show
+  def create#this is the post, which creates your login
+    user = User.where(:email => params[:user][:email]).first
+    raise user.inspect
+    if user
+      login(user)
+      redirect_to user_path(user)
     else
-      redirect_to new_user_path #sign up
+      render :new
     end
   end
 
