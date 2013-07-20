@@ -1,4 +1,11 @@
-<h1>Login to App App</h1>
+<h1>Sign up for App App</h1>
+
+
+
+
+
+
+
 <%= form_tag '/login', method: "POST" do %>
   <div class="field">
     <%= label_tag "Name:" %>
@@ -12,6 +19,11 @@
   <div class="field">
     <%= label_tag :password %><br />
     <%= password_field_tag :password %>
+  </div>
+
+  <div class= "field">
+    <%= label_tag :password_confirmation %><br />
+    <%= password_field_tag :password_confirmation %>
   </div>
 
   <div class="actions">

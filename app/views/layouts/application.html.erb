@@ -9,18 +9,19 @@
 
 <body class='<%= params[:controller] %> <%= params[:action] %>'>
   <div class="row-fluid login-wrapper">
+  
+
+    <%= yield %>
     <div id="user_nav">
-      <% if current_user %>
-        Logged in as <%= current_user.email %>.
-        <%= link_to "Log out", log_out_path %>
+      <% if true %>
+        Logged in as <%=  %>. #fix this later. should be current_user.name
+        <%= link_to "Log out", logout_path %>
       <% else %>
-        <%= link_to "Sign up", sign_up_path %> or
-        <%= link_to "log in", log_in_path %>
+        <%= link_to "Sign up", new_user_path %> or
+        <%= link_to "log in", login_path %>
       <% end %>
     </div>    
 
-    <%= yield %>
-    
   </div>
 </body>
 </html>
