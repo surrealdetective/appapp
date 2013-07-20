@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Appapp</title>
+  <title><%= title %></title> <!-- check /app/helpers/application_helper.rb for this method  -->
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 
-<body class='<%= params[:controller] %> <%= params[:action] %>'>
-  <div class="row-fluid login-wrapper">
-      
-      <%= yield %>
+<!--
+  body will have classes of the controller and action,
+  and then additional arbitrary classes assigned in controller
+-->
+<body class='<%= params[:controller] %> <%= params[:action] %> <%= @body_classes %>'>
 
-
-  </div>
+  <%= yield %>
 
 </body>
 </html>
