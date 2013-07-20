@@ -1,6 +1,11 @@
 <h1> Applications </h1> 
 
+<hr>
+
 <h2>Sort by</h2>
+
+<hr>
+
 <%= form_tag dossiers_path, :method => "get" do %>
   <%= select_tag "sort_by", "<option>user</option><option>date</option>".html_safe %>
   <%= submit_tag "Sort now!" %>
@@ -19,5 +24,3 @@
 </li>
 
 <% end %>
-
-

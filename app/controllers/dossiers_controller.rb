@@ -1,5 +1,8 @@
 class DossiersController < ApplicationController
 
+  # set a non-default layout for dossier viewing
+  layout "dashboard"
+
   def new
     @user= User.find(params[:user_id])
   end
@@ -15,6 +18,7 @@ class DossiersController < ApplicationController
   def index
     # raise params.inspect
     @dossiers = Dossier.sort_by(params[:sort_by])
+    @title = "Admin Zone"
   end
   
   # def filter

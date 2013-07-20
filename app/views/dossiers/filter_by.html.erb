@@ -1,11 +1,14 @@
-<h2>Application Status Filters:</h2>
+<h1>Application Status Filters:</h1>
+
+<hr>
+
 <% DossierStatus.list.each do |status_text| %>
   <a href="/dossiers/filter_by/<%= status_text %>"><%= status_text %></a>
 <% end %>
 
-<h1> Applications </h1> 
+<hr>
 
-<ul><h2> NAME | EMAIL | TAGLINE </h2> </ul>
+<h3> NAME | EMAIL | TAGLINE </h3>
 <% @dossiers.each do |dossier| %> 
 
 <li>
