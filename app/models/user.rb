@@ -3,14 +3,15 @@ class User < ActiveRecord::Base
   has_many :dossiers
 
   attr_accessible :email, :name, :dossiers, :password, :password_confirmation
+  has_secure_password 
   
-  attr_accessor :password
-  before_save :encrypt_password
+  # attr_accessor :password
+  # before_save :encrypt_password
 
-  validates :email, :presence => true, :uniqueness => true   
-  validates :name, :presence => true 
-  validates_confirmation_of :password
-  validates_presence_of     :password, :on => :create
+  # validates :email, :presence => true, :uniqueness => true   
+  # validates :name, :presence => true 
+  # validates_confirmation_of :password
+   validates_presence_of     :password, :on => :create
 
   def save_with_dossier_status(status_text)
     last_dossier.add_status(status_text)  
