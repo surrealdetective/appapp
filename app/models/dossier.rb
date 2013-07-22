@@ -5,8 +5,8 @@ class Dossier < ActiveRecord::Base
   has_many :dossier_comments
 
   def add_status(status_text)
-  	self.dossier_statuses.build(status: status_text)
-  	self.save
+    self.dossier_statuses.build(status: status_text)
+    self.save
   end
 
   def self.sort_by(column = :date, direction = "ASC")
