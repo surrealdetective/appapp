@@ -4,7 +4,8 @@ class DossiersController < ApplicationController
   layout "dashboard"
 
   def new
-    @user= User.find(params[:user_id])
+    # @user = User.new
+    # @user= User.find(params[:user_id])
   end
 
   def create

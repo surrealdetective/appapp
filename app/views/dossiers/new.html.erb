@@ -1,3 +1,68 @@
+  <div class="container">
+    <h2> <%= link_to "Login", login_path %> </h2>
+    <div class="dossier-form-container new-user">
+      <div class = "form-wrapper">
+        <h1> Flatiron Application</h1>
+        <br>
+        <br>
+        <%= form_tag dossiers_path, :class => 'new_user_form inline-input' do %>
+        <h3> Account Information </h3>
+       
+       <!-- NAME -->
+        <div class="span12 field-box">
+        <%= label_tag "Name", nil, :class=>'span3' %>
+        <%= text_field_tag "user[name]", nil, :class => 'span3' %>
+        </div>
 
-<%= render "form" %>
+        <!-- EMAIL  -->
+        <div class="span12 field-box">
+        <%= label_tag "Email", nil, :class=>'span3' %>
+        <%= text_field_tag "user[email]", nil, :class => 'span3' %>
+        </div>
 
+  <hr> <!-- Horizontal Rule -->
+
+  <br>
+  <br>
+  <h3> Flatiron School Application </h3>
+  <br>
+  <br>
+  <!-- TAGLINE -->
+    <div class="span12 field-box">
+    <%= label_tag "tagline", nil, :class=>'span3' %>
+    <%= text_field_tag "dossier[tagline]", nil, :class => 'span3' %>
+    </div>
+  <br>
+  <br>
+    <div class="span12 field-box">
+    <%= label_tag "phone_number", nil, :class=>'span3' %>
+    <%= text_field_tag "dossier[phone_number]", nil, :class => 'span3' %>
+    </div>
+
+    <div class="span12 field-box">
+    <%= label_tag "city", nil, :class=>'span3' %>
+    <%= text_field_tag "dossier[city]", nil, :class => 'span3' %>
+    </div>
+
+    <div class="span12 field-box">
+    <%= label_tag "twitter", nil, :class=>'span3' %>
+    <%= text_field_tag "dossier[twitter]", nil, :class => 'span3' %>
+    </div>
+
+    <div class="span12 field-box">
+    <%= label_tag "github", nil, :class=>'span3' %>
+    <%= text_field_tag "dossier[github]", nil, :class => 'span3' %>
+    </div>
+
+    <div class="span12 field-box">
+    <%= submit_tag "Submit Application", :class=>'btn-glow primary'  %>
+    </div>
+  </div>
+
+</div>
+
+
+
+<%end%>  
+
+</div>

@@ -4,11 +4,10 @@ Appapp::Application.routes.draw do
   post '/login' => "sessions#create"
   get '/logout' => "sessions#destroy"
 
-  resources :users do
-    resources :dossiers, :only => [:new, :create]
-    # resources :status, :only => [:new, :create]
-  end
-  root :to => 'users#new'
+  
+  resources :dossiers, :only => [:new, :create, :show]
+  
+  root :to => 'dossiers#new'
   
 
   resources :dossiers, :only => [:index] do
