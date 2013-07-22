@@ -16,12 +16,11 @@
   <%= yield %>
 
   <div id="user_nav">
-    <% if true %>
-      Logged in as <%=  %>. #fix this later. should be current_user.name
+    <% if @user %>
+      Logged in as <%= @user.name %>. 
       <%= link_to "Log out", logout_path %>
     <% else %>
-      <%= link_to "Sign up", new_user_path %> or
-      <%= link_to "log in", login_path %>
+      <%= link_to "Apply to Flatiron", new_dossier_path %>
     <% end %>
   </div>    
 

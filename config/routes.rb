@@ -5,17 +5,17 @@ Appapp::Application.routes.draw do
   get '/logout' => "sessions#destroy"
 
   
-  resources :dossiers, :only => [:new, :create, :show]
+  # resources :dossiers, :only => [:new, :create, :show]
   
   root :to => 'dossiers#new'
   
 
-  resources :dossiers, :only => [:index] do
+  resources :dossiers, :only => [:new, :create, :show, :index] do
     resources :dossier_statuses, :only => [:new, :create]
     resources :dossier_comments, :only => [:create, :edit, :update, :destroy]
   end
 
-  get '/admin' => 'dossiers#index'
+  # get '/admin' => 'dossiers#index'
   get '/dossiers/filter_by/:filter' => 'dossiers#filter_by', as: :dossiers_filter_by
 
   get '/dossiers/filter' => 'dossiers#filter', as: :dossiers_filter

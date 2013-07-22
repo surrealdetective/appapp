@@ -1,10 +1,6 @@
 <h1>Login to App App</h1>
 
-
-
 <br>
-
-
 
 <%= form_tag '/login', method: "POST" do %>
   <!--  -->
@@ -18,11 +14,7 @@
     <%= password_field_tag :password %>
   </div>
 
-
   <div class="actions">
     <%= submit_tag "Login" %>
   </div>
-
-
 <% end %>
-<%= link_to "sign-up", new_user_path %>
