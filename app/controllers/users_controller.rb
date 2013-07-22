@@ -52,7 +52,7 @@ skip_before_filter :login_required
 
     respond_to do |format|
       if @user.save#_with_status("created")
-
+        session[:user_id] = @user.id
         UserMailer.welcome_email(@user).deliver
         format.html { redirect_to new_user_dossier_path(@user), notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
