@@ -1,5 +1,7 @@
 Appapp::Application.routes.draw do
   
+  get "/dashboard" => "dashboard#home"
+
   get '/login' => "sessions#new"
   post '/login' => "sessions#create"
   get '/logout' => "sessions#destroy"
