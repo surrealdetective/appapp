@@ -1,8 +1,9 @@
 class Dossier < ActiveRecord::Base
-  attr_accessible :tagline, :phone_number, :city, :twitter, :linkedin, :blog, :github, :website, :other_links, :career, :purpose, :code_skills, :analytic_skills, :tidbits, :user_id
+  attr_accessible :aasm_state, :tagline, :phone_number, :city, :twitter, :linkedin, :blog, :github, :website, :other_links, :career, :purpose, :code_skills, :analytic_skills, :tidbits, :user_id
   belongs_to :user
   has_many :dossier_statuses
   has_many :dossier_comments
+  include AASM
 
   def add_status(status_text)
     self.dossier_statuses.build(status: status_text)
@@ -34,4 +35,23 @@ class Dossier < ActiveRecord::Base
     self.dossier_statuses.last
   end
 
+  aasm do 
+    state :saving, :initial => true
+    state :submitting
+    state :reviewing
+    state :offerring_for_1st_interview
+    state :agrees_to_1st_interview
+    state :interview_pending
+    state :offerring_for_2nd_interview
+    state :agrees_to_2nd_interview
+    state :second_interview_pending
+    state :accepts
+    state :deferrs
+    state :declines
+
+    event :saves do
+      transitions :from => :saving, :to=> :submitting 
+    end
+    
+  end
 end
