@@ -38,7 +38,7 @@ class Dossier < ActiveRecord::Base
   aasm do
     #     state :sleeping, :initial => true, :before_enter => :do_something
     state :unread, :initial => true, :after_exit => :dossier_is_created
-    state :read
+    state :reads
     state :offerring_for_1st_interview
     state :agrees_to_1st_interview
     state :interview_pending
@@ -49,10 +49,6 @@ class Dossier < ActiveRecord::Base
     state :defers
     state :declines
 
-    def dossier_is_created
-      self.add_status("pending")
-    end
-
     event :reads do
       transitions :from => :unread, :to => :read
     end
@@ -61,5 +57,9 @@ class Dossier < ActiveRecord::Base
       transitions :from => :read, :to => :unread
     end
 
+  end
+
+  def dossier_is_created
+    self.add_status("pending")
   end
 end
