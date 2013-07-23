@@ -65,3 +65,21 @@ watched 192 Authorization with CanCan RAILSCASTS. Much simpler:
 1. Integrate Index Page
 2. Integrate Form Page
 
+Login/Logout User View
+<body class='<%= params[:controller] %> <%= params[:action] %> <%= @body_classes %>'>
+
+  <%= yield %>
+
+  <div id="user_nav">
+    <% if @user %>
+      Logged in as <%= @user.name %>. 
+      <%= link_to "Log out", logout_path %>
+    <% else %>
+      <%= link_to "Apply to Flatiron", new_dossier_path %>
+    <% end %>
+  </div>    
+
+</body>
+</html>
+
+
