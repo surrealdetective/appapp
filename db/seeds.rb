@@ -19,8 +19,8 @@ User.populate(700) do |user|
   user.name = Populator.words(2)
   user.email = "#{(Populator.words(1))}@#{(Populator.words(1))}.dev"
 end
+counter = 0
 Dossier.populate(700) do |dude|
-   counter = 1
    counter = counter + 1
    dude.user_id = counter 
    dude.tagline = "holy christ we are all the same"
