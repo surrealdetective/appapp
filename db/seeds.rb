@@ -1,13 +1,6 @@
 require 'populator'
 require 'faker'
 require 'debugger'
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
 
 classes = ["Fall 2013", "Spring 2014", "Summer 2014"]
 
@@ -33,7 +26,7 @@ classes = ["Fall 2013", "Spring 2014", "Summer 2014"]
     :code_skills        => "#{Populator.paragraphs(3)}",
     :analytic_skills    => "#{Populator.paragraphs(3)}",
     :tidbits            => "#{Populator.paragraphs(3)}",
-    :semester           => classes[rand(0..2)]
+    :semester           => classes.sample
   })
   user.save
 end
