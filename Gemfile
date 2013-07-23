@@ -28,8 +28,13 @@ gem 'jquery-rails'
 gem 'bcrypt-ruby', '=3.0.0'
 #require 'bcrypt' #'~> 3.0.0'
 gem 'aasm'
+gem 'debugger'
+
+
 
 group :development do
+  gem 'populator'
+  gem 'faker'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'quiet_assets'

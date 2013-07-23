@@ -45,10 +45,19 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    columnize (0.3.6)
     debug_inspector (0.0.2)
+    debugger (1.6.1)
+      columnize (>= 0.3.1)
+      debugger-linecache (~> 1.2.0)
+      debugger-ruby_core_source (~> 1.2.3)
+    debugger-linecache (1.2.0)
+    debugger-ruby_core_source (1.2.3)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    faker (1.1.2)
+      i18n (~> 0.5)
     hike (1.2.3)
     i18n (0.6.1)
     journey (1.0.4)
@@ -62,6 +71,7 @@ GEM
     mime-types (1.23)
     multi_json (1.7.7)
     polyglot (0.3.3)
+    populator (1.0.0)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
     rack (1.4.5)
@@ -119,7 +129,10 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   coffee-rails (~> 3.2.1)
+  debugger
+  faker
   jquery-rails
+  populator
   quiet_assets
   rails (= 3.2.13)
   sass-rails (~> 3.2.3)
