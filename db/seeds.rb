@@ -11,14 +11,15 @@ require 'debugger'
 
 
 
-
-
+#make an array to contain all users
 
 User.populate(700) do |user|
   user
   user.name = Populator.words(2)
   user.email = "#{(Populator.words(1))}@#{(Populator.words(1))}.dev"
+  user.roles = 200 #this means they are applicants
 end
+
 counter = 0
 Dossier.populate(700) do |dude|
    counter = counter + 1
@@ -39,3 +40,5 @@ Dossier.populate(700) do |dude|
    dude.tidbits = "#{Populator.paragraphs(3)}"
 end
 
+User.create(:name => "Adam", :email => "Adam@adam.com", :roles => 0, :password => "adam")
+User.create(:name => "DHH", :email => "dhh@dhh.com", :roles => 200, :password => "dhh")
