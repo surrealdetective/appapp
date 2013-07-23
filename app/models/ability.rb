@@ -3,14 +3,13 @@ class Ability
 
 #takes a user object
   def initialize(user)
-    
     #the admin can perform all actions
     if user.role? :admin
       can :manage, :all
-    else
-    
-    #any user can read the dossier controller
-    can :read, :dossier
+    else  
+      #any user can read the dossier controller
+      can :read, :dossier
+    end
   end
 end
 
