@@ -1,3 +1,55 @@
 // Place all the styles related to the Dossiers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.dossier-form-container {
+  padding: 25px;
+  background-color: white;
+  position:relative;
+  margin: auto;
+  width:90%;
+  height: 40%;
+  overflow: scroll;
+  opacity: .98 !important;
+  border: 2px solid #60BDDB;
+}
+
+label {
+  display: none;
+  width: 100%
+  //float: align-center;
+
+}
+
+.applicant-form-background {
+  background: url(flatiron_building.jpg);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.content{
+  min-width: 400px;
+  min-height: 620px;
+  margin-bottom:100px;
+  padding-bottom:50px;
+  overflow:hidden;
+  position:relative;
+  background:#fff;
+  margin-left:50px;
+  margin-right:50px;
+  border-left:1px solid #dae3e9;
+  border-right:1px solid #dae3e9;
+  border-bottom:1px solid #dae3e9;
+  box-shadow: -3px 3px 3px -3px;
+  border-radius: 3px 3px 3px 3px;
+}
+
+#main-stats{
+  margin-left:-20px;
+  margin-right:-20px;
+  background-color:#fdfdfd;
+  border-bottom: 1px;
+  padding-bottom:20px;
+}

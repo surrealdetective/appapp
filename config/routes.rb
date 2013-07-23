@@ -1,6 +1,6 @@
 Appapp::Application.routes.draw do
   
-  get "/dashboard" => "dashboard#home"
+  get "/dashboard" => "dossiers#index"
 
   get '/login' => "sessions#new"
   post '/login' => "sessions#create"

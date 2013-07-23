@@ -5,7 +5,9 @@ class User < ActiveRecord::Base
   has_many :dossiers
 
   # attr_accessor :roles
-  attr_accessible :email, :name, :dossiers, :password, :password_confirmation, :roles
+
+  attr_accessible :email, :first_name, :last_name, :dossiers, :password, :password_confirmation, :roles
+
   has_secure_password 
   
   # attr_accessor :password

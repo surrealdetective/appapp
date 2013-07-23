@@ -1,5 +1,5 @@
 class Dossier < ActiveRecord::Base
-  attr_accessible :aasm_state, :tagline, :phone_number, :city, :twitter, :linkedin, :blog, :github, :website, :other_links, :career, :purpose, :code_skills, :analytic_skills, :tidbits, :user_id
+  attr_accessible :aasm_state, :tagline, :phone_number, :city, :twitter, :linkedin, :blog, :github, :website, :other_links, :career, :purpose, :code_skills, :analytic_skills, :tidbits, :user_id, :semester
   belongs_to :user
   has_many :dossier_statuses
   has_many :dossier_comments
@@ -35,23 +35,36 @@ class Dossier < ActiveRecord::Base
     self.dossier_statuses.last
   end
 
-  aasm do 
-    state :saving, :initial => true
-    state :submitting
-    state :reviewing
-    state :offerring_for_1st_interview
-    state :agrees_to_1st_interview
-    state :interview_pending
-    state :offerring_for_2nd_interview
-    state :agrees_to_2nd_interview
-    state :second_interview_pending
-    state :accepts
-    state :deferrs
-    state :declines
+  aasm do
+    #     state :sleeping, :initial => true, :before_enter => :do_something
+    state :new, :initial => true, :after_exit => :dossier_is_created
+    state :needs_review # the application has been read and not rejected 
+    state :rejected
+    # state :accepts
+    # state :defers
+    # state :declines
 
-    event :saves do
-      transitions :from => :saving, :to=> :submitting 
+    event :marks_as_needs_review do
+      transitions :from => :new, :to => :needs_review
     end
-    
+
+    event :marks_as_new do
+      transitions :from => :needs_review, :to => :new
+    end
+
+    event :rejects do
+      transitions :to => :rejected # note that there is no :from so rejected can be from anything. awesome 
+    end 
+
   end
+
+  def dossier_is_created
+    self.add_status("needs_review")
+  end
+
+  def self.new_dossier_count
+    Dossier.where(aasm_state: "new").count 
+  end
+  
+
 end
