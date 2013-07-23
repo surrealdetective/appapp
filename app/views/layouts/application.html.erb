@@ -44,13 +44,19 @@
 
           
           <%= link_to (image_tag("flatiron_school_logo.png")), dashboard_path, {:class => "brand"} %> 
-        
 
-          <ul class="nav pull-right">                
+       
+          <ul class="nav pull-right">   
+
+<!--   SEARCH BAR    -->        
               <li class="hidden-phone">
                   <input class="search" type="text" />
               </li>
-              <li class="notification-dropdown hidden-phone">
+
+  <!--  NOTIFICATION DROPDOWN    -->
+              <!-- <li class="notification-dropdown hidden-phone">
+
+           
                   <a href="#" class="trigger">
                       <i class="icon-warning-sign"></i>
                       <span class="count">8</span>
@@ -90,8 +96,11 @@
                           </div>
                       </div>
                   </div>
-              </li>
-              <li class="notification-dropdown hidden-phone">
+              </li> -->
+
+<!--  MESSAGE NOTIFICATIONS          -->   
+
+            <!--   <li class="notification-dropdown hidden-phone">
                   <a href="#" class="trigger">
                       <i class="icon-envelope-alt"></i>
                   </a>
@@ -133,30 +142,31 @@
                           </div>
                       </div>
                   </div>
-              </li>
+              </li> -->
+
+
               <li class="dropdown">
                   <a href="#" class="dropdown-toggle hidden-phone" data-toggle="dropdown">
-                      Your account
+                     <%#= current_user.name %> current user
                       <b class="caret"></b>
-                  </a>
+                  </a>              
                   <ul class="dropdown-menu">
-                      <li><a href="personal-info.html">Personal info</a></li>
-                      <li><a href="#">Account settings</a></li>
-                      <li><a href="#">Billing</a></li>
-                      <li><a href="#">Export your data</a></li>
-                      <li><a href="#">Send feedback</a></li>
+                    <li><a href="personal-info.html">Personal info</a></li>
+                      <li class="settings hidden-phone">
+                        <a href="/logout" role="button">
+                          <i class="icon-share-alt"></i>
+                        </a>
+                    </li>
                   </ul>
               </li>
-              <li class="settings hidden-phone">
+
+<!-- SETTINGS DROPDOWN    -->                
+           <!--    <li class="settings hidden-phone">
                   <a href="personal-info.html" role="button">
                       <i class="icon-cog"></i>
                   </a>
-              </li>
-              <li class="settings hidden-phone">
-                  <a href="/logout" role="button">
-                      <i class="icon-share-alt"></i>
-                  </a>
-              </li>
+              </li> -->
+
           </ul>            
       </div>
   </div>
