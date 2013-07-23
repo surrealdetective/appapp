@@ -35,10 +35,10 @@ class Dossier < ActiveRecord::Base
     self.dossier_statuses.last
   end
 
-  aasm do 
-    state :saving, :initial => true
-    state :submitting
-    state :reviewing
+  aasm do
+    #     state :sleeping, :initial => true, :before_enter => :do_something
+    state :unread, :initial => true, :after_exit => :dossier_is_created
+    state :read
     state :offerring_for_1st_interview
     state :agrees_to_1st_interview
     state :interview_pending
@@ -46,12 +46,20 @@ class Dossier < ActiveRecord::Base
     state :agrees_to_2nd_interview
     state :second_interview_pending
     state :accepts
-    state :deferrs
+    state :defers
     state :declines
 
-    event :saves do
-      transitions :from => :saving, :to=> :submitting 
+    def dossier_is_created
+      self.add_status("pending")
     end
-    
+
+    event :reads do
+      transitions :from => :unread, :to => :read
+    end
+
+    event :unreads do
+      transitions :from => :read, :to => :unread
+    end
+
   end
 end
