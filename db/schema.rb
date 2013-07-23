@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130723114540) do
+ActiveRecord::Schema.define(:version => 20130723201202) do
 
   create_table "dossier_comments", :force => true do |t|
     t.integer  "dossier_id"
@@ -46,15 +46,17 @@ ActiveRecord::Schema.define(:version => 20130723114540) do
     t.text     "analytic_skills"
     t.text     "tidbits"
     t.string   "aasm_state"
+    t.string   "semester"
   end
 
   create_table "users", :force => true do |t|
-    t.string   "name"
+    t.string   "first_name"
     t.string   "email"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.string   "password_digest"
     t.integer  "roles"
+    t.string   "last_name"
   end
 
 end

@@ -9,9 +9,12 @@ require 'debugger'
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+classes = ["Fall 2013", "Spring 2014", "Summer 2014"]
+
 300.times do
   user = User.new
-  user.name = Populator.words(2)
+  user.first_name = Populator.words(1)
+  user.last_name = Populator.words(1)
   user.email = "#{(Populator.words(1))}@#{(Populator.words(1))}.dev"
   user.password = Populator.words(1)
 
@@ -29,7 +32,8 @@ require 'debugger'
     :purpose            => "#{Populator.paragraphs(3)}",
     :code_skills        => "#{Populator.paragraphs(3)}",
     :analytic_skills    => "#{Populator.paragraphs(3)}",
-    :tidbits            => "#{Populator.paragraphs(3)}"
+    :tidbits            => "#{Populator.paragraphs(3)}",
+    :semester           => classes[rand(0..2)]
   })
   user.save
 end
