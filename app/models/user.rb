@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   
+  ROLES = {:admin => 0, :moderator => 100, :applicant => 200}
+
   has_many :dossiers
 
   attr_accessible :email, :name, :dossiers, :password, :password_confirmation
@@ -74,9 +76,32 @@ class User < ActiveRecord::Base
 
 
 
+  #ROLES = {:admin => 0, :moderator => 100, :applicant => 200}
 
+  #the column is called roles bc user may have > 1 role.
 
+  #Avi's method for setting permissions
+  def set_role(role)
+    self.update_attributes({:roles => ROLES[role]})
+  end
 
+  #My method, should be equivalent to Avi's above.
+  def roles=(role)
+    self.roles = roles[role.to_sym]    
+  end
 
+  #this should output an integer
+  def roles
+    self.roles
+  end
+
+  #if the person's row column is lower than the passed-in role,
+  #then they have that passed-in role's permissions, so yes.
+  def role?(role)
+    true if self.roles <= ROLES[role.to_sym]
+  end
+
+  #again, putting roles on a scale shows that a user w/ a 
+  #low integer role also has all the higher-intger role permissions
 
 end
