@@ -1,7 +1,7 @@
 class DossiersController < ApplicationController
 
   # set a non-default layout for dossier viewing
-  layout "applicant"
+  layout :resolve_layout
 
   def new
     # @user = User.new
@@ -43,5 +43,18 @@ class DossiersController < ApplicationController
     @dossier = Dossier.find(params[:id])
     @user = @dossier.user
   end
+
+
+  private
+
+  def resolve_layout
+    case action_name
+    when "new", "create"
+      "applicant"
+    else
+      "dashboard"
+    end
+  end
+
     
 end
