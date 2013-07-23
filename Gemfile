@@ -30,6 +30,8 @@ gem 'bcrypt-ruby', '=3.0.0'
 gem 'aasm'
 gem 'debugger'
 
+#authorization
+gem "cancan"
 
 
 group :development do
