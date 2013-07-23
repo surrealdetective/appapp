@@ -1,0 +1,53 @@
+    <body class="dossier-form-bg">
+      <div class="container">
+        <div class="dossier-form-container">
+
+    <p id="notice"><%= notice %></p>
+
+    <h2>User Information</h2>
+    <br>
+    <p>
+      <b>Name:</b>
+      <em><%= @user.name %></em>
+    </p>
+
+    <p>
+      <b>Email:</b>
+      <%= @user.email %>
+    </p>
+
+
+    <h2>Application Responses</h2>
+    <br>
+
+    <p>
+      <b>Tagline:</b>
+      <%= @dossier.tagline %>
+    </p>
+
+
+    <h2>Application Status</h2>
+    <br>
+    <p>
+      <% @dossier.dossier_statuses.each do |status| %>
+     <%= status.status %> on <%= status.updated_at %> 
+      <% end %>
+    </p>
+
+
+    <h2>Comments</h2>
+    <br>
+    <% @dossier.dossier_comments.each do |comment| %>
+      <li><%= comment.content %></li>
+    <% end %>
+
+
+    <%= form_tag dossier_dossier_comments_path(@dossier) do %>
+      <%= label_tag "Comment" %>
+      <%= text_area_tag "dossier_comments[content]" %>
+      <%= hidden_field_tag "dossier_comments[dossier_id]", @dossier.id  %>
+      <%= submit_tag "Submit Comment" %>
+    <% end %>
+  </div>
+</div>
+</body>

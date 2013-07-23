@@ -4,15 +4,19 @@ class DossiersController < ApplicationController
   layout "dashboard"
 
   def new
-    @user= User.find(params[:user_id])
+    # @user = User.new
+    # @user= User.find(params[:user_id])
   end
 
   def create
-    @user = User.find(params[:user_id])
+    # @user = User.find(params[:user_id])
+    # raise params.inspect
+    @user = User.new(params[:user])
+    @user.password = "abc"
     @user.dossiers.build(params[:dossier])
     @user.save_with_dossier_status("submitted")
-    
-    redirect_to @user
+    session[:user_id] = @user.id
+    redirect_to @user.dossiers.first
   end 
 
   def index
@@ -33,6 +37,11 @@ class DossiersController < ApplicationController
     else
       @dossiers = []
     end
+  end
+
+  def show
+    @dossier = Dossier.find(params[:id])
+    @user = @dossier.user
   end
     
 end

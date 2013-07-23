@@ -1,22 +1,23 @@
 Appapp::Application.routes.draw do
   
+  get "/dashboard" => "dashboard#home"
+
   get '/login' => "sessions#new"
   post '/login' => "sessions#create"
   get '/logout' => "sessions#destroy"
 
-  resources :users do
-    resources :dossiers, :only => [:new, :create]
-    # resources :status, :only => [:new, :create]
-  end
-  root :to => 'users#new'
+  
+  # resources :dossiers, :only => [:new, :create, :show]
+  
+  root :to => 'dossiers#new'
   
 
-  resources :dossiers, :only => [:index] do
+  resources :dossiers, :only => [:new, :create, :show, :index] do
     resources :dossier_statuses, :only => [:new, :create]
     resources :dossier_comments, :only => [:create, :edit, :update, :destroy]
   end
 
-  get '/admin' => 'dossiers#index'
+  # get '/admin' => 'dossiers#index'
   get '/dossiers/filter_by/:filter' => 'dossiers#filter_by', as: :dossiers_filter_by
 
   get '/dossiers/filter' => 'dossiers#filter', as: :dossiers_filter
