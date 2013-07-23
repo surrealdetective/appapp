@@ -1,7 +1,9 @@
 class DossiersController < ApplicationController
 
+
   # set a non-default layout for dossier viewing
-  layout :resolve_layout
+  # layout :resolve_layout
+
 
   def new
     # @user = User.new
@@ -21,6 +23,7 @@ class DossiersController < ApplicationController
 
   def index
     # raise params.inspect
+    @new_applicant_count = Dossier.new_dossier_count
     @dossiers = Dossier.sort_by(params[:sort_by])
     @title = "Admin Zone"
   end
@@ -47,14 +50,14 @@ class DossiersController < ApplicationController
 
   private
 
-  def resolve_layout
-    case action_name
-    when "new", "create"
-      "applicant"
-    else
-      "dashboard"
-    end
-  end
+  # def resolve_layout
+  #   case action_name
+  #   when "new", "create"
+  #     "applicant"
+  #   else
+  #     "dashboard"
+  #   end
+  # end
 
     
 end

@@ -9,36 +9,31 @@ require 'debugger'
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+classes = ["Fall 2013", "Spring 2014", "Summer 2014"]
 
-
-
-
-
-User.populate(700) do |user|
-  user
+300.times do
+  user = User.new
   user.first_name = Populator.words(1)
   user.last_name = Populator.words(1)
   user.email = "#{(Populator.words(1))}@#{(Populator.words(1))}.dev"
-end
-counter = 0
-classes = ["Fall 2013", "Spring 2014", "Summer 2014"]
-Dossier.populate(700) do |dude|
-   counter = counter + 1
-   dude.user_id = counter 
-   dude.tagline = "holy christ we are all the same"
-   dude.phone_number = "#{rand(999)}-#{rand(999)}-#{rand(9999)}"
-   dude.city = "#{Populator.words(1)}"
-   dude.twitter = "@#{Populator.words(1)}#{rand(999)}"
-   dude.linkedin = "http://www.linkedin.com/in/#{Populator.words(1)}#{rand(999)}"
-   dude.blog = "http:#{Populator.words(1)}#{rand(999)}.tumblr.com"
-   dude.github = "https://github.com/#{Populator.words(1)}#{rand(999)}"
-   dude.website ="http://www.#{Populator.words(1)}#{rand(999)}.io"
-   dude.other_links = "http://#{Populator.words(1)}#{rand(999)}.tumblr.com"
-   dude.career = "#{Populator.paragraphs(3)}"
-   dude.purpose = "#{Populator.paragraphs(3)}"
-   dude.code_skills = "#{Populator.paragraphs(3)}"
-   dude.analytic_skills = "#{Populator.paragraphs(3)}"
-   dude.tidbits = "#{Populator.paragraphs(3)}"
-   dude.semester = classes[rand(0..2)]
-end
+  user.password = Populator.words(1)
 
+  user.dossiers.build({
+    :tagline            => Populator.words(10),
+    :phone_number       => "#{rand(999)}-#{rand(999)}-#{rand(9999)}",
+    :city               => Populator.words(1),
+    :twitter            => Populator.words(1),
+    :linkedin           => "http://www.linkedin.com/in/#{Populator.words(1)}#{rand(999)}",
+    :blog               => "http:#{Populator.words(1)}#{rand(999)}.tumblr.com",
+    :github             => "https://github.com/#{Populator.words(1)}#{rand(999)}",
+    :website            => "http://www.#{Populator.words(1)}#{rand(999)}.io",
+    :other_links        => "http://#{Populator.words(1)}#{rand(999)}.tumblr.com",
+    :career             => "#{Populator.paragraphs(3)}",
+    :purpose            => "#{Populator.paragraphs(3)}",
+    :code_skills        => "#{Populator.paragraphs(3)}",
+    :analytic_skills    => "#{Populator.paragraphs(3)}",
+    :tidbits            => "#{Populator.paragraphs(3)}",
+    :semester           => classes[rand(0..2)]
+  })
+  user.save
+end

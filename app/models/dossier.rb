@@ -37,29 +37,34 @@ class Dossier < ActiveRecord::Base
 
   aasm do
     #     state :sleeping, :initial => true, :before_enter => :do_something
-    state :unread, :initial => true, :after_exit => :dossier_is_created
-    state :read
-    state :offerring_for_1st_interview
-    state :agrees_to_1st_interview
-    state :interview_pending
-    state :offerring_for_2nd_interview
-    state :agrees_to_2nd_interview
-    state :second_interview_pending
-    state :accepts
-    state :defers
-    state :declines
+    state :new, :initial => true, :after_exit => :dossier_is_created
+    state :needs_review # the application has been read and not rejected 
+    state :rejected
+    # state :accepts
+    # state :defers
+    # state :declines
 
-    def dossier_is_created
-      self.add_status("pending")
+    event :marks_as_needs_review do
+      transitions :from => :new, :to => :needs_review
     end
 
-    event :reads do
-      transitions :from => :unread, :to => :read
+    event :marks_as_new do
+      transitions :from => :needs_review, :to => :new
     end
 
-    event :unreads do
-      transitions :from => :read, :to => :unread
-    end
+    event :rejects do
+      transitions :to => :rejected # note that there is no :from so rejected can be from anything. awesome 
+    end 
 
   end
+
+  def dossier_is_created
+    self.add_status("needs_review")
+  end
+
+  def self.new_dossier_count
+    Dossier.where(aasm_state: "new").count 
+  end
+  
+
 end

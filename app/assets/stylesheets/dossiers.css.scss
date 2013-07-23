@@ -27,4 +27,28 @@ label {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+
+.content{
+  min-width: 400px;
+  min-height: 620px;
+  margin-bottom:100px;
+  padding-bottom:50px;
+  overflow:hidden;
+  position:relative;
+  background:#fff;
+  margin-left:50px;
+  margin-right:50px;
+  border-left:1px solid #dae3e9;
+  border-right:1px solid #dae3e9;
+  border-bottom:1px solid #dae3e9;
+  box-shadow: -3px 3px 3px -3px;
+  border-radius: 3px 3px 3px 3px;
+}
+
+#main-stats{
+  margin-left:-20px;
+  margin-right:-20px;
+  background-color:#fdfdfd;
+  border-bottom: 1px;
+  padding-bottom:20px;
 }

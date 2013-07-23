@@ -1,3 +1,11 @@
+# notes from avi 2013-07-23
+
+- add the rest of the dossier attributes
+- what semester are you applying to? how many slots does it have? how many are left?
+- dashboard with table of applicants
+    - including status history
+- dashboard *is* dossier index
+
 #PERMISSIONS
 ##Plan by Alex
 cloned Avi's repo for ex: https://github.com/aviflombaum/mixtapeapp
@@ -56,3 +64,22 @@ watched 192 Authorization with CanCan RAILSCASTS. Much simpler:
 
 1. Integrate Index Page
 2. Integrate Form Page
+
+Login/Logout User View
+<body class='<%= params[:controller] %> <%= params[:action] %> <%= @body_classes %>'>
+
+  <%= yield %>
+
+  <div id="user_nav">
+    <% if @user %>
+      Logged in as <%= @user.name %>. 
+      <%= link_to "Log out", logout_path %>
+    <% else %>
+      <%= link_to "Apply to Flatiron", new_dossier_path %>
+    <% end %>
+  </div>    
+
+</body>
+</html>
+
+
