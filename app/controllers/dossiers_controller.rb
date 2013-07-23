@@ -1,7 +1,7 @@
 class DossiersController < ApplicationController
 
   # set a non-default layout for dossier viewing
-  layout "dashboard"
+  layout "applicant"
 
   def new
     # @user = User.new
