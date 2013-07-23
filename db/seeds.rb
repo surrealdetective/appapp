@@ -16,10 +16,12 @@ require 'debugger'
 
 User.populate(700) do |user|
   user
-  user.name = Populator.words(2)
+  user.first_name = Populator.words(1)
+  user.last_name = Populator.words(1)
   user.email = "#{(Populator.words(1))}@#{(Populator.words(1))}.dev"
 end
 counter = 0
+classes = ["Fall 2013", "Spring 2014", "Summer 2014"]
 Dossier.populate(700) do |dude|
    counter = counter + 1
    dude.user_id = counter 
@@ -37,5 +39,6 @@ Dossier.populate(700) do |dude|
    dude.code_skills = "#{Populator.paragraphs(3)}"
    dude.analytic_skills = "#{Populator.paragraphs(3)}"
    dude.tidbits = "#{Populator.paragraphs(3)}"
+   dude.semester = classes[rand(0..2)]
 end
 
