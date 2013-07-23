@@ -10,7 +10,7 @@
 <% @dossiers.each do |dossier| %> 
 
 <li>
-  <%= link_to dossier.user.name, dossier%> |
+  <%= link_to name(dossier.user), dossier%>, |
   <a href='mailto:<%=dossier.user.email%>'><%= dossier.user.email %></a> |
   <%= dossier.tagline %> |
   <%= link_to 'Edit Dossier Status', new_dossier_dossier_status_path(dossier) %>
