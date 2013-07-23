@@ -1,12 +1,11 @@
 <div class="row-fluid">
   <div class="span12" id="pad-wrapper">
     <div class="container">
-      <h2> <%= link_to "Login", login_path %> </h2>
-      <div class="dossier-form-container new-user">
+      <h2> <%= link_to "Login", login_path %> </h2><br>
+      <h2> Flatiron Application</h2><br>
+      <div class="dossier-form-container">
         <div class = "form-wrapper">
-          <h2> Flatiron Application</h2>
-          <br>
-          <br>
+          
           
           <%= form_tag dossiers_path, :class => 'new_user_form inline-input' do %>
           <h4> Account Information </h4>
@@ -14,13 +13,13 @@
          <!-- NAME -->
           <div class="span12 field-box">
           <%= label_tag "Name", nil, :class=>'span3' %>
-          <%= text_field_tag "user[name]", nil, :class => 'span3' %>
+          <%= text_field_tag "user[name]", nil, :class => 'span9' %>
           </div>
 
           <!-- EMAIL  -->
           <div class="span12 field-box">
           <%= label_tag "Email", nil, :class=>'span3' %>
-          <%= text_field_tag "user[email]", nil, :class => 'span3' %>
+          <%= text_field_tag "user[email]", nil, :class => 'span9' %>
           </div>
 
     <hr> <!-- Horizontal Rule -->
@@ -28,7 +27,7 @@
   
       <div class="span12 field-box">
       <%= label_tag "phone_number", nil, :class=>'span3' %>
-      <%= text_field_tag "dossier[phone_number]", nil, :class => 'span3' %>
+      <%= text_field_tag "dossier[phone_number]", nil, :class => 'span9' %>
       </div>
 
       <h4>Links</h4>
@@ -36,65 +35,65 @@
 
       <div class="span12 field-box">
       <%= label_tag "twitter", nil, :class=>'span3' %>
-      <%= text_field_tag "dossier[twitter]", nil, :class => 'span3' %>
+      <%= text_field_tag "dossier[twitter]", nil, :class => 'span9' %>
       </div>
 
       <div class="span12 field-box">
       <%= label_tag "github", nil, :class=>'span3' %>
-      <%= text_field_tag "dossier[github]", nil, :class => 'span3' %>
+      <%= text_field_tag "dossier[github]", nil, :class => 'span9' %>
       </div>
 
       <div class="span12 field-box">
     <%= label_tag "blog", nil, :class=>'span3' %>
-    <%= text_field_tag "dossier[blog]", nil, :class => 'span3' %>
+    <%= text_field_tag "dossier[blog]", nil, :class => 'span9' %>
     </div>
 
     <div class="span12 field-box">
     <%= label_tag "linkedin", nil, :class=>'span3' %>
-    <%= text_field_tag "dossier[linkedin]", nil, :class => 'span3' %>
+    <%= text_field_tag "dossier[linkedin]", nil, :class => 'span9' %>
     </div>
 
     <div class="span12 field-box">
     <%= label_tag "website", nil, :class=>'span3' %>
-    <%= text_field_tag "dossier[website]", nil, :class => 'span3' %>
+    <%= text_field_tag "dossier[website]", nil, :class => 'span9' %>
     </div>
 
     <div class="span12 field-box">
     <%= label_tag "other_links", nil, :class=>'span3' %>
-    <%= text_field_tag "dossier[other_links]", nil, :class => 'span3' %>
+    <%= text_field_tag "dossier[other_links]", nil, :class => 'span9' %>
     </div>
 
      <!-- TAGLINE -->
      <h4>Background</h4>
       <div class="span12 field-box">
       <%= label_tag "tagline", nil, :class=>'span3' %>
-      <%= text_field_tag "dossier[tagline]", nil, :class => 'span3' %>
+      <%= text_area_tag "dossier[tagline]", nil, :class => 'span12' %>
       </div>
     <br>
 
     <div class="span12 field-box">
-    <%= label_tag "Describe your background with computer programming (if any). Feel free to include links to any online resources you've completed. *", nil, :class=>'span3' %>
-    <%= text_area_tag "dossier[career]", nil, :class => 'span3' %>
+    <%= label_tag "Describe your background with computer programming (if any). Feel free to include links to any online resources you've completed. *", nil, :class=>'span12' %>
+    <%= text_area_tag "dossier[career]", nil, :class => 'span12' %>
     </div>
 
     <div class="span12 field-box">
-    <%= label_tag "Describe your background with computer programming (if any). Feel free to include links to any online resources you've completed.", nil, :class=>'span3' %>
-    <%= text_area_tag "dossier[purpose]", nil, :class => 'span3' %>
+    <%= label_tag "Describe your background with computer programming (if any). Feel free to include links to any online resources you've completed.", nil, :class=>'span12' %>
+    <%= text_area_tag "dossier[purpose]", nil, :class => 'span12' %>
     </div>
 
     <div class="span12 field-box">
-    <%= label_tag "Describe your background with computer programming (if any). Feel free to include links to any online resources you've completed.", nil, :class=>'span3' %>
-    <%= text_area_tag "dossier[code_skills]", nil, :class => 'span3' %>
+    <%= label_tag "Describe your background with computer programming (if any). Feel free to include links to any online resources you've completed.", nil, :class=>'span12' %>
+    <%= text_area_tag "dossier[code_skills]", nil, :class => 'span12' %>
     </div>
 
     <div class="span12 field-box">
-    <%= label_tag "The ability to think in a structured or quantitative way to solve complex problems is an important element of being a successful developer. Can you tell us anything that demonstrates your abilities in that realm? (feel free to include anything from standardized test scores, previous areas of study, or relevant work experience)", nil, :class=>'span3' %>
-    <%= text_area_tag "dossier[analytic_skills]", nil, :class => 'span3' %>
+    <%= label_tag "The ability to think in a structured or quantitative way to solve complex problems is an important element of being a successful developer. Can you tell us anything that demonstrates your abilities in that realm? (feel free to include anything from standardized test scores, previous areas of study, or relevant work experience)", nil, :class=>'span12' %>
+    <%= text_area_tag "dossier[analytic_skills]", nil, :class => 'span12' %>
     </div>
 
     <div class="span12 field-box">
-    <%= label_tag "Is there anything else you'd like us to know?", nil, :class=>'span3' %>
-    <%= text_area_tag "dossier[tidbits]", nil, :class => 'span3' %>
+    <%= label_tag "Is there anything else you'd like us to know?", nil, :class=>'span12' %>
+    <%= text_area_tag "dossier[tidbits]", nil, :class => 'span12' %>
     </div>
 
     <div class="span12 field-box">

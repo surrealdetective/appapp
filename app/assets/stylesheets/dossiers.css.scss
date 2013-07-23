@@ -1,3 +1,22 @@
 // Place all the styles related to the Dossiers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.dossier-form-container{
+  padding: 25px;
+  background-color: white;
+  position:relative;
+  margin: auto;
+  width:90%;
+  height: 40%;
+  overflow: scroll;
+  opacity: .95;
+  border: 2px solid #60BDDB;
+}
+
+label {
+  display: none;
+  width: 100%
+  //float: align-center;
+
+}
+
