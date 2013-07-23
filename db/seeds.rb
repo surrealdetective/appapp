@@ -40,4 +40,4 @@ classes = ["Fall 2013", "Spring 2014", "Summer 2014"]
 end
 
 User.create(:first_name => "Adam", :last_name=> "Enbar", :email => "Adam@adam.com", :roles => 0, :password => "adam")
-User.create(:first_name => "DHH", :last_name=>"Racecars" :email => "dhh@dhh.com", :roles => 200, :password => "dhh")
+User.create(:first_name => "DHH", :last_name=>"Racecars", :email => "dhh@dhh.com", :roles => 200, :password => "dhh")
