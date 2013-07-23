@@ -55,7 +55,7 @@ class DossiersController < ApplicationController
   #   when "new", "create"
   #     "applicant"
   #   else
-  #     "dashboard"
+  #     "application"
   #   end
   # end
 

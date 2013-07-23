@@ -12,8 +12,13 @@
          
          <!-- NAME -->
           <div class="span12 field-box">
-          <%= label_tag "Name", nil, :class=>'span3' %>
-          <%= text_field_tag "user[name]", nil, :class => 'span9' %>
+          <%= label_tag "First name", nil, :class=>'span3' %>
+          <%= text_field_tag "user[first_name]", nil, :class => 'span9' %>
+          </div>
+
+          <div class="span12 field-box">
+          <%= label_tag "Last name", nil, :class=>'span3' %>
+          <%= text_field_tag "user[last_name]", nil, :class => 'span9' %>
           </div>
 
           <!-- EMAIL  -->
@@ -21,7 +26,7 @@
           <%= label_tag "Email", nil, :class=>'span3' %>
           <%= text_field_tag "user[email]", nil, :class => 'span9' %>
           </div>
-
+          
     <hr> <!-- Horizontal Rule -->
 
   
@@ -64,7 +69,7 @@
     </div>
 
      <!-- TAGLINE -->
-     <h4>Background</h4>
+     <h4>Background</h4><br>
       <div class="span12 field-box">
       <%= label_tag "In 140 characters, tell us what makes you unique.", nil, :class=>'span3' %>
       <%= text_area_tag "dossier[tagline]", nil, :class => 'span12' %>
@@ -96,9 +101,20 @@
     <%= text_area_tag "dossier[tidbits]", nil, :class => 'span12' %>
     </div>
 
-    <div class="span12 field-box">
+    
+
+    <div class = "span12 select-box">
+            <%= label_tag "Semester", nil, :class=>'span3' %>
+            <%= select_tag(:semester, options_for_select([['Spring', 1], ['Summer', 2], ['Fall', 3]], :selected => [:semester])) %><br><br>
+   </div>
+ </div>
+ <br>
+ <hr>
+   <div class="span12 field-box">
     <%= submit_tag "Submit Application", :class=>'btn-glow primary'  %>
-    </div>
+   </div>
+ <br>
+ <br>
     </div>
 
   </div>

@@ -4,7 +4,10 @@ class User < ActiveRecord::Base
 
   has_many :dossiers
 
-  attr_accessible :email, :first_name, :last_name, :dossiers, :password, :password_confirmation
+  # attr_accessor :roles
+
+  attr_accessible :email, :first_name, :last_name, :dossiers, :password, :password_confirmation, :roles
+
   has_secure_password 
   
   # attr_accessor :password
@@ -82,23 +85,27 @@ class User < ActiveRecord::Base
 
   #Avi's method for setting permissions
   def set_role(role)
-    self.update_attributes({:roles => ROLES[role]})
+    self.update_attributes({:roles => self.class.roles[role]})
   end
 
-  #My method, should be equivalent to Avi's above.
-  def roles=(role)
-    self.roles = roles[role.to_sym]    
+  # My method, should be equivalent to Avi's above.
+  # def roles=(role)
+  #   @roles = User.roles[role]
+  # end
+
+  #class method to read ROLES
+  def self.roles
+    ROLES
   end
 
-  #this should output an integer
-  def roles
-    self.roles
-  end
+  # def roles
+  #   ROLES[]
+  # end
 
   #if the person's row column is lower than the passed-in role,
   #then they have that passed-in role's permissions, so yes.
   def role?(role)
-    true if self.roles <= ROLES[role.to_sym]
+    true if self.roles <= ROLES[role]
   end
 
   #again, putting roles on a scale shows that a user w/ a 

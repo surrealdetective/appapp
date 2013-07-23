@@ -3,7 +3,7 @@ class DossierCommentsController < ApplicationController
     @dossier_comment = DossierComment.new(params[:dossier_comments])
     # raise @dossier_comment.inspect
     @dossier_comment.save
-    redirect_to user_path(@dossier_comment.dossier.user)
+    redirect_to @dossier_comment.dossier
   end
 
   def destroy

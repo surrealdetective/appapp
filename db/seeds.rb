@@ -10,6 +10,7 @@ classes = ["Fall 2013", "Spring 2014", "Summer 2014"]
   user.last_name = Populator.words(1)
   user.email = "#{(Populator.words(1))}@#{(Populator.words(1))}.dev"
   user.password = Populator.words(1)
+  user.roles = 200
 
   user.dossiers.build({
     :tagline            => Populator.words(10),
@@ -30,3 +31,6 @@ classes = ["Fall 2013", "Spring 2014", "Summer 2014"]
   })
   user.save
 end
+
+User.create(:first_name => "Adam", :last_name=> "Enbar", :email => "Adam@adam.com", :roles => 0, :password => "adam")
+User.create(:first_name => "DHH", :last_name=>"Racecars", :email => "dhh@dhh.com", :roles => 200, :password => "dhh")
