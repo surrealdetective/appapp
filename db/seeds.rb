@@ -1,6 +1,6 @@
 classes = ["Fall 2013", "Spring 2014", "Summer 2014"]
 
-300.times do
+rand(400).times do
   user = User.new
   user.first_name = Populator.words(1)
   user.last_name = Populator.words(1)
@@ -25,6 +25,10 @@ classes = ["Fall 2013", "Spring 2014", "Summer 2014"]
     :tidbits            => Populator.paragraphs(3),
     :semester           => classes.sample
   })
+
+  user.last_dossier.aasm_state = Dossier.aasm.states.sample.to_s
+
+
   user.save
 end
 
