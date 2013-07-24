@@ -1,21 +1,165 @@
-hey!
 
-<div >
-  <%= @user.first_name %>
-</div> 
+<body>
 <div>
-  <%= @dossier.purpose %>
-</div>
-<div>
-  <%= @dossier.linkedin %>
-</div>
-<div>
-  <%= @dossier.code_skills %>
-</div>
-<div>
-  <%= @dossier.analytic_skills %>
-</div>
-<div>
+       
+
+
+  <!-- main container -->
+    <div></div>
+        
+        <!-- settings changer -->
+        <div class="skins-nav">
+            <a href="#" class="skin first_nav selected">
+                <span class="icon"> </span> <span class="text"><i class="icon-trash">  Decline</i></span>
+            </a>
+            <a href="#" class="skin second_nav" data-file="css/skins/dark.css">
+                <span class="icon"> </span> <span class="text"><i class="icon-ok-sign">Interveiw</i></span>
+            </a>
+        </div>
+        
+        
+        <div>
+            <div
+            >
+                <!-- header -->
+                <h2 class="skins-nav" style = "top: 185px;right: 5px;text-align: right" class="span6 name"><%= @user.first_name%> <%=@user.last_name%>
+                </h2>
+                
+                
+                    <div class="skins-nav" style = "float: right;width: 300;top: 205px;right: 5px" class="span6">
+                        <img src="https://coderwall-assets-0.s3.amazonaws.com/uploads/user/avatar/67185/profile2.jpg" class="avatar img-circle">
+                        
+                  
+                    </div>
+                   <!--  <div style = "float: left;"class = "span6">
+                        <ul>
+                            <ul>Applying for the <%=@dossier.semester%> Semester</ul>
+                            <br>
+                            <ul><a href ="<%@dossier.linkedin %>">Linkedin</ul>
+                            <ul><a href ="<%@dossier.twitter %>">Twitter</ul>
+                            <ul><a href ="<%@dossier.github %>">Github</ul>
+                        </ul>
+                    </div> -->
+                   <!--  <span class="area"><%=@dossier.tagline%></span><br>
+                    <a class="btn-flat icon delete-user" data-toggle="tooltip" title="Delete user" data-placement="top">
+                        <i class="icon-trash">  Decline</i>
+                    </a>
+                     <a class="btn-flat icon large edit" data-toggle="tooltip" title="Add user" data-placement="top">
+                        <i class="icon-ok-sign">Interveiw</i>
+                    </a> -->
+                
+
+                <div>
+                    <!-- bio, new note & orders column -->
+                    <div class = "span 12"><br>
+                        <div class = "span12" style = "height: 900p; width: 900px;">
+                            <!-- biography -->
+                            
+                            <div class="box section needs-review-scroll">
+                                <h4>Reason for Applying</h4><br>
+                                <p><%= @dossier.purpose %></p>
+                            </div>
+                            
+                            <div class="box section needs-review-scroll">
+                                <h4>Coding Experience</h4><br>                       
+                                <p><%= @dossier.code_skills %></p>
+                            </div>
+                            
+                            <div class="box section needs-review-scroll"> 
+                                <h4>Analytical Skills</h4><br>                          
+                                <p><%= @dossier.analytic_skills %></p>
+                            </div>
+
+                            <div class="box section needs-review-scroll"> 
+                                <h4>Career & Edu.</h4><br>                          
+                                <p><%= @dossier.career %></p>
+                            </div>
+
+                            <div class="box section needs-review-scroll"> 
+                                <h4>Tidbits</h4><br>                          
+                                <p><%= @dossier.tidbits %></p>
+                            </div>
+
+                            <div class="box section needs-review-scroll">
+                              <ul>
+                                <ul><h4>Applying for the <%=@dossier.semester%> Semester</h4></ul>
+                                  <br>
+                                   <ul><a href ="<%@dossier.linkedin %>">Linkedin</ul>
+                                   <ul><a href ="<%@dossier.twitter %>">Twitter</ul>
+                                   <ul><a href ="<%@dossier.github %>">Github</ul>
+                                   <ul><a href ="<%@dossier.website %>">Website</ul>
+                                   <ul><a href ="<%@dossier.blog %>">Blog</ul>
+                                </ul>
+                            </div>
+
+
+                            
+                            
+                            
+                            <!-- new comment form -->
+                            <div class="span12 section comment">
+                                <h6>Add a quick note</h6>
+                                <p>Add a note about this user to keep a history of your interactions.</p>
+                                <textarea></textarea>
+                                <a href="#">Attach files</a>
+                                <div class="span12 submit-box pull-right">
+                                    <input type="submit" class="btn-glow primary" value="Add Note">
+                                    <span>OR</span>
+                                    <input type="reset" value="Cancel" class="reset">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- side address column -->
+                    <div >
+                        
+                        <!-- <ul>
+                            <li><a href ="<%@dossier.linkedin %>"><%= @dossier.linkedin%></l
+                            </li>
+                        </ul> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end main container -->
+
+
+  <!-- scripts -->
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/theme.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

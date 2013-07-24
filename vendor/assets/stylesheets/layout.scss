@@ -436,6 +436,11 @@ input.search{
 	}
 
 	/* starts skins changer */
+
+
+
+
+
 	.skins-nav {
 		opacity: 1;
 		-webkit-transition: right .3s;
@@ -444,8 +449,8 @@ input.search{
 		-o-transition: right .3s;
 		transition: right .3s;
 		position: fixed;
-		right: -85px;
-		top: 135px;
+		right: -15px;
+		top: 315px;
 		font-size: 13px;
 		z-index: 9999;
 
@@ -470,15 +475,15 @@ input.search{
 			transition: all .5s;
 
 			&.first_nav {
-				background: rgba(95, 175, 228, 0.8);
+				background: rgba(255, 0, 0, 0.8);
 				&:hover {
-					background: rgba(95, 175, 228, 1);
+					background: rgba(240, 0, 0, 1);
 				}
 			}
 			&.second_nav {
-				background: rgba(36, 43, 77, 0.8);
+				background: rgba(42, 166, 17, 0.8);
 				&:hover {
-					background: rgba(36, 43, 77, 1);
+					background: rgba(95, 175, 228, 1);
 				}
 			}
 			.icon {
