@@ -53,7 +53,7 @@ class Dossier < ActiveRecord::Base
       transitions :from => :needs_review, :to => :new
     end
 
-    event :rejects do
+    event :marks_as_rejected do
       transitions :to => :rejected # note that there is no :from so rejected can be from anything. awesome 
     end 
 
