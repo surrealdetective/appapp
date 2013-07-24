@@ -1,19 +1,47 @@
+<h3><%= @dossiers.count %> Total Dossiers</h3>
 
 <%= form_tag dossiers_path, :method => "get" do %>
   <%= select_tag "sort_by", "<option>user</option><option>date</option>".html_safe %>
-  <%= submit_tag "Sort now!" %>
-  <%= link_to "filters", dossiers_filter_by_path("all") %>
+  <%= submit_tag "Sort now!", :class => "btn" %>
+  <%= link_to "filters", dossiers_filter_by_path("all"), :class => "btn" %>
 <% end %>
 
-
-
-<% @dossiers.each do |dossier| %> 
-
-<li> <!-- helper method below -->
-  <%= link_to name(dossier.user), dossier%>, |
-  <a href='mailto:<%=dossier.user.email%>'><%= dossier.user.email %></a> |
-  <%= dossier.tagline %> |
-  <%= link_to 'Edit Dossier Status', new_dossier_dossier_status_path(dossier) %>
-</li>
-
-<% end %>
+<div class="row-fluid table">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+          <th class="span3 sortable">
+              Name
+          </th>
+          <th class="span3 sortable">
+              <span class="line"></span>Email
+          </th>
+          <th class="span4 sortable">
+              <span class="line"></span>Tagline
+          </th>
+          <th class="span3 sortable">
+              <span class="line"></span>Edit Status (should this be here?)
+          </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @dossiers.each do |dossier| %> 
+        <tr>
+          <td>
+            <img src="http://placekitten.com/55/55" class="img-circle avatar hidden-phone" />
+            <%= link_to name(dossier.user), dossier%>
+          </td>
+          <td>
+            <a href='mailto:<%=dossier.user.email%>'><%= dossier.user.email %></a>
+          </td>
+          <td>
+            <%= dossier.tagline %>
+          </td>
+          <td>
+            <%= link_to 'Edit Dossier Status', new_dossier_dossier_status_path(dossier) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
