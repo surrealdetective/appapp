@@ -1,6 +1,7 @@
 classes = ["Fall 2013", "Spring 2014", "Summer 2014"]
 
-400.times do
+
+300.times do
   user = User.new
   user.first_name = Populator.words(1)
   user.last_name = Populator.words(1)
