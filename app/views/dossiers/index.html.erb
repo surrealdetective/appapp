@@ -5,19 +5,29 @@
     <thead>
       <tr>
           <th class="span2 sortable">
-              Name
+              <span class="sorter">
+                <%= link_to "Name", dashboard_path(sort_by: "user") %>
+              </span>
           </th>
           <th class="span2 sortable">
-              <span class="line"></span>Email
-          </th>
-          <th class="span4 sortable">
-              <span class="line"></span>Tagline
+              <span class="line"></span>
+              <span class="sorter">
+                <%= link_to "Email", dashboard_path(sort_by: "email") %>
+              </span>
           </th>
           <th class="span2 sortable">
-              <span class="line"></span>Status History
+              <span class="line"></span>
+              <span class="sorter">
+                <%= link_to "Status", dashboard_path(sort_by: "aasm_state") %>
+              </span>
           </th>
           <th class="span2">
-            <span class="line"></span>Change Status
+            <span class="line"></span>
+            Status History
+          </th>
+          <th class="span2">
+            <span class="line"></span>
+            Change Status
           </th>
       </tr>
     </thead>
@@ -33,7 +43,7 @@
             <a href='mailto:<%=dossier.user.email%>'><%= dossier.user.email %></a>
           </td>
           <td>
-            <%= dossier.tagline %>
+            <%= dossier.aasm_state.humanize %>
           </td>
           <td>
             <ul>

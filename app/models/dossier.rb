@@ -95,10 +95,24 @@ class Dossier < ActiveRecord::Base
   end
 
   def self.sort_by(column = :date, direction = "ASC")
-    column ||= :date # because sometimes we send in nil (eg, dossiers#index)
+
+    # setting to date twice
+    # because sometimes we send in nil (eg, dossiers#index)
+    # and "nil is the presence of absence" -ashley
+    column ||= :date
+
+    # TODO rewrite as something like:
+    # case column
+    # when /^user/
+    #   meaning, it begins with user...
+    #   which would allow us to specify which properties are user properties
+    #   and not dossier ones
+
     case column.to_sym
     when :user
-      self.joins(:user).order("users.name #{direction}")
+      self.joins(:user).order("users.first_name #{direction}")
+    when :email
+      self.joins(:user).order("users.email #{direction}")
     when :date
       self.order("created_at #{direction}")
       # extend in future to sort by more stuff

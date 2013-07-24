@@ -25,8 +25,12 @@ class DossiersController < ApplicationController
     @title = "Dashboard"
     if params[:search]
       @dossiers = Dossier.joins(:user).where(:users => {:first_name => params[:search]})
-    else
+    elsif params[:status]
+      @dossiers = Dossier.where(:aasm_state => params[:status])
+    elsif params[:sort_by]
       @dossiers = Dossier.sort_by(params[:sort_by])
+    else
+      @dossiers = Dossier.find(:all)
     end
   end
   
