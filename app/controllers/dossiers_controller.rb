@@ -48,7 +48,11 @@ class DossiersController < ApplicationController
   def transition
     @dossier = Dossier.find(params[:id])
     @dossier.send(params[:transition])
-    redirect_to dashboard_path, :anchor => "dossier-#{params[:id]}"
+
+    # scrolls page down to the right row
+    redirect_to dashboard_path + "#dossier-#{params[:id]}"
+    # shouldn't this work? it doesn't:
+    # redirect_to dashboard_path :anchor => "#dossier-#{params[:id]}"
   end
 
 
