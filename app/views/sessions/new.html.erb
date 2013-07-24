@@ -1,28 +1,28 @@
+<div class="login-content">  
+  <div class="container-fluid" id="pad-wrapper">
+  <h2>Log In to View Your Application Status</h2>
+  <br>
+    <div class="welcome-nav">
+    <%= form_tag '/login', method: "POST" do %>
+      <!--  -->
+      <div class="welcome-h1">  
+        <div class="field">
+          <%= label_tag "E-mail" %> Email: 
+          <%= text_field_tag "user[email]" %>
+        </div>
 
-<h2>Log In to View Your Application Status</h2>
-<br>
+        <div class="field">
+          <%= label_tag :password %><br /> Password:
+          <%= password_field_tag :password %>
+        </div>
 
+        <div class="actions">
+          <%= submit_tag "Login", :class => "btn" %>
+        </div>
+      </div>
+    <% end %>
 
-<div class="welcome-nav">
-  <%= form_tag '/login', method: "POST" do %>
-    <!--  -->
-  <div class="welcome-h1">  
-    <div class="field">
-      <%= label_tag "E-mail" %>
-      <%= text_field_tag "user[email]" %>
     </div>
 
-    <div class="field">
-      <%= label_tag :password %><br />
-      <%= password_field_tag :password %>
-    </div>
-
-    <div class="actions">
-      <%= submit_tag "Login", :class => "btn" %>
-    </div>
   </div>
-  <% end %>
-
-
 </div>
-
