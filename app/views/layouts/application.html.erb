@@ -56,7 +56,9 @@
 
             <!--   SEARCH BAR    -->        
               <li class="hidden-phone">
-                  <input class="search" type="text" />
+                  <%= form_tag dashboard_path, :method => "get" do %>
+                    <input name="search" class="search" type="text" value='<%= params[:search] %>' />
+                  <% end %>
               </li>
 
               <li class="dropdown">

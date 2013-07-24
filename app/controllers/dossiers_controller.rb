@@ -22,8 +22,12 @@ class DossiersController < ApplicationController
   end 
 
   def index
-    @dossiers = Dossier.sort_by(params[:sort_by])
-    @title = "Admin Zone"
+    @title = "Dashboard"
+    if params[:search]
+      @dossiers = Dossier.joins(:user).where(:users => {:first_name => params[:search]})
+    else
+      @dossiers = Dossier.sort_by(params[:sort_by])
+    end
   end
   
   # def filter
