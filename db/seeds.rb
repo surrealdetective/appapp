@@ -6,7 +6,7 @@ classes = ["Fall 2013", "Spring 2014", "Summer 2014"]
   user.last_name = Populator.words(1)
   user.email = "#{(Populator.words(1))}@#{(Populator.words(1))}.dev"
   user.password = Populator.words(1)
-  user.roles = 200
+  user.set_role(:applicant)
 
   user.dossiers.build({
     :tagline            => Populator.words(10),
