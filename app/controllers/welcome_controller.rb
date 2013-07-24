@@ -16,7 +16,7 @@ class WelcomeController < ApplicationController
     else
       # not logged in
       # show the two big buttons page
-      @body_classes = "login-bg bg-login" # which is it...?
+      @body_classes = "login-bg bg-login login-wrapper" # which is it...?
       @title = "Welcome"
     end
   end
