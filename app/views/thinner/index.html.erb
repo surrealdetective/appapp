@@ -1,0 +1,38 @@
+<h1>Thinner#index</h1>
+
+<% @thinning.each do |dossier| %>
+  <div class="span12 testing">
+    <!-- user pic -->
+    <img src="http://placekitten.com/g/160/160">
+    <!-- user name -->
+    <%= name(dossier.user) %>
+    <!-- in nyc? -->
+    <label>New York City in <%= dossier.semester %>?</label>
+    <input type="checkbox" name="nyc" value="1" <%= "checked" if dossier.semester.present? %>/>
+    <!-- has blog or site? -->
+    <label>Blog or website?</label>
+    <input type="checkbox" name="nyc" value="1" <%= "checked" if blog_or_website? %>/>
+    <!-- has digital identity? -->
+    <label>Twitter, LinkedIn, Github</label>
+    social_icon_or_blank(dossier.twitter) <!-- image with an a tag, or it's blank -->
+    social_icon_or_blank(dossier.linkedin)
+    social_icon_or_blank(dossier.github)
+    <!-- tagline -->
+    <%= dossier.tagline %>
+    <!-- heavy-text -->
+    <div id="tabs">
+      <nav>
+          <a href="#purpose">Purpose</a><a href="#career">Career</a><a href="#analytic">Analytic</a>
+      </nav>
+      <div id="purpose">
+         <%= four_hundred_twenty_chars(dossier.purpose) %><!--  later add a lightbox to see all text -->
+      </div>
+      <div id="career">
+          <%= four_hundred_twenty_chars(dossier.career) %>
+      </div>
+      <div id="analytic">
+          <%= four_hundred_twenty_chars(dossier.analytic) %>
+      </div>
+    </div>
+  </div>
+<% end %>

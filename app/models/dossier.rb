@@ -38,6 +38,7 @@ class Dossier < ActiveRecord::Base
   aasm do
     #     state :sleeping, :initial => true, :before_enter => :do_something
     state :new, :initial => true, :after_exit => :dossier_is_created
+    state :needs_thinning #the application has not been approved for review
     state :needs_review # the application has been read and not rejected 
     state :rejected
     # state :accepts

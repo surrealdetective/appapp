@@ -1,5 +1,7 @@
 Appapp::Application.routes.draw do
   
+  get "/thinner" => "thinner#index"
+
   get "/dashboard" => "dossiers#index"
 
   get '/login' => "sessions#new"
