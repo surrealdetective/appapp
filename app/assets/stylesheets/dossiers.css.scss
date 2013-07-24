@@ -22,7 +22,7 @@
   padding: 25px;
   background-color: white;
   position:relative;
-  margin: auto;
+  margin: 20px;
   width:90%;
   height: 40%;
   overflow: scroll;
@@ -31,6 +31,8 @@
   box-shadow: -3px 3px 3px -3px;
   border-radius: 3px 3px 3px 3px;
 }
+
+
 
 label {
   display: none;
@@ -71,4 +73,5 @@ label {
   border-bottom: 1px;
   padding-bottom:20px;
 }
+
 

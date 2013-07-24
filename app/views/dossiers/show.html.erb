@@ -1,18 +1,60 @@
-    <body class="dossier-form-bg">
-      <div class="container">
-        <div class="dossier-form-container">
+<body class="dossier-form-bg">
+
+<div class="container">
+
+  <div class="dossier-form-container">
+      <a class="dropdown-toggle" href="#">
+        <span><h2> <%= @user.first_name %>'s Application Status</h2> </span>
+        <i class="icon-chevron-down"></i>
+      </a>
+     <hr>
+ 
+        <% @dossier.dossier_statuses.each do |status| %>
+       <%= status.status %> on <%= status.updated_at %> 
+        <% end %>
+   
+  </div>
+
+
+   <div class="dossier-form-container">
+    <a class="dropdown-toggle" href="#">
+      <i class="icon-chevron-down"></i>
+    <h2>Prework</h2>
+    </a>
+    <hr>
+    <br>
+    <h4><strong> Flatiron Prework </strong> </h4>
+    <hr> 
+    <p><a href="http://prework.flatironschool.com/"> Link to Flatiron School Prework </a></p>
+    <br>
+    <h4><strong> Code Academy </strong> </h4>
+    <hr> 
+    <p><a href="http://prework.flatironschool.com/"> Link to Flatiron School Prework </a></p>
+    <br>
+    <h4><strong> Treehouse </strong> </h4>
+    <hr> 
+    <p><a href="http://prework.flatironschool.com/"> Link to Flatiron School Prework </a></p>
+   </div>
+
+   <div class="dossier-form-container">
+    <a class="dropdown-toggle" href="#">
+      <i class="icon-chevron-down"></i>
+
 
     <p id="notice"><%= notice %></p>
 
-    <h2>User Information</h2>
+
+    <h2>Application Summary</h2>
+    </a>
+    <hr>
+    <ul class="submenu" style="display: block;">
     <br>
+    <h4><strong> Account Information </strong> </h4>
+    <hr> 
+
     <p>
-      <b>First name:</b>
-      <em><%= @user.first_name %></em>
-    </p>
-    <p>
-      <b>Last name:</b>
-      <em><%= @user.last_name %></em>
+      <b>Name:</b>
+      <em><%= @user.first_name %> </em> <em> <%= @user.last_name %></em>
     </p>
 
     <p>
@@ -20,38 +62,81 @@
       <%= @user.email %>
     </p>
 
+    <p>
+      <b>Phone Number:</b>
+      <%= @user.email %>
+    </p>
 
-    <h2>Application Responses</h2>
     <br>
+    <h4><strong> Links </strong> </h4>
+    <hr> 
 
     <p>
-      <b>Tagline:</b>
+      <b>Twitter:</b>
+      <%= @user.email %>
+    </p>
+
+    <p>
+      <b>Github:</b>
+      <%= @user.email %>
+    </p>
+
+    <p>
+      <b>Blog:</b>
+      <%= @user.email %>
+    </p>
+
+    <p>
+      <b>LinkedIn:</b>
+      <%= @user.email %>
+    </p>
+
+    <p>
+      <b>Website:</b>
+      <%= @user.email %>
+    </p>
+
+    <p>
+      <b>Other Links:</b>
+      <%= @user.email %>
+    </p>
+
+
+    <br>
+    <h4><strong> Background </strong> </h4>
+    <hr> 
+    <p>
+      <b>In 140 characters, tell us what makes you unique:</b>
       <%= @dossier.tagline %>
     </p>
 
-
-    <h2>Application Status</h2>
-    <br>
     <p>
-      <% @dossier.dossier_statuses.each do |status| %>
-     <%= status.status %> on <%= status.updated_at %> 
-      <% end %>
+      <b>Question 1:</b>
+      <%= @dossier.tagline %>
     </p>
 
+    <p>
+      <b>Question 2:</b>
+      <%= @dossier.tagline %>
+    </p>
 
-    <h2>Comments</h2>
-    <br>
-    <% @dossier.dossier_comments.each do |comment| %>
-      <li><%= comment.content %></li>
-    <% end %>
+    <p>
+      <b>Question 3:</b>
+      <%= @dossier.tagline %>
+    </p>
 
+    <p>
+      <b>Question 4:</b>
+      <%= @dossier.tagline %>
+    </p>
 
-    <%= form_tag dossier_dossier_comments_path(@dossier) do %>
-      <%= label_tag "Comment" %>
-      <%= text_area_tag "dossier_comments[content]" %>
-      <%= hidden_field_tag "dossier_comments[dossier_id]", @dossier.id  %>
-      <%= submit_tag "Submit Comment" %>
-    <% end %>
+    <p>
+      <b>Question 5:</b>
+      <%= @dossier.tagline %>
+    </p>
+
+  </ul>
+   
   </div>
 </div>
 </body>
