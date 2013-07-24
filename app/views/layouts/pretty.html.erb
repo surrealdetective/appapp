@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--
+                   _         _        
+  __ _ _ __  _ __ | |_   _  | |_ ___  
+ / _` | '_ \| '_ \| | | | | | __/ _ \ 
+| (_| | |_) | |_) | | |_| | | || (_) |
+ \__,_| .__/| .__/|_|\__, |  \__\___/ 
+      |_|   |_|      |___/            
+  __ _       _   _                 
+ / _| | __ _| |_(_)_ __ ___  _ __  
+| |_| |/ _` | __| | '__/ _ \| '_ \ 
+|  _| | (_| | |_| | | | (_) | | | |
+|_| |_|\__,_|\__|_|_|  \___/|_| |_|
+                                   
+          _                 _ 
+ ___  ___| |__   ___   ___ | |
+/ __|/ __| '_ \ / _ \ / _ \| |
+\__ \ (__| | | | (_) | (_) | |
+|___/\___|_| |_|\___/ \___/|_| 
+
+-->
+<html>
+<head>
+  <title><%= title %></title> <!-- check /app/helpers/application_helper.rb for this method  -->
+  <%= stylesheet_link_tag    "pretty", :media => "all" %>
+  <%= javascript_include_tag "application"             %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body class='<%= params[:controller] %> <%= params[:action] %> <%= @body_classes %>'>
+
+  <div class="content">  
+    <div class="container-fluid" id="pad-wrapper">
+      <%= yield %>
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

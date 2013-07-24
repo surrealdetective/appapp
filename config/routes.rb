@@ -11,7 +11,8 @@ Appapp::Application.routes.draw do
   
   # resources :dossiers, :only => [:new, :create, :show]
   
-  root :to => 'dossiers#new'
+  # root :to => 'dossiers#new'
+  root :to => 'welcome#home'
   
 
   resources :dossiers, :only => [:new, :create, :show, :index] do

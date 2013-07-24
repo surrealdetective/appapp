@@ -1,0 +1,36 @@
+/*
+  * This is a manifest file that'll be compiled into application.css, which will include all the files
+  * listed below.
+  *
+  * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+  * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+  *
+  * You're free to add application-wide styles to this file and they'll appear at the top of the
+  * compiled file, but it's generally better to create a new file per style scope.
+  *
+  *= require ../../../vendor/assets/stylesheets/lib/bootstrap.css
+  *= require ../../../vendor/assets/stylesheets/lib/bootstrap-responsive.css
+  *= require ../../../vendor/assets/stylesheets/lib/bootstrap-overrides.css
+  *= require ../../../vendor/assets/stylesheets/layout.scss
+  *= require ../../../vendor/assets/stylesheets/elements.scss
+  *= require ../../../vendor/assets/stylesheets/icons.css
+  *= require ../../../vendor/assets/stylesheets/signin.scss
+  *= require ../../../vendor/assets/stylesheets/new-user.scss
+  *= require ../../../vendor/assets/stylesheets/signin.scss
+  *= require ../../../vendor/assets/stylesheets/lib/font-awesome.css
+  *= require ../../../vendor/assets/stylesheets/index.scss
+  *= require_self
+*/
+
+body.welcome.home {
+  width: 300px;
+  margin: 5px auto;
+}
+
+body.welcome {
+  background: url(flatiron_building.jpg);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
