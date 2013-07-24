@@ -69,3 +69,469 @@ label {
   border-bottom: 1px;
   padding-bottom:20px;
 }
+
+
+#calendar {
+  width: 100%;
+  margin: 0 auto;
+  margin-top: -10px;
+}
+.calendar-wrapper {
+  position: relative;
+  
+  /* calendar-wrapper popup */
+  .popup {
+    position: absolute;
+    background: #fff;
+    text-align: left;
+    width: 260px;
+    border: 1px solid rgb(178, 180, 182);
+    box-shadow: 0px 0px 7px -1px rgba(0, 0, 0, 0.35);
+    border-radius: 4px;
+    padding: 14px 20px 14px 20px;
+    z-index: 999;
+    left: 635px;
+    top: 50px;
+    h5 {
+      text-transform: uppercase;
+      font-weight: 600;
+      margin: 0 0 21px 0;
+      font-size: 14px;
+      color: #7e91aa;
+    }
+    .field {
+      margin-bottom: 7px;
+      .date {
+        margin-left: 15px;  
+      }
+      .event-input {
+        position: relative;
+        top: 5px;
+        margin-left: 10px;
+        width: 70%;
+      }
+    }
+    input[type="submit"]{
+      float: right;
+      margin-right: 15px;
+    }
+    i.close-pop{
+      position: absolute;
+      right: 11px;
+      cursor: pointer;
+      top: 12px;
+      opacity: 0.6;
+
+      transition: opacity .1s linear;
+      -moz-transition: opacity .1s linear;
+      -webkit-transition: opacity .1s linear;
+      -o-transition: opacity .1s linear;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+    .pointer {
+      position: absolute;
+      bottom: 0;
+      left: 46%;
+      .arrow,
+      .arrow_border {
+        border-color: #fff transparent transparent transparent;
+        border-width: 11px;
+        border-style: solid;
+        font-size: 0;
+        left: 50%;
+        line-height: 0;
+        margin: 0 auto;
+        position: absolute;
+        top: 0;
+        width: 0;
+        z-index: 1002;
+        left: 0;
+        margin-left: 45%;
+      }
+      .arrow_border {
+        border-color: rgb(136, 136, 136) transparent transparent transparent;
+        border-width: 12px;
+        margin-left: -1px;
+        border-style: solid;
+        z-index: 1001;
+        top: 0px;
+      }
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .calendar-wrapper .popup {
+    display: none;
+  }
+}
+
+.fc-event {
+  background: #fff !important;
+  color: #000 !important;
+  }
+  
+/* for vertical events */
+  
+.fc-event-bg {
+  display: none !important;
+  }
+  
+.fc-event .ui-resizable-handle {
+  display: none !important;
+  }
+
+  /*!
+ * FullCalendar v1.6.1 Stylesheet
+ * Docs & License: http://arshaw.com/fullcalendar/
+ * (c) 2013 Adam Shaw
+ */
+
+
+.fc {
+  direction: ltr;
+  text-align: left;
+  }
+  
+.fc table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  }
+  
+html .fc,
+.fc table {
+  font-size: 1em;
+  }
+  
+.fc td,
+.fc th {
+  padding: 0;
+  vertical-align: top;
+  }
+
+
+
+/* Header
+------------------------------------------------------------------------*/
+.fc-header {
+  margin-bottom: 25px;
+  }
+.fc-header td {
+  white-space: nowrap;
+  }
+
+.fc-header-left {
+  width: 25%;
+  text-align: left;
+  }
+  
+.fc-header-center {
+  text-align: center;
+  }
+  
+.fc-header-right {
+  width: 25%;
+  text-align: right;
+  }
+  
+.fc-header-title {
+  display: inline-block;
+  vertical-align: top;
+  }
+  
+.fc-header-title h2 {
+  margin-top: 0;
+  white-space: nowrap;
+  font-weight: 600;
+  font-size: 20px;
+  }
+  
+.fc .fc-header-space {
+  padding-left: 10px;
+  }
+  
+.fc-header .fc-button {
+  margin-bottom: 1em;
+  vertical-align: top;
+  }
+  
+/* buttons edges butting together */
+
+.fc-header .fc-button {
+  margin-right: -1px;
+  }
+  
+.fc-header .fc-corner-right,  /* non-theme */
+.fc-header .ui-corner-right { /* theme */
+  margin-right: 0; /* back to normal */
+  }
+  
+/* button layering (for border precedence) */
+  
+.fc-header .fc-state-hover,
+.fc-header .ui-state-hover {
+  z-index: 2;
+  }
+  
+.fc-header .fc-state-down {
+  z-index: 3;
+  }
+
+.fc-header .fc-state-active,
+.fc-header .ui-state-active {
+  z-index: 4;
+  }
+  
+  
+  
+/* Content
+------------------------------------------------------------------------*/
+  
+.fc-content {
+  clear: both;
+  }
+  
+.fc-view {
+  width: 100%; /* needed for view switching (when view is absolute) */
+  overflow: hidden;
+  }
+  
+  
+
+/* Cell Styles
+------------------------------------------------------------------------*/
+
+.fc-widget-header,    /* <th>, usually */
+.fc-widget-content {  /* <td>, usually */
+  border: 1px solid #ebf0f2;
+  }
+  
+.fc-state-highlight { /* <td> today cell */ /* TODO: add .fc-today to <th> */
+  background: #fcf8e3;
+  }
+  
+.fc-cell-overlay { /* semi-transparent rectangle while dragging */
+  background: #bce8f1;
+  opacity: .3;
+  filter: alpha(opacity=30); /* for IE */
+  }
+  
+
+
+/* Buttons
+------------------------------------------------------------------------*/
+
+.fc-button {
+  position: relative;
+  display: inline-block;
+  padding: 0 .6em;
+  overflow: hidden;
+  height: 1.9em;
+  line-height: 1.9em;
+  white-space: nowrap;
+  cursor: pointer;
+  }
+  
+.fc-state-default { /* non-theme */
+  border: 1px solid;
+  }
+
+.fc-state-default.fc-corner-left { /* non-theme */
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  }
+
+.fc-state-default.fc-corner-right { /* non-theme */
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  }
+
+/*
+  Our default prev/next buttons use HTML entities like &lsaquo; &rsaquo; &laquo; &raquo;
+  and we'll try to make them look good cross-browser.
+*/
+
+.fc-text-arrow {
+  margin: 0 .1em;
+  font-size: 2em;
+  font-family: "Courier New", Courier, monospace;
+  vertical-align: baseline; /* for IE7 */
+  }
+
+.fc-button-prev .fc-text-arrow,
+.fc-button-next .fc-text-arrow { /* for &lsaquo; &rsaquo; */
+  font-weight: bold;
+  }
+  
+/* icon (for jquery ui) */
+  
+.fc-button .fc-icon-wrap {
+  position: relative;
+  float: left;
+  top: 50%;
+  }
+  
+.fc-button .ui-icon {
+  position: relative;
+  float: left;
+  margin-top: -50%;
+  *margin-top: 0;
+  *top: -50%;
+  }
+  
+/*
+  button states
+  borrowed from twitter bootstrap (http://twitter.github.com/bootstrap/)
+*/
+
+.fc-state-default {
+  font-size: 12px;
+  font-family: "Open sans", Helvetica, Arial;
+  color: #313d4c;
+  font-weight: 700;
+  padding: 2px 10px;
+  background: #fefefe; /* Old browsers */
+  background: -moz-linear-gradient(top, #fefefe 0%, #f7f7f7 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fefefe), color-stop(100%,#f7f7f7)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #fefefe 0%,#f7f7f7 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #fefefe 0%,#f7f7f7 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #fefefe 0%,#f7f7f7 100%); /* IE10+ */
+  background: linear-gradient(to bottom, #fefefe 0%,#f7f7f7 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#f7f7f7',GradientType=0 ); /* IE6-9 */
+  border: 1px solid #d0dde9;
+
+  transition: color .1s linear;
+  -moz-transition: color .1s linear; /* Firefox 4 */
+  -webkit-transition: color .1s linear; /* Safari and Chrome */
+  -o-transition: color .1s linear;  /* Opera */
+  }
+
+/*.fc-state-hover,*/
+.fc-state-down,
+.fc-state-active,
+.fc-state-disabled {
+  -webkit-box-shadow:0 1px 0 rgba(0,0,0,0.2) inset;
+  -moz-box-shadow:0 1px 0 rgba(0,0,0,0.2) inset;
+  box-shadow:0 1px 0 rgba(0,0,0,0.2) inset;
+  color: #a8b5c7;
+  }
+
+.fc-state-hover {
+  color: #a8b5c7;
+  text-decoration: none;
+  }
+
+.fc-state-down,
+.fc-state-active {
+  outline: 0;
+  /*box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);*/
+  }
+
+.fc-state-disabled {
+  cursor: default;
+  /*background-image: none;*/
+  opacity: 8.5;
+  filter: alpha(opacity=85);
+  box-shadow: none;
+  }
+
+  
+
+/* Global Event Styles
+------------------------------------------------------------------------*/
+   
+.fc-event {
+  border: 0px solid #3a87ad; /* default BORDER color */
+  background-color: #3a87ad; /* default BACKGROUND color */
+  color: #fff;               /* default TEXT color */
+  font-size: 11px;
+  cursor: default;
+  }
+
+a.fc-event {
+  text-decoration: none;
+  }
+a.fc-event:hover {
+  color: #fff;
+  }
+  
+a.fc-event,
+.fc-event-draggable {
+  cursor: pointer;
+  }
+  
+.fc-rtl .fc-event {
+  text-align: right;
+  }
+
+.fc-event-inner {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  }
+  
+.fc-event-time,
+.fc-event-title {
+  padding: 0 2px;
+  }
+  
+.fc .ui-resizable-handle {
+  display: block;
+  position: absolute;
+  z-index: 99999;
+  overflow: hidden; /* hacky spaces (IE6/7) */
+  font-size: 300%;  /* */
+  line-height: 50%; /* */
+  }
+  
+  
+  
+/* Horizontal Events
+------------------------------------------------------------------------*/
+
+.fc-event-hori {
+  border-width: 0;
+  margin-bottom: 1px;
+  }
+
+.fc-ltr .fc-event-hori.fc-event-start,
+.fc-rtl .fc-event-hori.fc-event-end {
+  border-left-width: 1px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  }
+
+.fc-ltr .fc-event-hori.fc-event-end,
+.fc-rtl .fc-event-hori.fc-event-start {
+  border-right-width: 1px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  }
+  
+/* resizable */
+  
+.fc-event-hori .ui-resizable-e {
+  top: 0           !important; /* importants override pre jquery ui 1.7 styles */
+  right: -3px      !important;
+  width: 7px       !important;
+  height: 100%     !important;
+  cursor: e-resize;
+  }
+  
+.fc-event-hori .ui-resizable-w {
+  top: 0           !important;
+  left: -3px       !important;
+  width: 7px       !important;
+  height: 100%     !important;
+  cursor: w-resize;
+  }
+  
+.fc-event-hori .ui-resizable-handle {
+  _padding-bottom: 14px; /* IE6 had 0 height */
+  }
+  
+  
+  

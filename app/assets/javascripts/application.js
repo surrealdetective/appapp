@@ -12,6 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require ../../../vendor/assets/javascripts/bootstrap.js
+//= require ../../../vendor/assets/javascripts/jquery-ui-1.10.2.custom.min.js
+//= require ../../../vendor/assets/javascripts/bootstrap.min.js
+//= require ../../../vendor/assets/javascripts/bootstrap.datepicker.js
 //= require ../../../vendor/assets/javascripts/theme.js
+//= require ../../../vendor/assets/javascripts/fullcalendar.min.js
 //= require_tree .
