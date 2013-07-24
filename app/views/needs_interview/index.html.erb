@@ -89,5 +89,67 @@
             });
         });
     </script>
+    <h3><%= @dossiers.count %> Dossiers</h3>
+
+<div class="row-fluid table">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+          <th class="span2 sortable">
+              Name
+          </th>
+          <th class="span2 sortable">
+              <span class="line"></span>Email
+          </th>
+          <th class="span4 sortable">
+              <span class="line"></span>Tagline
+          </th>
+          <th class="span2 sortable">
+              <span class="line"></span>Status History
+          </th>
+          <th class="span2">
+            <span class="line"></span>Change Status
+          </th>
+      </tr>
+    </thead>
+    <tbody>
+        <% #if dossiers.needs_review? %>
+      <% @dossiers.each do |dossier| #if dossier.needs_review? %>
+        <% # next if dossier.aasm_state == "rejected" %>
+        <tr id="dossier-<%= dossier.id %>">
+          <td>
+            <img src="http://placekitten.com/55/55" class="img-circle avatar hidden-phone" />
+            <%= link_to dossier.user.full_name, dossier, :class => "name"%>
+          </td>
+          <td>
+            <a href='mailto:<%=dossier.user.email%>'><%= dossier.user.email %></a>
+          </td>
+          <td>
+            <%= dossier.tagline %>
+          </td>
+          <td>
+            <ul>
+              <% dossier.dossier_statuses.each do |status| %>
+                <li><strong><%= status.status.humanize.downcase %></strong> on <%= status.created_at.strftime("%A, %b %d at %I:%M %p") %></li>
+              <% end %>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <% dossier.aasm.events.each do |event| %>
+                <li><%= link_to event.to_s.humanize, transition_path(dossier, event), method: :put, data: { confirm: 'Are you sure?' } %></li>
+              <% end %>
+              <% unless ["accepted","rejected"].include? dossier.aasm_state %>
+                <li><%= link_to "Reject", transition_path(dossier, :reject), method: :put, data: { confirm: 'Are you sure?' } %></li>
+                <li><%= link_to "Accept", transition_path(dossier, :accept), method: :put, data: { confirm: 'Are you sure?' } %></li>
+              <% end %>
+            </ul>
+          </td>
+        </tr>
+        <%end%>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 </body>
 </html>
