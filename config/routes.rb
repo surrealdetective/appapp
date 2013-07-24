@@ -1,6 +1,8 @@
 Appapp::Application.routes.draw do
   
   get "/thinner" => "thinner#index"
+  get "/testing" => "thinner#testing"
+  post "/thinner/:dossier_id/decision" => "thinner#decision", :as=>"thinner_decision"
 
   get "/dashboard" => "dossiers#index"
 

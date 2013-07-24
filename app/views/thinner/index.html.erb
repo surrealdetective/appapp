@@ -1,38 +1,45 @@
-<h1>Thinner#index</h1>
+ <div class="content">    
+  <div id="pad-wrapper" class="user-profile">
+    <!-- header -->
+    <div class="row-fluid header">
+      <div class="span8">
+          <img src="http://placekitten.com/100/100" class="avatar img-circle">
+          <h3 class="name"><%= name(@dossier.user) %></h3>
+          <span class="area">Graphic Designer</span>
+          <div class="area">
+            <em><%= one_hundred_forty_chars(@dossier.tagline)%></em>
+          </div>
 
-<% @thinning.each do |dossier| %>
-  <div class="span12 testing">
-    <!-- user pic -->
-    <img src="http://placekitten.com/g/160/160">
-    <!-- user name -->
-    <%= name(dossier.user) %>
-    <!-- in nyc? -->
-    <label>New York City in <%= dossier.semester %>?</label>
-    <input type="checkbox" name="nyc" value="1" <%= "checked" if dossier.semester.present? %>/>
-    <!-- has blog or site? -->
-    <label>Blog or website?</label>
-    <input type="checkbox" name="nyc" value="1" <%= "checked" if blog_or_website? %>/>
-    <!-- has digital identity? -->
-    <label>Twitter, LinkedIn, Github</label>
-    social_icon_or_blank(dossier.twitter) <!-- image with an a tag, or it's blank -->
-    social_icon_or_blank(dossier.linkedin)
-    social_icon_or_blank(dossier.github)
-    <!-- tagline -->
-    <%= dossier.tagline %>
-    <!-- heavy-text -->
-    <div id="tabs">
-      <nav>
-          <a href="#purpose">Purpose</a><a href="#career">Career</a><a href="#analytic">Analytic</a>
-      </nav>
-      <div id="purpose">
-         <%= four_hundred_twenty_chars(dossier.purpose) %><!--  later add a lightbox to see all text -->
       </div>
-      <div id="career">
-          <%= four_hundred_twenty_chars(dossier.career) %>
+      <!-- checkboxes for easy rejections -->
+      <div id="pad-wrapper" class="form-page span4" style="position:absolute;right:0px;">
+        <div class="row-fluid form-wrapper">
+          <%= form_tag thinner_decision_path(@dossier.id), method:"post" do %>
+            <div class="span10"><%= @dossier.semester %> in New York City?</div>
+              <div class="checker span1">
+                <span>
+                  <input type="checkbox">
+                </span>
+              </div>
+            </div>
+            <div class="span12">
+                <%= submit_tag "Reject", :class => "btn btn-danger"%>
+                <%= submit_tag "Needs Review", :class => "btn btn-primary"%>
+            </div>
+          <% end %>
+        </div>
       </div>
-      <div id="analytic">
-          <%= four_hundred_twenty_chars(dossier.analytic) %>
+      <!-- biography below -->
+      <div class="span12">
+            <h6>Flatiron Purpose</h6>
+            <p class="span8"><%= four_hundred_twenty_chars(@dossier.purpose)%></p>
       </div>
+        <%= form_tag thinner_decision_path(@dossier.id), method:"post" do %>
+          <div class="span12">
+              <%= submit_tag "Reject", :class => "btn btn-danger span5"%>
+              <%= submit_tag "Needs Review", :class => "btn btn-primary span5"%>
+          </div>
+        <% end %>
     </div>
   </div>
-<% end %>
+</div>
