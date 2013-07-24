@@ -9,7 +9,7 @@
 
 <% @dossiers.each do |dossier| %> 
 
-<li>
+<li> <!-- helper method below -->
   <%= link_to name(dossier.user), dossier%>, |
   <a href='mailto:<%=dossier.user.email%>'><%= dossier.user.email %></a> |
   <%= dossier.tagline %> |

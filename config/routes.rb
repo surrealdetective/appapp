@@ -21,6 +21,7 @@ Appapp::Application.routes.draw do
   get '/dossiers/filter_by/:filter' => 'dossiers#filter_by', as: :dossiers_filter_by
 
   get '/dossiers/filter' => 'dossiers#filter', as: :dossiers_filter
+  get '/dossiers/:id/needs-review' => 'needs_review#index'#, as: :dossier_review
 
 
 
