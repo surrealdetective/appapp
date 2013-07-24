@@ -22,11 +22,14 @@ Appapp::Application.routes.draw do
     resources :dossier_comments, :only => [:create, :edit, :update, :destroy]
   end
 
+  put '/dossiers/:id/transition/:transition' => 'dossiers#transition', :as => :transition
+
   # get '/admin' => 'dossiers#index'
   get '/dossiers/filter_by/:filter' => 'dossiers#filter_by', as: :dossiers_filter_by
 
   get '/dossiers/filter' => 'dossiers#filter', as: :dossiers_filter
   get '/dossiers/:id/needs-review' => 'needs_review#index'#, as: :dossier_review
+  get '/dossiers/:id/needs-interview' => 'needs_interview#index'
 
 
 

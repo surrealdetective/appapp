@@ -16,9 +16,11 @@ class DossierStatusesController < ApplicationController
 
   def create
 
-    @dossier = Dossier.find(params[:dossier_id])
-    @dossier.add_status(params[:dossier_status])
-    redirect_to @dossier.user
+    # this code shouldn't exist now that we have aasm
+
+    # @dossier = Dossier.find(params[:dossier_id])
+    # @dossier.add_status(params[:dossier_status])
+    # redirect_to @dossier.user
 
 
     # raise params.inspect

@@ -111,4 +111,9 @@ class User < ActiveRecord::Base
   #again, putting roles on a scale shows that a user w/ a 
   #low integer role also has all the higher-intger role permissions
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
+
 end

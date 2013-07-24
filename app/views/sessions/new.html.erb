@@ -1,20 +1,28 @@
-<h1>Login to App App</h1>
 
+<h2>Log In to View Your Application Status</h2>
 <br>
 
-<%= form_tag '/login', method: "POST" do %>
-  <!--  -->
-  <div class="field">
-    <%= label_tag "E-mail:" %>
-    <%= text_field_tag "user[email]" %>
-  </div>
 
-  <div class="field">
-    <%= label_tag :password %><br />
-    <%= password_field_tag :password %>
-  </div>
+<div class="welcome-nav">
+  <%= form_tag '/login', method: "POST" do %>
+    <!--  -->
+  <div class="welcome-h1">  
+    <div class="field">
+      <%= label_tag "E-mail" %>
+      <%= text_field_tag "user[email]" %>
+    </div>
 
-  <div class="actions">
-    <%= submit_tag "Login", :class => "btn" %>
+    <div class="field">
+      <%= label_tag :password %><br />
+      <%= password_field_tag :password %>
+    </div>
+
+    <div class="actions">
+      <%= submit_tag "Login", :class => "btn" %>
+    </div>
   </div>
-<% end %>
+  <% end %>
+
+
+</div>
+
