@@ -1,4 +1,4 @@
-<h3><%= @dossiers.count %> Total Dossiers</h3>
+<h3><%= @dossiers.count %> Dossiers</h3>
 
 <div class="row-fluid table">
   <table class="table table-hover">
@@ -22,7 +22,8 @@
       </tr>
     </thead>
     <tbody>
-      <% @dossiers.each do |dossier| %> 
+      <% @dossiers.each do |dossier| %>
+        <% # next if dossier.aasm_state == "rejected" %>
         <tr id="dossier-<%= dossier.id %>">
           <td>
             <img src="http://placekitten.com/55/55" class="img-circle avatar hidden-phone" />
@@ -44,11 +45,11 @@
           <td>
             <ul>
               <% dossier.aasm.events.each do |event| %>
-                <li><%= link_to event.to_s.humanize, transition_path(dossier, event) %></li>
+                <li><%= link_to event.to_s.humanize, transition_path(dossier, event), method: :put, data: { confirm: 'Are you sure?' } %></li>
               <% end %>
               <% unless ["accepted","rejected"].include? dossier.aasm_state %>
-                <li><%= link_to "Reject", transition_path(dossier, :reject) %></li>
-                <li><%= link_to "Accept", transition_path(dossier, :accept) %></li>
+                <li><%= link_to "Reject", transition_path(dossier, :reject), method: :put, data: { confirm: 'Are you sure?' } %></li>
+                <li><%= link_to "Accept", transition_path(dossier, :accept), method: :put, data: { confirm: 'Are you sure?' } %></li>
               <% end %>
             </ul>
           </td>

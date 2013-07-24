@@ -111,6 +111,10 @@ class Dossier < ActiveRecord::Base
     self.joins(:dossier_statuses).where(:dossier_statuses => {:status => status})
   end
 
+  # self.most_recent
+  # is a class method to get the most recent dossier of all the dossiers
+  # eg:
+  # Dossier.most_recent #=> [#<Dossier: aksjdfklajsdf>]
   def self.most_recent
     self.sort_by(:date, "DESC").limit(1)#.first
   end

@@ -93,28 +93,30 @@
   <div id="main-stats">
       <div class="row-fluid stats-row">
           <div class="span3 stat">
-              <div class="data">
-                  <span class="number"> <%= new_dossier_count %> </span>
-                 New Applicants 
-              </div>
+            <div class="data">
+              <span class="number">
+                <%= link_to new_dossier_count, dashboard_path(status: "new") %>
+              </span>
+              <span class="number_label"> New Applicants </span>
+            </div>
           </div>
           <div class="span3 stat">
-              <div class="data">
-                  <span class="number"><%= needs_review_count %></span>
-                  Need Review
-              </div>
+            <div class="data">
+              <span class="number">       <%= needs_review_count %> </span>
+              <span class="number_label"> Need Review               </span>
+            </div>
           </div>
           <div class="span3 stat">
-              <div class="data">
-                  <span class="number"><%= needs_interview_count %></span>
-                  Need Interviews
-              </div>
+            <div class="data">
+              <span class="number">       <%= needs_interview_count %> </span>
+              <span class="number_label"> Need Interviews              </span>
+            </div>
           </div>
           <div class="span3 stat last">
-              <div class="data">
-                  <span class="number"><%= needs_decision_count %></span>
-                  Need Decisions
-              </div>
+            <div class="data">
+              <span class="number">       <%= needs_decision_count %> </span>
+              <span class="number_label"> Need Decisions              </span>
+            </div>
           </div>
       </div>
   </div>
