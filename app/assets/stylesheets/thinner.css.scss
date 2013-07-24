@@ -1,0 +1,35 @@
+// Place all the styles related to the thinner controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.testing {
+  background-color: red;
+  margin-top: 25px;
+}
+
+* {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+#tabs .active {
+    background: #fff; 
+}
+
+#tabs {
+    width: 200px;
+}
+
+#tabs nav a {
+    display: inline-block;
+    padding: 10px 25px;
+    border: 1px solid #ccc;
+    border-bottom: 0;
+    background: #efefef;
+}
+
+#tabs div {
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
