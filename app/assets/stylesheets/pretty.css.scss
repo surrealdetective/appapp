@@ -23,7 +23,7 @@
 */
 
 body.welcome.home {
-  width: 300px;
+  width: 100%;
   margin: 5px auto;
 }
 
@@ -33,4 +33,31 @@ body.welcome {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+
+.welcome-h1 {
+  margin:20px;
+}
+
+.welcome-nav {
+  padding-right:5px;
+
+}
+
+.login-content{
+  width: 30%;
+  margin: 0 auto;
+  min-height: 100px;
+  margin-bottom:100px;
+  padding-bottom:50px;
+  overflow:hidden;
+  position:relative;
+  background:#fff;
+  border-left:2px solid rgb(38, 196, 255);
+  border-right:2px solid rgb(38, 196, 255);
+  border-bottom:2px solid rgb(38, 196, 255);
+  border-top:2px solid rgb(38, 196, 255);
+  box-shadow: -3px 3px 3px -3px;
+  border-radius: 3px 3px 3px 3px;
+  opacity:.9;
 }
