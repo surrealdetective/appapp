@@ -1,7 +1,3 @@
-require 'populator'
-require 'faker'
-require 'debugger'
-
 classes = ["Fall 2013", "Spring 2014", "Summer 2014"]
 
 300.times do
