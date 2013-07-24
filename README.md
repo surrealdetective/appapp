@@ -1,3 +1,6 @@
+- add a user_id to dossier_statuses so you know which admin triggered which events
+- add user_id to dossier_comments
+
 # notes from avi 2013-07-23
 
 - add the rest of the dossier attributes

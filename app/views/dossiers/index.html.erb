@@ -10,17 +10,17 @@
   <table class="table table-hover">
     <thead>
       <tr>
-          <th class="span3 sortable">
+          <th class="span2 sortable">
               Name
           </th>
-          <th class="span3 sortable">
+          <th class="span2 sortable">
               <span class="line"></span>Email
           </th>
           <th class="span4 sortable">
               <span class="line"></span>Tagline
           </th>
-          <th class="span3 sortable">
-              <span class="line"></span>Edit Status (should this be here?)
+          <th class="span2 sortable">
+              <span class="line"></span>Status
           </th>
       </tr>
     </thead>
@@ -29,7 +29,7 @@
         <tr>
           <td>
             <img src="http://placekitten.com/55/55" class="img-circle avatar hidden-phone" />
-            <%= link_to name(dossier.user), dossier%>
+            <%= link_to dossier.user.full_name, dossier, :class => "name"%>
           </td>
           <td>
             <a href='mailto:<%=dossier.user.email%>'><%= dossier.user.email %></a>
@@ -38,7 +38,7 @@
             <%= dossier.tagline %>
           </td>
           <td>
-            <%= link_to 'Edit Dossier Status', new_dossier_dossier_status_path(dossier) %>
+            <p><strong><%= dossier.aasm_state %></strong> | <%= link_to 'Change', new_dossier_dossier_status_path(dossier) %></p>
           </td>
         </tr>
       <% end %>

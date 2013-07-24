@@ -5,7 +5,7 @@
     <!-- user pic -->
     <img src="http://placekitten.com/g/160/160">
     <!-- user name -->
-    <%= name(dossier.user) %>
+    <%= dossier.user.full_name %>
     <!-- in nyc? -->
     <label>New York City in <%= dossier.semester %>?</label>
     <input type="checkbox" name="nyc" value="1" <%= "checked" if dossier.semester.present? %>/>
