@@ -113,8 +113,7 @@
       </tr>
     </thead>
     <tbody>
-        <% #if dossiers.needs_review? %>
-      <% @dossiers.each do |dossier| #if dossier.needs_review? %>
+      <% @dossiers.each do |dossier|  %>
         <% # next if dossier.aasm_state == "rejected" %>
         <tr id="dossier-<%= dossier.id %>">
           <td>
@@ -146,7 +145,6 @@
             </ul>
           </td>
         </tr>
-        <%end%>
       <% end %>
     </tbody>
   </table>
