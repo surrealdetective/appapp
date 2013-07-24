@@ -1,31 +1,54 @@
 <% @thinner.each do |dossier| %>
 
-    <div class="thinner-wrap">    
-      <div id="pad-wrapper" class="user-profile">
-        <!-- header -->
-        <div class="row-fluid header">
-          <div class="span12" style="padding-top:35px; border-top:1px solid;">
-            <img src="http://placekitten.com/100/100" class="avatar img-circle">
-            <h3 class="name"><%= name(dossier.user) %></h3>
-            <span class="area">Graphic Designer</span>
-            <div class="area">
-              <em><%= one_hundred_forty_chars(dossier.tagline)%></em>
-            </div>
+    <!-- wraps one -->
+    <div class="thinner-wrap user-profile">    
+      
+      <!-- pic and tagline below -->
+      <div class="row-fluid header">
+        <div class="span6" style="padding:20px;float:left;">
+          <img src="http://placekitten.com/100/100" class="avatar img-circle">
+          <h3 class="name"><%= name(dossier.user) %></h3>
+          <span class="area">From <%= dossier.city %></span>
+          <div class="area">
+            <em><%= one_hundred_forty_chars(dossier.tagline)%></em>
           </div>
         </div>
-        </div>
-          <!-- biography below -->
-          <div class="span12">
-                <h3>Flatiron Purpose</h3>
-                <p class="span12" style="padding:40px; margin:20px;"><%= four_hundred_twenty_chars(dossier.purpose)%></p>
+          <!-- checkboxes below -->
+          <div id="pad-wrapper" class="form-page span4" style="position:absolute;right:0px; float:right">
+            <div class="row-fluid form-wrapper">
+              <%= form_tag thinner_decision_path(dossier.id), method:"post" do %>
+                <div class="span10"><%= dossier.semester %> in New York City?</div>
+                  <div class="checker span1">
+                    <span>
+                      <input type="checkbox">
+                    </span>
+                  </div>
+                </div>
+                <div class="span12">
+                    <%= submit_tag "Reject Now", :class => "btn btn-danger"%>
+                    <%= submit_tag "Review Further", :class => "btn btn-primary"%>
+                </div>
+              <% end %>
           </div>
-            <%= form_tag thinner_decision_path(dossier.id), method:"post" do %>
-              <div class="span12" style="margin-bottom:60px;">
-                  <%= submit_tag "Reject", :class => "btn btn-danger span6"%>
-                  <%= submit_tag "Review Further", :class => "btn btn-primary span6"%>
-              </div>
+      </div>
 
-            <% end %>
+
+
+      <!-- biography below -->
+      <div class="span12">
+            <h3>Flatiron Purpose</h3>
+            <p class="span11" style="padding:40px; margin:20px;"><%= four_hundred_twenty_chars(dossier.purpose)%></p>
+      </div>
+            
+      <!-- submit tags below -->
+      <%= form_tag thinner_decision_path(dossier.id), method:"post" do %>
+        <div class="span12" style="margin-bottom:60px;">
+            <%= submit_tag "Reject Now", :class => "btn btn-danger span6"%>
+            <%= submit_tag "Review Further", :class => "btn btn-primary span6"%>
+        </div>
+
+      <% end %>
     </div>  
 
 <% end %>
+
