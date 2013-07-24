@@ -1,45 +1,53 @@
- <div class="content">    
-  <div id="pad-wrapper" class="user-profile">
-    <!-- header -->
-    <div class="row-fluid header">
-      <div class="span8">
+<% @thinner.each do |dossier| %>
+  <div class="content thinner-wrap">    
+
+    <div id="pad-wrapper" class="user-profile user-border">
+      <!-- header -->
+      <div class="row-fluid header">
+        <div class="span8">
           <img src="http://placekitten.com/100/100" class="avatar img-circle">
-          <h3 class="name"><%= name(@dossier.user) %></h3>
+          <h3 class="name"><%= name(dossier.user) %></h3>
           <span class="area">Graphic Designer</span>
           <div class="area">
-            <em><%= one_hundred_forty_chars(@dossier.tagline)%></em>
+            <em><%= one_hundred_forty_chars(dossier.tagline)%></em>
           </div>
-
-      </div>
-      <!-- checkboxes for easy rejections -->
-      <div id="pad-wrapper" class="form-page span4" style="position:absolute;right:0px;">
-        <div class="row-fluid form-wrapper">
-          <%= form_tag thinner_decision_path(@dossier.id), method:"post" do %>
-            <div class="span10"><%= @dossier.semester %> in New York City?</div>
-              <div class="checker span1">
-                <span>
-                  <input type="checkbox">
-                </span>
-              </div>
-            </div>
-            <div class="span12">
-                <%= submit_tag "Reject", :class => "btn btn-danger"%>
-                <%= submit_tag "Needs Review", :class => "btn btn-primary"%>
-            </div>
-          <% end %>
         </div>
       </div>
-      <!-- biography below -->
-      <div class="span12">
-            <h6>Flatiron Purpose</h6>
-            <p class="span8"><%= four_hundred_twenty_chars(@dossier.purpose)%></p>
-      </div>
-        <%= form_tag thinner_decision_path(@dossier.id), method:"post" do %>
-          <div class="span12">
-              <%= submit_tag "Reject", :class => "btn btn-danger span5"%>
-              <%= submit_tag "Needs Review", :class => "btn btn-primary span5"%>
+        <!-- checkboxes for easy rejections -->
+        <div id="pad-wrapper" class="form-page span4" style="position:absolute;right:0px;">
+          <div class="row-fluid form-wrapper">
+            <%= form_tag thinner_decision_path(dossier.id), method:"post" do %>
+              <div class="span10"><%= dossier.semester %> in New York City?</div>
+                <div class="checker span1">
+                  <span>
+                    <input type="checkbox">
+                  </span>
+                </div>
+              </div>
+              <div class="span12">
+                  <%= submit_tag "Reject", :class => "btn btn-danger"%>
+                  <%= submit_tag "Review Further", :class => "btn btn-primary"%>
+              </div>
+            <% end %>
           </div>
-        <% end %>
-    </div>
-  </div>
-</div>
+        </div>
+        <!-- biography below -->
+        <div class="span12">
+              <h6>Flatiron Purpose</h6>
+              <p class="span8"><%= four_hundred_twenty_chars(dossier.purpose)%></p>
+        </div>
+          <%= form_tag thinner_decision_path(dossier.id), method:"post" do %>
+            <div class="span12">
+                <%= submit_tag "Reject", :class => "btn btn-danger span5"%>
+                <%= submit_tag "Review Further", :class => "btn btn-primary span5"%>
+            </div>
+          <% end %>
+    </div>  
+<% end %>
+
+Do:
+Logic for checking if they are in NYC.
+Grab more than one student
+Add padding to div class user-profile, or margin to div class content
+Show the view for more than one student
+Link the reject and Review Further to the correct actions
