@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  
+</head>
+<body>
+
+    <!-- navbar -->
+   
+
+
+  <!-- main container -->
+    <div>
+        
+
+        <div>
+            <div>
+                <div class="row-fluid calendar-wrapper">
+                    <div class="span12">
+
+                        <!-- div that fullcalendar plugin uses  -->
+                        <div id='calendar'></div>
+
+                        <!-- edit image pop up -->
+                        <div >
+                            <div class="pointer">
+                                <div class="arrow"></div>
+                                <div class="arrow_border"></div>
+                            </div>
+                            
+                            <h5></h5>
+                            <div class="field">
+                               
+                                <span class="date"></span>
+                            </div>
+                            <div class="field">
+                                
+                               
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end main container -->
+
+
+  <!-- scripts for this page -->
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="js/jquery-ui-1.10.2.custom.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src='js/fullcalendar.min.js'></script>
+    <script src="js/theme.js"></script>
+
+    <!-- builds fullcalendar example -->
+  
+    <script>
+        $(document).ready(function() {
+        
+            var date = new Date();
+            var d = date.getDate();
+            var m = date.getMonth();
+            var y = date.getFullYear();
+            
+            $('#calendar').fullCalendar({
+                header: {
+                    left: 'month,basicWeek,agendaDay',
+                    center: 'title',
+                    right: 'today prev,next'
+                },
+                height: 350,
+                defaultView: 'basicWeek',
+                selectable: true,
+                selectHelper: true,
+                editable: true,
+                events: [
+                    
+                ],
+                eventBackgroundColor: '#278ccf'
+            });
+            
+            // handler to close the new event popup just for displaying purposes
+            // more documentation for fullcalendar on http://arshaw.com/fullcalendar/
+            $(".popup .close-pop").click(function () {
+                $(".new-event").fadeOut("fast");
+            });
+        });
+    </script>
+</body>
+</html>

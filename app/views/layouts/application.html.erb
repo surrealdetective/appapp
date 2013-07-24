@@ -23,7 +23,6 @@
 <head>
   <title><%= title %></title> <!-- check /app/helpers/application_helper.rb for this method  -->
   <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 
@@ -56,23 +55,24 @@
 
             <!--   SEARCH BAR    -->        
               <li class="hidden-phone">
-                  <input class="search" type="text" />
+                  <%= form_tag dashboard_path, :method => "get" do %>
+                    <input name="search" class="search" type="text" value='<%= params[:search] %>' />
+                  <% end %>
               </li>
-
-              <!-- putting it outside of the dropdown for now, until we fix the dropdown -->
-              <li class="hidden-phone"><%= link_to "Log Out", logout_path %></li>
 
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle hidden-phone" data-toggle="dropdown">
-                    <%= name(current_user) %> 
+                    <%= current_user.full_name %> 
                     <b class="caret"></b>
                 </a>              
                 <ul class="dropdown-menu">
-                  <li><a href="personal-info.html">Personal info</a></li>
+                  <% if current_user.last_dossier %>
+                    <li class="hidden-phone">
+                      <%= link_to "Last dossier", dossier_path(current_user.last_dossier) %>
+                    </li>
+                  <% end %>
                   <li class="settings hidden-phone">
-                    <a href="/logout" role="button">
-                      <i class="icon-share-alt"></i>
-                    </a>
+                    <%= link_to "Log Out", logout_path %>
                   </li>
                 </ul>
               </li>
@@ -92,28 +92,30 @@
   <div id="main-stats">
       <div class="row-fluid stats-row">
           <div class="span3 stat">
-              <div class="data">
-                  <span class="number"> <%= @new_applicant_count %> </span>
-                 New Applicants 
-              </div>
+            <div class="data">
+              <span class="number">
+                <%= link_to new_dossier_count, dashboard_path(status: "new") %>
+              </span>
+              <span class="number_label"> New Applicants </span>
+            </div>
           </div>
           <div class="span3 stat">
-              <div class="data">
-                  <span class="number">20</span>
-                  Need Review
-              </div>
+            <div class="data">
+              <span class="number">       <%= needs_review_count %> </span>
+              <span class="number_label"> Need Review               </span>
+            </div>
           </div>
           <div class="span3 stat">
-              <div class="data">
-                  <span class="number">12</span>
-                  Need Interviews
-              </div>
+            <div class="data">
+              <span class="number">       <%= needs_interview_count %> </span>
+              <span class="number_label"> Need Interviews              </span>
+            </div>
           </div>
           <div class="span3 stat last">
-              <div class="data">
-                  <span class="number">4</span>
-                  Need Decisions
-              </div>
+            <div class="data">
+              <span class="number">       <%= needs_decision_count %> </span>
+              <span class="number_label"> Need Decisions              </span>
+            </div>
           </div>
       </div>
   </div>
@@ -129,5 +131,6 @@
 
     </div>
   </div>
+  <%= javascript_include_tag "application" %>
 </body>
 </html>

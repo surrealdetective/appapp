@@ -22,10 +22,12 @@ class DossiersController < ApplicationController
   end 
 
   def index
-    # raise params.inspect
-    @new_applicant_count = Dossier.new_dossier_count
-    @dossiers = Dossier.sort_by(params[:sort_by])
-    @title = "Admin Zone"
+    @title = "Dashboard"
+    if params[:search]
+      @dossiers = Dossier.joins(:user).where(:users => {:first_name => params[:search]})
+    else
+      @dossiers = Dossier.sort_by(params[:sort_by])
+    end
   end
   
   # def filter
@@ -45,6 +47,16 @@ class DossiersController < ApplicationController
   def show
     @dossier = Dossier.find(params[:id])
     @user = @dossier.user
+  end
+
+  def transition
+    @dossier = Dossier.find(params[:id])
+    @dossier.send(params[:transition])
+
+    # scrolls page down to the right row
+    redirect_to dashboard_path + "#dossier-#{params[:id]}"
+    # shouldn't this work? it doesn't:
+    # redirect_to dashboard_path :anchor => "#dossier-#{params[:id]}"
   end
 
 
