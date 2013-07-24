@@ -20,6 +20,8 @@ Appapp::Application.routes.draw do
     resources :dossier_comments, :only => [:create, :edit, :update, :destroy]
   end
 
+  get '/dossiers/:id/transition/:transition' => 'dossiers#transition', :as => :transition
+
   # get '/admin' => 'dossiers#index'
   get '/dossiers/filter_by/:filter' => 'dossiers#filter_by', as: :dossiers_filter_by
 

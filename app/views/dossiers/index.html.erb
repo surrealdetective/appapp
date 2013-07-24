@@ -1,11 +1,5 @@
 <h3><%= @dossiers.count %> Total Dossiers</h3>
 
-<%= form_tag dossiers_path, :method => "get" do %>
-  <%= select_tag "sort_by", "<option>user</option><option>date</option>".html_safe %>
-  <%= submit_tag "Sort now!", :class => "btn" %>
-  <%= link_to "filters", dossiers_filter_by_path("all"), :class => "btn" %>
-<% end %>
-
 <div class="row-fluid table">
   <table class="table table-hover">
     <thead>
@@ -20,13 +14,16 @@
               <span class="line"></span>Tagline
           </th>
           <th class="span2 sortable">
-              <span class="line"></span>Status
+              <span class="line"></span>Status History
+          </th>
+          <th class="span2">
+            <span class="line"></span>Change Status
           </th>
       </tr>
     </thead>
     <tbody>
       <% @dossiers.each do |dossier| %> 
-        <tr>
+        <tr id="dossier-<%= dossier.id %>">
           <td>
             <img src="http://placekitten.com/55/55" class="img-circle avatar hidden-phone" />
             <%= link_to dossier.user.full_name, dossier, :class => "name"%>
@@ -38,7 +35,22 @@
             <%= dossier.tagline %>
           </td>
           <td>
-            <p><strong><%= dossier.aasm_state %></strong> | <%= link_to 'Change', new_dossier_dossier_status_path(dossier) %></p>
+            <ul>
+              <% dossier.dossier_statuses.each do |status| %>
+                <li><strong><%= status.status.humanize.downcase %></strong> on <%= status.created_at.strftime("%A, %b %d at %I:%M %p") %></li>
+              <% end %>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <% dossier.aasm.events.each do |event| %>
+                <li><%= link_to event.to_s.humanize, transition_path(dossier, event) %></li>
+              <% end %>
+              <% unless ["accepted","rejected"].include? dossier.aasm_state %>
+                <li><%= link_to "Reject", transition_path(dossier, :reject) %></li>
+                <li><%= link_to "Accept", transition_path(dossier, :accept) %></li>
+              <% end %>
+            </ul>
           </td>
         </tr>
       <% end %>

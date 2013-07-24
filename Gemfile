@@ -32,6 +32,7 @@ gem 'bcrypt-ruby', '=3.0.0'
 #require 'bcrypt' #'~> 3.0.0'
 gem 'aasm'
 gem 'debugger'
+gem 'pry'
 
 #authorization
 gem "cancan"

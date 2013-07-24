@@ -22,8 +22,6 @@ class DossiersController < ApplicationController
   end 
 
   def index
-    # raise params.inspect
-    @new_applicant_count = Dossier.new_dossier_count
     @dossiers = Dossier.sort_by(params[:sort_by])
     @title = "Admin Zone"
   end
@@ -45,6 +43,12 @@ class DossiersController < ApplicationController
   def show
     @dossier = Dossier.find(params[:id])
     @user = @dossier.user
+  end
+
+  def transition
+    @dossier = Dossier.find(params[:id])
+    @dossier.send(params[:transition])
+    redirect_to dashboard_path, :anchor => "dossier-#{params[:id]}"
   end
 
 

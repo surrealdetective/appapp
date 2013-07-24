@@ -92,25 +92,25 @@
       <div class="row-fluid stats-row">
           <div class="span3 stat">
               <div class="data">
-                  <span class="number"> <%= @new_applicant_count %> </span>
+                  <span class="number"> <%= new_dossier_count %> </span>
                  New Applicants 
               </div>
           </div>
           <div class="span3 stat">
               <div class="data">
-                  <span class="number">20</span>
+                  <span class="number"><%= needs_review_count %></span>
                   Need Review
               </div>
           </div>
           <div class="span3 stat">
               <div class="data">
-                  <span class="number">12</span>
+                  <span class="number"><%= needs_interview_count %></span>
                   Need Interviews
               </div>
           </div>
           <div class="span3 stat last">
               <div class="data">
-                  <span class="number">4</span>
+                  <span class="number"><%= needs_decision_count %></span>
                   Need Decisions
               </div>
           </div>

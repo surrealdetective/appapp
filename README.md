@@ -1,6 +1,15 @@
 - add a user_id to dossier_statuses so you know which admin triggered which events
 - add user_id to dossier_comments
 
+
+this plucked from dossier index for the nonce
+
+<%= form_tag dossiers_path, :method => "get" do %>
+  <%= select_tag "sort_by", "<option>user</option><option>date</option>".html_safe %>
+  <%= submit_tag "Sort now!", :class => "btn" %>
+  <%= link_to "filters", dossiers_filter_by_path("all"), :class => "btn" %>
+<% end %>
+
 # notes from avi 2013-07-23
 
 - add the rest of the dossier attributes
