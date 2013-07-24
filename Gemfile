@@ -7,6 +7,9 @@ gem 'rails', '3.2.13'
 
 gem 'sqlite3'
 
+## should we switch to thin?
+gem 'thin'
+
 group :development do
   gem "better_errors"
 end
