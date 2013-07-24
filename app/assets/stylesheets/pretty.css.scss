@@ -45,6 +45,7 @@ body.welcome {
 }
 
 .login-content{
+  top:100px;
   width: 30%;
   margin: 0 auto;
   min-height: 100px;
@@ -53,10 +54,7 @@ body.welcome {
   overflow:hidden;
   position:relative;
   background:#fff;
-  border-left:2px solid rgb(38, 196, 255);
-  border-right:2px solid rgb(38, 196, 255);
-  border-bottom:2px solid rgb(38, 196, 255);
-  border-top:2px solid rgb(38, 196, 255);
+  border:2px solid rgb(38, 196, 255);
   box-shadow: -3px 3px 3px -3px;
   border-radius: 3px 3px 3px 3px;
   opacity:.9;
