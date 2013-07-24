@@ -87,33 +87,35 @@
 
 
   <div class="content">  
-          <!-- upper main stats -->
+    <!-- upper main stats -->
     <% if current_user && current_user.role?(:moderator) %>
       <div id="main-stats">
           <div class="row-fluid stats-row">
               <div class="span3 stat">
-                  <div class="data">
-                      <span class="number"> <%= @new_applicant_count %> </span>
-                     New Applicants 
-                  </div>
+                <div class="data">
+                  <span class="number">
+                    <%= link_to new_dossier_count, thinner_path %>
+                  </span>
+                  <span class="number_label"> New Applicants </span>
+                </div>
               </div>
               <div class="span3 stat">
-                  <div class="data">
-                      <span class="number">20</span>
-                      Need Review
-                  </div>
+                <div class="data">
+                  <span class="number"><%= link_to needs_review_count, dossier_review_path(Dossier.first) %></span>
+                  <span class="number_label"> Need Review               </span>
+                </div>
               </div>
               <div class="span3 stat">
-                  <div class="data">
-                      <span class="number">12</span>
-                      Need Interviews
-                  </div>
+                <div class="data">
+                  <span class="number"><%= link_to needs_interview_count, dossier_interview_path(Dossier.first) %> </span>
+                  <span class="number_label"> Need Interviews              </span>
+                </div>
               </div>
               <div class="span3 stat last">
-                  <div class="data">
-                      <span class="number">4</span>
-                      Need Decisions
-                  </div>
+                <div class="data">
+                  <span class="number"><%= link_to needs_decision_count, dashboard_path(status: "needs_decision") %> </span>
+                  <span class="number_label"> Need Decisions              </span>
+                </div>
               </div>
           </div>
       </div>

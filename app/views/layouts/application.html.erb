@@ -94,20 +94,20 @@
           <div class="span3 stat">
             <div class="data">
               <span class="number">
-                <%= link_to new_dossier_count, dashboard_path(status: "new") %>
+                <%= link_to new_dossier_count, thinner_path %>
               </span>
               <span class="number_label"> New Applicants </span>
             </div>
           </div>
           <div class="span3 stat">
             <div class="data">
-              <span class="number"><%= link_to needs_review_count, dashboard_path(status: "needs_review") %></span>
+              <span class="number"><%= link_to needs_review_count, dossier_review_path(Dossier.first) %></span>
               <span class="number_label"> Need Review               </span>
             </div>
           </div>
           <div class="span3 stat">
             <div class="data">
-              <span class="number"><%= link_to needs_interview_count, dashboard_path(status: "needs_interview") %> </span>
+              <span class="number"><%= link_to needs_interview_count, dossier_interview_path(Dossier.first) %> </span>
               <span class="number_label"> Need Interviews              </span>
             </div>
           </div>
