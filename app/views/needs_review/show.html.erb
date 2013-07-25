@@ -1,6 +1,17 @@
 
 <body>
 <div>
+
+
+
+  <ul>
+    <% if @prev_dossier %>
+      <li><%= link_to "Previous", needs_review_show_path(@prev_dossier) %></li>
+    <% end %>
+    <% if @next_dossier %>
+      <li><%= link_to "Next", needs_review_show_path(@next_dossier) %></li>
+    <% end %>
+  </ul>
        
 
 
