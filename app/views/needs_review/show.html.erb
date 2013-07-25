@@ -37,11 +37,11 @@
     <ul>
       <li>Name: <%= @dossier.user.full_name %></li>
       <li>Applying for the <%= @dossier.semester %> semester</li>
-      <li>Linkedin: <%= link_to @dossier.linkedin %></li>
-      <li>Twitter: <%= link_to @dossier.twitter %></li>
-      <li>GitHub: <%= link_to @dossier.github %></li>
-      <li>Website: <%= link_to @dossier.website %></li>
-      <li>Blog: <%= link_to @dossier.blog %></li>
+      <li>Linkedin: <%= link_to @dossier.linkedin, @dossier.linkedin %></li>
+      <li>Twitter: <%= link_to "@#{@dossier.twitter}", @dossier.twitter_url %></li>
+      <li>GitHub: <%= link_to @dossier.github, @dossier.github %></li>
+      <li>Website: <%= link_to @dossier.website, @dossier.website %></li>
+      <li>Blog: <%= link_to @dossier.blog, @dossier.blog %></li>
     </ul>
   </div>
   <div class="span6">
