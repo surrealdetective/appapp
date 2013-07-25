@@ -1,0 +1,97 @@
+<div class="row">
+  <div class="span12">
+    <div class="btn-group pull-right">
+      <% if @prev_dossier %>
+        <%= link_to "← Previous", needs_review_show_path(@prev_dossier), :class => "btn glow"%>
+      <% else %>
+        <%= button_tag "← Previous", :class => "btn glow", :disabled => "disabled" %>
+      <% end %>
+      
+      <%= link_to transition_path(@dossier, :reject), method: :put, data: { confirm: 'Are you sure?' }, :class => "btn glow" do %>
+        <span class="icon"> </span> <span class="text"><i class="icon-trash"> Reject</i></span>
+      <% end %>
+      <%= link_to transition_path(@dossier, :mark_as_needs_interview), method: :put, data: { confirm: 'Are you sure?' }, :class => "btn glow" do %>
+        <span class="icon"> </span> <span class="text"><i class="icon-ok-sign"> Needs Interview</i></span>
+      <% end %>
+      <% if @next_dossier %>
+        <%= link_to "Next →", needs_review_show_path(@next_dossier), :class => "btn glow"%>
+      <% else %>
+        <%= button_tag "Next →", :class => "btn glow", :disabled => "disabled" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span12">
+    <img src="http://placekitten.com/100/100" class="avatar img-circle">
+    <h2>
+      <%= @user.full_name %>
+    </h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span6">
+    <h2>Quick Facts and Links</h2>
+    <ul>
+      <li>Name: <%= @dossier.user.full_name %></li>
+      <li>Applying for the <%= @dossier.semester %> semester</li>
+      <li>Linkedin: <%= link_to @dossier.linkedin, @dossier.linkedin %></li>
+      <li>Twitter: <%= link_to "@#{@dossier.twitter}", @dossier.twitter_url %></li>
+      <li>GitHub: <%= link_to @dossier.github, @dossier.github %></li>
+      <li>Website: <%= link_to @dossier.website, @dossier.website %></li>
+      <li>Blog: <%= link_to @dossier.blog, @dossier.blog %></li>
+    </ul>
+  </div>
+  <div class="span6">
+    <h2>Reason for Applying</h2>
+    <p><%= @dossier.purpose %></p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span6">
+    <h2>Analytical Skills</h2>
+    <p><%= @dossier.analytic_skills %></p>
+  </div>
+  <div class="span6">
+    <h2>Career and Education</h2>
+    <p><%= @dossier.career %></p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span6">
+    <h2>Tidbits</h2>
+    <p><%= @dossier.tidbits %></p>
+  </div>
+  <div class="span6">
+    <h2>Coding Experience</h2>
+    <p><%= @dossier.code_skills %></p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span12">
+    <h3><%= pluralize(@dossier.dossier_comments.count, 'Comment') %></h3>
+
+
+    <div class="comments">
+      <% @dossier.dossier_comments.each do |comment| %>
+        <div class="comment">
+          <strong><%= comment.user.full_name %></strong>: <%= comment.content %>
+        </div>
+      <% end %>
+    </div>
+
+    <h3>Add Comment</h3>
+    <%= form_tag dossier_dossier_comments_path(@dossier) do  %>
+      <%= text_area_tag "dossier_comment[content]", nil, :placeholder => "New comment...", :style => "width: 75%; height: 200px" %>
+      <%= hidden_field_tag 'dossier_comment[dossier_id]', @dossier.id %>
+      <%= hidden_field_tag 'dossier_comment[user_id]', current_user.id %>
+      <br>
+      <%= submit_tag "Add Comment", :class => "btn" %>
+    <% end %>
+  </div>
+</div>

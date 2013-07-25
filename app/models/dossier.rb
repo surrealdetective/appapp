@@ -151,40 +151,38 @@ class Dossier < ActiveRecord::Base
     self.sort_by(:date, "DESC").limit(1)#.first
   end
 
+  # last_status
+  # get the last status object (not aasm_state, which returns a string)
+  # for a particular dossier
   def last_status
-    self.dossier_statuses.last
-  end
-
-  aasm do
-    #     state :sleeping, :initial => true, :before_enter => :do_something
-    state :new, :initial => true, :after_exit => :dossier_is_created
-    state :needs_review # the application has been read and not rejected 
-    state :rejected
-    # state :accepts
-    # state :defers
-    # state :declines
-
-    event :marks_as_needs_review do
-      transitions :from => :new, :to => :needs_review
-    end
-
-    event :marks_as_new do
-      transitions :from => :needs_review, :to => :new
-    end
-
-    event :marks_as_rejected do
-      transitions :to => :rejected # note that there is no :from so rejected can be from anything. awesome 
-    end 
-
-  end
-
-  def dossier_is_created
-    self.add_status("needs_review")
-  end
-
-  def self.new_dossier_count
-    Dossier.where(aasm_state: "new").count 
     self.dossier_statuses.order("created_at DESC").limit(1).first
+  end
+
+  # self.first_with_state(state):
+  # used by the application.html.erb layout file
+  # to get the link to the first dossier that needs review
+  # usage:
+  # dossier = Dossier.first_with_state(:needs_review)
+  def self.first_with_state(state)
+    where(aasm_state: state).first
+  end
+
+  # next_with_state(state):
+  # prev_with_state(state):
+  # used in the needs_review show page
+  # to link to the next dossier that needs review
+  # usage:
+  # dossier = Dossier.first
+  # dossier.next_with_state(:needs_review)
+  def next_with_state(state)
+    Dossier.where(aasm_state: state).group(:id).having("id > ?", self.id).first
+  end
+  def prev_with_state(state)
+    Dossier.where(aasm_state: state).group(:id).having("id < ?", self.id).last
+  end
+
+  def twitter_url
+    "https://twitter.com/#{twitter}"
   end
 
 end

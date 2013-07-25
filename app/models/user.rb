@@ -1,12 +1,9 @@
 class User < ActiveRecord::Base
   
   ROLES = {:admin => 0, :moderator => 100, :applicant => 200}
-
-  has_many :dossiers
-
-  # attr_accessor :roles
-
   attr_accessible :email, :first_name, :last_name, :dossiers, :password, :password_confirmation, :roles
+  has_many :dossiers
+  has_many :dossier_comments # meaning, they've written many
 
   has_secure_password 
   

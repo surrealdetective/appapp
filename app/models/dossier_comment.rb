@@ -1,6 +1,8 @@
 class DossierComment < ActiveRecord::Base
-  attr_accessible :content, :dossier_id
+  # user refers to who wrote the comment
+  attr_accessible :content, :dossier_id, :user_id
   belongs_to :dossier
+  belongs_to :user
 
 
 
