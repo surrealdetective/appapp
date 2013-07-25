@@ -3,8 +3,8 @@ classes = ["Fall 2013", "Spring 2014", "Summer 2014"]
 
 300.times do
   user = User.new
-  user.first_name = Populator.words(1)
-  user.last_name = Populator.words(1)
+  user.first_name = Populator.words(1).humanize
+  user.last_name = Populator.words(1).humanize
   user.email = "#{(Populator.words(1))}@#{(Populator.words(1))}.dev"
   user.password = Populator.words(1)
   user.set_role(:applicant)
