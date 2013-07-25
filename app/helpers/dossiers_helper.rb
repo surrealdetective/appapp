@@ -1,19 +1,12 @@
 module DossiersHelper
 
-  def new_dossier_count
-    Dossier.where(aasm_state: "new").count 
-  end
-
-  def needs_review_count
-    Dossier.where(aasm_state: "needs_review").count
-  end
-
-  def needs_interview_count
-    Dossier.where(aasm_state: "needs_interview").count
-  end
-
-  def needs_decision_count
-    Dossier.where(aasm_state: "needs_decision").count
+  # dossier_count_by_state(state):
+  # used in layout nav to get those counts
+  # usage:
+  # dossier_count_by_state(:needs_review)
+  #    #=> 35
+  def dossier_count_by_state(state)
+    Dossier.where(aasm_state: state).count
   end
 
 end
