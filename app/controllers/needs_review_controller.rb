@@ -1,6 +1,7 @@
 class NeedsReviewController < ApplicationController
 
   def show
+    redirect_to :root unless current_user && current_user.role?(:moderator)
     @dossier = Dossier.find(params[:id])
     @user = @dossier.user
     @title = @user.full_name
