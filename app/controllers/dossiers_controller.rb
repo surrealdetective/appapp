@@ -15,16 +15,23 @@ class DossiersController < ApplicationController
     @user = User.new(params[:user])
     @user.password = "abc"
     @user.dossiers.build(params[:dossier])
+    @user.set_role(:applicant)
     @user.save_with_dossier_status("submitted")
     session[:user_id] = @user.id
     redirect_to @user.dossiers.first
   end 
 
   def index
-    # raise params.inspect
-    @new_applicant_count = Dossier.new_dossier_count
-    @dossiers = Dossier.sort_by(params[:sort_by])
-    @title = "Admin Zone"
+    @title = "Dashboard"
+    if params[:search]
+      @dossiers = Dossier.joins(:user).where(:users => {:first_name => params[:search]})
+    elsif params[:status]
+      @dossiers = Dossier.where(:aasm_state => params[:status])
+    elsif params[:sort_by]
+      @dossiers = Dossier.sort_by(params[:sort_by])
+    else
+      @dossiers = Dossier.find(:all)
+    end
   end
   
   # def filter
@@ -44,6 +51,17 @@ class DossiersController < ApplicationController
   def show
     @dossier = Dossier.find(params[:id])
     @user = @dossier.user
+  end
+
+  def transition
+    @dossier = Dossier.find(params[:id])
+    @dossier.send(params[:transition])
+
+    # scrolls page down to the right row
+    redirect_to dashboard_path + "#dossier-#{params[:id]}"
+    # redirect_to :back
+    # shouldn't this work? it doesn't:
+    # redirect_to dashboard_path :anchor => "#dossier-#{params[:id]}"
   end
 
 

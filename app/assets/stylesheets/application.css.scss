@@ -11,6 +11,11 @@
   *= require ../../../vendor/assets/stylesheets/lib/bootstrap.css
   *= require ../../../vendor/assets/stylesheets/lib/bootstrap-responsive.css
   *= require ../../../vendor/assets/stylesheets/lib/bootstrap-overrides.css
+  *= require ../../../vendor/assets/stylesheets/lib/bootstrap.datepicker.css
+  *= require /lib/fullcalender.css
+  *= require /lib/fullcalender.print.css
+  *= require ../../../vendor/assets/stylesheets/lib/jquery-ui-1.10.2.custom.css
+  *= require /lib/calender.scss
   *= require ../../../vendor/assets/stylesheets/layout.scss
   *= require ../../../vendor/assets/stylesheets/elements.scss
   *= require ../../../vendor/assets/stylesheets/icons.css
@@ -19,6 +24,8 @@
   *= require ../../../vendor/assets/stylesheets/signin.scss
   *= require ../../../vendor/assets/stylesheets/lib/font-awesome.css
   *= require ../../../vendor/assets/stylesheets/index.scss
+  *= require ../../../vendor/assets/stylesheets/user-profile.scss
+  *= require ../../../vendor/assets/stylesheets/form-showcase.scss
   *= require_tree .
   *= require_self
 */

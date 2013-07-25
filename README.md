@@ -1,16 +1,31 @@
+- add a user_id to dossier_statuses so you know which admin triggered which events
+- add user_id to dossier_comments
+- is the root ambiguous? when you see "log in" / "apply" do you worry that you haven't yet signed up? maybe we should make "apply" be big and prominent then add some text that goes, like, "already applied? log in to check on your application"
+
+
+this plucked from dossier index for the nonce
+
+<%= form_tag dossiers_path, :method => "get" do %>
+  <%= select_tag "sort_by", "<option>user</option><option>date</option>".html_safe %>
+  <%= submit_tag "Sort now!", :class => "btn" %>
+  <%= link_to "filters", dossiers_filter_by_path("all"), :class => "btn" %>
+<% end %>
+
 # notes from avi 2013-07-23
 
-- add the rest of the dossier attributes
+- add the rest of the dossier attributes @done
+- dashboard with table of applicants @done
+    - including status history @done
+- dashboard *is* dossier index @done
 - what semester are you applying to? how many slots does it have? how many are left?
-- dashboard with table of applicants
-    - including status history
-- dashboard *is* dossier index
 
 #PERMISSIONS
+
 ##Plan by Alex
 cloned Avi's repo for ex: https://github.com/aviflombaum/mixtapeapp
 
 It has 3 parts:
+
 1. Adds a model - a join table between the user and the item with multiple permissions. In our case, user and dossier.
 
 2. Adds migration - for the join table model, it has 2 foreign ids, plus a permissions column.
@@ -20,6 +35,7 @@ It has 3 parts:
 4. Defines current_user_can? (action, object) method in the application controller, which is called appropriately in other controllers to restrict access.
 
 ##Plan 2 by Alex
+
 watched 192 Authorization with CanCan RAILSCASTS. Much simpler:
 
 1. Install Gemfile
@@ -64,22 +80,3 @@ watched 192 Authorization with CanCan RAILSCASTS. Much simpler:
 
 1. Integrate Index Page
 2. Integrate Form Page
-
-Login/Logout User View
-<body class='<%= params[:controller] %> <%= params[:action] %> <%= @body_classes %>'>
-
-  <%= yield %>
-
-  <div id="user_nav">
-    <% if @user %>
-      Logged in as <%= @user.name %>. 
-      <%= link_to "Log out", logout_path %>
-    <% else %>
-      <%= link_to "Apply to Flatiron", new_dossier_path %>
-    <% end %>
-  </div>    
-
-</body>
-</html>
-
-

@@ -33,3 +33,18 @@
     border: 1px solid #ccc;
     padding: 10px;
   }
+
+label {
+    display: none;
+    width: 100%;
+}
+
+.thinner-wrap {
+    margin-left:auto; 
+    margin-right:auto;
+}
+
+.user-border {
+    border-bottom: 2px solid;
+
+}

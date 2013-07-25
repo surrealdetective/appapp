@@ -23,6 +23,7 @@
 <head>
   <title><%= title %></title> <!-- check /app/helpers/application_helper.rb for this method  -->
   <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 
@@ -55,24 +56,23 @@
 
             <!--   SEARCH BAR    -->        
               <li class="hidden-phone">
-                  <%= form_tag dashboard_path, :method => "get" do %>
-                    <input name="search" class="search" type="text" value='<%= params[:search] %>' />
-                  <% end %>
+                  <input class="search" type="text" />
               </li>
+
+              <!-- putting it outside of the dropdown for now, until we fix the dropdown -->
+              <li class="hidden-phone"><%= link_to "Log Out", logout_path %></li>
 
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle hidden-phone" data-toggle="dropdown">
-                    <%= current_user.full_name %> 
+                    <%= name(current_user) %> 
                     <b class="caret"></b>
                 </a>              
                 <ul class="dropdown-menu">
-                  <% if current_user.last_dossier %>
-                    <li class="hidden-phone">
-                      <%= link_to "Last dossier", dossier_path(current_user.last_dossier) %>
-                    </li>
-                  <% end %>
+                  <li><a href="personal-info.html">Personal info</a></li>
                   <li class="settings hidden-phone">
-                    <%= link_to "Log Out", logout_path %>
+                    <a href="/logout" role="button">
+                      <i class="icon-share-alt"></i>
+                    </a>
                   </li>
                 </ul>
               </li>
@@ -87,50 +87,43 @@
 
 
   <div class="content">  
-        <!-- upper main stats -->
-<% if current_user && current_user.role?(:moderator) %>
-  <div id="main-stats">
-      <div class="row-fluid stats-row">
-          <div class="span3 stat">
-            <div class="data">
-              <span class="number">
-                <%= link_to new_dossier_count, thinner_path %>
-              </span>
-              <span class="number_label"> New Applicants </span>
-            </div>
-          </div>
-          <div class="span3 stat">
-            <div class="data">
-              <span class="number"><%= link_to needs_review_count, dossier_review_path(Dossier.first) %></span>
-              <span class="number_label"> Need Review               </span>
-            </div>
-          </div>
-          <div class="span3 stat">
-            <div class="data">
-              <span class="number"><%= link_to needs_interview_count, dossier_interview_path(Dossier.first) %> </span>
-              <span class="number_label"> Need Interviews              </span>
-            </div>
-          </div>
-          <div class="span3 stat last">
-            <div class="data">
-              <span class="number"><%= link_to needs_decision_count, class_path %> </span>
-              <span class="number_label"> Need Decisions              </span>
-            </div>
+    <!-- upper main stats -->
+    <% if current_user && current_user.role?(:moderator) %>
+      <div id="main-stats">
+          <div class="row-fluid stats-row">
+              <div class="span3 stat">
+                <div class="data">
+                  <span class="number">
+                    <%= link_to new_dossier_count, thinner_path %>
+                  </span>
+                  <span class="number_label"> New Applicants </span>
+                </div>
+              </div>
+              <div class="span3 stat">
+                <div class="data">
+                  <span class="number"><%= link_to needs_review_count, dossier_review_path(Dossier.first) %></span>
+                  <span class="number_label"> Need Review               </span>
+                </div>
+              </div>
+              <div class="span3 stat">
+                <div class="data">
+                  <span class="number"><%= link_to needs_interview_count, dossier_interview_path(Dossier.first) %> </span>
+                  <span class="number_label"> Need Interviews              </span>
+                </div>
+              </div>
+              <div class="span3 stat last">
+                <div class="data">
+                  <span class="number"><%= link_to needs_decision_count, class_path %> </span>
+                  <span class="number_label"> Need Decisions              </span>
+                </div>
+              </div>
           </div>
       </div>
+      <!-- end upper main stats -->
+    <% end %>
+
+            <%= yield %>
+
   </div>
-  <!-- end upper main stats -->
-<% end %>
-
-    <div class="container-fluid" id="pad-wrapper">
-
-
-        
-
-          <%= yield %>
-
-    </div>
-  </div>
-  <%= javascript_include_tag "application" %>
 </body>
 </html>

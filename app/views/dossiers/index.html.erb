@@ -1,19 +1,70 @@
+<h3><%= @dossiers.count %> Dossiers</h3>
 
-<%= form_tag dossiers_path, :method => "get" do %>
-  <%= select_tag "sort_by", "<option>user</option><option>date</option>".html_safe %>
-  <%= submit_tag "Sort now!" %>
-  <%= link_to "filters", dossiers_filter_by_path("all") %>
-<% end %>
-
-
-
-<% @dossiers.each do |dossier| %> 
-
-<li> <!-- helper method below -->
-  <%= link_to name(dossier.user), dossier%>, |
-  <a href='mailto:<%=dossier.user.email%>'><%= dossier.user.email %></a> |
-  <%= dossier.tagline %> |
-  <%= link_to 'Edit Dossier Status', new_dossier_dossier_status_path(dossier) %>
-</li>
-
-<% end %>
+<div class="row-fluid table">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+          <th class="span2 sortable">
+              <span class="sorter">
+                <%= link_to "Name", dashboard_path(sort_by: "user") %>
+              </span>
+          </th>
+          <th class="span2 sortable">
+              <span class="line"></span>
+              <span class="sorter">
+                <%= link_to "Email", dashboard_path(sort_by: "email") %>
+              </span>
+          </th>
+          <th class="span2 sortable">
+              <span class="line"></span>
+              <span class="sorter">
+                <%= link_to "Status", dashboard_path(sort_by: "aasm_state") %>
+              </span>
+          </th>
+          <th class="span2">
+            <span class="line"></span>
+            Status History
+          </th>
+          <th class="span2">
+            <span class="line"></span>
+            Change Status
+          </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @dossiers.each do |dossier| %>
+        <% # next if dossier.aasm_state == "rejected" %>
+        <tr id="dossier-<%= dossier.id %>">
+          <td>
+            <img src="http://placekitten.com/55/55" class="img-circle avatar hidden-phone" />
+            <%= link_to dossier.user.full_name, dossier, :class => "name"%>
+          </td>
+          <td>
+            <a href='mailto:<%=dossier.user.email%>'><%= dossier.user.email %></a>
+          </td>
+          <td>
+            <%= dossier.aasm_state.humanize %>
+          </td>
+          <td>
+            <ul>
+              <% dossier.dossier_statuses.each do |status| %>
+                <li><strong><%= status.status.humanize.downcase %></strong> on <%= status.created_at.strftime("%A, %b %d at %I:%M %p") %></li>
+              <% end %>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <% dossier.aasm.events.each do |event| %>
+                <li><%= link_to event.to_s.humanize, transition_path(dossier, event), method: :put, data: { confirm: 'Are you sure?' } %></li>
+              <% end %>
+              <% unless ["accepted","rejected"].include? dossier.aasm_state %>
+                <li><%= link_to "Reject", transition_path(dossier, :reject), method: :put, data: { confirm: 'Are you sure?' } %></li>
+                <li><%= link_to "Accept", transition_path(dossier, :accept), method: :put, data: { confirm: 'Are you sure?' } %></li>
+              <% end %>
+            </ul>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
