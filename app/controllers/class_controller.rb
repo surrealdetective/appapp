@@ -1,7 +1,7 @@
 class ClassController < ApplicationController
   def index
-    @pending = Dossier.limit(8)
-    # @pending = Dossier.where(:aasm_state => "needs_payment")
+    # @pending = Dossier.limit(8)
+    @pending = Dossier.where(:aasm_state => "needs_payment")
     # @confirmed = Dossier.limit(5)
     @confirmed = Dossier.where(:aasm_state => "confirmed")
   end
