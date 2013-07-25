@@ -37,9 +37,17 @@ class Dossier < ActiveRecord::Base
     # due diligence is done so now we need to make up our mind
     state :needs_decision, :after_enter => Proc.new { |d| d.add_status "needs decision"}
 
+    # needs_decision:
+    # due diligence is done so now we need to make up our mind
+    state :needs_payment, :after_enter => Proc.new { |d| d.add_status "needs payment"}
+
     # accepted:
     # one of the two final states (the nicer one)
-    state :accepted, :after_enter => Proc.new { |d| d.add_status "accepted!!!"}
+    state :accepted, :after_enter => Proc.new { |d| d.add_status "accepted~!"}
+
+    # accepted:
+    # one of the two final states (the nicer one)
+    state :confirmed, :after_enter => Proc.new { |d| d.add_status "confirmed!!!"}
 
     # rejected:
     # the other final state
@@ -67,10 +75,20 @@ class Dossier < ActiveRecord::Base
       transitions :from => :needs_review, :to => :needs_interview
     end
 
-    # mark_as_needs_decision:
+        # mark_as_needs_decision:
     # interview took place and now it's decision time
     event :mark_as_needs_decision do
       transitions :from => :needs_interview, :to => :needs_decision
+    end
+
+    # mark_as_accepted:
+    # decision takes place and now it's payment pending
+    event :mark_as_accepted do
+      transitions :from => :needs_decision, :to => :needs_payment
+    end
+
+    event :mark_as_confirmed do
+      transitions :from => :needs_payment, :to => :confirmed
     end
 
     # reject:
@@ -140,7 +158,6 @@ class Dossier < ActiveRecord::Base
   aasm do
     #     state :sleeping, :initial => true, :before_enter => :do_something
     state :new, :initial => true, :after_exit => :dossier_is_created
-    state :needs_thinning #the application has not been approved for review
     state :needs_review # the application has been read and not rejected 
     state :rejected
     # state :accepts
