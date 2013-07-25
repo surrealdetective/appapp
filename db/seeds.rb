@@ -15,7 +15,7 @@ classes = ["Fall 2013", "Spring 2014", "Summer 2014"]
     :city               => Populator.words(1),
     :twitter            => Populator.words(1),
     :linkedin           => "http://www.linkedin.com/in/#{Populator.words(1)}#{rand(999)}",
-    :blog               => "http:#{Populator.words(1)}#{rand(999)}.tumblr.com",
+    :blog               => "http://#{Populator.words(1)}#{rand(999)}.tumblr.com",
     :github             => "https://github.com/#{Populator.words(1)}#{rand(999)}",
     :website            => "http://www.#{Populator.words(1)}#{rand(999)}.io",
     :other_links        => "http://#{Populator.words(1)}#{rand(999)}.#{["wordpress.com", "github.io", "tumblr.com", "typepad.com", "blogspot.com"].sample}",
@@ -33,8 +33,10 @@ classes = ["Fall 2013", "Spring 2014", "Summer 2014"]
   user.save
 end
 
-# our faithful admin
-User.create(:first_name => "Adam", :last_name=> "Enbar", :email => "Adam@adam.com", :roles => 0, :password => "adam")
+# our faithful admins
+User.create(:first_name => "Adam", :last_name => "Enbar", :email => "Adam@adam.com", :roles => 0, :password => "adam")
+User.create(:first_name => "Avi" , :last_name => "Flombaum", :email => "avi@avi.com", :roles => 100, :password => "avi")
+
 # our plucky young rubyist, yet to fill out an application
 User.create(:first_name => "DHH", :last_name=>"Racecars", :email => "dhh@dhh.com", :roles => 200, :password => "dhh")
 
