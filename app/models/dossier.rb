@@ -181,4 +181,8 @@ class Dossier < ActiveRecord::Base
     Dossier.where(aasm_state: state).group(:id).having("id < ?", self.id).last
   end
 
+  def twitter_url
+    "https://twitter.com/#{twitter}"
+  end
+
 end
