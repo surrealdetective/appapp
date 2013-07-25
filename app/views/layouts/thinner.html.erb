@@ -132,5 +132,14 @@
   </div>
 </body>
   <%= javascript_include_tag "application" %>
+            <script>
+  $('#show').on('click', function() { 
+    $('#cover, #modal').show(); 
+  }); 
+
+  $('#cover, #modal').on('click', function() { 
+    $('#cover, #modal').hide(); 
+  });
+</script>
 
 </html>
