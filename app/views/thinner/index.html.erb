@@ -1,12 +1,14 @@
 <% @thinner.each do |dossier| %>
 
     <!-- wraps one -->
-    <div class="thinner-wrap user-profile">    
+    <div class="thinner-wrap user-profile"> 
+      <div id="cover"></div>
+      <iframe id="modal" src="http://localhost:3000/dossiers/1"></iframe>    
       
       <!-- pic and tagline below -->
       <div class="row-fluid header">
         <div class="span6" style="padding:20px;float:left;">
-          <a class="fancybox" href="http://placekitten.com/100/100" title="<%= name(dossier.user) %>"><img src="http://placekitten.com/100/100" class="avatar img-circle"></a>
+          <a id="show" href="#"><img src="http://placekitten.com/100/100" class="avatar img-circle"></a>
           
           <h3 class="name"><%= name(dossier.user) %></h3>
           <span class="area">From <%= dossier.city %></span>
@@ -51,4 +53,4 @@
     </div>  
 
 <% end %>
-
+</div>

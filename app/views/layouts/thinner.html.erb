@@ -24,12 +24,6 @@
   <title><%= title %></title> <!-- check /app/helpers/application_helper.rb for this method  -->
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= csrf_meta_tags %>
-
-    <script type="text/javascript">
-    $(document).ready(function() {
-      $('.fancybox').fancybox();
-    });
-    </script>
 </head>
 
 <!--
@@ -132,7 +126,7 @@
   </div>
 </body>
   <%= javascript_include_tag "application" %>
-            <script>
+<script>
   $('#show').on('click', function() { 
     $('#cover, #modal').show(); 
   }); 
