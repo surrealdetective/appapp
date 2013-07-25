@@ -11,7 +11,7 @@
         <span class="icon"> </span> <span class="text"><i class="icon-trash"> Reject</i></span>
       <% end %>
       <%= link_to transition_path(@dossier, :mark_as_needs_interview), method: :put, data: { confirm: 'Are you sure?' }, :class => "btn glow" do %>
-        <span class="icon"> </span> <span class="text"><i class="icon-ok-sign"> Interview</i></span>
+        <span class="icon"> </span> <span class="text"><i class="icon-ok-sign"> Needs Interview</i></span>
       <% end %>
       <% if @next_dossier %>
         <%= link_to "Next →", needs_review_show_path(@next_dossier), :class => "btn glow"%>
@@ -24,9 +24,9 @@
 
 <div class="row">
   <div class="span12">
+    <img src="http://placekitten.com/100/100" class="avatar img-circle">
     <h2>
       <%= @user.full_name %>
-      <img src="http://placekitten.com/100/100" class="avatar img-circle">
     </h2>
   </div>
 </div>
@@ -74,7 +74,7 @@
 
 <div class="row">
   <div class="span12">
-    <h3>Comments</h3>
+    <h3><%= pluralize(@dossier.dossier_comments.count, 'Comment') %></h3>
 
 
     <div class="comments">
@@ -91,7 +91,7 @@
       <%= hidden_field_tag 'dossier_comment[dossier_id]', @dossier.id %>
       <%= hidden_field_tag 'dossier_comment[user_id]', current_user.id %>
       <br>
-      <%= submit_tag "Add Note", :class => "btn" %>
+      <%= submit_tag "Add Comment", :class => "btn" %>
     <% end %>
   </div>
 </div>
