@@ -133,7 +133,8 @@
   }); 
   
   $('.cover, .modal').on('click', function() { 
-    $('this').hide(); 
+    $(this).next().hide();
+    $(this).hide(); 
   });
 </script>
 
