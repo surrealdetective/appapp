@@ -142,34 +142,38 @@
     <br>
 
     <h5>
-      <b>Question 1: Describe your background with computer programming (if any). feel free to include links to any online resources you've completed.</b>
+      <b>Question 1 - Career: </b>
       <%= @dossier.career %>
     </h5>
     <br>
 
     <h5>
-      <b>Question 2: Why do you want to learn to code?</b>
+      <b>Question 2 - Purpose: </b>
       <%= @dossier.purpose %>
     </h5>
     <br>
 
     <h5>
-      <b>Question 3: Describe your background with computer programming (if any). feel free to include links to any online resources you've completed.</b>
+      <b>Question 3 - Code Skills:</b>
       <%= @dossier.code_skills %>
     </h5>
     <br>
 
     <h5>
-      <b>Question 4: The ability to think in a structured or quantitative way to solve complex problems is an important element of being a successful developer. can you tell us anything that demonstrates your abilities in that realm? (feel free to include anything from standardized test scores, previous areas of study, or relevant work experience)</b>
+      <b>Question 4 - Analytic Skills:</b>
       <%= @dossier.analytic_skills %>
     </h5>
     <br>
 
     <h5>
-      <b>Question 5: Is there anything else you'd like us to know?</b>
+      <b>Question 5 - Additional Tidbits:</b>
       <%= @dossier.tidbits %>
     </h5>
     <br>
+    <br>
+    <h3><strong> Semester </strong> </h3>
+    <hr> 
+    <h5>
 
     <h5>
       <b>Semester Applying To:</b>
@@ -197,6 +201,39 @@
       <%= submit_tag "Submit Comment" %>
       <% end %>
   </div>
+
+<!-- main container -->
+    <div></div>
+        
+        <!-- settings changer -->
+        <div class="skins-nav">
+            <a href="#" class="skin first_nav selected">
+                <span class="icon"> </span> <span class="text"><i class="icon-trash">  Decline</i></span>
+            </a>
+            <a href="#" class="skin second_nav" data-file="css/skins/dark.css">
+                <span class="icon"> </span> <span class="text"><i class="icon-ok-sign">Interveiw</i></span>
+            </a>
+        </div>
+        
+        
+        <div>
+            <div
+            >
+                <!-- header -->
+                <h2 class="skins-nav" style = "top: 170px;right: 20px;text-align: right;" class="span6 name"><strong><%= @user.first_name%> <%=@user.last_name%></strong>
+                </h2>
+                
+                
+                    <div class="skins-nav" style = "float: right;width: 300;top: 205px;right: 5px" class="span6">
+                        <img src="https://coderwall-assets-0.s3.amazonaws.com/uploads/user/avatar/67185/profile2.jpg" class="avatar img-circle">
+                    </div>
+                  
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+    <!-- end main container -->
 
 </div>
 </body>
