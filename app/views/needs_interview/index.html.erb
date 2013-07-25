@@ -133,8 +133,11 @@
           <td>
             <a href='mailto:<%=dossier.user.email if dossier.needs_interview? %>'><%= dossier.user.email if dossier.needs_interview?%></a>
           </td>
-          <td>
-            <%= dossier.tagline if dossier.needs_interview?%>
+          <td><%begin%>
+            <%= dossier.dossier_statuses.first.created_at %>
+            <% rescue %>
+            <%= 'not a good flow'%>
+            <%end%>
           </td>
           <td>
             <ul>
