@@ -16,6 +16,7 @@ class DossiersController < ApplicationController
     @user = User.new(params[:user])
     @user.password = "abc"
     @user.dossiers.build(params[:dossier])
+    @user.set_role(:applicant)
     @user.save_with_dossier_status("submitted")
     session[:user_id] = @user.id
     redirect_to @user.dossiers.first
