@@ -18,6 +18,7 @@
       </h5>
   </div>
 
+
 <!-- PREWORK BOX --> 
   <div class="dossier-form-container">
     <a class="dropdown-toggle" href="#">
@@ -88,7 +89,7 @@
 
     <h5>
       <b>Phone Number:</b>
-      <%= @user.email %>
+      <%= @dossier.phone_number %>
     </h5>
     <br>
     <br>
@@ -97,37 +98,37 @@
 
     <h5>
       <b>Twitter:</b>
-      <%= @user.email %>
+      <%= @dossier.twitter %>
     </h5>
     <br>
 
     <h5>
       <b>Github:</b>
-      <%= @user.email %>
+      <%= @dossier.github %>
     </h5>
     <br>
 
     <h5>
       <b>Blog:</b>
-      <%= @user.email %>
+      <%= @dossier.blog %>
     </h5>
     <br>
 
     <h5>
       <b>LinkedIn:</b>
-      <%= @user.email %>
+      <%= @dossier.linkedin %>
     </h5>
     <br>
 
     <h5>
       <b>Website:</b>
-      <%= @user.email %>
+      <%= @dossier.website %>
     </h5>
     <br>
 
     <h5>
       <b>Other Links:</b>
-      <%= @user.email %>
+      <%= @dossier.other_links %>
     </h5>
     <br>
 
@@ -141,32 +142,38 @@
     <br>
 
     <h5>
-      <b>Question 1:</b>
-      <%= @dossier.tagline %>
+      <b>Question 1: Describe your background with computer programming (if any). feel free to include links to any online resources you've completed.</b>
+      <%= @dossier.career %>
     </h5>
     <br>
 
     <h5>
-      <b>Question 2:</b>
-      <%= @dossier.tagline %>
+      <b>Question 2: Why do you want to learn to code?</b>
+      <%= @dossier.purpose %>
     </h5>
     <br>
 
     <h5>
-      <b>Question 3:</b>
-      <%= @dossier.tagline %>
+      <b>Question 3: Describe your background with computer programming (if any). feel free to include links to any online resources you've completed.</b>
+      <%= @dossier.code_skills %>
     </h5>
     <br>
 
     <h5>
-      <b>Question 4:</b>
-      <%= @dossier.tagline %>
+      <b>Question 4: The ability to think in a structured or quantitative way to solve complex problems is an important element of being a successful developer. can you tell us anything that demonstrates your abilities in that realm? (feel free to include anything from standardized test scores, previous areas of study, or relevant work experience)</b>
+      <%= @dossier.analytic_skills %>
     </h5>
     <br>
 
     <h5>
-      <b>Question 5:</b>
-      <%= @dossier.tagline %>
+      <b>Question 5: Is there anything else you'd like us to know?</b>
+      <%= @dossier.tidbits %>
+    </h5>
+    <br>
+
+    <h5>
+      <b>Semester Applying To:</b>
+      <%= @dossier.semester %>
     </h5>
     <br>
     </ul>  
@@ -179,7 +186,16 @@
         <i class="icon-chevron-down"></i>
       </a>
     <hr>
-  
+      <% @dossier.dossier_comments.each do |comment| %>
+      <%= comment.content %>
+      <% end %>
+      <br>
+      <%= form_tag dossier_dossier_comments_path(@dossier) do %>
+      <%= label_tag "Comment" %>
+      <%= text_area_tag "dossier_comments[content]" %>
+      <%= hidden_field_tag "dossier_comments[dossier_id]", @dossier.id  %>
+      <%= submit_tag "Submit Comment" %>
+      <% end %>
   </div>
 
 </div>
