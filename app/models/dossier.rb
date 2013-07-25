@@ -178,7 +178,7 @@ class Dossier < ActiveRecord::Base
     Dossier.where(aasm_state: state).group(:id).having("id > ?", self.id).first
   end
   def prev_with_state(state)
-    Dossier.where(aasm_state: state).group(:id).having("id < ?", self.id).first
+    Dossier.where(aasm_state: state).group(:id).having("id < ?", self.id).last
   end
 
 end

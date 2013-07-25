@@ -6,6 +6,20 @@ class NeedsReviewController < ApplicationController
     @title = @user.full_name
     @prev_dossier = @dossier.prev_with_state(:needs_review)
     @next_dossier = @dossier.next_with_state(:needs_review)
+
+    # just in case you try to view someone's page who does NOT need review
+    # how the heck did you get here?
+    # get out of here
+    # not sure if these 'and return's are necessary
+    if !@dossier.needs_review?
+      if @next_dossier
+        redirect_to needs_review_show_path(@next_dossier) and return
+      elsif @prev_dossier
+        redirect_to needs_review_show_path(@prev_dossier) and return
+      else
+        redirect_to dashboard_path and return
+      end
+    end
   end
 
   def redirect_to_first
