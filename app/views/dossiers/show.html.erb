@@ -9,12 +9,13 @@
         <i class="icon-chevron-down"></i>
       </a>
     <hr>
-    <li>
-      <h5><% @dossier.dossier_statuses.each do |status| %>
-          <%= status.status.capitalize %> on <%= status.updated_at %> 
-          <% end %> 
+      <h5>
+      <ul> <% @dossier.dossier_statuses.each do |status| %>
+        <li>Marked as <em><%= status.status.humanize.downcase %></em> on <%= status.created_at.strftime("%A, %b %d at %I:%M %p") %>
+        </li>
+        <% end %>
+      </ul>
       </h5>
-    </li>
   </div>
 
 <!-- PREWORK BOX --> 
@@ -61,7 +62,7 @@
 <!-- APPLICATION SUMMARY BOX -->
   <div class="dossier-form-container">
     <a class="dropdown-toggle" href="#">
-      <span><h2><%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %>'s Application Summary</h2> close </span>
+      <span><h2>Summary of <%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %>'s Application </h2> close </span>
       <i class="icon-chevron-down"></i>
     </a>
     <hr>
@@ -174,16 +175,11 @@
 <!-- COMMENT BOX -->
   <div class="dossier-form-container">
       <a class="dropdown-toggle" href="#">
-        <span><h2> <%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %>'s Application Status </h2> close </span>
+        <span><h2> Comments re: <%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %> </h2> close </span>
         <i class="icon-chevron-down"></i>
       </a>
     <hr>
-    <li>
-      <h5><% @dossier.dossier_statuses.each do |status| %>
-          <%= status.status.capitalize %> on <%= status.updated_at %> 
-          <% end %> 
-      </h5>
-    </li>
+  
   </div>
 
 </div>
