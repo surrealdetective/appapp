@@ -128,7 +128,7 @@
   <%= javascript_include_tag "application" %>
 <script>
   $('#show').on('click', function() { 
-    $('#cover, #modal').show(); 
+    $('this.parent().parent().prev(), this.parent().parent().prev().prev()').show(); 
   }); 
 
   $('#cover, #modal').on('click', function() { 

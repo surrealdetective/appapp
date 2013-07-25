@@ -3,12 +3,12 @@
     <!-- wraps one -->
     <div class="thinner-wrap user-profile"> 
       <div id="cover"></div>
-      <iframe id="modal" src="http://localhost:3000/dossiers/1"></iframe>    
+      <iframe class="modal" src="http://localhost:3000/dossiers/<%=dossier.id%>"></iframe>    
       
       <!-- pic and tagline below -->
       <div class="row-fluid header">
         <div class="span6" style="padding:20px;float:left;">
-          <a id="show" href="#"><img src="http://placekitten.com/100/100" class="avatar img-circle"></a>
+          <a class="show" href="#"><img src="http://placekitten.com/100/100" class="avatar img-circle"></a>
           
           <h3 class="name"><%= name(dossier.user) %></h3>
           <span class="area">From <%= dossier.city %></span>
