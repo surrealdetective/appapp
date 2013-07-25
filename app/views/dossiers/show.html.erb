@@ -2,51 +2,55 @@
 
 <div class="container">
 
+<!-- APPLICATION STATUS BOX -->
   <div class="dossier-form-container">
       <a class="dropdown-toggle" href="#">
-        <span><h2> <%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %>'s Application Status</h2> </span>
+        <span><h2> <%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %>'s Application Status </h2> close </span>
         <i class="icon-chevron-down"></i>
       </a>
-     <hr>
- 
-        <% @dossier.dossier_statuses.each do |status| %>
-       <%= status.status %> on <%= status.updated_at %> 
-        <% end %>
-   
+    <hr>
+    <li>
+      <h5><% @dossier.dossier_statuses.each do |status| %>
+          <%= status.status.capitalize %> on <%= status.updated_at %> 
+          <% end %> 
+      </h5>
+    </li>
   </div>
 
-
-   <div class="dossier-form-container">
+<!-- PREWORK BOX --> 
+  <div class="dossier-form-container">
     <a class="dropdown-toggle" href="#">
+      <span><h2>Flatiron School Prework</h2> close </span>
       <i class="icon-chevron-down"></i>
-    <h2>Prework</h2>
     </a>
     <hr>
     <br>
-    <h4><strong> Flatiron Prework </strong> </h4>
-    <hr> 
+    <%= link_to image_tag("flatironschool_logo.png"), "http://prework.flatironschool.com/" %>
     <p><a href="http://prework.flatironschool.com/"> Link to Flatiron School Prework </a></p>
     <br>
-    <h4><strong> Code Academy </strong> </h4>
     <hr> 
-    <p><a href="http://prework.flatironschool.com/"> Link to Flatiron School Prework </a></p>
+    <%= link_to image_tag("treehouse_logo.jpg"), "http://teamtreehouse.com/" %>
+    <p><a href="http://teamtreehouse.com/"> Link to Flatiron School Prework </a></p>
     <br>
-    <h4><strong> Treehouse </strong> </h4>
     <hr> 
-    <p><a href="http://prework.flatironschool.com/"> Link to Flatiron School Prework </a></p>
+    <%= link_to image_tag("codeschool_logo.png"), "http://www.codeschool.com/paths/ruby" %>
+    <p><a href="http://www.codeschool.com/paths/ruby"> Link to Flatiron School Prework </a></p>
+    <br>
+    <hr> 
+    <%= link_to image_tag("codeacademy_logo.png"), "http://www.codecademy.com/tracks/ruby/" %>
+    <p><a href="http://www.codecademy.com/tracks/ruby/"> Link to Flatiron School Prework </a></p>
    </div>
 
+<!-- APPLICATION SUMMARY BOX -->
    <div class="dossier-form-container">
     <a class="dropdown-toggle" href="#">
+      <span><h2>Application Summary</h2> close </span>
       <i class="icon-chevron-down"></i>
-
+    </a>
+    <hr>
 
     <p id="notice"><%= notice %></p>
 
-
-    <h2>Application Summary</h2>
-    </a>
-    <hr>
     <ul class="submenu" style="display: block;">
     <br>
     <h4><strong> Account Information </strong> </h4>
