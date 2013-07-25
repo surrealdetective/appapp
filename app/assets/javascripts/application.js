@@ -17,4 +17,10 @@
 //= require ../../../vendor/assets/javascripts/bootstrap.datepicker.js
 //= require ../../../vendor/assets/javascripts/theme.js
 //= require ../../../vendor/assets/javascripts/fullcalendar.min.js
+
+//= require ../../../vendor/assets/javascripts/jquery.mousewheel-3.0.6.pack.js
+//= require ../../../vendor/assets/javascripts/jquery.fancybox.js
+//= require ../../../vendor/assets/javascripts/jquery.fancybox-buttons.js
+//= require ../../../vendor/assets/javascripts/jquery.fancybox-thumbs.js
+//= require ../../../vendor/assets/javascripts/jquery.fancybox-media.js
 //= require_tree .

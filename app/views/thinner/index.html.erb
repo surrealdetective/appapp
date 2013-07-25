@@ -6,7 +6,8 @@
       <!-- pic and tagline below -->
       <div class="row-fluid header">
         <div class="span6" style="padding:20px;float:left;">
-          <img src="http://placekitten.com/100/100" class="avatar img-circle">
+          <a class="fancybox" href="http://placekitten.com/100/100" title="<%= name(dossier.user) %>"><img src="http://placekitten.com/100/100" class="avatar img-circle"></a>
+          
           <h3 class="name"><%= name(dossier.user) %></h3>
           <span class="area">From <%= dossier.city %></span>
           <div class="area">
@@ -14,7 +15,7 @@
           </div>
         </div>
           <!-- checkboxes below -->
-          <div id="pad-wrapper" class="form-page span4" style="position:absolute;right:0px; float:right">
+          <div id="pad-wrapper" class="form-page span4" style="position:relative;right:0px; float:right;">
             <div class="row-fluid form-wrapper">
               <%= form_tag thinner_decision_path(dossier.id), method:"post" do %>
                 <div class="span10"><%= dossier.semester %> in New York City?</div>
@@ -29,6 +30,7 @@
                     <%= submit_tag "Review Further", :class => "btn btn-primary"%>
                 </div>
               <% end %>
+
           </div>
       </div>
 

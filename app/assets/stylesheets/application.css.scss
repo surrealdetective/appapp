@@ -26,6 +26,11 @@
   *= require ../../../vendor/assets/stylesheets/index.scss
   *= require ../../../vendor/assets/stylesheets/user-profile.scss
   *= require ../../../vendor/assets/stylesheets/form-showcase.scss
+
+  *= require ../../../vendor/assets/stylesheets/lib/jquery.fancybox.css
+  *= require ../../../vendor/assets/stylesheets/lib/jquery.fancybox-buttons.css
+  *= require ../../../vendor/assets/stylesheets/lib/jquery.fancybox-thumbs.css
+
   *= require_tree .
   *= require_self
 */

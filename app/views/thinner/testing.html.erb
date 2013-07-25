@@ -1,29 +1,45 @@
-<div id="pad-wrapper" class="form-page">
-  <div class="row-fluid form-wrapper">
-    <form class="span4">
-      <div class="field-box">
-        <label>Checkboxes:</label>
-        <label class="checkbox">
-          <div class="checker">
-            <span>
-              <input type="checkbox">
-            </span>
-          </div>
-          Option 1
-      </div>
-    </form>
-  </div>
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>fancyBox - Fancy jQuery Lightbox Alternative | Demonstration</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-                        <!-- new comment form -->
-                        <div class="span12 section comment">
-                            <h6>Add a quick note</h6>
-                            <p>Add a note about this user to keep a history of your interactions.</p>
-                            <textarea></textarea>
-                            <a href="#">Attach files</a>
-                            <div class="span12 submit-box pull-right">
-                                <input type="submit" class="btn-glow primary" value="Add Note">
-                                <span>OR</span>
-                                <input type="reset" value="Cancel" class="reset">
-                            </div>
-                        </div>
+  <!-- Add jQuery library -->
+  <script type="text/javascript" src="../lib/jquery-1.10.1.min.js"></script>
+
+  <!-- Add mousewheel plugin (this is optional) -->
+  <script type="text/javascript" src="../lib/jquery.mousewheel-3.0.6.pack.js"></script>
+
+  <!-- Add fancyBox main JS and CSS files -->
+  <script type="text/javascript" src="../source/jquery.fancybox.js?v=2.1.5"></script>
+  <link rel="stylesheet" type="text/css" href="../source/jquery.fancybox.css?v=2.1.5" media="screen" />
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.fancybox').fancybox();
+    });
+  </script>
+
+</head>
+<body>
+  <h1>fancyBox</h1>
+
+  <p>This is a demonstration. More information and examples: <a href="http://fancyapps.com/fancybox/">www.fancyapps.com/fancybox/</a></p>
+
+  <h3>Simple image gallery</h3>
+  <p>
+    <a class="fancybox" href="1_b.jpg" title="Lorem ipsum dolor sit amet"><img src="1_s.jpg" alt="" /></a>
+
+    <a class="fancybox fancybox.iframe" href="http://placekitten.com/100/100" title="Lorem ipsum dolor sit amet"><iframe src="http://placekitten.com/100/100" alt=""/></iframe></a>
+
+    <a class="fancybox" href="" data-fancybox-group="gallery" title="Cras neque mi, semper leon"><img src="rails.png" alt="" /></a>
+
+    <a class="fancybox" href="4_b.jpg" data-fancybox-group="gallery" title="Sed vel sapien vel sem uno"><img src="4_s.jpg" alt="" /></a>
+  </p>
+
+
+  <p>
+    Photo Credit: Instagrammer @whitjohns
+  </p>
+</body>
+</html>
