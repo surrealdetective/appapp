@@ -1,14 +1,14 @@
 <div class="row-fluid">
   <div class="span12" id="pad-wrapper">
     <div class="container">
-      <h2> Flatiron Application</h2><br>
       <div class="dossier-form-container">
+        <h2> Flatiron Application</h2><br>
         <div class = "form-wrapper">
           
           
           <%= form_tag dossiers_path, :class => 'new_user_form inline-input' do %>
-          <h4> Account Information </h4>
-         
+          <h4><strong> Account Information </strong> </h4>
+          <hr> 
          <!-- NAME -->
           <div class="span12 field-box">
           <%= label_tag "First name", nil, :class=>'span3' %>
@@ -25,17 +25,16 @@
           <%= label_tag "Email", nil, :class=>'span3' %>
           <%= text_field_tag "user[email]", nil, :class => 'span9' %>
           </div>
-          
-    <hr> <!-- Horizontal Rule -->
 
   
       <div class="span12 field-box">
       <%= label_tag "phone_number", nil, :class=>'span3' %>
       <%= text_field_tag "dossier[phone_number]", nil, :class => 'span9' %>
       </div>
-
-      <h4>Links</h4>
-      <br>
+<br>
+<br>
+      <h4><strong>Links</strong></h4>
+        <hr> 
 
       <div class="span12 field-box">
       <%= label_tag "twitter", nil, :class=>'span3' %>
@@ -68,7 +67,9 @@
     </div>
 
      <!-- TAGLINE -->
-     <h4>Background</h4><br>
+     <h4><strong>Background</strong></h4>
+       <hr>
+
       <div class="span12 field-box">
       <%= label_tag "In 140 characters, tell us what makes you unique.", nil, :class=>'span12' %>
       <%= text_area_tag "dossier[tagline]", nil, :class => 'span12' %>
