@@ -52,6 +52,13 @@ class DossiersController < ApplicationController
   def show
     @dossier = Dossier.find(params[:id])
     @user = @dossier.user
+    respond_to do |format|
+      if params[:layout] == "false"
+        format.html {render :layout => 'simple'}
+      else
+        format.html
+      end
+    end
   end
 
   def transition
