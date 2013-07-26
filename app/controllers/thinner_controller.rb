@@ -1,8 +1,10 @@
 class ThinnerController < ApplicationController
-  layout "thinner"
+  # removed this layout
+  # layout "thinner"
   
   def index
     @thinner = Dossier.where(:aasm_state => "new").limit(15)
+    authorize! :index, @thinner
   end
 
   def testing
@@ -13,9 +15,9 @@ class ThinnerController < ApplicationController
     @dossier = Dossier.find_by_id(params[:dossier_id])
     decision = params[:commit]
     if decision == "Reject Now"
-      @dossier.marks_as_rejected
+      @dossier.mark_as_rejected
     else
-      @dossier.marks_as_needs_review
+      @dossier.mark_as_needs_review
     end
     redirect_to thinner_path
   end

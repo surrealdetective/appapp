@@ -1,14 +1,15 @@
 class Ability
-  include CanCan:Ability
+  include CanCan::Ability
 
 #takes a user object
   def initialize(user)
+    user ||= user.new #creates a guest user if user doesn't exist.
     #the admin can perform all actions
     if user.role? :admin
       can :manage, :all
     else  
       #any user can read the dossier controller
-      can :read, :dossier
+      can :read, Dossier, :user_id => user.id
     end
   end
 end
@@ -17,3 +18,6 @@ end
 #iceboxing how to limit user's read ability to only the Dossier#new, login, and logout
 
 #focus on getting roles to work.
+# 
+# # Course Topic permissions
+# can :manage, Topic, :course_id => user.teaching_course_ids

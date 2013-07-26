@@ -48,7 +48,7 @@
           <td>
             <ul>
               <% dossier.dossier_statuses.each do |status| %>
-                <li><strong><%= status.status.humanize.downcase %></strong> on <%= status.created_at.strftime("%A, %b %d at %I:%M %p") %></li>
+                <li><strong><%= status.status.humanize.downcase %></strong> <%= time_ago_in_words(status.created_at) %> ago</li>
               <% end %>
             </ul>
           </td>
@@ -57,7 +57,7 @@
               <% dossier.aasm.events.each do |event| %>
                 <li><%= link_to event.to_s.humanize, transition_path(dossier, event), method: :put, data: { confirm: 'Are you sure?' } %></li>
               <% end %>
-              <% unless ["accepted","rejected"].include? dossier.aasm_state %>
+              <% unless ["accepted","rejected", "wont_attend"].include? dossier.aasm_state %>
                 <li><%= link_to "Reject", transition_path(dossier, :reject), method: :put, data: { confirm: 'Are you sure?' } %></li>
                 <li><%= link_to "Accept", transition_path(dossier, :accept), method: :put, data: { confirm: 'Are you sure?' } %></li>
               <% end %>

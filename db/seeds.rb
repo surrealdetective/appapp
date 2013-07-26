@@ -1,8 +1,4 @@
-require 'faker'
-
 classes = ["Fall 2013", "Spring 2014", "Summer 2014"]
-
-
 
 300.times do
   user = User.new
@@ -33,7 +29,8 @@ classes = ["Fall 2013", "Spring 2014", "Summer 2014"]
     :semester           => classes.sample
   })
 
-  user.last_dossier.aasm_state = Dossier.aasm.states.sample.to_s
+  # user.last_dossier.aasm_state = Dossier.aasm.states.sample.to_s
+  user.last_dossier.random_status
 
 
   user.save
@@ -44,10 +41,5 @@ User.create(:first_name => "Adam", :last_name => "Enbar", :email => "Adam@adam.c
 User.create(:first_name => "Avi" , :last_name => "Flombaum", :email => "avi@avi.com", :roles => 100, :password => "avi")
 
 # our plucky young rubyist, yet to fill out an application
-User.create(:first_name => "DHH", :last_name=>"Racecars", :email => "dhh@dhh.com", :roles => 200, :password => "dhh")
-
-
-
-
-
-
+# not useful until we update the forms to prevent duplicate user creation
+# User.create(:first_name => "DHH", :last_name=>"Racecars", :email => "dhh@dhh.com", :roles => 200, :password => "dhh")

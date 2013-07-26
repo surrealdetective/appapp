@@ -3,7 +3,7 @@
     <!-- wraps one -->
     <div class="thinner-wrap user-profile"> 
       <div class="cover"></div>
-      <iframe class="modal" src="http://localhost:3000/dossiers/<%=dossier.id%>"></iframe>    
+      <iframe src="<%= dossier_path(dossier.id, :layout => "false") %>" frameborder="0" class="modal"></iframe>
       
       <!-- pic and tagline below -->
       <div class="row-fluid header">

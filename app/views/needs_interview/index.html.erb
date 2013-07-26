@@ -89,14 +89,7 @@
             });
         });
     </script>
-        <% count = [] %> 
-    <h3><% @dossiers.each do |dossier| %>
-         <%if dossier.needs_interview? %>
-          <% count << dossier%>
-         <%end%>
-        <%end%>
-        <%= count.size %>
-       Dossiers</h3>
+    <h3><%= dossier_count_by_state(:needs_interview) %> Dossiers</h3>
 
 <div class="row-fluid table">
   <table class="table table-hover">
@@ -133,11 +126,8 @@
           <td>
             <a href='mailto:<%=dossier.user.email if dossier.needs_interview? %>'><%= dossier.user.email if dossier.needs_interview?%></a>
           </td>
-          <td><%begin%>
-            <%= dossier.dossier_statuses.first.created_at %>
-            <% rescue %>
-            <%= 'not a good flow'%>
-            <%end%>
+          <td>
+            <%= time_ago_in_words(dossier.dossier_statuses.first.created_at) %> ago
           </td>
           <td>
             <ul>
