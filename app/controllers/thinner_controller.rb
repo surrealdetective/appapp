@@ -1,8 +1,10 @@
 class ThinnerController < ApplicationController
+  # removed this layout
   # layout "thinner"
   
   def index
     @thinner = Dossier.where(:aasm_state => "new").limit(15)
+    authorize! :index, @thinner
   end
 
   def testing

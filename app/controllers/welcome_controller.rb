@@ -1,8 +1,12 @@
 class WelcomeController < ApplicationController
+  skip_before_filter :login_required
   layout "pretty"
+
   # lot of goofy conditionals here
   # rough draft
+  
   def home
+
     if current_user
       if current_user.role?(:moderator)
         redirect_to dashboard_path
@@ -13,11 +17,10 @@ class WelcomeController < ApplicationController
           redirect_to new_dossier_path
         end
       end
-    else
-      # not logged in
-      # show the two big buttons page
-      @body_classes = "login-bg bg-login login-wrapper" # which is it...?
-      @title = "Welcome"
     end
+
+    @title = "Welcome"
+    @body_classes = "login-wrapper"
+
   end
 end

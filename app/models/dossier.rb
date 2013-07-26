@@ -20,11 +20,6 @@ class Dossier < ActiveRecord::Base
     # (that method is currently at the bottom of this file)
     state :new, :initial => true, :after_enter => Proc.new { |d| d.add_status "new" }
 
-    # thinning:
-    # the application has not been approved for review
-    # is this different from new?
-    state :needs_thinning, :after_enter => Proc.new { |d| d.add_status "needs thinning"}
-
     # needs_review:
     # the application has been read and not rejected
     state :needs_review, :after_enter => Proc.new { |d| d.add_status "needs review"}
@@ -37,21 +32,24 @@ class Dossier < ActiveRecord::Base
     # due diligence is done so now we need to make up our mind
     state :needs_decision, :after_enter => Proc.new { |d| d.add_status "needs decision"}
 
-    # needs_decision:
-    # due diligence is done so now we need to make up our mind
-    state :needs_payment, :after_enter => Proc.new { |d| d.add_status "needs payment"}
+    # needs_payment:
+    # accepted but has not yet confirmed, by paying
+    state :needs_payment, :after_enter => Proc.new do |d|
+      d.add_status "accepted~!"
+      d.add_status "needs payment"
+    end
 
-    # accepted:
-    # one of the two final states (the nicer one)
-    state :accepted, :after_enter => Proc.new { |d| d.add_status "accepted~!"}
-
-    # accepted:
-    # one of the two final states (the nicer one)
-    state :confirmed, :after_enter => Proc.new { |d| d.add_status "confirmed!!!"}
+    # committed:
+    # one of the three final states (the nicer one)
+    state :committed, :after_enter => Proc.new { |d| d.add_status "committed to coming!!!"}
 
     # rejected:
-    # the other final state
+    # another final state
     state :rejected, :after_enter => Proc.new { |d| d.add_status "rejected :("}
+
+    # wont_attend
+    # we offered but they did not commit
+    state :wont_attend, :after_enter => Proc.new { |d| d.add_status "won't attend"}
 
             ###################
             ##### Events ######
@@ -84,11 +82,21 @@ class Dossier < ActiveRecord::Base
     # mark_as_accepted:
     # decision takes place and now it's payment pending
     event :mark_as_accepted do
-      transitions :from => :needs_decision, :to => :needs_payment
+      transitions :to => :needs_payment
     end
 
     event :mark_as_confirmed do
       transitions :from => :needs_payment, :to => :confirmed
+    end
+
+    #are there cases where a person decides not to attend before flatiron has accepted them?
+    # probs.
+    event :mark_as_wont_attend do
+      transitions :to => :wont_attend #possibly add this after transitions > :from => :needs_payment, 
+    end
+
+    event :mark_as_rejected do
+      transitions :to => :rejected
     end
 
     # reject:
@@ -102,7 +110,7 @@ class Dossier < ActiveRecord::Base
     # accept:
     # same, can be called from any state
     event :accept do
-      transitions :to => :accepted
+      transitions :to => :needs_payment
     end
 
   end # end aasm block
@@ -204,6 +212,8 @@ class Dossier < ActiveRecord::Base
       self.mark_as_needs_interview
       self.mark_as_needs_decision
       self.accept
+    when :confirmed
+    when :needs_payment
     when :rejected
       self.mark_as_needs_review
       self.mark_as_needs_interview

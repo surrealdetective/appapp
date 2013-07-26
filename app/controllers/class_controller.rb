@@ -1,10 +1,10 @@
 class ClassController < ApplicationController
   def index
-    @pending = Dossier.limit(8)
+    # @pending = Dossier.limit(8)
     
-    @confirmed = Dossier.limit(5)
-    # @pending = Dossier.where(:aasm_state => "needs_payment")
-    # @confirmed = Dossier.where(:aasm_state => "confirmed")
+    # @confirmed = Dossier.limit(5)
+    @pending = Dossier.where(:aasm_state => "needs_payment")
+    @confirmed = Dossier.where(:aasm_state => "confirmed")
   end
 
   def decision

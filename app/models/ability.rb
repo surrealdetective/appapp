@@ -20,4 +20,4 @@ end
 #focus on getting roles to work.
 # 
 # # Course Topic permissions
-      # can :manage, Topic, :course_id => user.teaching_course_ids
+# can :manage, Topic, :course_id => user.teaching_course_ids
