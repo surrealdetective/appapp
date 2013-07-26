@@ -4,7 +4,7 @@ class ClassController < ApplicationController
     
     # @confirmed = Dossier.limit(5)
     @pending = Dossier.where(:aasm_state => "needs_payment")
-    @confirmed = Dossier.where(:aasm_state => "confirmed")
+    @confirmed = Dossier.where(:aasm_state => "committed")
   end
 
   def decision
