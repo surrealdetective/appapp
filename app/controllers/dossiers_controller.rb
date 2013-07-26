@@ -32,6 +32,7 @@ class DossiersController < ApplicationController
     else
       @dossiers = Dossier.find(:all)
     end
+    authorize! :index, @dossiers
   end
   
   # def filter
