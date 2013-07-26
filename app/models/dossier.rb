@@ -209,12 +209,12 @@ class Dossier < ActiveRecord::Base
       self.mark_as_needs_review
       self.mark_as_needs_interview
       self.mark_as_needs_decision
-      self.mark_as_needs_payment
+      self.mark_as_accepted
     when :committed
       self.mark_as_needs_review
       self.mark_as_needs_interview
       self.mark_as_needs_decision
-      self.mark_as_needs_payment
+      self.mark_as_accepted
       self.mark_as_commited
     when :rejected
       self.mark_as_needs_review
@@ -225,7 +225,7 @@ class Dossier < ActiveRecord::Base
       self.mark_as_needs_review
       self.mark_as_needs_interview
       self.mark_as_needs_decision
-      self.mark_as_needs_payment
+      self.mark_as_accepted
       self.mark_as_wont_attend 
     end
   end
