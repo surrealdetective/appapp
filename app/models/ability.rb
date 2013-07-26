@@ -9,7 +9,7 @@ class Ability
       can :manage, :all
     else  
       #any user can read the dossier controller
-      can :read, Dossier, :id => user.dossier_ids
+      can :read, Dossier, :user_id => user.id
     end
   end
 end

@@ -5,5 +5,6 @@ class NeedsInterviewController < ApplicationController
     else
       @dossiers = Dossier.sort_by(params[:sort_by])
     end
+    authorize! :index, @dossiers
   end
 end

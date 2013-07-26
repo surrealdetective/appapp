@@ -193,7 +193,7 @@ class Dossier < ActiveRecord::Base
 # [new, needs_review, needs_interview, needs_decision, needs_payment, committed, rejected, wont_attend] 
   def random_status
     choice = Dossier.aasm.states.sample.to_s.to_sym
-
+    
     case choice
     when :new
     when :needs_review
