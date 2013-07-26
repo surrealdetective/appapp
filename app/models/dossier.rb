@@ -185,4 +185,31 @@ class Dossier < ActiveRecord::Base
     "https://twitter.com/#{twitter}"
   end
 
+  def random_status
+    choice = Dossier.aasm.states.sample.to_s.to_sym
+
+    case choice
+    when :new
+    when :needs_review
+      self.mark_as_needs_review
+    when :needs_interview
+      self.mark_as_needs_review
+      self.mark_as_needs_interview
+    when :needs_decision
+      self.mark_as_needs_review
+      self.mark_as_needs_interview
+      self.mark_as_needs_decision
+    when :accepted
+      self.mark_as_needs_review
+      self.mark_as_needs_interview
+      self.mark_as_needs_decision
+      self.accept
+    when :rejected
+      self.mark_as_needs_review
+      self.mark_as_needs_interview
+      self.mark_as_needs_decision
+      self.reject
+    end
+  end
+
 end

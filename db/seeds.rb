@@ -1,8 +1,4 @@
-require 'faker'
-
 classes = ["Fall 2013", "Spring 2014", "Summer 2014"]
-
-
 
 300.times do
   user = User.new
@@ -33,7 +29,8 @@ classes = ["Fall 2013", "Spring 2014", "Summer 2014"]
     :semester           => classes.sample
   })
 
-  user.last_dossier.aasm_state = Dossier.aasm.states.sample.to_s
+  # user.last_dossier.aasm_state = Dossier.aasm.states.sample.to_s
+  user.last_dossier.random_status
 
 
   user.save
