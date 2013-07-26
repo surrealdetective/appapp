@@ -1,3 +1,22 @@
+- add password field to new dossier
+- dossier#show 
+    - hide comments from applicant
+    - make sections collapsible
+    - remove permissions to see /dossiers and /dossiers/:id except their own
+
+- add icons to stat nav
+- add nav to top bar
+- add borders or seperators to thinner
+- merge thinner and application layouts
+- fix needs_interview route, restful
+- double login button on login page
+- name and email shouldn't show up on dossier#new when the person is logged in already
+
+
+## cancan 
+
+**hello**
+
 ## Scratch pad
 
 ```ruby

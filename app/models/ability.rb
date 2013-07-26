@@ -10,7 +10,7 @@ class Ability
     elsif user.role? :moderator
       can :read, :all
       can :update, Dossier
-    else  
+    else
       #any user can read the dossier controller
       can :read, Dossier, :user_id => user.id
     end
@@ -21,6 +21,6 @@ end
 #iceboxing how to limit user's read ability to only the Dossier#new, login, and logout
 
 #focus on getting roles to work.
-# 
+#
 # # Course Topic permissions
 # can :manage, Topic, :course_id => user.teaching_course_ids

@@ -4,12 +4,12 @@
     <div class="thinner-wrap user-profile"> 
       <div class="cover"></div>
       <iframe src="<%= dossier_path(dossier.id, :layout => "false") %>" frameborder="0" class="modal"></iframe>
-      
+
       <!-- pic and tagline below -->
       <div class="row-fluid header">
         <div class="span6" style="padding:20px;float:left;">
           <a class="show" href="#"><img src="http://placekitten.com/100/100" class="avatar img-circle"></a>
-          
+
           <h3 class="name"><%= name(dossier.user) %></h3>
           <span class="area">From <%= dossier.city %></span>
           <div class="area">
@@ -41,7 +41,7 @@
             <h3>Flatiron Purpose</h3>
             <p class="span11" style="padding:40px; margin:20px;"><%= four_hundred_twenty_chars(dossier.purpose)%></p>
       </div>
-            
+
       <!-- submit tags below -->
       <%= form_tag thinner_decision_path(dossier.id), method:"post" do %>
         <div class="span12" style="margin-bottom:60px;">
@@ -50,7 +50,7 @@
         </div>
 
       <% end %>
-    </div>  
+    </div>
 
 <% end %>
 </div>
