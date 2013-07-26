@@ -4,8 +4,9 @@ class UserMailer < ActionMailer::Base
   def welcome_email(user)
     @user = user
     @url  = 'http://www.google.com'
+    @user.password
     
-    mail(:to => @user.email, :subject => 'Welcome to AppApp!')
+    mail(:to => @user.email, :subject => 'Welcome to AppApp!', :body => "Your login is #{@user.email}. Your password is #{@user.password}. Enjoy!")
   end
 
 end

@@ -13,11 +13,12 @@ class DossiersController < ApplicationController
     # @user = User.find(params[:user_id])
     # raise params.inspect
     @user = User.new(params[:user])
-    @user.password = "abc"
+    @user.password = rand(36**12).to_s(36)
     @user.dossiers.build(params[:dossier])
     @user.set_role(:applicant)
     @user.save_with_dossier_status("submitted")
     session[:user_id] = @user.id
+    UserMailer.welcome_email(@user).deliver
     redirect_to @user.dossiers.first
   end 
 

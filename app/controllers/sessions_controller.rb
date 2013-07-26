@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
   end
 
   def create#this is the post, which creates your login
+    #raise params.inspect
     user = User.find_by_email(params[:user][:email])
     if user && user.authenticate(params[:password]) 
       session[:user_id] = user.id
