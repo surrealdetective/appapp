@@ -1,5 +1,5 @@
 class ThinnerController < ApplicationController
-  layout "thinner"
+  # layout "thinner"
   
   def index
     @thinner = Dossier.where(:aasm_state => "new").limit(15)

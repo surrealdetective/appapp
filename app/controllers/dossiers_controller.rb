@@ -1,5 +1,5 @@
 class DossiersController < ApplicationController
-
+  skip_before_filter :login_required, :only => [:new, :create]
   # set a non-default layout for dossier viewing
   # layout :resolve_layout
 

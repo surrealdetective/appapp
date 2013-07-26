@@ -1,8 +1,9 @@
 class Ability
-  include CanCan:Ability
+  include CanCan::Ability
 
 #takes a user object
   def initialize(user)
+    user ||= user.new #creates a guest user if user doesn't exist.
     #the admin can perform all actions
     if user.role? :admin
       can :manage, :all

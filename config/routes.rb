@@ -37,7 +37,7 @@ Appapp::Application.routes.draw do
   get '/needs_review/:id' => 'needs_review#show', :as => :needs_review_show
 
   # get '/dossiers/:id/needs-review' => 'needs_review#index', as: :dossier_review
-  get '/dossiers/:id/needs-interview' => 'needs_interview#index', as: :dossier_interview
+  get '/needs_interview' => 'needs_interview#index', as: :dossier_interview
 
 
 
