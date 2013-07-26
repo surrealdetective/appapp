@@ -19,6 +19,9 @@
   </div>
 
 
+  <% if current_user.id == @dossier.user_id  %>
+    
+  
 <!-- PREWORK BOX --> 
   <div class="dossier-form-container">
     <a class="dropdown-toggle" href="#">
@@ -59,6 +62,8 @@
       </tr>
     </table>
    </div>
+
+   <% end %>
 
 <!-- APPLICATION SUMMARY BOX -->
   <div class="dossier-form-container">
@@ -183,6 +188,10 @@
     </ul>  
   </div>
 
+
+  <% if can? :update, @dossier  %>
+    
+  
 <!-- COMMENT BOX -->
   <div class="dossier-form-container">
       <a class="dropdown-toggle" href="#">
@@ -201,39 +210,7 @@
       <%= submit_tag "Submit Comment" %>
       <% end %>
   </div>
-
-<!-- main container -->
-    <div></div>
-        
-        <!-- settings changer -->
-        <div class="skins-nav">
-            <a href="#" class="skin first_nav selected">
-                <span class="icon"> </span> <span class="text"><i class="icon-trash">  Decline</i></span>
-            </a>
-            <a href="#" class="skin second_nav" data-file="css/skins/dark.css">
-                <span class="icon"> </span> <span class="text"><i class="icon-ok-sign">Interveiw</i></span>
-            </a>
-        </div>
-        
-        
-        <div>
-            <div
-            >
-                <!-- header -->
-                <h2 class="skins-nav" style = "top: 170px;right: 20px;text-align: right;" class="span6 name"><strong><%= @user.first_name%> <%=@user.last_name%></strong>
-                </h2>
-                
-                
-                    <div class="skins-nav" style = "float: right;width: 300;top: 205px;right: 5px" class="span6">
-                        <img src="https://coderwall-assets-0.s3.amazonaws.com/uploads/user/avatar/67185/profile2.jpg" class="avatar img-circle">
-                    </div>
-                  
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-    <!-- end main container -->
+  <% end %>
 
 </div>
 </body>
