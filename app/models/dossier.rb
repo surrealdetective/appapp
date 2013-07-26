@@ -34,10 +34,7 @@ class Dossier < ActiveRecord::Base
 
     # needs_payment:
     # accepted but has not yet confirmed, by paying
-    state :needs_payment, :after_enter => Proc.new do |d|
-      d.add_status "accepted~!"
-      d.add_status "needs payment"
-    end
+    state :needs_payment, :after_enter => Proc.new { |d| d.add_status "accepted~!"; d.add_status "needs payment"}
 
     # committed:
     # one of the three final states (the nicer one)
@@ -85,8 +82,8 @@ class Dossier < ActiveRecord::Base
       transitions :to => :needs_payment
     end
 
-    event :mark_as_confirmed do
-      transitions :from => :needs_payment, :to => :confirmed
+    event :mark_as_commited do
+      transitions :from => :needs_payment, :to => :committed
     end
 
     #are there cases where a person decides not to attend before flatiron has accepted them?
@@ -193,6 +190,7 @@ class Dossier < ActiveRecord::Base
     "https://twitter.com/#{twitter}"
   end
 
+# [new, needs_review, needs_interview, needs_decision, needs_payment, committed, rejected, wont_attend] 
   def random_status
     choice = Dossier.aasm.states.sample.to_s.to_sym
 
@@ -207,18 +205,28 @@ class Dossier < ActiveRecord::Base
       self.mark_as_needs_review
       self.mark_as_needs_interview
       self.mark_as_needs_decision
-    when :accepted
+    when :needs_payment
       self.mark_as_needs_review
       self.mark_as_needs_interview
       self.mark_as_needs_decision
-      self.accept
-    when :confirmed
-    when :needs_payment
+      self.mark_as_needs_payment
+    when :committed
+      self.mark_as_needs_review
+      self.mark_as_needs_interview
+      self.mark_as_needs_decision
+      self.mark_as_needs_payment
+      self.mark_as_commited
     when :rejected
       self.mark_as_needs_review
       self.mark_as_needs_interview
       self.mark_as_needs_decision
       self.reject
+    when :wont_attend
+      self.mark_as_needs_review
+      self.mark_as_needs_interview
+      self.mark_as_needs_decision
+      self.mark_as_needs_payment
+      self.mark_as_wont_attend 
     end
   end
 
