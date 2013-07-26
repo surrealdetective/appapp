@@ -3,7 +3,7 @@ class ThinnerController < ApplicationController
   # layout "thinner"
   
   def index
-    @thinner = Dossier.where(:aasm_state => "new").limit(15)
+    @thinner = Dossier.where(:aasm_state => "new").limit(3)
     authorize! :index, @thinner
   end
 

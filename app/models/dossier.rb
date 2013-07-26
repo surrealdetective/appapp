@@ -89,7 +89,7 @@ class Dossier < ActiveRecord::Base
     #are there cases where a person decides not to attend before flatiron has accepted them?
     # probs.
     event :mark_as_wont_attend do
-      transitions :to => :wont_attend #possibly add this after transitions > :from => :needs_payment, 
+      transitions :from => :needs_payment, :to => :wont_attend #possibly add this after transitions > :from => :needs_payment, 
     end
 
     event :mark_as_rejected do

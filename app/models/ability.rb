@@ -7,6 +7,9 @@ class Ability
     #the admin can perform all actions
     if user.role? :admin
       can :manage, :all
+    elsif user.role? :moderator
+      can :read, :all
+      can :update, Dossier
     else  
       #any user can read the dossier controller
       can :read, Dossier, :user_id => user.id
