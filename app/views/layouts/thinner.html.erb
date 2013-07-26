@@ -86,40 +86,40 @@
 
 
   <div class="content">  
-    <!-- upper main stats -->
-    <% if current_user && current_user.role?(:moderator) %>
-      <div id="main-stats">
-          <div class="row-fluid stats-row">
-              <div class="span3 stat">
-                <div class="data">
-                  <span class="number">
-                    <%= link_to new_dossier_count, thinner_path %>
-                  </span>
-                  <span class="number_label"> New Applicants </span>
-                </div>
-              </div>
-              <div class="span3 stat">
-                <div class="data">
-                  <span class="number"><%= link_to needs_review_count, dossier_review_path(Dossier.first) %></span>
-                  <span class="number_label"> Need Review               </span>
-                </div>
-              </div>
-              <div class="span3 stat">
-                <div class="data">
-                  <span class="number"><%= link_to needs_interview_count, dossier_interview_path(Dossier.first) %> </span>
-                  <span class="number_label"> Need Interviews              </span>
-                </div>
-              </div>
-              <div class="span3 stat last">
-                <div class="data">
-                  <span class="number"><%= link_to needs_decision_count, class_path %> </span>
-                  <span class="number_label"> Need Decisions              </span>
-                </div>
-              </div>
+        <!-- upper main stats -->
+<% if current_user && current_user.role?(:moderator) %>
+  <div id="main-stats">
+      <div class="row-fluid stats-row">
+          <div class="span3 stat">
+            <div class="data">
+              <span class="number">
+                <%= link_to dossier_count_by_state(:new), thinner_path %>
+              </span>
+              <span class="number_label"> New Applicants </span>
+            </div>
+          </div>
+          <div class="span3 stat">
+            <div class="data">
+              <span class="number"><%= link_to dossier_count_by_state(:needs_review), needs_review_first_path %></span>
+              <span class="number_label"> Need Review               </span>
+            </div>
+          </div>
+          <div class="span3 stat">
+            <div class="data">
+              <span class="number"><%= link_to dossier_count_by_state(:needs_interview), dossier_interview_path(Dossier.first) %> </span>
+              <span class="number_label"> Need Interviews              </span>
+            </div>
+          </div>
+          <div class="span3 stat last">
+            <div class="data">
+              <span class="number"><%= link_to dossier_count_by_state(:needs_decision), class_path %> </span>
+              <span class="number_label"> Need Decisions              </span>
+            </div>
           </div>
       </div>
-      <!-- end upper main stats -->
-    <% end %>
+  </div>
+  <!-- end upper main stats -->
+<% end %>
 
             <%= yield %>
 
@@ -127,12 +127,14 @@
 </body>
   <%= javascript_include_tag "application" %>
 <script>
-  $('#show').on('click', function() { 
-    $('this.parent().parent().prev(), this.parent().parent().prev().prev()').show(); 
+  $('.show').on('click', function() { 
+    $(this).parent().parent().prev().show();
+    $(this).parent().parent().prev().prev().show(); 
   }); 
-
-  $('#cover, #modal').on('click', function() { 
-    $('#cover, #modal').hide(); 
+  
+  $('.cover, .modal').on('click', function() { 
+    $(this).next().hide();
+    $(this).hide(); 
   });
 </script>
 
