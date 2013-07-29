@@ -17,6 +17,7 @@ Course.create(:season => "Spring 2014", :seats => 30, :subject => "Rails")
   user.set_role(:applicant)
 
   city = [Faker::Address.city, "NYC", "Brooklyn", "Queens", "New Jersey"]
+  courses = Course.all
 
   user.dossiers.build({
     :tagline            => Faker::Company.bs,
@@ -33,7 +34,7 @@ Course.create(:season => "Spring 2014", :seats => 30, :subject => "Rails")
     :code_skills        => Populator.paragraphs(3),
     :analytic_skills    => Populator.paragraphs(3),
     :tidbits            => Populator.paragraphs(3),
-    :course             => Course.all.sample
+    :course             => courses.sample
   })
 
   # user.last_dossier.aasm_state = Dossier.aasm.states.sample.to_s
