@@ -1,51 +1,74 @@
 class UserMailer < ActionMailer::Base
   default :from => "appapp@flatironschool.com"
+  
+  #EMAILS TO APPLICANTS
   # this method will send an email to the user once the user has signed up for the site
   def welcome_email(user)
     @user = user
     @url  = 'http://www.google.com'
     @user.password
     
-    mail(:to => @user.email, :subject => 'Welcome to AppApp!', :body => "Your login is #{@user.email}. Your password is #{@user.password}. Also, if you'd like to get started coding, you can look through the Flatiron pre-work at http://prework.flatironschool.com. Enjoy!")
+    mail(:to => @user.email, :subject => 'Welcome to AppApp!', :body => "Your login is #{@user.email}. Your password is #{@user.password}. \
+      Also, if you'd like to get started coding, you can look through the Flatiron pre-work at http://prework.flatironschool.com. Enjoy!")
   end
 
+  #adam sends an email to avi
   def message_email(receiver, sender)
         
   end
-
-  #send when button is pressed, "needs code interview"
-  #also, another state for 2nd interview is needed, so... they need to make a github, submit their code, and have it in a gist.
 
   #there needs to be a view dedicated to the 2nd interview.
   def code_email(user)
     @user = user
 
-    mail(:to => @user.email, :subject => "Get ready to code!", :body => "Hi #{@user.first_name}, /n You made it to the next stage in the interviewing process! Now we'd like you to solve a code puzzle as part of the application process. I'd like you to write a program that simulates a simple game that we all know and love - tic tac toe. You are allowed to write it in any language you want, but we prefer Ruby or Javascript. You're allowed to use outside resources, but you're not allowed to copy code. /n Good luck!")
+    mail(:to => @user.email, :subject => "Get ready to code!", :body => "Hi #{@user.first_name}, /n \
+      You made it to the next stage in the interviewing process! Now we'd like you to solve a code puzzle as part of the application process. \
+      I'd like you to write a program that simulates a simple game that we all know and love - tic tac toe. \
+      You are allowed to write it in any language you want, but we prefer Ruby or Javascript. \
+      You're allowed to use outside resources, but you're not allowed to copy code. /n Good luck!")
+  end
+
+  #user is rejected, deferred, or accepted
+  def rejected_email(user)
+    @user = user
+
+    mail(:to => @user.email, :subject => "Thank you for your interest in Flatiron School", :body => "Hi #{@user.first_name}, /n \
+      Thanks for your interest in Flatiron School. Unfortunately, we are no longer accepting applicants for #{@user.last_dossier.semester}. \
+      Please continue the pre-work and apply again next semester or for a different class!")
+  end
+
+  def deferred_email(user)
+    @user = user
+
+    mail(:to => @user.email, :subject => "Thank you for your interest in Flatiron SChool", :body => "Hi #{@user.first_name}, /n \
+      Thank you for your interest in Flatiron School. We really like you as a candidate, and we'd like to put you in a later class. \
+      Unfortunately, we are no longer accepting students for #{@user.last_dossier.semester}. Please keep in touch and let us know \
+      if you're still interested!")
   end
 
   def accepted_email(user)
     @user = user
 
-    mail(:to => @user.email, :subject => "Congratulations! You've been accepted to Flatiron School", :body => "Congratulations! We look forward to seeing you for #{@user.last_dossier.semester}. Please remember to send us the initial payment by #{@user.last_dossier.course.starting_date}.")  
+    mail(:to => @user.email, :subject => "Congratulations! You've been accepted to Flatiron School", :body => "Congratulations! \
+      We look forward to seeing you for #{@user.last_dossier.semester}. Please remember to send us the initial payment \
+      by #{@user.last_dossier.course.starting_date}.")  
   end
 
-   def code_email(user)
+  #user gets an email after paying
+  def confirmed_email(user)
     @user = user
 
-    mail(:to => @user.email, :subject => "Get ready to code!", :body => "Hi #{@user.first_name}, /n You made it to the next stage in the interviewing process! Now we'd like you to solve a code puzzle as part of the application process. I'd like you to write a program that simulates a simple game that we all know and love - tic tac toe. You are allowed to write it in any language you want, but we prefer Ruby or Javascript. You're allowed to use outside resources, but you're not allowed to copy code. /n Good luck!")
+    mail(:to => @user.email, :subject => "We received your deposit.", :body => "Hi #{@user.first_name}, /n \
+      We are super excited to see you for #{@user.last_dossier.semester}. We've reserved your spot!") 
   end
 
-  #methods we want for the user
-  #1. welcome-email = prework email - go to these things to sign up for the prework
-  #2. @avi - "check this out" from a comment
-  #3. code email - puzzle for whenever
-  #4. accepted so signup to techie social networks email -
-  #
-  #user story: Signs up and receives email. 
-  #gets reviewed and receives email to setup an interview
-  #rejected email
-  #deferred email
-  
+  def full_payment_email(user)
+    @user = user
+
+    mail(:to => @user.email, :subject => "We received your payment.", :body => "Hi #{@user.first_name}, /n \
+      We got your second payment for #{@user.last_dossier.semester}. Looking forward to seeing you soon!") 
+  end
+
 
 end
 
