@@ -12,11 +12,6 @@ class UserMailer < ActionMailer::Base
       Also, if you'd like to get started coding, you can look through the Flatiron pre-work at http://prework.flatironschool.com. Enjoy!")
   end
 
-  #adam sends an email to avi
-  def message_email(receiver, sender)
-        
-  end
-
   #there needs to be a view dedicated to the 2nd interview.
   def code_email(user)
     @user = user
@@ -54,6 +49,12 @@ class UserMailer < ActionMailer::Base
       by #{@user.last_dossier.course.starting_date}.")  
   end
 
+  def accepted_clothes_email(user)
+    @user = user
+
+    mail(:to => @user.email, :subject => "Flatiron Cred", :body => "Please let us know your shirt size. Thanks!")  
+  end
+
   #user gets an email after paying
   def confirmed_email(user)
     @user = user
@@ -70,32 +71,23 @@ class UserMailer < ActionMailer::Base
   end
 
 
+
+  #EMAILS TO ADMIN
+
+  #adam sends an email to avi
+  def message_email(receiver, sender)
+        
+  end
+
 end
 
-
-
-
-# #Hi Alex,
-
-# Welcome to the Flatiron School!
-
-# With the summer quickly approaching, it's time to get cracking :)
-
-# First off, here's a short student survey. Please try to fill this out as soon as you get a chance so we can start planning.
-
-# http://flatironschool.wufoo.com/forms/flatiron-school-student-survey-summer-2013/
-
-# Next, you now have a Flatiron Email alias at firstname.lastname@flatironschool.com. Send some test emails to yourself and make sure that works.
-
-# The pre-work for the semester is available at http://prework.flatironschool.com
-
-# A large part of the work uses resources from Treehouse and CodeSchool - you should have received invites to both at your Flatiron School address.
-
-# That's it for now. We're so excited to start learning with you in June! Email us any questions you have along the way. We'll be in touch with more details soon.
-
-# See you soon!
-
-# Flatiron Team.
-
+#make these methods
+#When prework is 100% completed, send an email
+#when count of 15 new applicants reaches some amount, send an email
+#When interviews per week is lower than 3.
+#
+#When comment is made, send email to @avi.
+#Class is now 50% full.
+#
 
 
