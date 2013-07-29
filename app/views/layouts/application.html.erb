@@ -32,21 +32,16 @@
 -->
 <body class='<%= params[:controller] %> <%= params[:action] %> <%= @body_classes %>'>
 
-<%= render "layouts/nav" %>
+  <%= render "layouts/nav" %>
 
-<div class="content">  
-        <!-- upper main stats -->
-<% if current_user && current_user.role?(:moderator) %>
-<%= render "layouts/stats" %>
-<% end %>
+  <div class="content">  
+    <!-- upper main stats -->
+    <% if current_user && current_user.role?(:moderator) %>
+      <%= render "layouts/stats" %>
+    <% end %>
 
     <div class="container-fluid" id="pad-wrapper">
-
-
-        
-
-          <%= yield %>
-
+      <%= yield %>
     </div>
   </div>
   <%= javascript_include_tag "application" %>
