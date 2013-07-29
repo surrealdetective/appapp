@@ -231,4 +231,10 @@ class Dossier < ActiveRecord::Base
     end
   end
 
+  #lets fix the view by adding a .semester method
+  # it is a reader method.
+  def semester
+    "#{self.course.subject} #{self.course.season}"
+  end
+
 end
