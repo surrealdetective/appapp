@@ -1,0 +1,21 @@
+<!-- COMMENT BOX -->
+  <div class="dossier-form-container">
+      <a class="dropdown-toggle" href="#">
+        <span><h2> Comments re: <%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %> </h2> close </span>
+        <i class="icon-chevron-down"></i>
+      </a>
+    <hr>
+      <% @dossier.dossier_comments.each do |comment| %>
+      <%= comment.content %>
+      <% end %>
+      <br>
+      <%= form_tag dossier_dossier_comments_path(@dossier) do %>
+      <%= label_tag "Comment" %>
+      <%= text_area_tag "dossier_comments[content]" %>
+      <%= hidden_field_tag "dossier_comments[dossier_id]", @dossier.id  %>
+      <%= submit_tag "Submit Comment" %>
+      <% end %>
+
+      <!-- show the hashtags -->
+      <%= @dossier.hashtags %>
+  </div>

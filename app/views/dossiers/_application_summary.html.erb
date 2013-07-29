@@ -1,0 +1,123 @@
+<!-- APPLICATION SUMMARY BOX -->
+
+<div class="dossier-form-container">
+  <a class="dropdown-toggle" href="#">
+    <span><h2>Summary of <%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %>'s Application </h2> close </span>
+    <i class="icon-chevron-down"></i>
+  </a>
+  <hr>
+
+  <p id="notice"><%= notice %></p>
+
+  <ul class="submenu" style="display: block;">
+  <br>
+  <h3><strong> Account Information </strong> </h3>
+  <hr> 
+
+  <h5>
+    <b>Name:</b>
+    <em><%= @user.first_name %> </em> <em> <%= @user.last_name %></em>
+  </h5>
+  <br>
+
+  <h5>
+    <b>Email:</b>
+    <%= @user.email %>
+  </h5>
+  <br>
+
+  <h5>
+    <b>Phone Number:</b>
+    <%= @dossier.phone_number %>
+  </h5>
+  <br>
+  <br>
+  <h3><strong> Links </strong> </h3>
+  <hr> 
+
+  <h5>
+    <b>Twitter:</b>
+    <%= @dossier.twitter %>
+  </h5>
+  <br>
+
+  <h5>
+    <b>Github:</b>
+    <%= @dossier.github %>
+  </h5>
+  <br>
+
+  <h5>
+    <b>Blog:</b>
+    <%= @dossier.blog %>
+  </h5>
+  <br>
+
+  <h5>
+    <b>LinkedIn:</b>
+    <%= @dossier.linkedin %>
+  </h5>
+  <br>
+
+  <h5>
+    <b>Website:</b>
+    <%= @dossier.website %>
+  </h5>
+  <br>
+
+  <h5>
+    <b>Other Links:</b>
+    <%= @dossier.other_links %>
+  </h5>
+  <br>
+
+  <br>
+  <h3><strong> Background </strong> </h3>
+  <hr> 
+  <h5>
+    <b>In 140 characters, tell us what makes you unique:</b>
+    <%= @dossier.tagline %>
+  </h5>
+  <br>
+
+  <h5>
+    <b>Question 1 - Career: </b>
+    <%= @dossier.career %>
+  </h5>
+  <br>
+
+  <h5>
+    <b>Question 2 - Purpose: </b>
+    <%= @dossier.purpose %>
+  </h5>
+  <br>
+
+  <h5>
+    <b>Question 3 - Code Skills:</b>
+    <%= @dossier.code_skills %>
+  </h5>
+  <br>
+
+  <h5>
+    <b>Question 4 - Analytic Skills:</b>
+    <%= @dossier.analytic_skills %>
+  </h5>
+  <br>
+
+  <h5>
+    <b>Question 5 - Additional Tidbits:</b>
+    <%= @dossier.tidbits %>
+  </h5>
+  <br>
+  <br>
+  <h3><strong> Semester </strong> </h3>
+  <hr> 
+  <h5>
+
+  <h5>
+    <b>Semester Applying To:</b>
+    <%= @dossier.semester %>
+  </h5>
+  <br>
+  </ul>  
+</div>
