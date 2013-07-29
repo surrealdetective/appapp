@@ -1,0 +1,7 @@
+<!--   SEARCH BAR    -->    
+    
+<li class="hidden-phone">
+    <%= form_tag dashboard_path, :method => "get" do %>
+      <input name="search" class="search" type="text" value='<%= params[:search] %>' />
+    <% end %>
+</li>
