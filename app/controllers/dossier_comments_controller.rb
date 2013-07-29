@@ -2,6 +2,7 @@ class DossierCommentsController < ApplicationController
   def create
     # raise params.inspect
     @dossier_comment = DossierComment.new(params[:dossier_comment])
+    @dossier_comment.adds_hashtags
     # raise @dossier_comment.inspect
     @dossier_comment.save
     # redirect_to @dossier_comment.dossier
