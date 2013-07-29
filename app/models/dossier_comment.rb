@@ -7,7 +7,10 @@ class DossierComment < ActiveRecord::Base
 
   def adds_hashtags(commentor)
     hashtags = Twitter::Extractor.extract_hashtags(self.content)
-    #write a line that adds each hashtag to a join table.
+    hashtags.each do |hashtag|
+      hashobject = Hashtag.find_or_create_by_content(hashtag)
+      UserDossierHashtag.create(:user_id => commentor.id, :dossier_id => self.dossier_id, :hashtag_id => hashobject.id)
+    end
   end
 
 

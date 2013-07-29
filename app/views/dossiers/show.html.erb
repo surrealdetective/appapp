@@ -209,6 +209,9 @@
       <%= hidden_field_tag "dossier_comments[dossier_id]", @dossier.id  %>
       <%= submit_tag "Submit Comment" %>
       <% end %>
+
+      <!-- show the hashtags -->
+      <%= @dossier.hashtags %>
   </div>
   <% end %>
 
