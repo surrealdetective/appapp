@@ -23,4 +23,5 @@
 //= require ../../../vendor/assets/javascripts/jquery.fancybox-buttons.js
 //= require ../../../vendor/assets/javascripts/jquery.fancybox-thumbs.js
 //= require ../../../vendor/assets/javascripts/jquery.fancybox-media.js
+//= require ../../../vendor/assets/javascripts/applyfancybox
 //= require_tree .
