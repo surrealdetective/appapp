@@ -5,7 +5,7 @@ class DossierComment < ActiveRecord::Base
   belongs_to :dossier
   belongs_to :user
 
-  def adds_hashtags
+  def adds_hashtags(commentor)
     hashtags = Twitter::Extractor.extract_hashtags(self.content)
     #write a line that adds each hashtag to a join table.
   end
@@ -28,3 +28,6 @@ end
 #two ways 
 #1. is to write the method from 
 #2. reads...? wrap it in a method
+
+
+

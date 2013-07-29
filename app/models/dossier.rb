@@ -6,6 +6,7 @@ class Dossier < ActiveRecord::Base
   belongs_to :user
   has_many :dossier_statuses
   has_many :dossier_comments
+  has_many :comments
   include AASM
 
   aasm do

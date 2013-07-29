@@ -21,3 +21,21 @@ class DossierCommentsController < ApplicationController
     
   end
 end
+
+#there needs to be a place to store the hashtags
+hashtag, which is a model
+
+
+#content  #dossier_id  #user_id
+
+
+#hashtags table
+#id #content 
+
+
+
+#join table: user-dossier-hashtags
+#hashtag_id   dossier_id   user_id
+
+
+
