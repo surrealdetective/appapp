@@ -1,3 +1,13 @@
+Adding a new semester:
+-generate model for "course"
+-add a migration of course_id for dossier.
+-do the associations
+-make the seeds
+
+Attributes of a course
+:subject, :season, :seats,  #add migration when used => :tuition
+
+
 - add password field to new dossier
 - dossier#show 
     - hide comments from applicant
