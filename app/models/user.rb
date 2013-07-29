@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   attr_accessible :email, :first_name, :last_name, :dossiers, :password, :password_confirmation, :roles
   has_many :dossiers
   has_many :dossier_comments # meaning, they've written many
+  has_many :user_dossier_hashtags
+  has_many :hashtags, through: :user_dossier_hashtags
 
   has_secure_password
 

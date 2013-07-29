@@ -37,6 +37,8 @@ gem 'pry'
 #authorization
 gem "cancan"
 
+#parsing comment content for hash tags
+gem 'twitter-text'
 
 group :development do
   gem 'populator'

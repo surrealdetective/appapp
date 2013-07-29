@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130729145124) do
+ActiveRecord::Schema.define(:version => 20130729184016) do
 
   create_table "courses", :force => true do |t|
     t.string   "subject"
@@ -56,6 +56,20 @@ ActiveRecord::Schema.define(:version => 20130729145124) do
     t.text     "tidbits"
     t.string   "aasm_state"
     t.integer  "course_id"
+  end
+
+  create_table "hashtags", :force => true do |t|
+    t.string   "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "user_dossier_hashtags", :force => true do |t|
+    t.integer  "hashtag_id"
+    t.integer  "dossier_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|

@@ -7,6 +7,10 @@ class Dossier < ActiveRecord::Base
   has_many :dossier_statuses
   has_many :dossier_comments
   belongs_to :course
+  has_many :comments
+  has_many :user_dossier_hashtags
+  has_many :hashtags, through: :user_dossier_hashtags
+
   include AASM
 
   aasm do
