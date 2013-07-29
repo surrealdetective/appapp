@@ -1,4 +1,11 @@
-classes = ["Fall 2013", "Spring 2014", "Summer 2014"]
+#Updating Seeds
+# -Add two courses
+# -Take out Tagline
+# -Connect all dossiers to the created courses
+
+Course.create(:season => "Fall 2013", :seats => 32, :subject => "Rails")
+Course.create(:season => "Fall 2013", :seats => 20, :subject => "iOS")
+Course.create(:season => "Spring 2014", :seats => 30, :subject => "Rails")
 
 300.times do
   user = User.new
@@ -26,7 +33,7 @@ classes = ["Fall 2013", "Spring 2014", "Summer 2014"]
     :code_skills        => Populator.paragraphs(3),
     :analytic_skills    => Populator.paragraphs(3),
     :tidbits            => Populator.paragraphs(3),
-    :semester           => classes.sample
+    :course             => Course.all.sample
   })
 
   # user.last_dossier.aasm_state = Dossier.aasm.states.sample.to_s
