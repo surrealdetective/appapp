@@ -14,4 +14,8 @@ class CoursesController < ApplicationController
     @confirmed = Dossier.where(:aasm_state => "committed")
     @courses = Course.all
   end
+
+  def dashboard
+    @course = Course.first
+  end
 end

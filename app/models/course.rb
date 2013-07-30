@@ -13,4 +13,5 @@ class Course < ActiveRecord::Base
       [course.semester, course.id]
     end
   end
+
 end
