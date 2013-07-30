@@ -20,8 +20,8 @@
 <h2>Workflow Gauge</h2>
 <div class="workflows">
 
-  <h4>People who have been accepted this week</h4>
-  <h5><%= course_count_by_state_and_week %></h5>
+  <h4>People who have been accepted this week for <%= @course.semester %> </h4>
+  <h5><%= course_count_by_state_and_week("needs payment", @course) %></h5>
 
 
 

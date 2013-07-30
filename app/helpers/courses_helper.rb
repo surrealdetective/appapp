@@ -10,9 +10,9 @@ module CoursesHelper
   end
 
   #finds all statuses that have ever occured
-  def course_count_by_state_and_week
+  def course_count_by_state_and_week(status, course)
     time_range = (Time.now.midnight - 7.day)..Time.now
-    Course.joins(dossiers: :dossier_statuses).where('dossier_statuses.status' => 'needs payment').where('courses.id' => 1).where('dossier_statuses.created_at' => time_range).count
+    Course.joins(dossiers: :dossier_statuses).where('dossier_statuses.status' => status).where('courses.id' => course.id).where('dossier_statuses.created_at' => time_range).count
   end
   
 end
