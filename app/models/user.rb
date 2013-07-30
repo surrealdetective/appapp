@@ -12,7 +12,9 @@ class User < ActiveRecord::Base
   # attr_accessor :password
   # before_save :encrypt_password
 
-   validates :email, :presence => true, :uniqueness => true#, :email_format => true
+   #validates :email, :presence => true, :uniqueness => true#, :email_format => true
+   validates :email, :presence => true, :uniqueness => true, :format => { :with => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/, :on => :create}
+  
   # validates :name, :presence => true
   # validates_confirmation_of :password
    validates_presence_of     :first_name, :on => :create, :message => "can't be empty"

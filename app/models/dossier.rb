@@ -13,6 +13,13 @@ class Dossier < ActiveRecord::Base
 
   validates_presence_of :tagline, :purpose, :analytic_skills, :message => " cannot be blank"
   #validates_numericality_of :phone_number
+  validates :phone_number, :presence => true, :format => { :with => /\+\d{11}/, :on => :create, :message => "is invalid. Please include the area code" }
+
+  before_validation(:on => :create) do
+    num = phone_number.gsub(/\D/, '')
+    num.prepend("1") unless num.length == 11
+    self.phone_number = num.prepend("+")
+  end
 
   include AASM
 
