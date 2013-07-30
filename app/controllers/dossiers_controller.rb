@@ -5,7 +5,7 @@ class DossiersController < ApplicationController
 
 
   def new
-    # @user = User.new
+     @user = User.new
     # @user= User.find(params[:user_id])
   end
 

@@ -4,8 +4,9 @@
       <div class="dossier-form-container">
         <h2> Flatiron Application</h2><br>
         <div class = "form-wrapper">
+          <%= render "shared/error_messages", :target => @user %>
           
-          
+
           <%= form_tag dossiers_path, :class => 'new_user_form inline-input' do %>
           <h4><strong> Account Information </strong> </h4>
           <hr> 
@@ -106,10 +107,7 @@
 
     
 
-    <div class = "span12 select-box">
-            <%= label_tag "Semester", nil, :class=>'span3' %>
-            <%= select_tag(:semester, options_for_select([['Spring', 1], ['Summer', 2], ['Fall', 3]], :selected => [:semester])) %><br><br>
-   </div>
+    
  </div>
  <br>
  <hr>
