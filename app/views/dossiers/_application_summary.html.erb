@@ -1,0 +1,74 @@
+<!-- APPLICATION SUMMARY BOX -->
+
+<div class="dossier-form-container">
+
+  <h2>Summary of <%= @user.full_name %>'s Application (<%= @dossier.semester %>)</h2>
+
+  <%= render 'dossiers/collapser_button' %>
+
+  <div class="collapsible">
+    <hr>
+    <h3>Account Information</h3>
+    <hr>
+
+    <ul>
+      <li>
+        <strong>Name:</strong> <em><%= @user.full_name %></em>
+      </li>
+      <li>
+        <strong>Email:</strong> <em><%= @user.email %></em>
+      </li>
+      <li>
+        <strong>Phone Number:</strong> <em><%= @dossier.phone_number %></em>
+      </li>
+    </ul>
+
+    <hr>
+    <h3>Links</h3>
+    <hr>
+
+    <ul>
+      <li>
+        <strong>Twitter:</strong> <em><%= @dossier.twitter %></em>
+      </li>
+      <li>
+        <strong>Github:</strong> <em><%= @dossier.github %></em>
+      </li>
+      <li>
+        <strong>Blog:</strong> <em><%= @dossier.blog %></em>
+      </li>
+      <li>
+        <strong>LinkedIn:</strong> <em><%= @dossier.linkedin %></em>
+      </li>
+      <li>
+        <strong>Website</strong> <em><%= @dossier.website %></em>
+      </li>
+      <li>
+        <strong>Other Links:</strong> <em><%= @dossier.other_links %></em>
+      </li>
+    </ul>
+
+    <hr>
+    <h3>Background</h3>
+    <hr>
+
+    <h4>In 140 characters, tell us what makes you unique:</h4>
+    <p><%= @dossier.tagline %></p>
+
+    <h4>Question 1 - Career:</h4>
+    <p><%= @dossier.career %></p>
+
+    <h4>Question 2 - Purpose:</h4>
+    <p><%= @dossier.purpose %></p>
+
+    <h4>Question 3 - Code Skills:</h4>
+    <p><%= @dossier.code_skills %></p>
+
+    <h4>Question 4 - Analytics Skills</h4>
+    <p><%= @dossier.analytic_skills %></p>
+
+    <h4>Question 5 - Additional Tidbits:</h4>
+    <p><%= @dossier.tidbits %></p>
+  </div>
+
+</div>

@@ -1,0 +1,20 @@
+<!-- APPLICATION STATUS BOX -->
+
+<div class="dossier-form-container">
+  
+  <h2><%= @user.full_name %>'s Application Status </h2>
+  
+  <%= render 'dossiers/collapser_button' %>
+
+  <div class="collapsible">
+    <hr>
+    <ul>
+      <% @dossier.dossier_statuses.each do |status| %>
+        <li>
+          Marked as <em><%= status.status.humanize.downcase %></em> on <%= status.created_at.strftime("%A, %b %d at %I:%M %p") %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+</div>

@@ -1,0 +1,16 @@
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle hidden-phone" data-toggle="dropdown">
+    <%= current_user.full_name %> 
+    <b class="caret"></b>
+  </a>              
+  <ul class="dropdown-menu">
+    <% if current_user.last_dossier %>
+      <li class="hidden-phone">
+        <%= link_to "Last dossier", dossier_path(current_user.last_dossier) %>
+      </li>
+    <% end %>
+    <li class="settings hidden-phone">
+      <%= link_to "Log Out", logout_path %>
+    </li>
+  </ul>
+</li>
