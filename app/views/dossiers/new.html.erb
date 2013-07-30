@@ -11,6 +11,11 @@
 
 
         <%= form_for @dossier do |f| %>
+
+
+
+
+        
           <%= render "shared/error_messages", :target => @user %>
 
           <%= fields_for  @user do |u| %>
@@ -114,7 +119,7 @@
           
  <br>
  <hr>      
-<div class="span12 field-box">
+          <div class="span12 field-box">
             <%= c.label :semester %>choose a semester<%= mark_required(@course, :semester) %><br />
             <%= c.select :semester, @course_list, :selected => [:semester] %>
           </div>
