@@ -2,6 +2,7 @@ class Course < ActiveRecord::Base
   attr_accessible :season, :seats, :subject, :starting_date
 
   has_many :dossiers
+  has_many :dossier_statuses, :through => :dossiers
 
   #reads the class name
   def semester

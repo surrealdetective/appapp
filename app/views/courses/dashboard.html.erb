@@ -1,13 +1,28 @@
 <h1>Dashboard Info for <%= @course.semester %></h1>
 
-<h4>People who have been accepted</h4>
-<h5><%= course_count_by_state("needs_payment", @course) %></h5>
 
-<h4>People who have confirmed</h4>
-<h5><%= course_count_by_state("committed", @course) %></h5>
+<h2>Million Mile View</h2>
+<div class="million">
+  <h4>People who have been accepted</h4>
+  <h5><%= course_count_by_state("needs_payment", @course) %></h5>
 
-<h4>Total Applications for <%= @course.semester%></h4>
-<h5><%= course_count_all(@course) %></h5>
+  <h4>People who have confirmed</h4>
+  <h5><%= course_count_by_state("committed", @course) %></h5>
 
-<h4>Days Left till Class Begins</h4>
-<h5><%= (@course.starting_date - Date.today).to_i %> days</h5>
+  <h4>Total Applications for <%= @course.semester%></h4>
+  <h5><%= course_count_all(@course) %></h5>
+
+  <h4>Days Left till Class Begins</h4>
+  <h5><%= (@course.starting_date - Date.today).to_i %> days</h5>
+</div>
+
+
+<h2>Workflow Gauge</h2>
+<div class="workflows">
+
+  <h4>People who have been accepted this week</h4>
+  <h5><%= course_count_by_state_and_week %></h5>
+
+
+
+</div>
