@@ -533,3 +533,11 @@ a.fc-event,
 .fc-event-hori .ui-resizable-handle {
   _padding-bottom: 14px; /* IE6 had 0 height */
   }
+
+ul.logo_list {
+  list-style-type: none;
+  li {
+    display: inline;
+    margin-left: 5px;
+  }
+}
