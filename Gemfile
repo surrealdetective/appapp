@@ -27,6 +27,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'skype'
 gem 'jquery-rails'
 gem 'bcrypt-ruby', '=3.0.0'
 #require 'bcrypt' #'~> 3.0.0'
