@@ -11,7 +11,12 @@ class Dossier < ActiveRecord::Base
   has_many :user_dossier_hashtags
   has_many :hashtags, through: :user_dossier_hashtags
 
-  validates_presence_of :tagline, :purpose, :analytic_skills, :message => " cannot be blank"
+  validates_presence_of :tagline
+  validates_presence_of :purpose
+  validates_presence_of :analytic_skills
+  validates_presence_of :career
+  validates_presence_of :purpose
+  validates_presence_of :code_skills
   #validates_numericality_of :phone_number
   validates :phone_number, :presence => true, :format => { :with => /\+\d{11}/, :on => :create, :message => "is invalid. Please include the area code" }
 
