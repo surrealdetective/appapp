@@ -1,16 +1,20 @@
 <!-- APPLICATION STATUS BOX -->
 
 <div class="dossier-form-container">
-    <a class="dropdown-toggle" href="#">
-      <span><h2> <%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %>'s Application Status </h2> close </span>
-      <i class="icon-chevron-down"></i>
-    </a>
-  <hr>
-    <h5>
-    <ul> <% @dossier.dossier_statuses.each do |status| %>
-      <li>Marked as <em><%= status.status.humanize.downcase %></em> on <%= status.created_at.strftime("%A, %b %d at %I:%M %p") %>
-      </li>
+  
+  <h2><%= @user.full_name %>'s Application Status </h2>
+  
+  <span class="collapser">toggle <i class="icon-chevron-down"></i></span>
+
+  <div class="collapsible">
+    <hr>
+    <ul>
+      <% @dossier.dossier_statuses.each do |status| %>
+        <li>
+          Marked as <em><%= status.status.humanize.downcase %></em> on <%= status.created_at.strftime("%A, %b %d at %I:%M %p") %>
+        </li>
       <% end %>
     </ul>
-    </h5>
+  </div>
+
 </div>

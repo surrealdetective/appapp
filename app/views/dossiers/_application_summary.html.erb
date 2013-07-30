@@ -1,123 +1,74 @@
 <!-- APPLICATION SUMMARY BOX -->
 
 <div class="dossier-form-container">
-  <a class="dropdown-toggle" href="#">
-    <span><h2>Summary of <%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %>'s Application </h2> close </span>
-    <i class="icon-chevron-down"></i>
-  </a>
-  <hr>
 
-  <p id="notice"><%= notice %></p>
+  <h2>Summary of <%= @user.full_name %>'s Application (<%= @dossier.semester %>)</h2>
 
-  <ul class="submenu" style="display: block;">
-  <br>
-  <h3><strong> Account Information </strong> </h3>
-  <hr> 
+  <span class="collapser">toggle <i class="icon-chevron-down"></i></span>
 
-  <h5>
-    <b>Name:</b>
-    <em><%= @user.first_name %> </em> <em> <%= @user.last_name %></em>
-  </h5>
-  <br>
+  <div class="collapsible">
+    <hr>
+    <h3>Account Information</h3>
+    <hr>
 
-  <h5>
-    <b>Email:</b>
-    <%= @user.email %>
-  </h5>
-  <br>
+    <ul>
+      <li>
+        <strong>Name:</strong> <em><%= @user.full_name %></em>
+      </li>
+      <li>
+        <strong>Email:</strong> <em><%= @user.email %></em>
+      </li>
+      <li>
+        <strong>Phone Number:</strong> <em><%= @dossier.phone_number %></em>
+      </li>
+    </ul>
 
-  <h5>
-    <b>Phone Number:</b>
-    <%= @dossier.phone_number %>
-  </h5>
-  <br>
-  <br>
-  <h3><strong> Links </strong> </h3>
-  <hr> 
+    <hr>
+    <h3>Links</h3>
+    <hr>
 
-  <h5>
-    <b>Twitter:</b>
-    <%= @dossier.twitter %>
-  </h5>
-  <br>
+    <ul>
+      <li>
+        <strong>Twitter:</strong> <em><%= @dossier.twitter %></em>
+      </li>
+      <li>
+        <strong>Github:</strong> <em><%= @dossier.github %></em>
+      </li>
+      <li>
+        <strong>Blog:</strong> <em><%= @dossier.blog %></em>
+      </li>
+      <li>
+        <strong>LinkedIn:</strong> <em><%= @dossier.linkedin %></em>
+      </li>
+      <li>
+        <strong>Website</strong> <em><%= @dossier.website %></em>
+      </li>
+      <li>
+        <strong>Other Links:</strong> <em><%= @dossier.other_links %></em>
+      </li>
+    </ul>
 
-  <h5>
-    <b>Github:</b>
-    <%= @dossier.github %>
-  </h5>
-  <br>
+    <hr>
+    <h3>Background</h3>
+    <hr>
 
-  <h5>
-    <b>Blog:</b>
-    <%= @dossier.blog %>
-  </h5>
-  <br>
+    <h4>In 140 characters, tell us what makes you unique:</h4>
+    <p><%= @dossier.tagline %></p>
 
-  <h5>
-    <b>LinkedIn:</b>
-    <%= @dossier.linkedin %>
-  </h5>
-  <br>
+    <h4>Question 1 - Career:</h4>
+    <p><%= @dossier.career %></p>
 
-  <h5>
-    <b>Website:</b>
-    <%= @dossier.website %>
-  </h5>
-  <br>
+    <h4>Question 2 - Purpose:</h4>
+    <p><%= @dossier.purpose %></p>
 
-  <h5>
-    <b>Other Links:</b>
-    <%= @dossier.other_links %>
-  </h5>
-  <br>
+    <h4>Question 3 - Code Skills:</h4>
+    <p><%= @dossier.code_skills %></p>
 
-  <br>
-  <h3><strong> Background </strong> </h3>
-  <hr> 
-  <h5>
-    <b>In 140 characters, tell us what makes you unique:</b>
-    <%= @dossier.tagline %>
-  </h5>
-  <br>
+    <h4>Question 4 - Analytics Skills</h4>
+    <p><%= @dossier.analytic_skills %></p>
 
-  <h5>
-    <b>Question 1 - Career: </b>
-    <%= @dossier.career %>
-  </h5>
-  <br>
+    <h4>Question 5 - Additional Tidbits:</h4>
+    <p><%= @dossier.tidbits %></p>
+  </div>
 
-  <h5>
-    <b>Question 2 - Purpose: </b>
-    <%= @dossier.purpose %>
-  </h5>
-  <br>
-
-  <h5>
-    <b>Question 3 - Code Skills:</b>
-    <%= @dossier.code_skills %>
-  </h5>
-  <br>
-
-  <h5>
-    <b>Question 4 - Analytic Skills:</b>
-    <%= @dossier.analytic_skills %>
-  </h5>
-  <br>
-
-  <h5>
-    <b>Question 5 - Additional Tidbits:</b>
-    <%= @dossier.tidbits %>
-  </h5>
-  <br>
-  <br>
-  <h3><strong> Semester </strong> </h3>
-  <hr> 
-  <h5>
-
-  <h5>
-    <b>Semester Applying To:</b>
-    <%= @dossier.semester %>
-  </h5>
-  <br>
-  </ul>  
 </div>

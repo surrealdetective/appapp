@@ -1,21 +1,40 @@
 <!-- COMMENT BOX -->
-  <div class="dossier-form-container">
-      <a class="dropdown-toggle" href="#">
-        <span><h2> Comments re: <%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %> </h2> close </span>
-        <i class="icon-chevron-down"></i>
-      </a>
-    <hr>
-      <% @dossier.dossier_comments.each do |comment| %>
-      <%= comment.content %>
-      <% end %>
-      <br>
-      <%= form_tag dossier_dossier_comments_path(@dossier) do %>
-      <%= label_tag "Comment" %>
-      <%= text_area_tag "dossier_comments[content]" %>
-      <%= hidden_field_tag "dossier_comments[dossier_id]", @dossier.id  %>
-      <%= submit_tag "Submit Comment" %>
-      <% end %>
+<div class="dossier-form-container">
+  
+  <h2>Comments re: <%= @user.full_name %></h2>
 
-      <!-- show the hashtags -->
-      <%= @dossier.hashtags %>
+  <span class="collapser">toggle <i class="icon-chevron-down"></i></span>
+
+  <hr>
+
+  <div class="collapsible">
+
+    <div class="comments">
+      <h3><%= pluralize(@dossier.dossier_comments.count, 'Comment') %></h3>
+      <% @dossier.dossier_comments.each do |comment| %>
+        <div class="comment">
+          <strong><%= comment.user.full_name %></strong>: <%= comment.content %>
+        </div>
+      <% end %>
+    </div>
+
+
+    <%= form_tag dossier_dossier_comments_path(@dossier) do %>
+      <%= label_tag "Comment" %>
+      <%= text_area_tag "dossier_comment[content]" %>
+      <%= hidden_field_tag "dossier_comment[dossier_id]", @dossier.id  %>
+      <%= hidden_field_tag 'dossier_comment[user_id]', current_user.id %>
+      <%= submit_tag "Submit Comment", :class => "btn btn-default" %>
+    <% end %>
+
+    <!-- show the hashtags -->
+    <h3>Hashtags from comments:</h3>
+    <ul>
+      <% @dossier.hashtags.each do |hashtag| %>
+        <li><%= hashtag.content %></li>
+      <% end %>
+    </ul>
+
   </div>
+  
+</div>

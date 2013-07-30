@@ -1,25 +1,22 @@
-<body class="dossier-form-bg">
 <div class="container">
 
-<!-- APPLICATION STATUS BOX -->
-<%= render "dossiers/application_status" %>
+  <%= render "dossiers/alert_notice" %>
+
+  <!-- APPLICATION STATUS BOX -->
+  <%= render "dossiers/application_status" %>
 
   <% if current_user.id == @dossier.user_id  %>
-     
-<!-- PREWORK BOX --> 
-<%= render "dossiers/prework" %>
-
+    <!-- PREWORK BOX --> 
+    <!-- HIDE FROM ADMINS -->
+    <%= render "dossiers/prework" %>
   <% end %>
 
-<!-- APPLICATION SUMMARY BOX -->
-<%= render "dossiers/application_summary" %>
+  <!-- APPLICATION SUMMARY BOX -->
+  <%= render "dossiers/application_summary" %>
 
   <% if can? :update, @dossier  %>
-    
-<!-- COMMENTS BOX  --> 
-<%= render "dossiers/comments" %>
-
+    <!-- COMMENTS BOX  --> 
+    <!-- HIDE FROM APPLICANTS -->
+    <%= render "dossiers/comments" %>
   <% end %>
-
 </div>
-</body>
