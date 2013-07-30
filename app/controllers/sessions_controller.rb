@@ -29,7 +29,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    raise session.inspect
+    #raise session.inspect
     reset_session
     redirect_to login_path, :notice => "You are logged out"
   end

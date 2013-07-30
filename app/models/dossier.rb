@@ -12,7 +12,7 @@ class Dossier < ActiveRecord::Base
   has_many :hashtags, through: :user_dossier_hashtags
 
   validates_presence_of :tagline, :purpose, :analytic_skills, :message => " cannot be blank"
-  validates_numericality_of :phone_number
+  #validates_numericality_of :phone_number
 
   include AASM
 

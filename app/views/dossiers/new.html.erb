@@ -4,142 +4,140 @@
       <div class="dossier-form-container">
         <h2> Flatiron Application</h2><br>
         <div class = "form-wrapper">
-          
- 
-
-          <%= form_tag dossiers_path, :class => 'new_user_form inline-input' do %>
-          <%= render "shared/error_messages", :target => @user %>
           <h4><strong> Account Information </strong> </h4>
           <hr> 
 
-         <!-- NAME -->
+
+
+
+        <%= form_for @dossier do |f| %>
+          <%= render "shared/error_messages", :target => @user %>
+
+          <%= fields_for  @user do |u| %>
+            
+          
+
+          <!-- USER STUFF -->
           <div class="span12 field-box">
-          <%= label_tag "First name", nil, :class=>'span3' %>
-          <%= mark_required(@user, :first_name) %>
-          <%= text_field_tag "user[first_name]", nil, :class => 'span9' %>
+            <%= u.label :first_name %>First Name<%= mark_required(@user, :first_name) %><br />
+            <%= u.text_field :first_name %>
           </div>
 
           <div class="span12 field-box">
-          <%= label_tag "Last name", nil, :class=>'span3' %>
-          <%= mark_required(@user, :last_name) %>
-          <%= text_field_tag "user[last_name]", nil, :class => 'span9' %>
+            <%= u.label :last_name %>Last Name<%= mark_required(@user, :last_name) %><br />
+            <%= u.text_field :last_name %>
           </div>
 
-          <!-- EMAIL  -->
           <div class="span12 field-box">
-          <%= label_tag "Email", nil, :class=>'span3' %>
-          <%= mark_required(@user, :email) %>
-          <%= text_field_tag "user[email]", nil, :class => 'span9' %>
+            <%= u.label :email %>E-mail<%= mark_required(@user, :email) %><br />
+            <%= u.text_field :email %>
           </div>
 
-  
-      <div class="span12 field-box">
-      <%= label_tag "phone_number", nil, :class=>'span3' %>
-      <%= mark_required(@user, :phone_number) %>
-      <%= text_field_tag "dossier[phone_number]", nil, :class => 'span9' %>
-    </div>
+         <!-- DOSSIER STUFF -->
 
-    
-      </div>
-<br>
-<br>
-      <h4><strong>Links</strong></h4>
-        <hr> 
+         <div class="span12 field-box">
+            <%= f.label :phone_number %>Phone Number<%= mark_required(@dossier, :phone_number) %><br />
+            <%= f.text_field :phone_number %>
+          </div>
 
-      <div class="span12 field-box">
-      <%= label_tag "twitter", nil, :class=>'span3' %>
-      <%= text_field_tag "dossier[twitter]", nil, :class => 'span9' %>
-      </div>
+          <div class="span12 field-box">
+            <%= f.label :city %>Current City<%= mark_required(@dossier, :city) %><br />
+            <%= f.text_field :city %>
+          </div>
 
-      <div class="span12 field-box">
-      <%= label_tag "github", nil, :class=>'span3' %>
-      <%= text_field_tag "dossier[github]", nil, :class => 'span9' %>
-      </div>
+           </div>
+  <br>
+  <br>
+        <h4><strong>Links</strong></h4>
+          <hr> 
 
-      <div class="span12 field-box">
-    <%= label_tag "blog", nil, :class=>'span3' %>
-    <%= text_field_tag "dossier[blog]", nil, :class => 'span9' %>
-    </div>
+          <div class="span12 field-box">
+            <%= f.label :twitter %>Twitter Handle<%= mark_required(@dossier, :twitter) %><br />
+            <%= f.text_field :twitter %>
+          </div>
 
-    <div class="span12 field-box">
-    <%= label_tag "linkedin", nil, :class=>'span3' %>
-    <%= text_field_tag "dossier[linkedin]", nil, :class => 'span9' %>
-    </div>
+          <div class="span12 field-box">
+            <%= f.label :github %>Github Addy<%= mark_required(@dossier, :github) %><br />
+            <%= f.text_field :github %>
+          </div>
 
-    <div class="span12 field-box">
-    <%= label_tag "website", nil, :class=>'span3' %>
-    <%= text_field_tag "dossier[website]", nil, :class => 'span9' %>
-    </div>
+          <div class="span12 field-box">
+            <%= f.label :blog %>Blog Addy<%= mark_required(@dossier, :blog) %><br />
+            <%= f.text_field :blog %>
+          </div>
 
-    <div class="span12 field-box">
-    <%= label_tag "other_links", nil, :class=>'span3' %>
-    <%= text_field_tag "dossier[other_links]", nil, :class => 'span9' %>
-    </div>
+          <div class="span12 field-box">
+            <%= f.label :linkedin %>Linkedin Addy<%= mark_required(@dossier, :linkedin) %><br />
+            <%= f.text_field :linkedin %>
+          </div>
 
-     <!-- TAGLINE -->
-     <h4><strong>Background</strong></h4>
+          <div class="span12 field-box">
+            <%= f.label :website %>Your Website<%= mark_required(@dossier, :website) %><br />
+            <%= f.text_field :website %>
+          </div>
+
+          <h4><strong>Background</strong></h4>
        <hr>
+           <div class="span12 field-box">
+            <%= f.label :tagline %>In 140 characters, tell us what makes you unique. <%= mark_required(@dossier, :tagline) %><br />
+            <%= f.text_area :tagline %>
+          </div>
 
-      <div class="span12 field-box">
-      <%= label_tag "In 140 characters, tell us what makes you unique.", nil, :class=>'span12' %>
-      <%= mark_required(@user, :tagline) %>
-      <%= text_area_tag "dossier[tagline]", nil, :class => 'span12' %>
-      </div>
-    <br>
+             <div class="span12 field-box">
+            <%= f.label :career %>Tell us about your professional/educational career to date. What are you up to now and how did you end up there?<%= mark_required(@dossier, :career) %><br />
+            <%= f.text_area :career %>
+          </div>
 
-    <div class="span12 field-box">
-    <%= label_tag "Describe your background with computer programming (if any). Feel free to include links to any online resources you've completed. *", nil, :class=>'span12' %>
-    <%= text_area_tag "dossier[career]", nil, :class => 'span12' %>
-    </div>
+             <div class="span12 field-box">
+            <%= f.label :purpose %>Describe your background with computer programming (if any). Feel free to include links to any online resources you've completed. <%= mark_required(@dossier, :purpose) %><br />
+            <%= f.text_area :purpose %>
+          </div>
 
-    <div class="span12 field-box">
-    <%= label_tag "Describe your background with computer programming (if any). Feel free to include links to any online resources you've completed.", nil, :class=>'span12' %>
-    <%= mark_required(@user, :purpose) %>
-    <%= text_area_tag "dossier[purpose]", nil, :class => 'span12' %>
-    </div>
+             <div class="span12 field-box">
+            <%= f.label :code_skills %>Describe your background with computer programming (if any). Feel free to include links to any online resources you've completed. <%= mark_required(@dossier, :code_skills) %><br />
+            <%= f.text_area :code_skills %>
+          </div>
 
-    <div class="span12 field-box">
-    <%= label_tag "Describe your background with computer programming (if any). Feel free to include links to any online resources you've completed.", nil, :class=>'span12' %>
-    <%= text_area_tag "dossier[code_skills]", nil, :class => 'span12' %>
-    </div>
+             <div class="span12 field-box">
+            <%= f.label :analytic_skills %>The ability to think in a structured or quantitative way to solve complex problems is an important element of being a successful developer. Can you tell us anything that demonstrates your abilities in that realm? (feel free to include anything from standardized test scores, previous areas of study, or relevant work experience)<%= mark_required(@dossier, :analytic_skills) %><br />
+            <%= f.text_area :analytic_skills %>
+          </div>
 
-    <div class="span12 field-box">
-    <%= label_tag "The ability to think in a structured or quantitative way to solve complex problems is an important element of being a successful developer. Can you tell us anything that demonstrates your abilities in that realm? (feel free to include anything from standardized test scores, previous areas of study, or relevant work experience)", nil, :class=>'span12' %>
-    <%= text_area_tag "dossier[analytic_skills]", nil, :class => 'span12' %>
-    </div>
+             <div class="span12 field-box">
+            <%= f.label :tidbits %>Is there anything else you'd like us to know?<%= mark_required(@dossier, :tidbits) %><br />
+            <%= f.text_area :tidbits %>
+          </div>
+     </div>
 
-    <div class="span12 field-box">
-    <%= label_tag "Is there anything else you'd like us to know?", nil, :class=>'span12' %>
-    <%= text_area_tag "dossier[tidbits]", nil, :class => 'span12' %>
-    </div>
-
-
-    
-
-    <div class = "span12 select-box">
-            <%= label_tag "Semester", nil, :class=>'span3' %>
-            <!-- iterate over the courses, use each_with index, then, output an array in the below form -->
-            <!-- [['semester', index]] => [['Spring', 1], ['Summer', 2], ['Fall', 3]]-->
-            <%= select_tag(:semester, options_for_select( @course_list , :selected => [:semester])) %><br><br>
-   </div>
-
- </div>
-
- <br>
- <hr>
-   <div class="span12 field-box">
-    <%= submit_tag "Submit Application", :class=>'btn-glow primary'  %>
-   </div>
- <br>
- <br>
-    </div>
-
-  </div>
-
-
+ </div> <%= fields_for  @course do |c| %>
  
-  <%end%>  
-  
+          
+ <br>
+ <hr>      
+<div class="span12 field-box">
+            <%= c.label :semester %>choose a semester<%= mark_required(@course, :semester) %><br />
+            <%= c.select :semester, @course_list, :selected => [:semester] %>
+          </div>
+
+
+
+ <% end %>
+
+
+          <div class="actions">
+            <%= f.submit  "Submit Application", :class=>'btn-glow primary' %>
+          </div>
+
+          <%end%>
+             </div>
+ <br>
+ <br>
+    </div>
+
   </div>
+        <% end %>
+
+
+          </div>
 </div>
 </div>
