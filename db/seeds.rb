@@ -3,9 +3,9 @@
 # -Take out Tagline
 # -Connect all dossiers to the created courses
 
-Course.create(:season => "Fall 2013", :seats => 32, :subject => "Rails")
-Course.create(:season => "Fall 2013", :seats => 20, :subject => "iOS")
-Course.create(:season => "Spring 2014", :seats => 30, :subject => "Rails")
+Course.create(:season => "Fall 2013", :seats => 32, :subject => "Rails", :starting_date => Date.new(2013, 9, 23))
+Course.create(:season => "Fall 2013", :seats => 20, :subject => "iOS", :starting_date => Date.new(2013, 9, 30))
+Course.create(:season => "Spring 2014", :seats => 30, :subject => "Rails", :starting_date => Date.new(2014, 2, 3))
 
 300.times do
   user = User.new
