@@ -2,7 +2,7 @@ class Dossier < ActiveRecord::Base
   attr_accessible :aasm_state, :tagline, :phone_number, :city, :twitter,
                   :linkedin, :blog, :github, :website, :other_links,
                   :career, :purpose, :code_skills, :analytic_skills, :tidbits,
-                  :user_id, :course
+                  :user_id, :course, :skype
   belongs_to :user
   has_many :dossier_statuses
   has_many :dossier_comments
@@ -17,6 +17,8 @@ class Dossier < ActiveRecord::Base
   validates_presence_of :career
   validates_presence_of :purpose
   validates_presence_of :code_skills
+  validates_presence_of :skype
+
   #validates_numericality_of :phone_number
   validates :phone_number, :presence => true, :format => { :with => /\+\d{11}/, :on => :create, :message => "is invalid. Please include the area code" }
 

@@ -1,4 +1,4 @@
-#Updating Seeds
+dossier#Updating Seeds
 # -Add two courses
 # -Take out Tagline
 # -Connect all dossiers to the created courses
@@ -34,7 +34,8 @@ Course.create(:season => "Spring 2014", :seats => 30, :subject => "Rails")
     :code_skills        => Populator.paragraphs(3),
     :analytic_skills    => Populator.paragraphs(3),
     :tidbits            => Populator.paragraphs(3),
-    :course             => courses.sample
+    :course             => courses.sample,
+    :skype              => "#{Populator.words(1)}#{rand(999)}"
   })
 
   # user.last_dossier.aasm_state = Dossier.aasm.states.sample.to_s

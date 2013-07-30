@@ -5,4 +5,5 @@ class InterviewController < ApplicationController
     @dossier = Dossier.find(params[:id])
     @user = @dossier.user
   end
+  
 end

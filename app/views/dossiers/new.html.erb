@@ -46,6 +46,11 @@
           </div>
 
           <div class="span12 field-box">
+            <%= f.label :skype %>Skype Handle<%= mark_required(@dossier, :skype) %><br />
+            <%= f.text_field :skype %>
+          </div>
+
+          <div class="span12 field-box">
             <%= f.label :city %>Current City<%= mark_required(@dossier, :city) %><br />
             <%= f.text_field :city %>
           </div>
