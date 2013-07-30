@@ -8,3 +8,6 @@
 
 <h4>Total Applications for <%= @course.semester%></h4>
 <h5><%= course_count_all(@course) %></h5>
+
+<h4>Days Left till Class Begins</h4>
+<h5><%= (@course.starting_date - Date.today).to_i %> days</h5>
