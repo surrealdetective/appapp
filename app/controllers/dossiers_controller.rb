@@ -22,10 +22,13 @@ class DossiersController < ApplicationController
     dossier = user.dossiers.build(params[:dossier])
     dossier.course_id = params[:semester]
     dossier.save
-    user.save_with_dossier_status("submitted")
-    session[:user_id] = user.id
-    redirect_to dossier
-  end 
+    if user.save_with_dossier_status("submitted")
+      session[:user_id] = user.id
+      redirect_to dossier
+    else
+      redirect_to new_dossier_path
+    end
+  end
 
   def index
     @title = "Dashboard"
