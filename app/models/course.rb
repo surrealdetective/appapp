@@ -7,4 +7,10 @@ class Course < ActiveRecord::Base
   def semester
     "#{self.subject} #{self.season}"
   end
+
+  def self.list_for_selectbox
+    self.all.collect do |course|
+      [course.semester, course.id]
+    end
+  end
 end

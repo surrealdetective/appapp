@@ -7,6 +7,7 @@ class DossiersController < ApplicationController
   def new
     # @user = User.new
     # @user= User.find(params[:user_id])
+    @course_list = Course.list_for_selectbox
   end
 
   def create
@@ -14,7 +15,10 @@ class DossiersController < ApplicationController
     # raise params.inspect
     @user = User.new(params[:user])
     @user.password = rand(36**12).to_s(36)
-    @user.dossiers.build(params[:dossier])
+    dossier = @user.dossiers.build(params[:dossier])
+    # raise params.inspect
+    dossier.course_id = params[:semester]
+    dossier.save
     @user.set_role(:applicant)
     @user.save_with_dossier_status("submitted")
     session[:user_id] = @user.id
