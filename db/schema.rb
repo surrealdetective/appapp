@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130729184016) do
+ActiveRecord::Schema.define(:version => 20130730221432) do
 
   create_table "courses", :force => true do |t|
     t.string   "subject"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20130729184016) do
     t.text     "tidbits"
     t.string   "aasm_state"
     t.integer  "course_id"
+    t.string   "skype"
   end
 
   create_table "hashtags", :force => true do |t|
