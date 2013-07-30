@@ -4,7 +4,7 @@
 
   <h2>Summary of <%= @user.full_name %>'s Application (<%= @dossier.semester %>)</h2>
 
-  <span class="collapser">toggle <i class="icon-chevron-down"></i></span>
+  <%= render 'dossiers/collapser_button' %>
 
   <div class="collapsible">
     <hr>
