@@ -32,103 +32,16 @@
 -->
 <body class='<%= params[:controller] %> <%= params[:action] %> <%= @body_classes %>'>
 
-  <!-- navbar -->
-  <div class="navbar navbar-inverse">
-      <div class="navbar-inner">
-          <button type="button" class="btn btn-navbar visible-phone" id="menu-toggler">
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-          </button>
-
-          
-          <%= link_to (image_tag("flatiron_school_logo.png")), :root, {:class => "brand"} %> 
-
-       
-
-          <ul class="nav pull-right">   
-
-
-            <% if current_user %>
-
-
-
-            <!--   SEARCH BAR    -->        
-              <li class="hidden-phone">
-                  <%= form_tag dashboard_path, :method => "get" do %>
-                    <input name="search" class="search" type="text" value='<%= params[:search] %>' />
-                  <% end %>
-              </li>
-
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle hidden-phone" data-toggle="dropdown">
-                    <%= current_user.full_name %> 
-                    <b class="caret"></b>
-                </a>              
-                <ul class="dropdown-menu">
-                  <% if current_user.last_dossier %>
-                    <li class="hidden-phone">
-                      <%= link_to "Last dossier", dossier_path(current_user.last_dossier) %>
-                    </li>
-                  <% end %>
-                  <li class="settings hidden-phone">
-                    <%= link_to "Log Out", logout_path %>
-                  </li>
-                </ul>
-              </li>
-            <% end %>
-
-          </ul>            
-      </div>
-  </div>
-  <!-- end navbar -->
-
-
-
+  <%= render "layouts/nav" %>
 
   <div class="content">  
-        <!-- upper main stats -->
-<% if current_user && current_user.role?(:moderator) %>
-  <div id="main-stats">
-      <div class="row-fluid stats-row">
-          <div class="span3 stat">
-            <div class="data">
-              <span class="number">
-                <%= link_to dossier_count_by_state(:new), thinner_path %>
-              </span>
-              <span class="number_label"> New Applicants </span>
-            </div>
-          </div>
-          <div class="span3 stat">
-            <div class="data">
-              <span class="number"><%= link_to dossier_count_by_state(:needs_review), needs_review_first_path %></span>
-              <span class="number_label"> Need Review               </span>
-            </div>
-          </div>
-          <div class="span3 stat">
-            <div class="data">
-              <span class="number"><%= link_to dossier_count_by_state(:needs_interview), dossier_interview_path %> </span>
-              <span class="number_label"> Need Interviews              </span>
-            </div>
-          </div>
-          <div class="span3 stat last">
-            <div class="data">
-              <span class="number"><%= link_to dossier_count_by_state(:needs_decision), class_path %> </span>
-              <span class="number_label"> Need Decisions              </span>
-            </div>
-          </div>
-      </div>
-  </div>
-  <!-- end upper main stats -->
-<% end %>
+    <!-- upper main stats -->
+    <% if current_user && current_user.role?(:moderator) %>
+      <%= render "layouts/stats" %>
+    <% end %>
 
     <div class="container-fluid" id="pad-wrapper">
-
-
-        
-
-          <%= yield %>
-
+      <%= yield %>
     </div>
   </div>
   <%= javascript_include_tag "application" %>
