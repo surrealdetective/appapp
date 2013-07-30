@@ -5,8 +5,10 @@ class DossiersController < ApplicationController
 
 
   def new
-    # @user = User.new
+     @user = User.new
+     @dossier = Dossier.new
     # @user= User.find(params[:user_id])
+
     @course_list = Course.list_for_selectbox
   end
 
@@ -29,6 +31,7 @@ class DossiersController < ApplicationController
       redirect_to new_dossier_path
     end
   end
+
 
   def index
     @title = "Dashboard"

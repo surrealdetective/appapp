@@ -12,9 +12,11 @@ class User < ActiveRecord::Base
   # attr_accessor :password
   # before_save :encrypt_password
 
-  # validates :email, :presence => true, :uniqueness => true
+   validates :email, :presence => true, :uniqueness => true#, :email_format => true
   # validates :name, :presence => true
   # validates_confirmation_of :password
+   validates_presence_of     :first_name, :on => :create, :message => "can't be empty"
+   validates_presence_of     :last_name, :on => :create, :message => "can't be empty"
    validates_presence_of     :password, :on => :create
 
   def save_with_dossier_status(status_text)

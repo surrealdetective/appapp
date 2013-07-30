@@ -11,6 +11,9 @@ class Dossier < ActiveRecord::Base
   has_many :user_dossier_hashtags
   has_many :hashtags, through: :user_dossier_hashtags
 
+  validates_presence_of :tagline, :purpose, :analytic_skills, :message => " cannot be blank"
+  validates_numericality_of :phone_number
+
   include AASM
 
   aasm do
@@ -237,8 +240,10 @@ class Dossier < ActiveRecord::Base
 
   #lets fix the view by adding a .semester method
   # it is a reader method.
+
   def semester
     self.course.semester
   end
+
 
 end
