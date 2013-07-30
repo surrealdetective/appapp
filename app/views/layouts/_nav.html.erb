@@ -9,12 +9,12 @@
     <%= link_to (image_tag("flatiron_school_logo.png")), :root, {:class => "brand"} %> 
     <ul class="nav pull-right">
       
-      <% if current_user.role? :moderator %>
-        <!-- SEARCH BAR -->
-        <%= render "layouts/search" %>
-      <% end %>
-
       <% if current_user %>
+
+        <% if current_user.role? :moderator %>
+          <!-- SEARCH BAR -->
+          <%= render "layouts/search" %>
+        <% end %>
 
         <!-- DROPDOWN WITH LOGOUT BUTTON -->
         <%= render "layouts/dropdown" %>

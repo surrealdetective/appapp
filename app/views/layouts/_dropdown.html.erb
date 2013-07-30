@@ -10,6 +10,9 @@
       </li>
     <% end %>
     <li class="settings hidden-phone">
+      <%= link_to "New Dossier", new_dossier_path unless current_user.role? :moderator %>
+    </li>
+    <li class="settings hidden-phone">
       <%= link_to "Log Out", logout_path %>
     </li>
   </ul>
