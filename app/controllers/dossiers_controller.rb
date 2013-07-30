@@ -6,7 +6,9 @@ class DossiersController < ApplicationController
 
   def new
      @user = User.new
+     @dossier = Dossier.new
     # @user= User.find(params[:user_id])
+
   end
 
   def create
@@ -19,7 +21,7 @@ class DossiersController < ApplicationController
     @user.save_with_dossier_status("submitted")
     session[:user_id] = @user.id
     UserMailer.welcome_email(@user).deliver
-    redirect_to @user.dossiers.first
+    #redirect_to @user.dossiers.first
   end 
 
   def index
