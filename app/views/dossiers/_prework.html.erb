@@ -1,41 +1,23 @@
 <!-- PREWORK BOX -->
-
 <div class="dossier-form-container">
-  <a class="dropdown-toggle" href="#">
-    <span><h2> Flatiron School Prework </h2> close </span>
-    <i class="icon-chevron-down"></i>
-  </a>
-  <hr>
-  <br>
-  <table width="100%" cellpadding="10">
-    <tr>
-      <th>
-      <%= link_to image_tag("flatironschool_logo.png"), "http://prework.flatironschool.com/" %>
-      </th>
-      <th>
-        <h4> In our prework you're going to find a ton of reading, videos, and quizzes that Flatiron students complete before their semester even begins. <br> <br><a href="http://teamtreehouse.com/"> Link to Flatiron School Prework </a></h4>
-      </th>
-    </tr>
-  </table>
-  <hr> 
-  <table width="100%" cellpadding="10">
-    <tr>
-      <br>
-      <h4> We also highly recommended the following courses to supplement the Flatiron School prework. Have fun with it and enjoy. This is just the beginning! </h4>
-      <th>
-      <%= link_to image_tag("treehouse_logo.jpg"), "http://teamtreehouse.com/" %>
-      <p><a href="http://teamtreehouse.com/"> Get started with Treehouse </a></p>
-      </th>
-      <br>
-      <th>
-      <%= link_to image_tag("codeschool_logo.png"), "http://www.codeschool.com/paths/ruby" %>
-      <p><a href="http://www.codeschool.com/paths/ruby"> Get started with Code School</a></p>
-      </th>
-      <br>
-      <th>
-      <%= link_to image_tag("codeacademy_logo.png"), "http://www.codecademy.com/tracks/ruby/" %>
-      <p><a href="http://www.codecademy.com/tracks/ruby/"> Get started with Codeacademy </a></p>
-      </th>
-    </tr>
-  </table>
- </div>
+
+  <h2>Prework</h2>
+  <%= render 'dossiers/collapser_button' %>
+
+  <div class="collapsible">
+    <p>In <a href="http://prework.flatironschool.com">our prework</a> you're going to find a ton of reading, videos and quizzes that Flatiron students complete before their semester even begins.</p>
+    <p>We also highly recommend the following courses to suppplement the Flatiron School prework. Have fun with it and enjoy. This is just the beginning!</p>
+    <ul class="logo_list">
+      <li>
+        <%= link_to image_tag("treehouse_logo.jpg"), "http://teamtreehouse.com/" %>
+      </li>
+      <li>
+        <%= link_to image_tag("codeschool_logo.png"), "http://www.codeschool.com/paths/ruby" %>
+      </li>
+      <li>
+        <%= link_to image_tag("codeacademy_logo.png"), "http://www.codecademy.com/tracks/ruby/" %>
+      </li>
+    </ul>
+
+  </div>
+</div>

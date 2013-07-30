@@ -11,19 +11,20 @@ class DossiersController < ApplicationController
   end
 
   def create
-    # @user = User.find(params[:user_id])
-    # raise params.inspect
-    @user = User.new(params[:user])
-    @user.password = rand(36**12).to_s(36)
-    dossier = @user.dossiers.build(params[:dossier])
-    # raise params.inspect
+    if current_user
+      user = current_user
+    else
+      user = User.new(params[:user])
+      user.password = rand(36**12).to_s(36)
+      user.set_role(:applicant)
+      UserMailer.welcome_email(user).deliver
+    end
+    dossier = user.dossiers.build(params[:dossier])
     dossier.course_id = params[:semester]
     dossier.save
-    @user.set_role(:applicant)
-    @user.save_with_dossier_status("submitted")
-    session[:user_id] = @user.id
-    UserMailer.welcome_email(@user).deliver
-    redirect_to @user.dossiers.first
+    user.save_with_dossier_status("submitted")
+    session[:user_id] = user.id
+    redirect_to dossier
   end 
 
   def index

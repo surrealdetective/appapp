@@ -5,10 +5,7 @@
 
   <%= render 'dossiers/collapser_button' %>
 
-  <hr>
-
   <div class="collapsible">
-
     <div class="comments">
       <h3><%= pluralize(@dossier.dossier_comments.count, 'Comment') %></h3>
       <% @dossier.dossier_comments.each do |comment| %>
