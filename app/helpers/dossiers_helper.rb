@@ -6,7 +6,13 @@ module DossiersHelper
   # dossier_count_by_state(:needs_review)
   #    #=> 35
   def dossier_count_by_state(state)
-    Dossier.where(aasm_state: state).count
+    if state == :needs_decision
+      Dossier.where("aasm_state = ? or aasm_state = ?", "needs_decision_from_interview", "needs_decision_from_code_interview").count
+    elsif state == :needs_interview
+      Dossier.where("aasm_state = ? or aasm_state = ?", "needs_interview", "needs_code_interview").count
+    else
+      Dossier.where(aasm_state: state).count
+    end
   end
 
 end
