@@ -45,7 +45,7 @@ Appapp::Application.routes.draw do
   get '/needs_interview' => 'needs_interview#index', as: :dossier_interview
 
   post '/dossiers/:id/claim_interview' => 'interview#claim', :as => :claim_interview
-
+  get '/dossiers/:id/schedule' => 'interview#schedule', :as => :schedule_interview
 
 
 

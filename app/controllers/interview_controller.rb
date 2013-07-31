@@ -19,5 +19,10 @@ class InterviewController < ApplicationController
     end
     redirect_to :back
   end
+
+  def schedule
+    @days = Date.tomorrow..(Date.tomorrow+6.day)
+    
+  end
   
 end

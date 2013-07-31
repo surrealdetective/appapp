@@ -1,0 +1,14 @@
+#easiest implementation
+
+#show the times for a single day.
+
+<% @days.each do |day| %>
+  <div>
+    <%= day.strftime('%A %B %d, %Y') %>
+      <% 8.times do %>
+        <div>
+          <%= start_time(day) %>
+        </div>
+      <% end %>
+  </div>
+<% end %>
