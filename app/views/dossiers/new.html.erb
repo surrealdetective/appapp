@@ -41,17 +41,17 @@
          <!-- DOSSIER STUFF -->
 
          <div class="span12 field-box">
-            <%= f.label :phone_number %>Phone Number<%= mark_required(@dossier, :phone_number) %><br />
+            <%= f.label :phone_number %>Phone Number<%= mark_required(@user, :phone_number) %><br />
             <%= f.text_field :phone_number %>
           </div>
 
           <div class="span12 field-box">
-            <%= f.label :skype %>Skype Handle<%= mark_required(@dossier, :skype) %><br />
+            <%= f.label :skype %>Skype Handle<%= mark_required(@user, :skype) %><br />
             <%= f.text_field :skype %>
           </div>
 
           <div class="span12 field-box">
-            <%= f.label :city %>Current City<%= mark_required(@dossier, :city) %><br />
+            <%= f.label :city %>Current City<%= mark_required(@user, :city) %><br />
             <%= f.text_field :city %>
           </div>
 

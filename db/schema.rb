@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130731190901) do
+ActiveRecord::Schema.define(:version => 20130731195313) do
 
   create_table "courses", :force => true do |t|
     t.string   "subject"
@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(:version => 20130731190901) do
   create_table "dossiers", :force => true do |t|
     t.integer  "user_id"
     t.string   "tagline"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.string   "phone_number"
     t.text     "city"
     t.string   "twitter"
@@ -58,9 +58,6 @@ ActiveRecord::Schema.define(:version => 20130731190901) do
     t.string   "aasm_state"
     t.integer  "course_id"
     t.string   "skype"
-    t.integer  "passion_score"
-    t.integer  "leadership_score"
-    t.integer  "technical_score"
   end
 
   create_table "hashtags", :force => true do |t|
@@ -73,6 +70,15 @@ ActiveRecord::Schema.define(:version => 20130731190901) do
     t.integer  "user_id"
     t.integer  "dossier_id"
     t.string   "stage"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "scores", :force => true do |t|
+    t.integer  "leadership"
+    t.integer  "tech"
+    t.integer  "passion"
+    t.integer  "dossier_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

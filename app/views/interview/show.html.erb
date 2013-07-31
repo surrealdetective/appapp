@@ -6,6 +6,7 @@
   <%= render "dossiers/application_status" %>
 
   <% if current_user.id == @dossier.user_id  %>
+    <!-- # @dossier.belongs_to_user? current_user --> 
     <!-- PREWORK BOX --> 
     <!-- HIDE FROM ADMINS -->
     <%= render "dossiers/prework" %>
@@ -17,7 +18,8 @@
   <% if can? :update, @dossier  %>
     <!-- COMMENTS BOX  --> 
     <!-- HIDE FROM APPLICANTS -->
-  <%= render "interview/attribute_definer" %>
+  <%= render "interview/attribute_definer", :score => @score %>
+  <%end%>
 
   <% if can? :update, @dossier  %>
     <!-- COMMENTS BOX  --> 

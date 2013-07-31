@@ -26,9 +26,11 @@ Appapp::Application.routes.draw do
   resources :dossiers, :only => [:new, :create, :show, :index] do
     resources :dossier_statuses, :only => [:new, :create]
     resources :dossier_comments, :only => [:create, :edit, :update, :destroy]
+    resources :score, :only => [:create, :edit, :update, :destroy]
   end
 
   put '/dossiers/:id/transition/:transition' => 'dossiers#transition', :as => :transition
+  #get '/dossiers/:id/score', as: :dossier_score_index
 
   # get '/admin' => 'dossiers#index'
   get '/dossiers/filter_by/:filter' => 'dossiers#filter_by', as: :dossiers_filter_by
@@ -36,13 +38,14 @@ Appapp::Application.routes.draw do
   get '/dossiers/filter' => 'dossiers#filter', as: :dossiers_filter
 
   get '/dossiers/:id/interview/' => 'interview#show', as: :interview_show
-
+  #put '/dossiers/:id/interview/' => 'interview#', as: :interview_show
 
   get '/needs_review' => 'needs_review#redirect_to_first', :as => :needs_review_first
   get '/needs_review/:id' => 'needs_review#show', :as => :needs_review_show
 
   # get '/dossiers/:id/needs-review' => 'needs_review#index', as: :dossier_review
   get '/needs_interview' => 'needs_interview#index', as: :dossier_interview
+
 
   post '/dossiers/:id/claim_interview' => 'interview#claim', :as => :claim_interview
 

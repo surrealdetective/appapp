@@ -1,0 +1,25 @@
+<div class="dossier-form-container">
+
+  <%= form_for(score, url: dossier_score_index_path(@dossier))  do |f| %>
+    <%= render "shared/error_messages", :target => @user %>
+    
+    <div class="span12 field-box">
+      <%= f.label :passion %>Passion Score<%= mark_required(@user, :passion) %><br />
+      <%= f.text_field :passion %>
+    </div>
+    
+    <div class="span12 field-box">
+      <%= f.label :tech %>Technical Score<%= mark_required(@user, :tech) %><br />
+      <%= f.text_field :tech %>
+    </div>
+    
+    <div class="span12 field-box">
+      <%= f.label :leadership %>Leadership Score<%= mark_required(@user, :leadership) %><br />
+      <%= f.text_field :leadership %>
+    </div>
+    <%= f.submit  "Submit Scores", :class=>'btn-glow primary' %>
+
+    <%end%>
+    <%= @dossier.score.inspect %>
+    
+</div
