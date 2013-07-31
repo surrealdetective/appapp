@@ -47,7 +47,7 @@ Appapp::Application.routes.draw do
 
   post '/dossiers/:id/claim_interview' => 'interview#claim', :as => :claim_interview
   get '/dossiers/:id/schedule' => 'interview#schedule', :as => :schedule_interview
-  post '/dossiers/:id/schedule' => 'interview#schedule', :as => :schedule_interview
+  post '/dossiers/:id/schedule' => 'interview#create', :as => :schedule_interview
 
 
   # The priority is based upon order of creation:
