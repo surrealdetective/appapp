@@ -1,13 +1,10 @@
-#dossier#Updating Seeds
-# -Add two courses
-# -Take out Tagline
-# -Connect all dossiers to the created courses
-
+# create 3 courses
 Course.create(:season => "Fall 2013", :seats => 32, :subject => "Rails", :starting_date => Date.new(2013, 9, 23))
 Course.create(:season => "Fall 2013", :seats => 20, :subject => "iOS", :starting_date => Date.new(2013, 9, 30))
 Course.create(:season => "Spring 2014", :seats => 30, :subject => "Rails", :starting_date => Date.new(2014, 2, 3))
 
-300.times do
+# create 300 users with one dossier each
+30.times do |i|
   user = User.new
   user.first_name = Faker::Name.first_name
   user.last_name = Faker::Name.last_name
@@ -40,6 +37,9 @@ Course.create(:season => "Spring 2014", :seats => 30, :subject => "Rails", :star
 
   # user.last_dossier.aasm_state = Dossier.aasm.states.sample.to_s
   user.last_dossier.random_status
+
+  puts user
+  puts user.valid?
 
 
   user.save

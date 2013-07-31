@@ -12,22 +12,27 @@ class UserMailer < ActionMailer::Base
       Also, if you'd like to get started coding, you can look through the Flatiron pre-work at http://prework.flatironschool.com. Enjoy!")
   end
 
+  def interview_email(user)
+    @user = user
+    mail(:to => @user.email, :subject => "We'd like to interview you", :body => "Hi #{@user.first_name}, \n We would like to interview you. We need to implement a aystem to send you a link to our schedule")
+  end
+
   #there needs to be a view dedicated to the 2nd interview.
   def code_email(user)
     @user = user
 
-    mail(:to => @user.email, :subject => "Get ready to code!", :body => "Hi #{@user.first_name}, /n \
+    mail(:to => @user.email, :subject => "Get ready to code!", :body => "Hi #{@user.first_name}, \n \
       You made it to the next stage in the interviewing process! Now we'd like you to solve a code puzzle as part of the application process. \
       I'd like you to write a program that simulates a simple game that we all know and love - tic tac toe. \
       You are allowed to write it in any language you want, but we prefer Ruby or Javascript. \
-      You're allowed to use outside resources, but you're not allowed to copy code. /n Good luck!")
+      You're allowed to use outside resources, but you're not allowed to copy code. \n Good luck!")
   end
 
   #user is rejected, deferred, or accepted
   def rejected_email(user)
     @user = user
 
-    mail(:to => @user.email, :subject => "Thank you for your interest in Flatiron School", :body => "Hi #{@user.first_name}, /n \
+    mail(:to => @user.email, :subject => "Thank you for your interest in Flatiron School", :body => "Hi #{@user.first_name}, \n \
       Thanks for your interest in Flatiron School. Unfortunately, we are no longer accepting applicants for #{@user.last_dossier.semester}. \
       Please continue the pre-work and apply again next semester or for a different class!")
   end
@@ -35,7 +40,7 @@ class UserMailer < ActionMailer::Base
   def deferred_email(user)
     @user = user
 
-    mail(:to => @user.email, :subject => "Thank you for your interest in Flatiron SChool", :body => "Hi #{@user.first_name}, /n \
+    mail(:to => @user.email, :subject => "Thank you for your interest in Flatiron SChool", :body => "Hi #{@user.first_name}, \n \
       Thank you for your interest in Flatiron School. We really like you as a candidate, and we'd like to put you in a later class. \
       Unfortunately, we are no longer accepting students for #{@user.last_dossier.semester}. Please keep in touch and let us know \
       if you're still interested!")
@@ -59,14 +64,14 @@ class UserMailer < ActionMailer::Base
   def confirmed_email(user)
     @user = user
 
-    mail(:to => @user.email, :subject => "We received your deposit.", :body => "Hi #{@user.first_name}, /n \
+    mail(:to => @user.email, :subject => "We received your deposit.", :body => "Hi #{@user.first_name}, \n \
       We are super excited to see you for #{@user.last_dossier.semester}. We've reserved your spot!") 
   end
 
   def full_payment_email(user)
     @user = user
 
-    mail(:to => @user.email, :subject => "We received your payment.", :body => "Hi #{@user.first_name}, /n \
+    mail(:to => @user.email, :subject => "We received your payment.", :body => "Hi #{@user.first_name}, \n \
       We got your second payment for #{@user.last_dossier.semester}. Looking forward to seeing you soon!") 
   end
 

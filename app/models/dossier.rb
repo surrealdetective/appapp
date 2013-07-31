@@ -10,6 +10,7 @@ class Dossier < ActiveRecord::Base
   has_many :comments
   has_many :user_dossier_hashtags
   has_many :hashtags, through: :user_dossier_hashtags
+  has_many :interviews
 
   validates_presence_of :tagline
   validates_presence_of :purpose
@@ -49,21 +50,24 @@ class Dossier < ActiveRecord::Base
     # not quite ready to make a decision
     state :needs_interview, :after_enter => Proc.new { |d| d.add_status "needs interview"}
 
+    # needs_code_interview:
+    state :needs_code_interview, :after_enter => Proc.new { |d| d.add_status "needs code interview" }
+
     # needs_decision:
     # due diligence is done so now we need to make up our mind
     state :needs_decision, :after_enter => Proc.new { |d| d.add_status "needs decision"}
 
     # needs_payment:
     # accepted but has not yet confirmed, by paying
-    state :needs_payment, :after_enter => Proc.new { |d| d.add_status "accepted~!"; d.add_status "needs payment"}
+    state :needs_payment, :after_enter => Proc.new { |d| d.add_status "accepted"; d.add_status "needs payment"}
 
     # committed:
     # one of the three final states (the nicer one)
-    state :committed, :after_enter => Proc.new { |d| d.add_status "committed to coming!!!"}
+    state :committed, :after_enter => Proc.new { |d| d.add_status "committed"}
 
     # rejected:
     # another final state
-    state :rejected, :after_enter => Proc.new { |d| d.add_status "rejected :("}
+    state :rejected, :after_enter => Proc.new { |d| d.add_status "rejected"}
 
     # wont_attend
     # we offered but they did not commit
@@ -91,10 +95,28 @@ class Dossier < ActiveRecord::Base
       transitions :from => :needs_review, :to => :needs_interview
     end
 
-        # mark_as_needs_decision:
+    # mark_as_needs_code_interview:
+    # first interview took place
+    # another is necessary
+    event :mark_as_needs_code_interview do
+      transitions :from => :needs_interview, :to => :needs_code_interview
+    end
+
+    # mark_as_needs_decision:
     # interview took place and now it's decision time
-    event :mark_as_needs_decision do
+    # this means no code interview will take place
+    event :mark_as_needs_decision_from_interview do
       transitions :from => :needs_interview, :to => :needs_decision
+    end
+
+    event :mark_as_needs_decision_from_code_interview do
+      transitions :from => :needs_code_interview, :to => :needs_decision
+    end
+
+    # actually_we_still_need_a_code_interview
+    # incorrectly moved to needs_decision w/o a code interview
+    event :actually_we_still_need_a_code_interview do
+      transitions :from => :needs_decision, :to => :needs_code_interview
     end
 
     # mark_as_accepted:
@@ -103,12 +125,15 @@ class Dossier < ActiveRecord::Base
       transitions :to => :needs_payment
     end
 
-    event :mark_as_commited do
+    # mark_as_committed:
+    # they paid and will attend
+    event :mark_as_committed do
       transitions :from => :needs_payment, :to => :committed
     end
 
-    #are there cases where a person decides not to attend before flatiron has accepted them?
+    # are there cases where a person decides not to attend before flatiron has accepted them?
     # probs.
+    # can add another event
     event :mark_as_wont_attend do
       transitions :from => :needs_payment, :to => :wont_attend #possibly add this after transitions > :from => :needs_payment, 
     end
@@ -222,30 +247,35 @@ class Dossier < ActiveRecord::Base
     when :needs_interview
       self.mark_as_needs_review
       self.mark_as_needs_interview
-    when :needs_decision
+    when :needs_decision_from_interview
       self.mark_as_needs_review
       self.mark_as_needs_interview
-      self.mark_as_needs_decision
+      self.mark_as_needs_decision_from_interview
+    when :needs_decision_from_code_interview
+      self.mark_as_needs_review
+      self.mark_as_needs_interview
+      self.mark_as_needs_code_interview
+      self.mark_as_needs_decision_from_interview
     when :needs_payment
       self.mark_as_needs_review
       self.mark_as_needs_interview
-      self.mark_as_needs_decision
+      self.mark_as_needs_decision_from_interview
       self.mark_as_accepted
     when :committed
       self.mark_as_needs_review
       self.mark_as_needs_interview
-      self.mark_as_needs_decision
+      self.mark_as_needs_decision_from_interview
       self.mark_as_accepted
-      self.mark_as_commited
+      self.mark_as_committed
     when :rejected
       self.mark_as_needs_review
       self.mark_as_needs_interview
-      self.mark_as_needs_decision
+      self.mark_as_needs_decision_from_interview
       self.reject
     when :wont_attend
       self.mark_as_needs_review
       self.mark_as_needs_interview
-      self.mark_as_needs_decision
+      self.mark_as_needs_decision_from_interview
       self.mark_as_accepted
       self.mark_as_wont_attend 
     end

@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :dossier_comments # meaning, they've written many
   has_many :user_dossier_hashtags
   has_many :hashtags, through: :user_dossier_hashtags
+  has_many :interviews
 
   has_secure_password
 
