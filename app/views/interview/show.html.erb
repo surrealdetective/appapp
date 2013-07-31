@@ -17,6 +17,13 @@
   <% if can? :update, @dossier  %>
     <!-- COMMENTS BOX  --> 
     <!-- HIDE FROM APPLICANTS -->
+  <%= render "interview/attribute_definer" %>
+
+  <% if can? :update, @dossier  %>
+    <!-- COMMENTS BOX  --> 
+    <!-- HIDE FROM APPLICANTS -->
     <%= render "dossiers/comments" %>
+
+
   <% end %>
 </div>
