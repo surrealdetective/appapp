@@ -26,6 +26,7 @@ Appapp::Application.routes.draw do
   resources :dossiers, :only => [:new, :create, :show, :index] do
     resources :dossier_statuses, :only => [:new, :create]
     resources :dossier_comments, :only => [:create, :edit, :update, :destroy]
+    resources :interviews, :only => [:new, :create]
   end
 
   put '/dossiers/:id/transition/:transition' => 'dossiers#transition', :as => :transition
