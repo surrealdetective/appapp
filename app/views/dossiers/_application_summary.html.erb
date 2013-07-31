@@ -20,10 +20,14 @@
       <li>
         <strong>Phone Number:</strong> <em><%= @dossier.phone_number %></em>
       </li>
+     
        <li>
-        <strong>Skype:</strong><em><%=@dossier.skype%></em>
+        <strong>Skype: </strong><em><%=@dossier.skype%>
+         <a href="skype:<%=@dossier.skype%>">Call</a>
+        </em>
        </li>
-
+     </div>
+<%"SkypeButton_Call_#{@dossier.skype}_1"%>
     </ul>
 
     <hr>
