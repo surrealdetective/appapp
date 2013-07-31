@@ -46,9 +46,13 @@ Appapp::Application.routes.draw do
   get '/needs_interview' => 'needs_interview#index', as: :dossier_interview
 
   post '/dossiers/:id/claim_interview' => 'interview#claim', :as => :claim_interview
+  
+  #INTERVIEWS: new and create
   get '/dossiers/:id/schedule' => 'interview#schedule', :as => :schedule_interview
   post '/dossiers/:id/schedule' => 'interview#create', :as => :schedule_interview
-
+  
+  #INTERVIEWS:
+  get '/interviews' => 'interview#index', :as => :interviews
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

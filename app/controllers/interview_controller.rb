@@ -25,7 +25,16 @@ class InterviewController < ApplicationController
   end
 
   def create
-    raise params.inspect
+    @interview = Interview.where(:interview_time => nil).where(:dossier_id => params[:id]).first
+    @interview.time = params[:date]
+    @interview.save
+    redirect_to 
+  end
+
+  def index
+    @interviews = Interview.joins(:dossier).where("dossiers.aasm_state" => ["needs_interview", "needs_code_interview"]).where("interviews.interview_time IS NOT NULL")
+    #possibly, add a date cutoff, using orderby interview_time, then .last, since we assume only one interview occurs at a time.
+    
   end
   
 end
