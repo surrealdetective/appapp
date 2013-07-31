@@ -4,7 +4,7 @@ Course.create(:season => "Fall 2013", :seats => 20, :subject => "iOS", :starting
 Course.create(:season => "Spring 2014", :seats => 30, :subject => "Rails", :starting_date => Date.new(2014, 2, 3))
 
 # create 300 users with one dossier each
-30.times do |i|
+300.times do |i|
   user = User.new
   user.first_name = Faker::Name.first_name
   user.last_name = Faker::Name.last_name
@@ -35,11 +35,15 @@ Course.create(:season => "Spring 2014", :seats => 30, :subject => "Rails", :star
     :skype              => "#{Populator.words(1)}#{rand(999)}"
   })
 
-  # user.last_dossier.aasm_state = Dossier.aasm.states.sample.to_s
-  user.last_dossier.random_status
+  # picks a random status for the last dossier
+  # and moves it thru the states to arrive there
+  # with a history
+  user.last_dossier.random_status!
 
-  puts user
-  puts user.valid?
+  # puts user.inspect
+  # puts user.valid?
+  puts user.last_dossier.aasm_state 
+  # puts user.last_dossier.valid?
 
 
   user.save

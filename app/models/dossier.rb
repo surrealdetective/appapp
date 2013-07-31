@@ -16,17 +16,15 @@ class Dossier < ActiveRecord::Base
   validates_presence_of :purpose
   validates_presence_of :analytic_skills
   validates_presence_of :career
-  validates_presence_of :purpose
   validates_presence_of :code_skills
   validates_presence_of :skype
 
   #validates_numericality_of :phone_number
-  validates :phone_number, :presence => true, :format => { :with => /\d{11}/, :on => :create, :message => "is invalid. Please include the area code" }
-
-  before_validation(:on => :create) do
-    num = phone_number.gsub(/\D/, '')
-    num.prepend("1") if num.length == 10
-  end
+  # validates :phone_number, :presence => true, :format => { :with => /\d{11}/, :on => :create, :message => "is invalid. Please include the area code" }
+  # before_validation(:on => :create) do
+  #   num = phone_number.gsub(/\D/, '')
+  #   num.prepend("1") if num.length == 10
+  # end
 
   include AASM
 
@@ -53,9 +51,13 @@ class Dossier < ActiveRecord::Base
     # needs_code_interview:
     state :needs_code_interview, :after_enter => Proc.new { |d| d.add_status "needs code interview" }
 
-    # needs_decision:
+    # needs_decision_from_interview:
     # due diligence is done so now we need to make up our mind
-    state :needs_decision, :after_enter => Proc.new { |d| d.add_status "needs decision"}
+    state :needs_decision_from_interview, :after_enter => Proc.new { |d| d.add_status "needs decision from interview"}
+
+    # needs_decision_from_interview:
+    # due diligence is done so now we need to make up our mind
+    state :needs_decision_from_code_interview, :after_enter => Proc.new { |d| d.add_status "needs decision from code interview"}
 
     # needs_payment:
     # accepted but has not yet confirmed, by paying
@@ -106,17 +108,17 @@ class Dossier < ActiveRecord::Base
     # interview took place and now it's decision time
     # this means no code interview will take place
     event :mark_as_needs_decision_from_interview do
-      transitions :from => :needs_interview, :to => :needs_decision
+      transitions :from => :needs_interview, :to => :needs_decision_from_interview
     end
 
     event :mark_as_needs_decision_from_code_interview do
-      transitions :from => :needs_code_interview, :to => :needs_decision
+      transitions :from => :needs_code_interview, :to => :needs_decision_from_code_interview
     end
 
     # actually_we_still_need_a_code_interview
     # incorrectly moved to needs_decision w/o a code interview
     event :actually_we_still_need_a_code_interview do
-      transitions :from => :needs_decision, :to => :needs_code_interview
+      transitions :from => :needs_decision_from_interview, :to => :needs_code_interview
     end
 
     # mark_as_accepted:
@@ -236,49 +238,35 @@ class Dossier < ActiveRecord::Base
     "https://twitter.com/#{twitter}"
   end
 
-# [new, needs_review, needs_interview, needs_decision, needs_payment, committed, rejected, wont_attend] 
-  def random_status
+  # [new, needs_review, needs_interview, 
+  # needs_code_interview, needs_decision, needs_payment, committed, rejected, wont_attend] 
+  def random_status!
     choice = Dossier.aasm.states.sample.to_s.to_sym
-    
-    case choice
-    when :new
-    when :needs_review
-      self.mark_as_needs_review
-    when :needs_interview
-      self.mark_as_needs_review
-      self.mark_as_needs_interview
-    when :needs_decision_from_interview
-      self.mark_as_needs_review
-      self.mark_as_needs_interview
-      self.mark_as_needs_decision_from_interview
-    when :needs_decision_from_code_interview
-      self.mark_as_needs_review
-      self.mark_as_needs_interview
+
+    return if choice == :new
+
+    self.mark_as_needs_review
+
+    return if choice == :needs_review
+
+    self.mark_as_needs_interview
+
+    if choice == :needs_interview
+      return
+    elsif choice == :needs_code_interview
       self.mark_as_needs_code_interview
-      self.mark_as_needs_decision_from_interview
-    when :needs_payment
-      self.mark_as_needs_review
-      self.mark_as_needs_interview
-      self.mark_as_needs_decision_from_interview
-      self.mark_as_accepted
-    when :committed
-      self.mark_as_needs_review
-      self.mark_as_needs_interview
-      self.mark_as_needs_decision_from_interview
-      self.mark_as_accepted
-      self.mark_as_committed
-    when :rejected
-      self.mark_as_needs_review
-      self.mark_as_needs_interview
-      self.mark_as_needs_decision_from_interview
-      self.reject
-    when :wont_attend
-      self.mark_as_needs_review
-      self.mark_as_needs_interview
-      self.mark_as_needs_decision_from_interview
-      self.mark_as_accepted
-      self.mark_as_wont_attend 
+      return
     end
+
+    if choice == :needs_decision_from_interview
+      self.mark_as_needs_decision_from_interview
+      return
+    elsif choice == :needs_decision_from_code_interview
+      self.mark_as_needs_code_interview
+      self.mark_as_needs_decision_from_code_interview
+      return
+    end
+    
   end
 
   #lets fix the view by adding a .semester method
