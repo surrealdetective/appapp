@@ -2,13 +2,37 @@
 
 #show the times for a single day.
 
-<% @days.each do |day| %>
-  <div>
-    <%= day.strftime('%A %B %d, %Y') %>
-      <% 8.times do %>
-        <div>
-          <%= start_time(day) %>
-        </div>
-      <% end %>
-  </div>
+<%= form_tag schedule_interview_path, method: "POST" do %>
+  <% @days.each do |day| %>
+    <div>
+      <%= day.strftime('%A %B %d, %Y') %>
+        <% @hour = 0 %>
+        <% 8.times do %>  
+          <div>
+            <%= (start_time(day) + @hour.hour).strftime('%l%P')%> - <%= (start_time(day) + (@hour+1).hour).strftime('%l%P')%>
+          </div>
+          <% @hour += 1 %>
+        <% end %>
+    </div>
+  <% end %>
+  <%= submit_tag("Submit") %>
+
+<% end %>
+
+<div>
+<%= form_tag schedule_interview_path, method: "POST" do %>
+  
+  <!-- A Time and Radio Button -->
+  <%= label_tag :date, "work, work work!" %>
+  <%= radio_button_tag :date, "the time of day"  %>
+
+  <%= submit_tag("Submit") %>
+
+<% end %>
+</div>
+
+<%= form_tag("/search", method: "get") do %>
+  <%= label_tag(:q, "Search for:") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Search") %>
 <% end %>
