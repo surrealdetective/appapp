@@ -10,7 +10,7 @@
           
             <h4><strong> Course Information </strong> </h4>
             <hr> 
-           <!-- NAME -->
+           <!-- Subject & Season -->
             <div class="span12 field-box">
             <%= label_tag "Subject", nil, :class=>'span3' %>
             <%= text_field_tag "course[subject]", nil, :class => 'span9' %>
@@ -21,12 +21,31 @@
             <%= text_field_tag "course[season]", nil, :class => 'span9' %>
             </div>
 
-            <!-- EMAIL  -->
+            <!-- Class Size  -->
             <div class="span12 field-box">
             <%= label_tag "Class Size", nil, :class=>'span3' %>
             <%= number_field_tag "course[seats]", nil, :class => 'span9' %>
             </div>
-          
+
+            <!-- Start Date  -->
+            <fieldset>
+              <legend><h4>Start Date:</h4></legend>
+              <div class="span12 field-box">
+              <%= label_tag "Month", nil, :class=>'span3' %>
+              <%= number_field_tag "date[month]", nil, :class => 'span9' %>
+              </div>
+
+              <div class="span12 field-box">
+              <%= label_tag "Day", nil, :class=>'span3' %>
+              <%= number_field_tag "date[day]", nil, :class => 'span9' %>
+              </div>
+
+              <div class="span12 field-box">
+              <%= label_tag "Year", nil, :class=>'span3' %>
+              <%= number_field_tag "date[year]", nil, :class => 'span9' %>
+              </div>
+            </fieldset>
+
             <%= f.submit %>
 
           <%end%>  

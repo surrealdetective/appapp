@@ -1,1 +1,24 @@
 <h1>BITCHES!</h1>
+
+<div class="container">
+
+  <%= render "dossiers/alert_notice" %>
+
+  <!-- APPLICATION STATUS BOX -->
+  <%= render "dossiers/application_status" %>
+
+  <% if current_user.id == @dossier.user_id  %>
+    <!-- PREWORK BOX --> 
+    <!-- HIDE FROM ADMINS -->
+    <%= render "dossiers/prework" %>
+  <% end %>
+
+  <!-- APPLICATION SUMMARY BOX -->
+  <%= render "dossiers/application_summary" %>
+
+  <% if can? :update, @dossier  %>
+    <!-- COMMENTS BOX  --> 
+    <!-- HIDE FROM APPLICANTS -->
+    <%= render "dossiers/comments" %>
+  <% end %>
+</div>

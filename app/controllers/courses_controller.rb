@@ -4,7 +4,10 @@ class CoursesController < ApplicationController
   end
 
   def create
-    @course = Course.create(params[:course])
+    # raise params.inspect
+    @course = Course.new(params[:course])
+    @course.add_starting_date(params[:date])
+    @course.save
     redirect_to courses_path
   end
 
@@ -13,5 +16,9 @@ class CoursesController < ApplicationController
     authorize! :index, @pending
     @confirmed = Dossier.where(:aasm_state => "committed")
     @courses = Course.all
+  end
+
+  def dashboard
+    @course = Course.first
   end
 end
