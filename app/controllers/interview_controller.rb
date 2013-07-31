@@ -26,9 +26,9 @@ class InterviewController < ApplicationController
 
   def create
     @interview = Interview.where(:interview_time => nil).where(:dossier_id => params[:id]).first
-    @interview.time = params[:date]
+    @interview.interview_time = params[:date]
     @interview.save
-    redirect_to 
+    redirect_to @interview.dossier
   end
 
   def index
