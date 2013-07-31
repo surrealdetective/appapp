@@ -11,6 +11,12 @@
           <th class="span4 sortable">
               <span class="line"></span>Date Offer Sent
           </th>
+          <!-- Interview Time -->
+          <th class="span2">
+              <span class="line"></span>Interview Time
+          </th>
+
+
           <th class="span2 sortable">
               <span class="line"></span>Interview type
           </th>
@@ -32,7 +38,15 @@
           <td>
             <%= time_ago_in_words(dossier.dossier_statuses.first.created_at) %> ago
           </td>
-          <td><%= dossier.aasm_state.humanize %></td>
+          <!-- interview time -->
+          <td>
+            <%= dossier.read_interview_time %>
+          </td>
+
+
+          <td>
+            <%= dossier.aasm_state.humanize %>
+          </td>
           <% if dossier.interviews.count > 0 %>
             <td>Claimed by <%= dossier.interviews.last.user.full_name %></td>
           <% else %>

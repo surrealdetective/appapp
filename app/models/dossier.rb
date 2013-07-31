@@ -277,5 +277,14 @@ class Dossier < ActiveRecord::Base
     self.course.semester
   end
 
+  def read_interview_time
+    possible_interview_object = self.interviews.last
+    if possible_interview_object.respond_to?(:interview_time)
+      possible_interview_object.interview_time
+    else
+      "NA"
+    end
+  end
+
 
 end

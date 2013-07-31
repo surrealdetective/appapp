@@ -14,7 +14,7 @@ class UserMailer < ActionMailer::Base
 
   def interview_email(user)
     @user = user
-    mail(:to => @user.email, :subject => "We'd like to interview you", :body => "Hi #{@user.first_name}, \n We would like to interview you. We need to implement a aystem to send you a link to our schedule")
+    mail(:to => @user.email, :subject => "We'd like to interview you", :body => "Hi #{@user.first_name}, \n We would like to interview you. Please pick a time for your interview at http://localhost:3000/dossiers/#{@user.last_dossier.id}/schedule. Thanks!")
   end
 
   #there needs to be a view dedicated to the 2nd interview.
@@ -25,7 +25,8 @@ class UserMailer < ActionMailer::Base
       You made it to the next stage in the interviewing process! Now we'd like you to solve a code puzzle as part of the application process. \
       I'd like you to write a program that simulates a simple game that we all know and love - tic tac toe. \
       You are allowed to write it in any language you want, but we prefer Ruby or Javascript. \
-      You're allowed to use outside resources, but you're not allowed to copy code. \n Good luck!")
+      You're allowed to use outside resources, but you're not allowed to copy code. \n Good luck! \n \
+      Please schedule an interview with us so we can review your code together. Arrange the interview at http://localhost:3000/dossiers/#{@user.last_dossier.id}/schedule. Thanks!")
   end
 
   #user is rejected, deferred, or accepted

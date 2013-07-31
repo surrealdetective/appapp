@@ -1,0 +1,27 @@
+<h1>Available Interview Times</h1>
+
+<hr>
+
+<%= form_tag schedule_interview_path, method: "POST" do %>
+  
+  <% @days.each do |day| %>
+    <div>
+      
+      <!-- the day of interviews here -->
+      <h4><%= day.strftime('%A %B %d, %Y') %></h4>
+        <% @hour = 0 %>
+        <% 8.times do %>  
+            
+            <!-- magical times occur here -->
+            <div>
+              <%= label_tag :date, (start_time(day) + @hour.hour).strftime('%l%P')%> - <%= (start_time(day) + (@hour+1).hour).strftime('%l%P') %>
+              <%= radio_button_tag :date, (start_time(day) + @hour.hour) %>          
+            </div>
+          <% @hour += 1 %>
+        <% end %>
+    </div>
+
+  <% end %>
+  <%= submit_tag("Submit") %>
+
+<% end %>
