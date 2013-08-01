@@ -33,8 +33,10 @@
 <body class='<%= params[:controller] %> <%= params[:action] %> <%= @body_classes %>'>
 
   <%= render "layouts/nav" %>
+  <%= render "layouts/sidebar" %>
 
   <div class="content">  
+
     <!-- upper main stats -->
     <% if current_user && current_user.role?(:moderator) %>
       <%= render "layouts/stats" %>
