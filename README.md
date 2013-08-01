@@ -61,3 +61,63 @@ watched 192 Authorization with CanCan RAILSCASTS. Much simpler:
 2. Ability Model - defines users by role
 3. Restrict views - "can ?"
 4. Restrict controllers - "unauhtorizable", "load_and_authorize_resource" - finds restful object and appropriately authorizes it. (if you can only read, then you cannot update) [optional :nested=> :article] to load comment thru article.
+
+
+<% @thinner.each do |dossier| %>
+
+    <!-- wraps one -->
+    <div class="thinner-wrap user-profile"> 
+      
+      <!-- pic and tagline below -->
+      <div class="row-fluid header">
+        <div class="span6" style="padding:20px;float:left;">
+          
+          <!-- fancybox magic -->
+          <a class="fancybox" data-href="<%= dossier_path(dossier.id, :layout => "false") %>" href="#">
+            <img src="http://placekitten.com/100/100" class="avatar img-circle">
+          </a>
+
+          <h3 class="name"><%= name(dossier.user) %></h3>
+          <span class="area">From <%= dossier.city %></span>
+          <div class="area">
+            <em><%= one_hundred_forty_chars(dossier.tagline)%></em>
+          </div>
+        </div>
+          <!-- checkboxes below -->
+          <div id="pad-wrapper" class="form-page span4" style="position:relative;right:0px; float:right;">
+            <div class="row-fluid form-wrapper">
+              <%= form_tag thinner_decision_path(dossier.id), method:"post" do %>
+                <div class="span10"><%= dossier.semester %> in New York City?</div>
+                  <div class="checker span1">
+                    <span>
+                      <input type="checkbox">
+                    </span>
+                  </div>
+                </div>
+                <div class="span12">
+                    <%= submit_tag "Reject Now", :class => "btn btn-danger"%>
+                    <%= submit_tag "Review Further", :class => "btn btn-primary"%>
+                </div>
+              <% end %>
+
+          </div>
+      </div>
+
+      <!-- biography below -->
+      <div class="span12">
+            <h3>Flatiron Purpose</h3>
+            <p class="span11" style="padding:40px; margin:20px;"><%= four_hundred_twenty_chars(dossier.purpose)%></p>
+      </div>
+
+      <!-- submit tags below -->
+      <%= form_tag thinner_decision_path(dossier.id), method:"post" do %>
+        <div class="span12" style="margin-bottom:60px;">
+            <%= submit_tag "Reject Now", :class => "btn btn-danger span6"%>
+            <%= submit_tag "Review Further", :class => "btn btn-primary span6"%>
+        </div>
+
+      <% end %>
+    </div>
+
+<% end %>
+</div>
