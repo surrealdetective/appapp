@@ -30,7 +30,7 @@
         <tr id="dossier-<%= dossier.id %>">
           <td>
             <img src="http://placekitten.com/55/55" class="img-circle avatar hidden-phone" />
-            <%= link_to dossier.user.full_name, dossier, :class => "name" %>
+            <%= link_to dossier.user.full_name, interview_show_path(dossier), :class => "name" %>
           </td>
           <td>
             <a href='mailto:<%=dossier.user.email %>'><%= dossier.user.email %></a>
