@@ -249,15 +249,14 @@ class Dossier < ActiveRecord::Base
     "https://twitter.com/#{twitter}"
   end
 
-  # [new, needs_review, needs_interview, 
-  # needs_code_interview, needs_decision, needs_payment, committed, rejected, wont_attend] 
+  # [new, needs_review, needs_interview, needs_code_interview, needs_decision, needs_payment, committed, rejected, wont_attend] 
   def random_status!
+    
     choice = Dossier.aasm.states.sample.to_s.to_sym
-
     return if choice == :new
 
+    #convention: after setting the state, return if the choice equals that.
     self.mark_as_needs_review
-
     return if choice == :needs_review
 
     self.mark_as_needs_interview
@@ -269,14 +268,23 @@ class Dossier < ActiveRecord::Base
       return
     end
 
-    if choice == :needs_decision_from_interview
-      self.mark_as_needs_decision_from_interview
-      return
-    elsif choice == :needs_decision_from_code_interview
-      self.mark_as_needs_code_interview
-      self.mark_as_needs_decision_from_code_interview
-      return
-    end
+    self.mark_as_accepted
+
+    return if choice == :needs_payment
+    
+    self.mark_as_committed
+
+    return if choice == :committed
+
+    #add rejected and wont_attend later.
+                                                        # if choice == :needs_decision_from_interview
+                                                        #   self.mark_as_needs_decision_from_interview
+                                                        #   return
+                                                        # elsif choice == :needs_decision_from_code_interview
+                                                        #   self.mark_as_needs_code_interview
+                                                        #   self.mark_as_needs_decision_from_code_interview
+                                                        #   return
+                                                        # end
     
   end
 

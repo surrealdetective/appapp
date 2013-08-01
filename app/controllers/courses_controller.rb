@@ -16,6 +16,7 @@ class CoursesController < ApplicationController
     authorize! :index, @pending
     @confirmed = Dossier.where(:aasm_state => "committed")
     @courses = Course.all
+    raise params.inspect
   end
 
   def dashboard
