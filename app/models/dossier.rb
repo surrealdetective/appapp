@@ -11,6 +11,7 @@ class Dossier < ActiveRecord::Base
   has_many :user_dossier_hashtags
   has_many :hashtags, through: :user_dossier_hashtags
   has_many :interviews
+  has_one  :score
 
   validates_presence_of :tagline
   validates_presence_of :purpose

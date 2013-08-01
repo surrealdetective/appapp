@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  leadership: 1
+  tech: 1
+  passion: 1
+
+two:
+  leadership: 1
+  tech: 1
+  passion: 1

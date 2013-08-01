@@ -4,6 +4,7 @@ class InterviewController < ApplicationController
   def show
     @dossier = Dossier.find(params[:id])
     @user = @dossier.user
+    @score = Score.new  
   end
 
   def claim
