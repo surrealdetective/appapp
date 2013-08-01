@@ -109,7 +109,7 @@
           </div>
 
              <div class="span12 field-box">
-            <%= f.label :analytic_skills, "The ability to think in a structured or quantitative way to solve complex problems is an important element of being a successful developer. Can you tell us anything that demonstrates your abilities in that realm? (feel free to include anything from standardized test scores, previous areas of study, or relevant work experience)" %><%= mark_required(@dossier, :analytic_skills) %><br />
+            <%= f.label :analytic_skills, "The ability to think in a structured or quantitative way to solve complex problems is an important element of being a successful developer. Can you tell us anything that demonstrates your abilities in that realm? (feel free to include anything from standardized test scores, previous areas of study, or relevant work experience)#{mark_required(@dossier, :analytic_skills)}" %><br />
             <%= f.text_area :analytic_skills %>
           </div>
 
