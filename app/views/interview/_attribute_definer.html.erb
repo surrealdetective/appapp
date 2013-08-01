@@ -1,4 +1,5 @@
-<div class="dossier-form-container">
+<div class="dossier-form-container">rake routes
+
 
   <%= form_for(score, url: dossier_score_index_path(@dossier))  do |f| %>
     <%= render "shared/error_messages", :target => @user %>
@@ -20,6 +21,7 @@
     <%= f.submit  "Submit Scores", :class=>'btn-glow primary' %>
 
     <%end%>
+    <%= if true %>
+    <%= end %>
     <%= @dossier.score.inspect %>
-    
 </div
