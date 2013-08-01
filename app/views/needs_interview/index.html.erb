@@ -6,56 +6,28 @@
       <tr>
           <%= render "dossiers/table_header_dynamic_sort", :link_name => "Name", :link_path => dossier_interview_path(sort_by: "user") %>
 
-          
-          <th class="span2 sortable">
-              <span class="line"></span>Email
-          </th>
-          <th class="span4 sortable">
-              <span class="line"></span>Date Offer Sent
-          </th>
-          <!-- Interview Time -->
+          <%= render "dossiers/table_header_dynamic_sort", :link_name => "Email", :link_path => dossier_interview_path(sort_by: "email") %>
+
+          <!-- checking sort_by method to accept interview attributes -->
+          <%= render "dossiers/table_header_dynamic_sort", :link_name => "Date Offer Sent", :link_path => dossier_interview_path(sort_by: "interview_created_at") %>
+
+
+          <!-- Interview Time use render once date/time exsist!!!!1 -->
           <th class="span2">
               <span class="line"></span>Interview Time
           </th>
 
 
-          <th class="span2 sortable">
-              <span class="line"></span>Interview type
-          </th>
-          <th class="span2">
-            <span class="line"></span>Interviewer
-          </th>
+          <%= render "dossiers/table_header_dynamic_sort", :link_name => "Interview Type", :link_path => dossier_interview_path(sort_by: :aasm_state) %>
+
+          <%= render "dossiers/table_header_static_sort", :header_name => "Interviewer"%>
       </tr>
     </thead>
+    <%= render "needs_interview_table_details", :dossiers => @dossiers %>
+
+    <!-- interview index table details -->
     <tbody>
-      <% @dossiers.each do |dossier| %>
-        <tr id="dossier-<%= dossier.id %>">
-          <td>
-            <img src="http://placekitten.com/55/55" class="img-circle avatar hidden-phone" />
-            <%= link_to dossier.user.full_name, interview_show_path(dossier), :class => "name" %>
-          </td>
-          <td>
-            <a href='mailto:<%=dossier.user.email %>'><%= dossier.user.email %></a>
-          </td>
-          <td>
-            <%= time_ago_in_words(dossier.dossier_statuses.first.created_at) %> ago
-          </td>
-          <!-- interview time -->
-          <td>
-            <%= dossier.read_interview_time %>
-          </td>
-
-
-          <td>
-            <%= dossier.aasm_state.humanize %>
-          </td>
-          <% if dossier.interviews.count > 0 %>
-            <td>Claimed by <%= dossier.interviews.last.user.full_name %></td>
-          <% else %>
-            <td><%= link_to "Claim interview", claim_interview_path(dossier), :method => "POST" %></td>
-          <% end %>
-        </tr>
-      <%end%>
+      
     </tbody>
   </table>
 </div>

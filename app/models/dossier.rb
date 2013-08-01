@@ -198,6 +198,11 @@ class Dossier < ActiveRecord::Base
     when :date
       self.order("created_at #{direction}")
       # extend in future to sort by more stuff
+    when :interview_created_at
+      self.joins(:interviews).order("interviews.created_at #{direction}")
+    when :interview_stage
+      self.joins(:interviews).order("interviews.stage #{direction}")
+      
     else
       self.order("#{column} #{direction}")
     end

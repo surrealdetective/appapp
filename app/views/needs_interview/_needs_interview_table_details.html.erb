@@ -1,0 +1,28 @@
+<% dossiers.each do |dossier| %>
+        <tr id="dossier-<%= dossier.id %>">
+          <td>
+            <img src="http://placekitten.com/55/55" class="img-circle avatar hidden-phone" />
+            <%= link_to dossier.user.full_name, interview_show_path(dossier), :class => "name" %>
+          </td>
+          <td>
+            <a href='mailto:<%=dossier.user.email %>'><%= dossier.user.email %></a>
+          </td>
+          <td>
+            <%= time_ago_in_words(dossier.dossier_statuses.first.created_at) %> ago
+          </td>
+          <!-- interview time -->
+          <td>
+            <%= dossier.read_interview_time %>
+          </td>
+
+
+          <td>
+            <%= dossier.aasm_state.humanize %>
+          </td>
+          <% if dossier.interviews.count > 0 %>
+            <td>Claimed by <%= dossier.interviews.last.user.full_name %></td>
+          <% else %>
+            <td><%= link_to "Claim interview", claim_interview_path(dossier), :method => "POST" %></td>
+          <% end %>
+        </tr>
+      <%end%>
