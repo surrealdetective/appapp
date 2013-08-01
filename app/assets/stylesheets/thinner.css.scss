@@ -1,10 +1,10 @@
 
 .half-width {
-  
+  text-align:center;
 }
 
 .quarter-width {
-  
+ text-align:center; 
 }
 
 .tbody-border {
@@ -17,4 +17,9 @@
 
 .page-header {
   text-align:center;
+}
+
+.td {
+  margin-left: auto;
+  margin-right: auto; 
 }
