@@ -1,70 +1,7 @@
 <h3 class="page-header">Elevator Pitch</h3>
 
-<div class="row-fluid table">
-  <table class="table table-hover">
-    
-    <tbody class="tbody-border">
+<% @dossiers.each do |dossier| %>
 
-      <tr>
-        <td class="quarter-width">
-          <span class="label label-info">New</span>
-        </td>
-        <td class="quarter-width">
-          <h3><%= name(@dossier.user) %></h3>
-        </td>
-        <td class="quarter-width">
-          <a class = "btn-flat inverse icon-thumbs-down">
-            Admin Actions
-            <i class="icon-thumbs-up"></i>
-          </a>
-        </td>
-        <td class="quarter-width">
-        <a class = "btn-flat default icon-heart-empty">
-            See My Dossier
-            <i class=""></i>
-          </a>
-        </td>
-      </tr>
+  <%= render "thinner_table", :dossier => dossier %>
 
-      <tr>
-        <td class="half-width" rowspan="3" colspan="2">
-          <ul>
-            <li>Will Near NYC?</li>
-            <li>Tech links</li>
-            <li>Word Count</li>
-          </ul>
-        </td>
-        <td class="half-width" rowspan="3" colspan="2">
-        Purpose goes here broke as shit
-
-        </td>
-      </tr>
-      <tr>
-
-         
-      </tr>
-      <tr>
-        
-      </tr>
-
-      <tr>
-        <td class="quarter-width">
-          <a class = "btn-flat danger icon-remove-sign">
-            Reject
-            <i class=""></i>
-          </a>
-        </td>
-        <td class="half-width" colspan="2">
-          <h4 style="text-align:center;"><%= @dossier.tagline %></h4>
-        </td>
-        <td class="quarter-width">
-          <a class = "btn-flat success icon-check">
-            Review Further
-            <i class=""></i>
-          </a>
-        </td>
-      </tr>
-
-    </tbody>
-  </table>
-</div>
+<% end %>
