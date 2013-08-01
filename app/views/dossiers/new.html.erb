@@ -46,12 +46,12 @@
           </div>
 
           <div class="span12 field-box">
-            <%= f.label :skype %><%= mark_required(@dossier, :skype) %><br />
+            <%= f.label :skype, "Skype Handle" %><%= mark_required(@dossier, :skype) %><br />
             <%= f.text_field :skype %>
           </div>
 
           <div class="span12 field-box">
-            <%= f.label :current_city %><%= mark_required(@dossier, :city) %><br />
+            <%= f.label :city, "Current City" %><%= mark_required(@dossier, :city) %><br />
             <%= f.text_field :city %>
           </div>
 
@@ -62,7 +62,7 @@
           <hr> 
 
           <div class="span12 field-box">
-            <%= f.label :twitter_handle %><%= mark_required(@dossier, :twitter) %><br />
+            <%= f.label :twitter, "Twitter Handle"%><%= mark_required(@dossier, :twitter) %><br />
             <%= f.text_field :twitter %>
           </div>
 
@@ -82,63 +82,64 @@
           </div>
 
           <div class="span12 field-box">
-            <%= f.label :your_website %><%= mark_required(@dossier, :website) %><br />
+            <%= f.label :website, "Your Website" %><%= mark_required(@dossier, :website) %><br />
             <%= f.text_field :website %>
           </div>
 
           <h4><strong>Background</strong></h4>
        <hr>
            <div class="span12 field-box">
-            <%= f.label :tagline %>In 140 characters, tell us what makes you unique. <%= mark_required(@dossier, :tagline) %><br />
+            <%= f.label :tagline, "In 140 characters, tell us what makes you unique." %><%= mark_required(@dossier, :tagline) %><br />
             <%= f.text_area :tagline %>
           </div>
 
              <div class="span12 field-box">
-            <%= f.label :career %>Tell us about your professional/educational career to date. What are you up to now and how did you end up there?<%= mark_required(@dossier, :career) %><br />
+            <%= f.label :career, "Tell us about your professional/educational career to date. What are you up to now and how did you end up there?" %><%= mark_required(@dossier, :career) %><br />
             <%= f.text_area :career %>
           </div>
 
              <div class="span12 field-box">
-            <%= f.label :purpose %>Describe your background with computer programming (if any). Feel free to include links to any online resources you've completed. <%= mark_required(@dossier, :purpose) %><br />
+            <%= f.label :purpose, "Describe your background with computer programming (if any). Feel free to include links to any online resources you've completed." %><%= mark_required(@dossier, :purpose) %><br />
             <%= f.text_area :purpose %>
           </div>
 
              <div class="span12 field-box">
-            <%= f.label :code_skills %>Describe your background with computer programming (if any). Feel free to include links to any online resources you've completed. <%= mark_required(@dossier, :code_skills) %><br />
+            <%= f.label :code_skills, "Describe your background with computer programming (if any). Feel free to include links to any online resources you've completed." %><%= mark_required(@dossier, :code_skills) %><br />
             <%= f.text_area :code_skills %>
           </div>
 
              <div class="span12 field-box">
-            <%= f.label :analytic_skills %>The ability to think in a structured or quantitative way to solve complex problems is an important element of being a successful developer. Can you tell us anything that demonstrates your abilities in that realm? (feel free to include anything from standardized test scores, previous areas of study, or relevant work experience)<%= mark_required(@dossier, :analytic_skills) %><br />
+            <%= f.label :analytic_skills, "The ability to think in a structured or quantitative way to solve complex problems is an important element of being a successful developer. Can you tell us anything that demonstrates your abilities in that realm? (feel free to include anything from standardized test scores, previous areas of study, or relevant work experience)" %><%= mark_required(@dossier, :analytic_skills) %><br />
             <%= f.text_area :analytic_skills %>
           </div>
 
              <div class="span12 field-box">
-            <%= f.label :tidbits %>Is there anything else you'd like us to know?<%= mark_required(@dossier, :tidbits) %><br />
+            <%= f.label :tidbits, "Is there anything else you'd like us to know?" %><%= mark_required(@dossier, :tidbits) %><br />
             <%= f.text_area :tidbits %>
           </div>
-     </div>
 
- </div> <%= fields_for  @course do |c| %>
- 
-          
- <br>
- <hr>      
-          <div class="span12 field-box">
-            <%= c.label :semester %>choose a semester<%= mark_required(@course, :semester) %><br />
-            <%= c.select :semester, @course_list, :selected => [:semester] %>
-          </div>
-
+             <%= fields_for  @course do |c| %>
+         
+                  
+                   <br>
+                   <hr>      
+                  <div class="span12 field-box">
+                    <%= c.label :semester, "Choose a semester" %><%= mark_required(@course, :semester) %><br />
+                    <%= c.select :semester, @course_list, :selected => [:semester] %>
+                  </div>
 
 
- <% end %>
 
+              <% end %>
 
           <div class="actions">
-            <%= f.submit  "Submit Application", :class=>'btn-glow primary' %>
+            <%= f.submit  "Submit Application", :class=>'btn-glow primary', :style=>"margin-top:17px;"%>
           </div>
 
           <%end%>
+     </div>
+ </div> 
+
              </div>
  <br>
  <br>
