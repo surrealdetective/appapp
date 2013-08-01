@@ -1,3 +1,4 @@
+<!-- current courses select box -->
 <h1>
   List of courses
 </h1>
@@ -10,30 +11,103 @@
 <% end %>
 </div>
 
-<h2>Pending Applicants</h2>
-<% if @pending %>
-  <div style="margin-left:auto; margin-right:auto;">
-    <% @pending.each do |dossier| %>    
-        <span style="display:inline-block; margin:0px 10px; padding:50px; position:relative; border-bottom:3px dotted grey;">
-          <img src="http://placekitten.com/180/180" style="margin-left:auto; margin-right:auto;">
-          <h4 style="position:absolute; left:0;"><%= name(dossier.user) %></h4>
-        </span>
-    <%end%>
-  <div>
-<% end %>
+<!-- class stats view -->
+<div class="class-stats">
+</div>
 
-<div style="margin-top:50px; padding-top;50px border:10px;">
-  <h2>Flatiron Class</h2>
-  <% if @confirmed %>
+
+<!-- the needs decision view -->
+<div class="needs_decision">
+  <h2>Applicants who Need a Decision</h2>
+  <div class="row-fluid table">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+            <th class="span2 sortable">Name</th>
+            <th class="span2 sortable">
+                <span class="line"></span>Email
+            </th>
+            <th class="span4 sortable">
+                <span class="line"></span>Date Offer Sent
+            </th>
+            <!-- Interview Time -->
+            <th class="span2">
+                <span class="line"></span>Interview Time
+            </th>
+
+
+            <th class="span2 sortable">
+                <span class="line"></span>Interview type
+            </th>
+            <th class="span2">
+              <span class="line"></span>Interviewer
+            </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @dossiers.each do |dossier| %>
+          <tr id="dossier-<%= dossier.id %>">
+            <td>
+              <img src="http://placekitten.com/55/55" class="img-circle avatar hidden-phone" />
+              <%= link_to dossier.user.full_name, interview_show_path(dossier), :class => "name" %>
+            </td>
+            <td>
+              <a href='mailto:<%=dossier.user.email %>'><%= dossier.user.email %></a>
+            </td>
+            <td>
+              <%= time_ago_in_words(dossier.dossier_statuses.first.created_at) %> ago
+            </td>
+            <!-- interview time -->
+            <td>
+              <%= dossier.read_interview_time %>
+            </td>
+
+
+            <td>
+              <%= dossier.aasm_state.humanize %>
+            </td>
+            <% if dossier.interviews.count > 0 %>
+              <td>Claimed by <%= dossier.interviews.last.user.full_name %></td>
+            <% else %>
+              <td><%= link_to "Claim interview", claim_interview_path(dossier), :method => "POST" %></td>
+            <% end %>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+
+
+
+<!-- the current class view -->
+<div class="current_class">
+  <h2>Pending Applicants</h2>
+  <% if @pending %>
     <div style="margin-left:auto; margin-right:auto;">
-      <% @confirmed.each do |dossier| %>    
+      <% @pending.each do |dossier| %>    
           <span style="display:inline-block; margin:0px 10px; padding:50px; position:relative; border-bottom:3px dotted grey;">
             <img src="http://placekitten.com/180/180" style="margin-left:auto; margin-right:auto;">
             <h4 style="position:absolute; left:0;"><%= name(dossier.user) %></h4>
           </span>
       <%end%>
-    <div>
-  <%end%>
+    </div>
+  <% end %>
 
+  <div style="margin-top:50px; padding-top;50px border:10px;">
+    <h2>Flatiron Class</h2>
+    <% if @confirmed %>
+      <div style="margin-left:auto; margin-right:auto;">
+        <% @confirmed.each do |dossier| %>    
+            <span style="display:inline-block; margin:0px 10px; padding:50px; position:relative; border-bottom:3px dotted grey;">
+              <img src="http://placekitten.com/180/180" style="margin-left:auto; margin-right:auto;">
+              <h4 style="position:absolute; left:0;"><%= name(dossier.user) %></h4>
+            </span>
+        <%end%>
+      </div>
+    <%end%>
   <%= link_to "Create a new course", new_course_path %>
-<div>
+  </div>
+</div>

@@ -12,11 +12,15 @@ class CoursesController < ApplicationController
   end
 
   def index
+    #for needs decision
+    @dossiers = Dossier.where(:aasm_state => "needs_decision")
+    raise params.inspect
+
+    # for class
     @pending = Dossier.where(:aasm_state => "needs_payment")
     authorize! :index, @pending
     @confirmed = Dossier.where(:aasm_state => "committed")
     @courses = Course.all
-    raise params.inspect
   end
 
   def dashboard
