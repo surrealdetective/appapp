@@ -25,23 +25,12 @@
         <tr>
             <th class="span2 sortable">Name</th>
             <th class="span2 sortable">
-                <span class="line"></span>Email
+                <span class="line"></span>Hash Tags
             </th>
             <th class="span4 sortable">
-                <span class="line"></span>Date Offer Sent
-            </th>
-            <!-- Interview Time -->
-            <th class="span2">
-                <span class="line"></span>Interview Time
+                <span class="line"></span>Change Status
             </th>
 
-
-            <th class="span2 sortable">
-                <span class="line"></span>Interview type
-            </th>
-            <th class="span2">
-              <span class="line"></span>Interviewer
-            </th>
         </tr>
       </thead>
       <tbody>
@@ -51,26 +40,25 @@
               <img src="http://placekitten.com/55/55" class="img-circle avatar hidden-phone" />
               <%= link_to dossier.user.full_name, interview_show_path(dossier), :class => "name" %>
             </td>
+
+            <!-- Hash Tags -->
             <td>
-              <a href='mailto:<%=dossier.user.email %>'><%= dossier.user.email %></a>
+              <% dossier.hashtags.each do |hashtag| %>
+                <%= hashtag.content %>
+              <% end %>
             </td>
             <td>
-              <%= time_ago_in_words(dossier.dossier_statuses.first.created_at) %> ago
-            </td>
-            <!-- interview time -->
-            <td>
-              <%= dossier.read_interview_time %>
+              <ul>
+                <% dossier.aasm.events.each do |event| %>
+                  <li><%= link_to event.to_s.humanize, transition_path(dossier, event), method: :put, data: { confirm: 'Are you sure?' } %></li>
+                <% end %>
+                <% unless ["accepted", "rejected", "wont_attend", "needs_payment"].include? dossier.aasm_state %>
+                  <li><%= link_to "Reject", transition_path(dossier, :reject), method: :put, data: { confirm: 'Are you sure?' } %></li>
+                  <li><%= link_to "Accept", transition_path(dossier, :accept), method: :put, data: { confirm: 'Are you sure?' } %></li>
+                <% end %>
+              </ul>
             </td>
 
-
-            <td>
-              <%= dossier.aasm_state.humanize %>
-            </td>
-            <% if dossier.interviews.count > 0 %>
-              <td>Claimed by <%= dossier.interviews.last.user.full_name %></td>
-            <% else %>
-              <td><%= link_to "Claim interview", claim_interview_path(dossier), :method => "POST" %></td>
-            <% end %>
           </tr>
         <%end%>
       </tbody>

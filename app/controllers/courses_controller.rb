@@ -14,7 +14,6 @@ class CoursesController < ApplicationController
   def index
     #for needs decision
     @dossiers = Dossier.where(:aasm_state => "needs_decision")
-    raise params.inspect
 
     # for class
     @pending = Dossier.where(:aasm_state => "needs_payment")
