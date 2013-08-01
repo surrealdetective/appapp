@@ -8,6 +8,9 @@
   * You're free to add application-wide styles to this file and they'll appear at the top of the
   * compiled file, but it's generally better to create a new file per style scope.
   *
+  
+  * ADD THIS IF FAILING, TO BOTTOM: require_tree .
+
   *= require ../../../vendor/assets/stylesheets/lib/bootstrap.css
   *= require ../../../vendor/assets/stylesheets/lib/bootstrap-responsive.css
   *= require ../../../vendor/assets/stylesheets/lib/bootstrap-overrides.css
@@ -31,6 +34,5 @@
   *= require ../../../vendor/assets/stylesheets/lib/jquery.fancybox-buttons.css
   *= require ../../../vendor/assets/stylesheets/lib/jquery.fancybox-thumbs.css
 
-  *= require_tree .
   *= require_self
 */
