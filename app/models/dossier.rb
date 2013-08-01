@@ -52,13 +52,18 @@ class Dossier < ActiveRecord::Base
     # needs_code_interview:
     state :needs_code_interview, :after_enter => Proc.new { |d| d.add_status "needs code interview" }
 
-    # needs_decision_from_interview:
-    # due diligence is done so now we need to make up our mind
-    state :needs_decision_from_interview, :after_enter => Proc.new { |d| d.add_status "needs decision from interview"}
+    # needs_decision:
+    state :needs_decision, :after_enter => Proc.new { |d| d.add_status "needs decision" }
 
-    # needs_decision_from_interview:
-    # due diligence is done so now we need to make up our mind
-    state :needs_decision_from_code_interview, :after_enter => Proc.new { |d| d.add_status "needs decision from code interview"}
+
+
+                                                    # # needs_decision_from_interview:
+                                                    # # due diligence is done so now we need to make up our mind
+                                                    # state :needs_decision_from_interview, :after_enter => Proc.new { |d| d.add_status "needs decision from interview"}
+
+                                                    # # needs_decision_from_interview:
+                                                    # # due diligence is done so now we need to make up our mind
+                                                    # state :needs_decision_from_code_interview, :after_enter => Proc.new { |d| d.add_status "needs decision from code interview"}
 
     # needs_payment:
     # accepted but has not yet confirmed, by paying
@@ -102,25 +107,30 @@ class Dossier < ActiveRecord::Base
     # first interview took place
     # another is necessary
     event :mark_as_needs_code_interview do
-      transitions :from => :needs_interview, :to => :needs_code_interview
+      transitions :from => [ :needs_decision, :needs_interview], :to => :needs_code_interview
     end
 
-    # mark_as_needs_decision:
-    # interview took place and now it's decision time
-    # this means no code interview will take place
-    event :mark_as_needs_decision_from_interview do
-      transitions :from => :needs_interview, :to => :needs_decision_from_interview
-    end
+    event :mark_as_needs_decision do
+      transitions :from => [:needs_interview, :needs_code_interview], :to => :needs_decision
+    end    
 
-    event :mark_as_needs_decision_from_code_interview do
-      transitions :from => :needs_code_interview, :to => :needs_decision_from_code_interview
-    end
+                                    # # mark_as_needs_decision:
+                                    # # interview took place and now it's decision time
+                                    # # this means no code interview will take place
+                                    # event :mark_as_needs_decision_from_interview do
+                                    #   transitions :from => :needs_interview, :to => :needs_decision_from_interview
+                                    # end
 
-    # actually_we_still_need_a_code_interview
-    # incorrectly moved to needs_decision w/o a code interview
-    event :actually_we_still_need_a_code_interview do
-      transitions :from => :needs_decision_from_interview, :to => :needs_code_interview
-    end
+                                    # event :mark_as_needs_decision_from_code_interview do
+                                    #   transitions :from => :needs_code_interview, :to => :needs_decision_from_code_interview
+                                    # end
+
+                                    # # actually_we_still_need_a_code_interview
+                                    # # incorrectly moved to needs_decision w/o a code interview
+                                    # event :actually_we_still_need_a_code_interview do
+                                    #   transitions :from => :needs_decision_from_interview, :to => :needs_code_interview
+                                    # end
+
 
     # mark_as_accepted:
     # decision takes place and now it's payment pending

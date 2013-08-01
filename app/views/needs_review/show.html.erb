@@ -10,9 +10,11 @@
       <%= link_to transition_path(@dossier, :reject), method: :put, data: { confirm: 'Are you sure?' }, :class => "btn glow" do %>
         <span class="icon"> </span> <span class="text"><i class="icon-trash"> Reject</i></span>
       <% end %>
+
       <%= link_to transition_path(@dossier, :mark_as_needs_interview), method: :put, data: { confirm: 'Are you sure?' }, :class => "btn glow" do %>
         <span class="icon"> </span> <span class="text"><i class="icon-ok-sign"> Needs Interview</i></span>
       <% end %>
+      
       <% if @next_dossier %>
         <%= link_to "Next →", needs_review_show_path(@next_dossier), :class => "btn glow"%>
       <% else %>

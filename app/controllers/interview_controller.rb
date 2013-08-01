@@ -3,6 +3,15 @@ class InterviewController < ApplicationController
 
   def show
     @dossier = Dossier.find(params[:id])
+
+    #lets you look at only needs_interview or needs_code_interview pages.
+    if @dossier.rejected? or @dossier.needs_decision?
+      state = @dossier.dossier_statuses[-2].status.split.join('_').to_sym
+    else
+      state = @dossier.aasm_state
+    end
+    @prev_dossier = @dossier.prev_with_state(state)
+    @next_dossier = @dossier.next_with_state(state)
     @user = @dossier.user
     @score = Score.new  
   end

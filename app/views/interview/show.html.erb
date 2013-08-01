@@ -1,4 +1,27 @@
 <div class="container">
+  <div class="btn-group pull-right">
+    
+    <% if @prev_dossier %>
+      <%= link_to "← Previous", interview_show_path(@prev_dossier), :class => "btn glow"%>
+    <% else %>
+      <%= button_tag "← Previous", :class => "btn glow", :disabled => "disabled" %>
+    <% end %>
+
+    <%= link_to transition_path(@dossier, :reject), method: :put, data: { confirm: 'Are you sure?' }, :class => "btn glow" do %>
+      <span class="icon"> </span> <span class="text"><i class="icon-trash"> Reject</i></span>
+    <% end %>
+
+    <%= link_to transition_path(@dossier, :mark_as_needs_decision), method: :put, data: { confirm: 'Are you sure?' }, :class => "btn glow" do %>
+      <span class="icon"> </span> <span class="text"><i class="icon-ok-sign"> Needs Decision</i></span>
+    <% end %>
+
+    <% if @next_dossier %>
+        <%= link_to "Next →", interview_show_path(@next_dossier), :class => "btn glow"%>
+      <% else %>
+        <%= button_tag "Next →", :class => "btn glow", :disabled => "disabled" %>
+    <% end %>
+
+  </div>
 
   <%= render "dossiers/alert_notice" %>
 
