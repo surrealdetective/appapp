@@ -31,6 +31,8 @@ Appapp::Application.routes.draw do
 
   end
 
+  get '/dossiers/:id/hashtags/display' => "courses#hashtags", :as => :display_hashtags
+
   put '/dossiers/:id/transition/:transition' => 'dossiers#transition', :as => :transition
   #get '/dossiers/:id/score', as: :dossier_score_index
 

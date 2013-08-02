@@ -101,6 +101,9 @@ class DossiersController < ApplicationController
     # raise params.inspect
   end
 
+  def hashtags
+    @dossier = Dossier.find(params[:id])
+  end
 
   private
 
