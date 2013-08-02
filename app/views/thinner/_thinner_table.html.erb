@@ -11,11 +11,13 @@
           <h3><%= name(dossier.user) %></h3>
         </td>
         <td class="quarter-width">
-          <a class = "btn-flat inverse icon-thumbs-down">
+          <a class="btn-flat inverse icon-thumbs-down fancybox" data-href="<%= admin_act_path(dossier.id, :layout=>"false") %>" href="#">
             Admin Actions
             <i class="icon-thumbs-up"></i>
           </a>
         </td>
+
+
         <td class="quarter-width">
         <a class = "btn-flat default icon-heart-empty fancybox" data-href="<%= dossier_path(dossier.id, :layout => "false") %>" href="#">
             See My Dossier

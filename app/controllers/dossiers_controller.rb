@@ -51,7 +51,7 @@ class DossiersController < ApplicationController
     elsif params[:sort_by]
       @dossiers = Dossier.sort_by(params[:sort_by])
     else
-      @dossiers = Dossier.find(:all)
+      @dossiers = Dossier.joins(:user).find(:all)
     end
     authorize! :index, @dossiers
   end
@@ -87,6 +87,18 @@ class DossiersController < ApplicationController
     @dossier = Dossier.find(params[:id])
     @dossier.send(params[:transition])
     redirect_to :back
+  end
+
+  def admin_act
+    @dossier = Dossier.find(params[:id])
+    respond_to do |format|
+      if params[:layout] == "false"
+        format.html {render :layout => 'simple'}
+      else
+        format.html
+      end
+    end
+    # raise params.inspect
   end
 
 
