@@ -43,7 +43,7 @@ avi  = User.create(:first_name => "Avi" , :last_name => "Flombaum", :email => "a
   # picks a random status for the last dossier
   # and moves it thru the states to arrive there
   # with a history
-  #user.last_dossier.random_status!
+  user.last_dossier.random_status!
   # puts user.inspect
   # puts user.valid?
   #puts user.last_dossier.aasm_state 

@@ -17,50 +17,45 @@
 
 
 <!-- the needs decision view -->
-<div class="needs_decision">
+<div class="needs_decision span">
   <h2>Applicants who Need a Decision</h2>
   <div class="row-fluid table">
     <table class="table table-hover">
-      <thead>
-        <tr>
-            <th class="span2 sortable">Name</th>
-            <th class="span2 sortable">
-                <span class="line"></span>Hash Tags
-            </th>
-            <th class="span4 sortable">
-                <span class="line"></span>Change Status
-            </th>
 
-        </tr>
-      </thead>
-      <tbody>
-        <% @dossiers.each do |dossier| %>
-          <tr id="dossier-<%= dossier.id %>">
-            <td>
-              <img src="http://placekitten.com/55/55" class="img-circle avatar hidden-phone" />
-              <%= link_to dossier.user.full_name, interview_show_path(dossier), :class => "name" %>
+      <% @dossiers.each do |dossier| %>
+        <tbody class="tbody-border">
+
+          <tr>
+            <!-- column 1 -->
+            <td class="quarter-width">
+              <span class="label label-info"><%= dossier.aasm_state %></span><h3 style="display:inline-block; padding-left:0; margin-left:0;"><%= dossier.user.full_name %></h3>
             </td>
 
-            <!-- Hash Tags -->
-            <td>
+            <!-- column 2 -->
+            <td class="quarter-width">
+              <a class = "btn-flat default icon-heart-empty fancybox" data-href="<%= dossier_path(dossier.id, :layout => "false") %>" href="#">
+                See App
+                <i class=""></i>
+              </a>
+            </td>
+
+            <!-- column 3 -->
+            <td class="quarter-width">
+              <a class="btn-flat inverse icon-thumbs-down fancybox" data-href="<%= admin_act_path(dossier.id, :layout=>"false") %>" href="#">
+                <i class="icon-thumbs-up"></i>
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <!-- Row 2 Bellow: Hash Tags, double width -->
+            <td class="quarter-width" colspan="3">
               <% dossier.hashtags.each do |hashtag| %>
                 <%= hashtag.content %>
               <% end %>
             </td>
-            <td>
-              <ul>
-                <% dossier.aasm.events.each do |event| %>
-                  <li><%= link_to event.to_s.humanize, transition_path(dossier, event), method: :put, data: { confirm: 'Are you sure?' } %></li>
-                <% end %>
-                <% unless ["accepted", "rejected", "wont_attend", "needs_payment"].include? dossier.aasm_state %>
-                  <li><%= link_to "Reject", transition_path(dossier, :reject), method: :put, data: { confirm: 'Are you sure?' } %></li>
-                  <li><%= link_to "Accept", transition_path(dossier, :accept), method: :put, data: { confirm: 'Are you sure?' } %></li>
-                <% end %>
-              </ul>
-            </td>
-
           </tr>
-        <%end%>
+        <% end %>
       </tbody>
     </table>
   </div>
