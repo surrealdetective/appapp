@@ -1,0 +1,11 @@
+<h4><%= dossier.user.full_name %></h4>
+
+<ul>
+  <% dossier.aasm.events.each do |event| %>
+    <li><%= link_to event.to_s.humanize, transition_path(dossier, event), method: :put, data: { confirm: 'Are you sure?' } %></li>
+  <% end %>
+  <% unless ["accepted", "rejected", "wont_attend", "needs_payment"].include? dossier.aasm_state %>
+    <li><%= link_to "Reject", transition_path(dossier, :reject), method: :put, data: { confirm: 'Are you sure?' } %></li>
+    <li><%= link_to "Accept", transition_path(dossier, :accept), method: :put, data: { confirm: 'Are you sure?' } %></li>
+  <% end %>
+</ul>

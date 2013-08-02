@@ -25,4 +25,5 @@ class CoursesController < ApplicationController
   def dashboard
     @course = Course.first
   end
+
 end

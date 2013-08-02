@@ -31,6 +31,8 @@ Appapp::Application.routes.draw do
 
   end
 
+  get '/dossiers/:id/hashtags/display' => "courses#hashtags", :as => :display_hashtags
+
   put '/dossiers/:id/transition/:transition' => 'dossiers#transition', :as => :transition
   #get '/dossiers/:id/score', as: :dossier_score_index
 
@@ -40,6 +42,7 @@ Appapp::Application.routes.draw do
   get '/dossiers/filter' => 'dossiers#filter', as: :dossiers_filter
 
   get '/dossiers/:id/interview/' => 'interview#show', as: :interview_show
+  get '/dossiers/:id/admin_act' => 'dossiers#admin_act', as: :admin_act
   #put '/dossiers/:id/interview/' => 'interview#', as: :interview_show
 
   get '/needs_review' => 'needs_review#redirect_to_first', :as => :needs_review_first
