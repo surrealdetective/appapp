@@ -1,30 +1,23 @@
-<div id="main-stats">
-    <div class="row-fluid stats-row">
-        <div class="span3 stat">
-          <div class="data">
-            <span class="number">
-              <%= link_to dossier_count_by_state(:new), thinner_path %>
-            </span>
-            <span class="number_label"> New Applicants </span>
-          </div>
-        </div>
-        <div class="span3 stat">
-          <div class="data">
-            <span class="number"><%= link_to dossier_count_by_state(:needs_review), needs_review_first_path %></span>
-            <span class="number_label"> Need Review               </span>
-          </div>
-        </div>
-        <div class="span3 stat">
-          <div class="data">
-            <span class="number"><%= link_to dossier_count_by_state(:needs_interview), dossier_interview_path %> </span>
-            <span class="number_label"> Need Interviews              </span>
-          </div>
-        </div>
-        <div class="span3 stat last">
-          <div class="data">
-            <span class="number"><%= link_to dossier_count_by_state(:needs_decision), courses_path %> </span>
-            <span class="number_label"> Need Decisions              </span>
-          </div>
-        </div>
-    </div>
-</div>
+<div id="fuelux-wizard" class="wizard row-fluid">
+                            <ul class="wizard-steps">
+                                <li data-target="#step1" class="active">
+                                    <span class="step"><%= link_to dossier_count_by_state(:new), thinner_path %></span>
+                                    <span class="title">New <br> Applicants</span>
+                                </li>
+
+                                <li data-target="#step2">
+                                    <span class="step"><%= link_to dossier_count_by_state(:needs_review), needs_review_first_path %></span>
+                                    <span class="title">Review <br> Applicants</span>
+                                </li>
+
+                                <li data-target="#step3">
+                                    <span class="step"><%= link_to dossier_count_by_state(:needs_interview), dossier_interview_path %> </span>
+                                    <span class="title">Inteview <br> Applicants</span>
+                                </li>
+
+                                <li data-target="#step4">
+                                    <span class="step"><%= link_to dossier_count_by_state(:needs_decision), courses_path %></span>
+                                    <span class="title">Make a <br> Class</span>
+                                </li>
+                            </ul>                            
+                        </div>

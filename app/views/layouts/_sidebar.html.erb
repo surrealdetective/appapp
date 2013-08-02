@@ -22,9 +22,9 @@
                 <li><%= link_to thinner_path(@dossier) do %>
                 Elevator Pitches
               <% end %></li>
-                <li><a href="icons.html">Reviewer</a></li>
-                <li><a href="ui-elements.html">Interviewer</a></li>
-                <li><a href="icons.html">Class Maker</a></li>
+                <li><%= link_to needs_review_first_path(@dossier) do %>Reviewer<%end%></li>
+                <li><%= link_to dossier_interview_path(@dossier) do %>Interviewer<%end%></li>
+                <li><%= link_to courses_path(@dossier) do %>Class Maker<%end%></li>
             </ul>
         </li>          
       
@@ -56,9 +56,10 @@
             </a>
             <ul class="submenu">
                 <li><a href="code-editor.html">Code editor</a></li>
-                <li><a href="grids.html">Grids</a></li>
-                <li><a href="signin.html">Sign in</a></li>
-                <li><a href="signup.html">Sign up</a></li>
+                <li><a href="grids.html">SylaBOSS</a></li>
+                <li><a href="signin.html">Teamline</a></li>
+                <li><a href="signup.html">Assignment.io</a></li>
+                <li><a href="signup.html">Employment CRM</a></li>
             </ul>
         </li>
     </ul>
