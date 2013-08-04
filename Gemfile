@@ -1,19 +1,32 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
-
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
 gem 'sqlite3'
-
-## should we switch to thin?
+gem 'debugger'
 gem 'thin'
+gem 'skype'
+gem 'jquery-rails'
+
+# state machine
+gem 'aasm'
+
+# authentication
+gem 'bcrypt-ruby', '=3.0.0'
+
+# authorization
+gem "cancan"
+
+# debugging tools
+gem 'debugger'
+gem 'pry'
+
+#parsing comment content for hash tags
+gem 'twitter-text'
+
 
 group :development do
   gem "better_errors"
 end
-
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -27,20 +40,6 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'skype'
-gem 'jquery-rails'
-gem 'bcrypt-ruby', '=3.0.0'
-#require 'bcrypt' #'~> 3.0.0'
-gem 'aasm'
-gem 'debugger'
-gem 'pry'
-
-#authorization
-gem "cancan"
-
-#parsing comment content for hash tags
-gem 'twitter-text'
-
 group :development do
   gem 'populator'
   gem 'faker'
@@ -48,9 +47,6 @@ group :development do
   gem 'binding_of_caller'
   gem 'quiet_assets'
 end
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
@@ -60,6 +56,3 @@ end
 
 # Deploy with Capistrano
 # gem 'capistrano'
-
-# To use debugger
-# gem 'debugger'
