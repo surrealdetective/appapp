@@ -23,8 +23,10 @@
       </li>
      
        <li>
-        <strong>Skype: </strong><em><%=@dossier.skype%>
-         <a href="skype:<%=@dossier.skype%>">Call<script type="text/javascript" src="http://cdn.dev.skype.com/uri/skype-uri.js"></script></a>
+        <strong>Skype:</strong>
+        <em>
+          <%=@dossier.skype%>
+          <%= link_to "Call", "skype:#{@dossier.skype}" %>
         </em>
        </li>
      </div>
@@ -37,22 +39,22 @@
 
     <ul>
       <li>
-        <strong>Twitter:</strong> <em><a href="twitter://user?screen_name=<%= @dossier.twitter %>">@<%= @dossier.twitter %></a></a>
+        <strong>Twitter:</strong> <%= link_to "@#{@dossier.twitter}", "twitter://user?screen_name=#{@dossier.twitter}" %>
       </li>
       <li>
-        <strong>Github:</strong> <a href="http://<%= @dossier.github %>"><%= @dossier.github %></a>
+        <strong>Github:</strong> <%= link_to @dossier.github, @dossier.github %>
       </li>
       <li>
-        <strong>Blog:</strong> <a href="http://<%= @dossier.blog %>"><%= @dossier.blog %></a>
+        <strong>Blog:</strong> <%= link_to @dossier.blog, @dossier.blog %>
       </li>
       <li>
-        <strong>LinkedIn:</strong> <a href="http://<%= @dossier.linkedin %>"><%= @dossier.linkedin %></a>
+        <strong>LinkedIn:</strong> <%= link_to @dossier.linkedin, @dossier.linkedin %>
       </li>
       <li>
-        <strong>Website</strong> <a href="http://<%= @dossier.website %>"><%= @dossier.website %></a>
+        <strong>Website</strong> <%= link_to @dossier.website, @dossier.website %>
       </li>
       <li>
-        <strong>Other Links:</strong> <a href="http://<%= @dossier.tidbits %>"><%= @dossier.tidbits %></a>
+        <strong>Other Links:</strong> <%= link_to @dossier.other_links, @dossier.other_links %>
       </li>
     </ul>
 
