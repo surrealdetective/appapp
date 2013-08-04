@@ -1,5 +1,3 @@
-<%# main global layout %>
-
 <!DOCTYPE html>
 <!--
                    _         _        
@@ -28,10 +26,6 @@
   <%= csrf_meta_tags %>
 </head>
 
-<!--
-  body will have classes of the controller and action,
-  and then additional arbitrary classes assigned in controller
--->
 <body class='<%= params[:controller] %> <%= params[:action] %> <%= @body_classes %>'>
 
   <%= render "layouts/nav" %>
@@ -40,9 +34,7 @@
   <div class="content">  
 
     <% if can? :manage, Dossier %>
-      <!-- STAT NAV -->
       <%= render "layouts/stats" %>
-      <!-- END STAT NAV -->
     <% end %>
 
     <div class="container-fluid" id="pad-wrapper">
