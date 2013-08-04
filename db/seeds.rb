@@ -4,9 +4,22 @@ Course.create(:season => "Fall 2013", :seats => 20, :subject => "iOS", :starting
 Course.create(:season => "Spring 2014", :seats => 30, :subject => "Rails", :starting_date => Date.new(2014, 2, 3))
 
 # create one admin
-User.create(:first_name => "Adam", :last_name => "Enbar", :email => "Adam@adam.com", :roles => 0, :password => "adam")
+User.create(
+  :first_name => "Adam",
+  :last_name => "Enbar",
+  :email => "Adam@adam.com",
+  :roles => 0,
+  :password => "adam"
+  )
+
 # and one moderator
-User.create(:first_name => "Avi" , :last_name => "Flombaum", :email => "avi@avi.com", :roles => 100, :password => "avi")
+User.create(
+  :first_name => "Avi",
+  :last_name => "Flombaum",
+  :email => "avi@avi.com",
+  :roles => 100,
+  :password => "avi"
+  )
 
 # create 300 users with one dossier each
 300.times do |i|
