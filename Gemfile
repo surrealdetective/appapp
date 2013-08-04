@@ -4,7 +4,6 @@ gem 'rails', '3.2.13'
 gem 'sqlite3'
 gem 'debugger'
 gem 'thin'
-gem 'skype'
 gem 'jquery-rails'
 
 # state machine
