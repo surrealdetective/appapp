@@ -1,3 +1,5 @@
+<%# main global layout %>
+
 <!DOCTYPE html>
 <!--
                    _         _        
@@ -37,15 +39,19 @@
 
   <div class="content">  
 
-    <!-- upper main stats -->
-    <% if current_user && current_user.role?(:moderator) %>
+    <% if can? :manage, Dossier %>
+      <!-- STAT NAV -->
       <%= render "layouts/stats" %>
+      <!-- END STAT NAV -->
     <% end %>
 
     <div class="container-fluid" id="pad-wrapper">
+      <%= render "shared/flash_messages" %>
       <%= yield %>
-    </div>
-  </div>
+    </div> <!-- end div.container-fluid#pad-wrapper  -->
+
+  </div> <!-- end div.content  -->
+
   <%= javascript_include_tag "application" %>
 </body>
 </html>
