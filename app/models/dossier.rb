@@ -282,14 +282,14 @@ class Dossier < ActiveRecord::Base
     return if choice == :committed
 
     #add rejected and wont_attend later.
-                                                        # if choice == :needs_decision_from_interview
-                                                        #   self.mark_as_needs_decision_from_interview
-                                                        #   return
-                                                        # elsif choice == :needs_decision_from_code_interview
-                                                        #   self.mark_as_needs_code_interview
-                                                        #   self.mark_as_needs_decision_from_code_interview
-                                                        #   return
-                                                        # end
+    # if choice == :needs_decision_from_interview
+    #   self.mark_as_needs_decision_from_interview
+    #   return
+    # elsif choice == :needs_decision_from_code_interview
+    #   self.mark_as_needs_code_interview
+    #   self.mark_as_needs_decision_from_code_interview
+    #   return
+    # end
     
   end
 
