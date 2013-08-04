@@ -1,9 +1,8 @@
 class DossiersController < ApplicationController
   skip_before_filter :login_required, :only => [:new, :create]
-  # set a non-default layout for dossier viewing
-  # layout :resolve_layout
 
-
+  # dossiers#new
+  # GET new_dossier_path
   def new
      @user = User.new
      @dossier = Dossier.new
@@ -13,9 +12,10 @@ class DossiersController < ApplicationController
     @course_list = Course.list_for_selectbox
   end
 
-  def create
 
-     
+  # dossiers#create
+  # POST dossiers_path
+  def create
     # if current_user
       #user = current_user
     # else
@@ -41,7 +41,8 @@ class DossiersController < ApplicationController
     end
   end
 
-
+  # dossiers#index
+  # GET dossiers_path
   def index
     @title = "Dashboard"
     if params[:search]
@@ -98,23 +99,10 @@ class DossiersController < ApplicationController
         format.html
       end
     end
-    # raise params.inspect
   end
 
   def hashtags
     @dossier = Dossier.find(params[:id])
   end
-
-  private
-
-  # def resolve_layout
-  #   case action_name
-  #   when "new", "create"
-  #     "applicant"
-  #   else
-  #     "application"
-  #   end
-  # end
-
     
 end
