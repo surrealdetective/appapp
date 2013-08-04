@@ -1,38 +1,38 @@
 class SessionsController < ApplicationController
-  # layout "pretty"
 
   skip_before_filter :login_required, :only => [:new, :create]
 
-  def new #this happens when you login
-    # render layout: false
+  # sessions#new
+  # GET login_path
+  def new
   end
 
-  def create#this is the post, which creates your login
-    #raise params.inspect
+  # sessions#create
+  # POST login_path
+  def create
     user = User.find_by_email(params[:user][:email])
     if user && user.authenticate(params[:password]) 
       session[:user_id] = user.id
-      if user.role?(:moderator)
-        redirect_to dossiers_path, :notice => "Logged in!"
+      if user.admin?
+        redirect_to dossiers_path, :notice => "Take a look at these applicants"
       else
-        if user.last_dossier
-          redirect_to user.last_dossier
+        if user.has_dossiers?
+          redirect_to user.last_dossier, :notice => "Welcome back"
         else
-          redirect_to new_dossier_path
+          redirect_to new_dossier_path, :notice => "Why not apply?"
         end
       end
     else
-       flash.now.alert = "Invalid email or password"
-       render "new"
+      flash[:error] = "Invalid email or password"
+      redirect_to login_path
     end
-
   end
 
+  # sessions#destroy
+  # GET logout_path
   def destroy
-    #raise session.inspect
     reset_session
     redirect_to login_path, :notice => "You are logged out"
   end
-
 
 end

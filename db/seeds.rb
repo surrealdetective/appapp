@@ -3,7 +3,7 @@ Course.create(:season => "Fall 2013", :seats => 32, :subject => "Rails", :starti
 Course.create(:season => "Fall 2013", :seats => 20, :subject => "iOS", :starting_date => Date.new(2013, 9, 30))
 Course.create(:season => "Spring 2014", :seats => 30, :subject => "Rails", :starting_date => Date.new(2014, 2, 3))
 
-# create one admin
+# create two admins
 User.create(
   :first_name => "Adam",
   :last_name => "Enbar",
@@ -11,13 +11,11 @@ User.create(
   :roles => 0,
   :password => "adam"
   )
-
-# and one moderator
 User.create(
   :first_name => "Avi",
   :last_name => "Flombaum",
   :email => "avi@avi.com",
-  :roles => 100,
+  :roles => 0,
   :password => "avi"
   )
 

@@ -1,6 +1,10 @@
 class User < ActiveRecord::Base
   
-  ROLES = {:admin => 0, :moderator => 100, :applicant => 200}
+  ROLES = {
+    :admin =>     0,
+    :applicant => 100
+  }
+
   attr_accessible :email, :first_name, :last_name, :dossiers, :password, :password_confirmation, :roles
   has_many :dossiers
   has_many :dossier_comments # meaning, they've written many
@@ -24,10 +28,6 @@ class User < ActiveRecord::Base
     last_dossier.add_status(status_text)
     self.save
   end
-
-  # def most_recent_dossier_by_status(status = "reviewed")
-  #   self.dossiers.most_recent.filter_by(status).first#.tagline or whatever
-  # end
 
   def last_dossier
     self.dossiers.last
@@ -62,6 +62,7 @@ class User < ActiveRecord::Base
     # self.dossiers.includes(:dossier_statuses).order("created_at ASC").limit(1
 
   end
+
   def self.authenticate(email, password)
     user = find_by_email(email)
     if user && user.password_hash == Bcrypt::Engine.hash_secret(password, user.password_salt)
@@ -78,44 +79,24 @@ class User < ActiveRecord::Base
     end
   end
 
-
-
-
-  #ROLES = {:admin => 0, :moderator => 100, :applicant => 200}
-
-  #the column is called roles bc user may have > 1 role.
-
-  #Avi's method for setting permissions
-  def set_role(role)
-    self.update_attributes({:roles => self.class.roles[role]})
-  end
-
-  # My method, should be equivalent to Avi's above.
-  # def roles=(role)
-  #   @roles = User.roles[role]
-  # end
-
-  #class method to read ROLES
-  def self.roles
-    ROLES
-  end
-
-  # def roles
-  #   ROLES[]
-  # end
-
-  #if the person's row column is lower than the passed-in role,
-  #then they have that passed-in role's permissions, so yes.
-  def role?(role)
-    true if self.roles <= ROLES[role]
-  end
-
-  #again, putting roles on a scale shows that a user w/ a 
-  #low integer role also has all the higher-intger role permissions
-
   def full_name
     "#{first_name} #{last_name}"
   end
 
+  def set_role(role)
+    self.update_attributes({:roles => self.class.roles[role]})
+  end
+
+  def self.roles
+    ROLES
+  end
+
+  def admin?
+    ROLES[:admin] == self.roles
+  end
+
+  def applicant?
+    ROLES[:applicant] == self.roles
+  end
 
 end

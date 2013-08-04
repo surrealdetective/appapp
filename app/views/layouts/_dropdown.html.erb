@@ -1,18 +1,21 @@
 <li class="dropdown">
   <a href="#" class="dropdown-toggle hidden-phone" data-toggle="dropdown">
-    <%= current_user.full_name %> 
+    <%= current_user.full_name %>
     <b class="caret"></b>
-  </a>              
+  </a>
   <ul class="dropdown-menu">
-    <% current_user.dossiers.each do |dossier| %>
-      <li class="hidden-phone">
-        <%= link_to "#{dossier.semester} application", dossier_path(dossier) %>
+    <% if current_user.applicant? %>
+      <% current_user.dossiers.each do |dossier| %>
+        <li>
+          <%= link_to "#{dossier.semester} application", dossier_path(dossier) %>
+        </li>
+      <% end %>
+      <li>
+        <%= link_to "New Dossier", new_dossier_path %>
       </li>
     <% end %>
-    <li class="settings hidden-phone">
-      <%= link_to "New Dossier", new_dossier_path unless current_user.role? :moderator %>
-    </li>
-    <li class="settings hidden-phone">
+
+    <li>
       <%= link_to "Log Out", logout_path %>
     </li>
   </ul>
