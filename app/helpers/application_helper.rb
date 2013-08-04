@@ -11,6 +11,10 @@ module ApplicationHelper
     "*" if object.class.validators_on(attribute).map(&:class).include? ActiveModel::Validations::PresenceValidator
   end
 
+  def active? controller, action
+    "active" if controller == params[:controller] && action == params[:action]
+  end
+
 end
 
   
