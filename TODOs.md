@@ -35,6 +35,7 @@ use the "active" class and move the giant arrow thing
   - maybe because the logo image is too tall?
 - don't show the sidebar until you sign in?
 - add password field to new dossier
+- allow possibility of other_links containing multiple links. split on newline
 - dossier#show 
   - hide comments from applicant
   - make sections collapsible
