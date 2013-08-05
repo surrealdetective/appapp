@@ -30,8 +30,10 @@
 
 <!-- filter by search status view -->
 <hr>
-<%= form_tag courses_path(:course => @course.id), :method => "get", :style=> "text-align:center;" do %>
+<%= form_tag courses_path, :method => "get", :style=> "text-align:center;" do %>
   <%= text_field_tag "hashtag", params[:hashtag], :placeholder => "Filter by hashtag", :class => "span3 search" %>
+  <!-- @course.id MUST equal its position in the index -->
+  <%= hidden_field_tag :course, @courses.index(@course) %>
   <%= submit_tag :Filter, :class => "btn btn-flat white" %>
 <% end %>
 <hr>
