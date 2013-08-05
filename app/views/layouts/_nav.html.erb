@@ -12,11 +12,6 @@
       <%# appropriate way to check if someone is logged in?  %>
       <% if current_user %>
 
-        <%# feels appropriate to use this can? because searching leads to reading %>
-        <% if can? :manage, Dossier %>
-          <%= render "layouts/search" %>
-        <% end %>
-
         <%= render "layouts/dropdown" %>
 
       <% end %>

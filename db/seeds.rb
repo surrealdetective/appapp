@@ -4,20 +4,23 @@ Course.create(:season => "Fall 2013", :seats => 20, :subject => "iOS", :starting
 Course.create(:season => "Spring 2014", :seats => 30, :subject => "Rails", :starting_date => Date.new(2014, 2, 3))
 
 # create two admins
-User.create(
+adam = User.create(
   :first_name => "Adam",
   :last_name => "Enbar",
   :email => "Adam@adam.com",
   :roles => 0,
   :password => "adam"
   )
-User.create(
+
+avi = User.create(
   :first_name => "Avi",
   :last_name => "Flombaum",
   :email => "avi@avi.com",
   :roles => 0,
   :password => "avi"
   )
+
+adam_and_avi = [adam, avi]
 
 # create 300 users with one dossier each
 300.times do |i|
@@ -60,6 +63,6 @@ User.create(
 
   # add 5 hashtags to dossier
   5.times do
-    user.last_dossier.hashtags.create(content: Populator.words(1))
+    user.last_dossier.add_hashtag Populator.words(1), adam_and_avi.sample
   end
 end

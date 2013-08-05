@@ -309,5 +309,25 @@ class Dossier < ActiveRecord::Base
     end
   end
 
+  def add_hashtag(str, commentor)
+    UserDossierHashtag.create(
+        :hashtag => Hashtag.find_or_create_by_content(str),
+        :dossier => self,
+        :user    => commentor
+      )
+  end
+
+  def self.with_hashtag(query)
+    joins(:hashtags).where("hashtags.content = ?", query)
+  end
+
+  def self.with_user_name(name)
+    
+  end
+
+  def self.with_status(query)
+    where("aasm_state = ?", query)
+  end
+
 
 end

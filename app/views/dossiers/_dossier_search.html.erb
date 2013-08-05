@@ -1,0 +1,20 @@
+<%= form_tag dossiers_path, :method => "get" do %>
+  <%= text_field_tag "name", params[:name], :placeholder => "Search by Applicant name", :class => "span3 search" %>
+  <%= text_field_tag "hashtag", params[:hashtag], :placeholder => "Search by hashtag", :class => "span3 search" %>
+  <div class="field-box">
+    <select name="status" id="status" class="select2 span3">
+      <option></option>
+    <% Dossier.aasm.states.each do |status| %>
+      <option value="<%= status.to_s %>"><%= status.to_s.humanize %></option>
+    <% end %>
+    </select>
+  </div>
+  <%= submit_tag :search, :class => "btn btn-flat white" %>
+<% end %>
+
+
+<script>  
+  $(".select2").select2({
+      placeholder: "Select a status"
+  });
+</script>
