@@ -1,26 +1,36 @@
-<div class="dossier-form-container">rake routes
+<div class="dossier-form-container">
 
 
   <%= form_for(score, url: dossier_score_index_path(@dossier))  do |f| %>
     <%= render "shared/error_messages", :target => @user %>
     
-    <div class="span12 field-box">
-      <%= f.label :passion %>Passion Score<%= mark_required(@user, :passion) %><br />
-      <%= f.text_field :passion %>
+    <div class=" field-box pull-right">
+      <%= f.label :passion %><%= mark_required(@user, :passion) %>
+      <%= f.select :passion, options_for_select([1,2,3,4,5,6,7]) %>
     </div>
     
-    <div class="span12 field-box">
-      <%= f.label :tech %>Technical Score<%= mark_required(@user, :tech) %><br />
-      <%= f.text_field :tech %>
+    <div class=" field-box pull-right">
+      <%= f.label :tech %><%= mark_required(@user, :tech) %>
+      <%= f.select :tech, options_for_select([1,2,3,4,5,6,7]) %>
     </div>
     
-    <div class="span12 field-box">
-      <%= f.label :leadership %>Leadership Score<%= mark_required(@user, :leadership) %><br />
-      <%= f.text_field :leadership %>
+    <div class=" field-box pull-right">
+      <%= f.label :leadership %><%= mark_required(@user, :leadership) %>
+      <%= f.select :leadership, options_for_select([1,2,3,4,5,6,7]) %>
+    </div class= "pull-right">
+
+    <div>
+      <h6> Current Attribute Scores:</h6>
+      <div = class = "alert alert-info">
+        Passion: <%=@dossier.score.passion %><br>
+        Tech: <%=@dossier.score.tech %><br>
+        Leadership: <%=@dossier.score.leadership %><br>
+      </div>
+    
     </div>
     <%= f.submit  "Submit Scores", :class=>'btn-glow primary' %>
 
     <%end%>
 
-    <%= @dossier.score.inspect %>
+    
 </div
