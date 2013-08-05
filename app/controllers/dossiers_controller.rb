@@ -72,8 +72,9 @@ class DossiersController < ApplicationController
   end
 
   def show
-    @body_classes = "dossier-form-bg"
     @dossier = Dossier.find(params[:id])
+    authorize! :read, @dossier
+    @body_classes = "dossier-form-bg"
     @user = @dossier.user
     respond_to do |format|
       if params[:layout] == "false"
