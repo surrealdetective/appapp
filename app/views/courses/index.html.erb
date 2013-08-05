@@ -4,11 +4,13 @@
 <!-- Show all courses -->
 <div class="course-select">
   <div class="btn-group float-right">
-    <button class="glow left"><%= @courses.first.semester %></button>
-    <% @courses[1..-2].each do |course| %>
-      <button class="glow middle"><%= link_to course.semester, courses_path %></button>
+    <button class="glow left"><%= link_to @courses.first.semester, courses_path(:course => 0) %></button>
+    
+    <% @courses[1..-2].each_with_index do |course, index| %>
+      <button class="glow middle"><%= link_to course.semester, courses_path(:course => index+1) %></button>
     <% end %>
-    <button class="glow right"><%= @courses.last.semester %></button>
+
+    <button class="glow right"><%= link_to @courses.last.semester, courses_path(:course => @courses.count - 1) %></button>
   </div>
 
   <h4 class="float-right h4-float" style="display: inline; margin-top: 3px; margin-right:14px;">Select a Course:</h4>
