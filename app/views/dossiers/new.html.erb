@@ -19,22 +19,22 @@
 
           <%= fields_for  @user do |u| %>
             
-          <h4> User Info</h4>
+          <h4><strong> User Info</strong></h4>
           <hr>
           <!-- USER STUFF -->
           <div class="field-box">
             <%= u.label :first_name %><%= mark_required(@user, :first_name)%>
-            <%= u.text_field :first_name, :class => " span4" %>
+            <%= u.text_field :first_name, :class => " span4", placeholder: "e.g. Tyrion" %>
           </div>
 
           <div class="field-box">
             <%= u.label :last_name %><%= mark_required(@user, :last_name) %>
-            <%= u.text_field :last_name, :class => "span4" %>
+            <%= u.text_field :last_name, :class => "span4", placeholder: "e.g. Lannister" %>
           </div>
 
           <div class="field-box">
             <%= u.label :email, :class => "span12"  %><%= mark_required(@user, :email) %>
-            <%= u.email_field :email, :class => "span4" %>
+            <%= u.email_field :email, :class => "span4",placeholder: "e.g. tyrion@casterly.rock" %>
           </div>
 
          <!-- DOSSIER STUFF -->
@@ -42,17 +42,17 @@
          <div class="field-box">
 
             <%= f.label :phone_number %><%= mark_required(@dossier, :phone_number) %>
-            <%= f.telephone_field :phone_number, :class => "span4" %>
+            <%= f.telephone_field :phone_number, :class => "span4", placeholder: "1-(xxx) xxx-xxxx" %>
           </div>
 
           <div class="field-box">
             <%= f.label :skype, "Skype Handle" %><%= mark_required(@dossier, :skype) %>
-            <%= f.text_field :skype, :class => "span4" %>
+            <%= f.text_field :skype, :class => "span4", placeholder: "Interviews are over Skype..." %>
           </div>
 
           <div class="field-box">
             <%= f.label :city, "Current City" %><%= mark_required(@dossier, :city) %>
-            <%= f.text_field :city, :class => "span4" %>
+            <%= f.text_field :city, :class => "span4", placeholder: "Willing to relocate to NYC?" %>
           </div>
         </div>
         <br>
@@ -61,34 +61,32 @@
         <h4><strong>Links</strong></h4>
           <hr> 
 
-          <div class="field-box">
-            <%= f.label :skype, "Skype Handle"%><%= mark_required(@dossier, :skype) %>
-            <%= f.text_field :skype, :class => "span4" %>
-          </div>
+       
 
           <div class="field-box">
             <%= f.label :twitter, "Twitter Handle"%><%= mark_required(@dossier, :twitter) %>
-            <%= f.text_field :twitter, :class => "span4" %>
+            <%= f.text_field :twitter, :class => "span4", placeholder: "Gimmee that twitter handle...." %>
+             
           </div>
 
           <div class="field-box">
             <%= f.label :github %><%= mark_required(@dossier, :github) %>
-            <%= f.url_field :github, :class => "span6" %>
+            <%= f.url_field :github, :class => "span6", placeholder: "http://...." %>
           </div>
 
           <div class="field-box">
             <%= f.label :blog %><%= mark_required(@dossier, :blog) %>
-            <%= f.url_field :blog, :class => "span6" %>
+            <%= f.url_field :blog, :class => "span6",placeholder: "http://...." %>
           </div>
 
           <div class="field-box">
             <%= f.label :linkedin %><%= mark_required(@dossier, :linkedin) %>
-            <%= f.url_field :linkedin, :class => "span6" %>
+            <%= f.url_field :linkedin, :class => "span6", placeholder: "http://...." %>
           </div>
 
           <div class="field-box">
             <%= f.label :website, "Your Website" %><%= mark_required(@dossier, :website) %>
-            <%= f.url_field :website, :class => "span6" %>
+            <%= f.url_field :website, :class => "span6", placeholder: "http://...." %>
           </div>
         </div><br><br><br>
       </div>
@@ -100,7 +98,8 @@
        <hr>
            <div class="field-box">
             <%= f.label :tagline, "In 140 characters, tell us what makes you unique." %><%= mark_required(@dossier, :tagline) %><br />
-            <%= f.text_area :tagline, :cols => "25", :rows => "1" %>
+            <%= f.text_field :tagline, :class => "span4 dossier_content", placeholder: "I'm sure you can think of something...." %>
+            <span class="countdown"></span>
           </div>
 
              <div class="field-box">

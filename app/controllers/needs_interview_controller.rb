@@ -14,6 +14,7 @@ class NeedsInterviewController < ApplicationController
       @dossiers_without_interviews = Dossier.where(:aasm_state => ["needs_interview", "needs_code_interview"])
       @dossiers = (@dossiers_with_interviews + @dossiers_without_interviews).uniq
     end
+    @title = "Needs Interview Index"
     authorize! :index, @dossiers    
   end
 

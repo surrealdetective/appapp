@@ -5,6 +5,7 @@ class SessionsController < ApplicationController
   # sessions#new
   # GET login_path
   def new
+    @title = "Login"
   end
 
   # sessions#create
