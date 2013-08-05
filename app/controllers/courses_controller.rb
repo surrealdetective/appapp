@@ -34,13 +34,14 @@ class CoursesController < ApplicationController
   #set to course[0] when you refresh it.
     if params[:hashtag]
       if params[:hashtag].empty?
+        #to be set correctly,
+        #@course should equal its position in the index
         @course = @courses[params[:course].to_i]
         @confirmed = Dossier.joins(:course)
         .where('dossiers.aasm_state' => "committed")
         .where('courses.id' => @course.id)
       else
         @course = @courses[params[:course].to_i]
-        raise params.inspect
         @confirmed = Dossier.joins(:course)
       .where('dossiers.aasm_state' => "committed")
       .where('courses.id' => @course.id).with_hashtag(params[:hashtag])
