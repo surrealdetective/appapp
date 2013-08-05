@@ -1,22 +1,25 @@
 <% @dossiers.each do |dossier| %>
-  <% # next if dossier.aasm_state == "rejected" %>
+  <%  next if dossier.aasm_state == "rejected" %>
   <tr id="dossier-<%= dossier.id %>">
     
     <td>
       <img src="http://placekitten.com/55/55" class="img-circle avatar hidden-phone" />
-      <%= link_to dossier.user.full_name, dossier, :class => "name"%>
+      <%= link_to dossier.user.full_name, needs_review_first_path, :class => "name"%>
     </td>
     
-    <td>
-      <a href='mailto:<%=dossier.user.email%>'><%= dossier.user.email %></a>
-    </td>
+    
     
     <td>
       <%= dossier.aasm_state.humanize %>
     </td>
     
     <td>
-      <ul>
+      <div class="btn-group">
+        <button class="btn-flat primary icon-flag"><i>Status History </i></button>
+        <button class="btn glow dropdown-toggle" data-toggle="dropdown">
+          <span class="caret"></span>
+        </button>
+          <ul class="dropdown-menu">
         <% dossier.dossier_statuses.each do |status| %>
           <li><strong><%= status.status.humanize.downcase %></strong> <%= time_ago_in_words(status.created_at) %> ago</li>
         <% end %>
@@ -24,7 +27,24 @@
     </td>
     
     <td>
-      <%= render 'dossiers/admin_actions', :dossier => dossier %>
+      <div class="btn-group">
+        <button class="btn-flat inverse icon-thumbs-down"><i class="icon-thumbs-up"></i></button>
+        <button class="btn glow dropdown-toggle" data-toggle="dropdown">
+          <span class="caret"></span>
+        </button>
+          <ul class="dropdown-menu">
+           
+              <% dossier.aasm.events.each do |event| %>
+              <% #raise event.inspect%>
+            <li><%= link_to event.to_s.humanize, transition_path(dossier, event), method: :put, data: { confirm: 'Are you sure?' } %></li>
+          <% end %>
+          <% unless ["accepted", "rejected", "wont_attend", "needs_payment"].include? dossier.aasm_state %>
+            <li><%= link_to "Reject", transition_path(dossier, :reject), method: :put, data: { confirm: 'Are you sure?' } %></li>
+            <li><%= link_to "Accept", transition_path(dossier, :accept), method: :put, data: { confirm: 'Are you sure?' } %></li>
+          <% end %>
+          
+          </ul>
+      </div>
 
     </td>
 

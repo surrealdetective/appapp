@@ -23,6 +23,13 @@ class NeedsReviewController < ApplicationController
     end
   end
 
+  def index
+    @dossiers = Dossier.where(:aasm_state => "needs_review").sort_by(params[:sort_by])
+
+    
+    authorize! :index, @dossiers    
+  end
+
   def redirect_to_first
     # this route won't be linked from anywhere but in case they go to it,
     # it might as well redirect to the first dossier that needs review
