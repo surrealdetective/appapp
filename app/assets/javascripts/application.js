@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require ../../../vendor/assets/javascripts/microposts.js
 //= require ../../../vendor/assets/javascripts/jquery-ui-1.10.2.custom.min.js
 //= require ../../../vendor/assets/javascripts/bootstrap.min.js
 //= require ../../../vendor/assets/javascripts/bootstrap.datepicker.js
@@ -24,4 +25,5 @@
 //= require ../../../vendor/assets/javascripts/jquery.fancybox-media.js
 //= require ../../../vendor/assets/javascripts/applyfancybox
 //= require ../../../vendor/assets/javascripts/select2.min.js
+
 //= require_tree .

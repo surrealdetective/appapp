@@ -5,3 +5,4 @@
 $(".select2").select2({
     placeholder: "Search by status"
 })
+
