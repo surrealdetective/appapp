@@ -34,7 +34,7 @@
 
           <div class="field-box">
             <%= u.label :email, :class => "span12"  %><%= mark_required(@user, :email) %>
-            <%= u.text_field :email, :class => "span4" %>
+            <%= u.email_field :email, :class => "span4" %>
           </div>
 
          <!-- DOSSIER STUFF -->
@@ -42,7 +42,7 @@
          <div class="field-box">
 
             <%= f.label :phone_number %><%= mark_required(@dossier, :phone_number) %>
-            <%= f.text_field :phone_number, :class => "span4" %>
+            <%= f.telephone_field :phone_number, :class => "span4" %>
           </div>
 
           <div class="field-box">
@@ -73,22 +73,22 @@
 
           <div class="field-box">
             <%= f.label :github %><%= mark_required(@dossier, :github) %>
-            <%= f.text_field :github, :class => "span6" %>
+            <%= f.url_field :github, :class => "span6" %>
           </div>
 
           <div class="field-box">
             <%= f.label :blog %><%= mark_required(@dossier, :blog) %>
-            <%= f.text_field :blog, :class => "span6" %>
+            <%= f.url_field :blog, :class => "span6" %>
           </div>
 
           <div class="field-box">
             <%= f.label :linkedin %><%= mark_required(@dossier, :linkedin) %>
-            <%= f.text_field :linkedin, :class => "span6" %>
+            <%= f.url_field :linkedin, :class => "span6" %>
           </div>
 
           <div class="field-box">
             <%= f.label :website, "Your Website" %><%= mark_required(@dossier, :website) %>
-            <%= f.text_field :website, :class => "span6" %>
+            <%= f.url_field :website, :class => "span6" %>
           </div>
         </div><br><br><br>
       </div>
