@@ -1,11 +1,10 @@
-<div class="row-fluid">
-  <div class="span12" id="pad-wrapper">
-    <div class="container">
-      <div class="dossier-form-container">
-        <h2> Flatiron Application</h2><br>
-        <div class = "form-wrapper">
-          <h4><strong> Account Information </strong> </h4>
-          <hr> 
+<div class="container-fluid">
+            <div id="pad-wrapper" class="form-page">
+                <div class="row-fluid form-wrapper">
+                    <!-- left column -->
+                    <div class="span6 column"><br>
+          
+          
 
 
 
@@ -20,103 +19,113 @@
 
           <%= fields_for  @user do |u| %>
             
-          
-
+          <h4> User Info</h4>
+          <hr>
           <!-- USER STUFF -->
-          <div class="span12 field-box">
-            <%= u.label :first_name %><%= mark_required(@user, :first_name) %><br />
-            <%= u.text_field :first_name %>
+          <div class="field-box">
+            <%= u.label :first_name %><%= mark_required(@user, :first_name)%>
+            <%= u.text_field :first_name, :class => " span4" %>
           </div>
 
-          <div class="span12 field-box">
-            <%= u.label :last_name %><%= mark_required(@user, :last_name) %><br />
-            <%= u.text_field :last_name %>
+          <div class="field-box">
+            <%= u.label :last_name %><%= mark_required(@user, :last_name) %>
+            <%= u.text_field :last_name, :class => "span4" %>
           </div>
 
-          <div class="span12 field-box">
-            <%= u.label :email %><%= mark_required(@user, :email) %><br />
-            <%= u.text_field :email %>
+          <div class="field-box">
+            <%= u.label :email, :class => "span12"  %><%= mark_required(@user, :email) %>
+            <%= u.text_field :email, :class => "span4" %>
           </div>
 
          <!-- DOSSIER STUFF -->
 
-         <div class="span12 field-box">
+         <div class="field-box">
 
-            <%= f.label :phone_number %><%= mark_required(@dossier, :phone_number) %><br />
-            <%= f.text_field :phone_number %>
+            <%= f.label :phone_number %><%= mark_required(@dossier, :phone_number) %>
+            <%= f.text_field :phone_number, :class => "span4" %>
           </div>
 
-          <div class="span12 field-box">
-            <%= f.label :skype, "Skype Handle" %><%= mark_required(@dossier, :skype) %><br />
-            <%= f.text_field :skype %>
+          <div class="field-box">
+            <%= f.label :skype, "Skype Handle" %><%= mark_required(@dossier, :skype) %>
+            <%= f.text_field :skype, :class => "span4" %>
           </div>
 
-          <div class="span12 field-box">
-            <%= f.label :city, "Current City" %><%= mark_required(@dossier, :city) %><br />
-            <%= f.text_field :city %>
+          <div class="field-box">
+            <%= f.label :city, "Current City" %><%= mark_required(@dossier, :city) %>
+            <%= f.text_field :city, :class => "span4" %>
           </div>
+        </div>
+        <br>
+        <div class="span6 column pull-right">
 
-           </div>
-  <br>
-  <br>
         <h4><strong>Links</strong></h4>
           <hr> 
 
-          <div class="span12 field-box">
-            <%= f.label :twitter, "Twitter Handle"%><%= mark_required(@dossier, :twitter) %><br />
-            <%= f.text_field :twitter %>
+          <div class="field-box">
+            <%= f.label :skype, "Skype Handle"%><%= mark_required(@dossier, :skype) %>
+            <%= f.text_field :skype, :class => "span4" %>
           </div>
 
-          <div class="span12 field-box">
-            <%= f.label :github %><%= mark_required(@dossier, :github) %><br />
-            <%= f.text_field :github %>
+          <div class="field-box">
+            <%= f.label :twitter, "Twitter Handle"%><%= mark_required(@dossier, :twitter) %>
+            <%= f.text_field :twitter, :class => "span4" %>
           </div>
 
-          <div class="span12 field-box">
-            <%= f.label :blog %><%= mark_required(@dossier, :blog) %><br />
-            <%= f.text_field :blog %>
+          <div class="field-box">
+            <%= f.label :github %><%= mark_required(@dossier, :github) %>
+            <%= f.text_field :github, :class => "span6" %>
           </div>
 
-          <div class="span12 field-box">
-            <%= f.label :linkedin %><%= mark_required(@dossier, :linkedin) %><br />
-            <%= f.text_field :linkedin %>
+          <div class="field-box">
+            <%= f.label :blog %><%= mark_required(@dossier, :blog) %>
+            <%= f.text_field :blog, :class => "span6" %>
           </div>
 
-          <div class="span12 field-box">
-            <%= f.label :website, "Your Website" %><%= mark_required(@dossier, :website) %><br />
-            <%= f.text_field :website %>
+          <div class="field-box">
+            <%= f.label :linkedin %><%= mark_required(@dossier, :linkedin) %>
+            <%= f.text_field :linkedin, :class => "span6" %>
           </div>
 
-          <h4><strong>Background</strong></h4>
+          <div class="field-box">
+            <%= f.label :website, "Your Website" %><%= mark_required(@dossier, :website) %>
+            <%= f.text_field :website, :class => "span6" %>
+          </div>
+        </div><br><br><br>
+      </div>
+    </div>
+  </div>
+        <div class="span8 column pull-left">
+
+<span><h4><strong>Background</strong></h4>
        <hr>
-           <div class="span12 field-box">
+           <div class="field-box">
             <%= f.label :tagline, "In 140 characters, tell us what makes you unique." %><%= mark_required(@dossier, :tagline) %><br />
-            <%= f.text_area :tagline %>
+            <%= f.text_area :tagline, :cols => "25", :rows => "1" %>
           </div>
 
-             <div class="span12 field-box">
+             <div class="field-box">
             <%= f.label :career, "Tell us about your professional/educational career to date. What are you up to now and how did you end up there?" %><%= mark_required(@dossier, :career) %><br />
-            <%= f.text_area :career %>
+            <%= f.text_area :career, :cols => "25", :rows => "3" %>
           </div>
 
-             <div class="span12 field-box">
+             <div class="field-box">
             <%= f.label :purpose, "Describe your background with computer programming (if any). Feel free to include links to any online resources you've completed." %><%= mark_required(@dossier, :purpose) %><br />
-            <%= f.text_area :purpose %>
+            <%= f.text_area :purpose, :cols => "25", :rows => "3" %>
           </div>
 
-             <div class="span12 field-box">
+             <div class="field-box">
             <%= f.label :code_skills, "Describe your background with computer programming (if any). Feel free to include links to any online resources you've completed." %><%= mark_required(@dossier, :code_skills) %><br />
-            <%= f.text_area :code_skills %>
+            <%= f.text_area :code_skills, :cols => "25", :rows => "5" %>
           </div>
 
-             <div class="span12 field-box">
+             <div class="field-box">
             <%= f.label :analytic_skills, "The ability to think in a structured or quantitative way to solve complex problems is an important element of being a successful developer. Can you tell us anything that demonstrates your abilities in that realm? (feel free to include anything from standardized test scores, previous areas of study, or relevant work experience)#{mark_required(@dossier, :analytic_skills)}" %><br />
-            <%= f.text_area :analytic_skills %>
+            <%= f.text_area :analytic_skills, :cols => "25", :rows => "5" %>
           </div>
 
-             <div class="span12 field-box">
+             <div class="field-box">
             <%= f.label :tidbits, "Is there anything else you'd like us to know?" %><%= mark_required(@dossier, :tidbits) %><br />
-            <%= f.text_area :tidbits %>
+            <%= f.text_area :tidbits, :cols => "25", :rows => "5" %>
           </div>
 
              <%= fields_for  @course do |c| %>
@@ -124,7 +133,7 @@
                   
                    <br>
                    <hr>      
-                  <div class="span12 field-box">
+                  <div class="field-box">
                     <%= c.label :semester, "Choose a semester" %><%= mark_required(@course, :semester) %><br />
                     <%= c.select :semester, @course_list, :selected => [:semester] %>
                   </div>
@@ -140,6 +149,8 @@
           <%end%>
      </div>
  </div> 
+
+</div>
 
              </div>
  <br>
