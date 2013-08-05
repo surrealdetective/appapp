@@ -1,67 +1,84 @@
+
+
 <!-- sidebar -->
 <div id="sidebar-nav">
-    <ul id="dashboard-menu">
-        <li class="active">
+  <ul id="dashboard-menu">
+    <%#= [params[:controller], params[:action]].inspect %>
+    <% if can? :manage, Dossier %>
+      <%= render :partial => "layouts/sidebar_pointer", :locals => {:controller_action => ["dossiers", "index"]} %>
+        <%= link_to dossiers_path do %>
+          <i class="icon-home"></i>
+          <span>Dashboard</span>
+        <% end %>
+      </li>
+      <li>
+        <a class="dropdown-toggle ui-elements" href="#">
+          <i class="icon-code-fork"></i>
+          <span>Admin Flow</span>
+          <i class="icon-chevron-down"></i>
+        </a>
+        <% if ['thinner index', 'needs_review show', 'needs_interview index', 'courses index'].include? "#{params[:controller]} #{params[:action]}" %>
+          <ul class='submenu active'>
             <div class="pointer">
-                <div class="arrow"></div>
-                <div class="arrow_border"></div>
+              <div class="arrow"></div>
+              <div class="arrow_border"></div>
             </div>
-            <%= link_to dossiers_path(@dossier) do %>
-                <i class="icon-home"></i>
-                <span>Dash Board</span>
-              <% end %>
-            
-        </li>  
-         <li>
-            <a class="dropdown-toggle ui-elements" href="#">
-                <i class="icon-code-fork"></i>
-                <span>Admin Flow</span>
-                <i class="icon-chevron-down"></i>
-            </a>
-            <ul class="submenu">
-                <li><%= link_to thinner_path(@dossier) do %>
-                Elevator Pitches
-              <% end %></li>
-                <li><%= link_to needs_review_first_path(@dossier) do %>Reviewer<%end%></li>
-                <li><%= link_to dossier_interview_path(@dossier) do %>Interviewer<%end%></li>
-                <li><%= link_to courses_path(@dossier) do %>Class Maker<%end%></li>
-            </ul>
-        </li>          
+        <% else %>
+          <ul class='submenu'>
+        <% end %>
+          <li>
+            <%= link_to thinner_path, :class => active?("thinner", "index") do %>
+              Elevator Pitches
+            <% end %>
+          </li>
+          <li>
+            <%= link_to needs_review_first_path, :class => active?("needs_review", "show") do %>
+              Reviewer
+            <% end %>
+          </li>
+          <li>
+            <%= link_to dossier_interview_path, :class => active?("needs_interview", "index") do %>
+              Interviewer
+            <% end %>
+          </li>
+          <li>
+            <%= link_to courses_path, :class => active?("courses", "index") do %>
+              Class Maker
+            <% end %>
+          </li>
+        </ul>
+      </li>          
+
+      <li>
+        <a class="dropdown-toggle" href="#">
+          <i class="icon-share-alt"></i>
+          <span>Extras</span>
+          <i class="icon-chevron-down"></i>
+        </a>
+        <ul class="submenu">
+          <li><a href="https://github.com/flatiron-school/syllaboss">SylaBOSS</a></li>
+          <li><a href="https://github.com/flatiron-school/teamline-redux">Teamline</a></li>
+          <li><a href="https://github.com/flatiron-school/assignmentio-redux">Assignment.io</a></li>
+          <li><a href="https://github.com/flatiron-school/hire-redux">Employment CRM</a></li>
+        </ul>
+      </li>
       
-        <li>
-            <a class="dropdown-toggle" href="#">
-                <i class="icon-group"></i>
-                <span>Dossiers</span>
-                <i class="icon-chevron-down"></i>
-            </a>
-            <ul class="submenu">
-                <li><a href="user-list.html">User list</a></li>
-                <li><a href="new-user.html">New user form</a></li>
-                <li><a href="user-profile.html">User profile</a></li>
-            </ul>
+    <% else %>
+      <% if !current_user %>
+        <%= render :partial => "layouts/sidebar_pointer", :locals => {:controller_action => ["dossiers", "new"]} %>
+          <%= link_to new_dossier_path do %>
+            <i class="icon-edit"></i>
+            <span>New Dossier</span>
+          <% end %>
         </li>
-        
-       
-        <li>
-            <a href="personal-info.html">
-                <i class="icon-cog"></i>
-                <span>My Info</span>
-            </a>
+        <%= render :partial => "layouts/sidebar_pointer", :locals => {:controller_action => ["sessions", "new"]} %>
+          <%= link_to login_path do %>
+            <i class="icon-user"></i>
+            <span>Login</span>
+          <% end %>
         </li>
-        <li>
-            <a class="dropdown-toggle" href="#">
-                <i class="icon-share-alt"></i>
-                <span>Extras</span>
-                <i class="icon-chevron-down"></i>
-            </a>
-            <ul class="submenu">
-                <li><a href="code-editor.html">Code editor</a></li>
-                <li><a href="grids.html">SylaBOSS</a></li>
-                <li><a href="signin.html">Teamline</a></li>
-                <li><a href="signup.html">Assignment.io</a></li>
-                <li><a href="signup.html">Employment CRM</a></li>
-            </ul>
-        </li>
-    </ul>
+      <% end %>
+    <% end %>
+  </ul>
 </div>
-    <!-- end sidebar -->
+<!-- end sidebar -->
