@@ -49,10 +49,15 @@
                   <span class="caret"></span>
                 </button>
                   <ul class="dropdown-menu">
-                    <li><a href="#">Option one</a></li>
-                    <li><a href="#">Option two</a></li>
-                    <li><a href="#">Option three</a></li>
-                    <li><a href="#">Option four</a></li>
+                    <% dossier.aasm.events.each do |admin_action| %>
+                      <li>
+                        <%= link_to admin_action.to_s.humanize, transition_path(dossier, admin_action), method: :put, data: {confirm: 'Are you sure?'} %>
+                      </li>
+                      <li><%= link_to "Reject", transition_path(dossier, :reject), method: :put, data: { confirm: 'Are you sure?' } %>
+                      </li>
+                      <li><%= link_to "Accept", transition_path(dossier, :accept), method: :put, data: { confirm: 'Are you sure?' } %>
+                      </li>
+                    <% end %>
                   </ul>
               </div>
             </td>
