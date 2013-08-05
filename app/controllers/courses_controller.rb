@@ -17,12 +17,8 @@ class CoursesController < ApplicationController
     #for needs decision
     # raise params.inspect
     @dossiers = Dossier.where(:aasm_state => "needs_decision")
-
-    # for class
-    @pending = Dossier.where(:aasm_state => "needs_payment")
-    # authorize! :index, @pending
     @courses = Course.all
-    
+    authorize! :index, @courses
 
     if params[:course]
       @course = @courses[params[:course].to_i]
@@ -40,18 +36,18 @@ class CoursesController < ApplicationController
         #@course should equal its position in the index
         @course = @courses[params[:course].to_i]
         @confirmed = Dossier.joins(:course)
-        .where('dossiers.aasm_state' => "committed")
+        .where('dossiers.aasm_state = ? or dossiers.aasm_state = ?', "committed", "needs_payment")
         .where('courses.id' => @course.id)
       else
         @course = @courses[params[:course].to_i]
         @confirmed = Dossier.joins(:course)
-      .where('dossiers.aasm_state' => "committed")
-      .where('courses.id' => @course.id).with_hashtag(params[:hashtag])
+        .where('dossiers.aasm_state = ? or dossiers.aasm_state = ?', "committed", "needs_payment")
+        .where('courses.id' => @course.id).with_hashtag(params[:hashtag])
       end
     else
       @course = @courses[params[:course].to_i]
       @confirmed = Dossier.joins(:course)
-      .where('dossiers.aasm_state' => "committed")
+      .where('dossiers.aasm_state = ? or dossiers.aasm_state = ?', "committed", "needs_payment")
       .where('courses.id' => @course.id)
     end
   end
