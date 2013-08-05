@@ -19,6 +19,8 @@ User.create(
   :password => "avi"
   )
 
+adam_and_avi = [User.find(1), User.find(2)]
+
 # create 300 users with one dossier each
 300.times do |i|
   user = User.new
@@ -60,6 +62,6 @@ User.create(
 
   # add 5 hashtags to dossier
   5.times do
-    user.last_dossier.hashtags.create(content: Populator.words(1))
+    user.last_dossier.hashtags.create(content: Populator.words(1), user: adam_and_avi.sample)
   end
 end
