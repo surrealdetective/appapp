@@ -1,10 +1,12 @@
-<!-- current courses select box -->
+<!-- proof of pudding: the course -->
+<h1 style="text-align:center;"><%= @course.semester %></h1>
 
+<!-- Show all courses -->
 <div class="course-select">
   <div class="btn-group float-right">
     <button class="glow left"><%= @courses.first.semester %></button>
     <% @courses[1..-2].each do |course| %>
-      <button class="glow middle"><%= course.semester %></button>
+      <button class="glow middle"><%= link_to course.semester, courses_path %></button>
     <% end %>
     <button class="glow right"><%= @courses.last.semester %></button>
   </div>
@@ -26,7 +28,7 @@
 
 <!-- filter by search status view -->
 <hr>
-<%= form_tag courses_path, :method => "get" do %>
+<%= form_tag courses_path, :method => "get", :style=> "text-align:center;" do %>
   <%= text_field_tag "hashtag", params[:hashtag], :placeholder => "Filter by hashtag", :class => "span3 search" %>
   <%= submit_tag :Filter, :class => "btn btn-flat white" %>
 <% end %>
