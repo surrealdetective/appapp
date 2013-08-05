@@ -24,9 +24,14 @@ why are we writing our own authenticate method at all?
 - the first step always has class active, figure out a way to move it along
 - shouldn't show to everyone
 
-## sidebar
+## thinner indexholder
 
-use the "active" class and move the giant arrow thing
+Do:
+Logic for checking if they are in NYC.
+Grab more than one student
+Add padding to div class user-profile, or margin to div class content
+Show the view for more than one student
+Link the reject and Review Further to the correct actions
 
 ## misc
 
