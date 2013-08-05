@@ -34,11 +34,11 @@ class User < ActiveRecord::Base
   end
 
   def self.search(query)
-    fuzzy_query = "%#{query}%" # wraps query in percentages for SQL to know it's fuzzy
+    fuzzy_query = "%#{query}%"
     where("first_name LIKE ? or last_name LIKE ? or email LIKE ?", fuzzy_query, fuzzy_query, fuzzy_query)
   end
 
-  def self.all_with_hashtag(query)
+  def self.with_hashtag(query)
     fuzzy_query = "%#{query}%"
     joins(:dossiers => :hashtags).where("hashtags.content like ?", fuzzy_query)
   end
@@ -47,30 +47,23 @@ class User < ActiveRecord::Base
     self.order("#{attribute} #{direction}")
   end
 
-  def self.filter_by_status(status)
-    self.all.keep_if{|user| user.status.status == status}
+  def self.with_status(status)
+    joins(:dossiers => :dossier_statuses).where("dossier_statuses.status = ?", status)
   end
 
   def has_dossiers?
     self.dossiers.count > 0
   end
 
+  # u = User.last
+  # u.status
+  # #=> the most recent dossier status object, or a generic one
   def status
-    if has_dossiers?
-      last_dossier.last_status
-    else
-      DossierStatus.new
-    end
-
-    # lets rewrite with joins
-    # when you call like... User.first.status
-    # it should find that users' last status
-    # join this user to its dossiers, and its dossiers to *its* statuses
-    # then find the most recent status
-    # if there are no statuses, return a new status still?
-    # self.dossiers.order("created_at ASC").joins(:dossier_statuses).order("dossier_statuses.created_at ASC").limit(1)
-    # self.dossiers.includes(:dossier_statuses).order("created_at ASC").limit(1
-
+    DossierStatus.joins(:dossier => :user)
+                 .where("dossiers.user_id = ?", self.id)
+                 .order("created_at DESC")
+                 .limit(1)
+                 .first || DossierStatus.new
   end
 
   def self.authenticate(email, password)
