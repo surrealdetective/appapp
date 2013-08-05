@@ -33,6 +33,16 @@ class User < ActiveRecord::Base
     self.dossiers.last
   end
 
+  def self.search(query)
+    fuzzy_query = "%#{query}%" # wraps query in percentages for SQL to know it's fuzzy
+    where("first_name LIKE ? or last_name LIKE ? or email LIKE ?", fuzzy_query, fuzzy_query, fuzzy_query)
+  end
+
+  def self.all_with_hashtag(query)
+    fuzzy_query = "%#{query}%"
+    joins(:dossiers => :hashtags).where("hashtags.content like ?", fuzzy_query)
+  end
+
   def self.all_sorted(attribute = "name", direction = "ASC")
     self.order("#{attribute} #{direction}")
   end

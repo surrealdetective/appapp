@@ -309,5 +309,18 @@ class Dossier < ActiveRecord::Base
     end
   end
 
+  def add_hashtag(str, commentor)
+    UserDossierHashtag.create(
+        :hashtag => Hashtag.find_or_create_by_content(str),
+        :dossier => self,
+        :user    => commentor
+      )
+  end
+
+  def self.all_with_hashtag(query)
+    fuzzy_query = "%#{query}%"
+    joins(:hashtags).where("hashtags.content like ?", fuzzy_query)
+  end
+
 
 end
