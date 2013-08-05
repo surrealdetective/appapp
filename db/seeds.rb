@@ -21,6 +21,7 @@ avi = User.create(
   )
 
 adam_and_avi = [adam, avi]
+example_hashtags = ["lol", "wow", "wtf", "weirdo", "winner", "cool", "smart", "charismatic", "passionate", "unsure", "wonderful", "love", "omg", "genius", "deliberate", "apt", "loser", "GA", "wack", "dunno"]
 
 # create 300 users with one dossier each
 300.times do |i|
@@ -61,8 +62,8 @@ adam_and_avi = [adam, avi]
 
   user.save
 
-  # add 5 hashtags to dossier
-  5.times do
-    user.last_dossier.add_hashtag Populator.words(1), adam_and_avi.sample
+  # add 3 hashtags to dossier
+  3.times do
+    user.last_dossier.add_hashtag example_hashtags.sample, adam_and_avi.sample
   end
 end
