@@ -13,6 +13,7 @@ class CoursesController < ApplicationController
 
   def index
     #for needs decision
+    # raise params.inspect
     @dossiers = Dossier.where(:aasm_state => "needs_decision")
 
     # for class
@@ -21,10 +22,11 @@ class CoursesController < ApplicationController
     @courses = Course.all
     
 
-
-
-    @course = Course.first
-
+    if params[:course]
+      @course = Course.all[params[:course].to_i]
+    else
+      @course = Course.first
+    end
 
     if params[:hashtag]
       if params[:hashtag].empty?
