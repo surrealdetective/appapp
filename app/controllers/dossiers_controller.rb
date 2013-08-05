@@ -51,7 +51,7 @@ class DossiersController < ApplicationController
     @dossiers = @dossiers.with_user_name(params[:name]) if params[:name].present?
     @dossiers = @dossiers.with_hashtag(params[:hashtag]) if params[:hashtag].present?
     @dossiers = @dossiers.with_status(params[:status]) if params[:status].present?
-    @dossiers = @dossiers.all
+    @dossiers = @dossiers.includes(:user).includes(:dossier_statuses).all
     authorize! :index, @dossiers
   end
   
