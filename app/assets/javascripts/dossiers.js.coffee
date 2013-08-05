@@ -3,5 +3,5 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $(".select2").select2({
-    placeholder: "Select a status"
+    placeholder: "Search by status"
 })
