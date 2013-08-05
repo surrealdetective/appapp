@@ -89,8 +89,9 @@
         <tbody>  
           <tr>
             <td>
-              <img src="http://placekitten.com/80/100">
+              <img src="http://placekitten.com/150/150">
             </td>
+            
             <td>
               <%= form_tag(display_hashtags_path(dossier), method: "post") %>
               <%= select_tag "Add Hashtag", "<option>hello</option><option>pow</option>".html_safe, :style=>"width:100px;" %>
@@ -98,6 +99,7 @@
             <td>
               <%= select_tag "Add Hashtag", "<option>hello</option><option>pow</option>".html_safe, :style=>"width:100px;" %>
             </td>
+
           </tr>
           <tr>
             <td>
