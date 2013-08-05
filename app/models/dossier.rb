@@ -318,8 +318,7 @@ class Dossier < ActiveRecord::Base
   end
 
   def self.with_hashtag(query)
-    fuzzy_query = "%#{query}%"
-    joins(:hashtags).where("hashtags.content like ?", fuzzy_query)
+    joins(:hashtags).where("hashtags.content = ?", query)
   end
 
   def self.with_user_name(name)
