@@ -44,6 +44,7 @@ class DossiersController < ApplicationController
   # dossiers#index
   # GET dossiers_path
   def index
+    # raise params.inspect
     @title = "Dashboard"
     if params[:search]
       @dossiers = Dossier.joins(:user).where(:users => {:first_name => params[:search]})
