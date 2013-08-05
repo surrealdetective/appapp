@@ -7,12 +7,12 @@ module ApplicationHelper
     end
   end
 
-  def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  def mark_required(object, attribute)
+    "*" if object.class.validators_on(attribute).map(&:class).include? ActiveModel::Validations::PresenceValidator
   end
 
-  def mark_required(object, attribute)
-  "*" if object.class.validators_on(attribute).map(&:class).include? ActiveModel::Validations::PresenceValidator
+  def active? controller, action
+    "active" if controller == params[:controller] && action == params[:action]
   end
 
 end

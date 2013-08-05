@@ -26,10 +26,6 @@
   <%= csrf_meta_tags %>
 </head>
 
-<!--
-  body will have classes of the controller and action,
-  and then additional arbitrary classes assigned in controller
--->
 <body class='<%= params[:controller] %> <%= params[:action] %> <%= @body_classes %>'>
 
   <%= render "layouts/nav" %>
@@ -37,15 +33,17 @@
 
   <div class="content">  
 
-    <!-- upper main stats -->
-    <% if current_user && current_user.role?(:moderator) %>
+    <% if can? :manage, Dossier %>
       <%= render "layouts/stats" %>
     <% end %>
 
     <div class="container-fluid" id="pad-wrapper">
+      <%= render "shared/flash_messages" %>
       <%= yield %>
-    </div>
-  </div>
+    </div> <!-- end div.container-fluid#pad-wrapper  -->
+
+  </div> <!-- end div.content  -->
+
   <%= javascript_include_tag "application" %>
 </body>
 </html>
