@@ -293,9 +293,6 @@ class Dossier < ActiveRecord::Base
     
   end
 
-  #lets fix the view by adding a .semester method
-  # it is a reader method.
-
   def semester
     self.course.semester
   end
@@ -321,8 +318,18 @@ class Dossier < ActiveRecord::Base
     joins(:hashtags).where("hashtags.content = ?", query)
   end
 
+  # does this implementation make sense?
+  # I wanted to be slightly smarter when people search by name
   def self.with_user_name(name)
-    
+    words = name.split(" ")
+    if words.length == 2
+      fuzzy_first_name = "%#{words.first}%"
+      fuzzy_last_name = "%#{words.last}%"
+      joins(:user).where("users.first_name like ? and users.last_name like ?", fuzzy_first_name, fuzzy_last_name)
+    else
+      fuzzy_name = "%#{name}%"
+      joins(:user).where("users.first_name like ? or users.last_name like ?", fuzzy_name, fuzzy_name)
+    end
   end
 
   def self.with_status(query)

@@ -44,34 +44,17 @@ class DossiersController < ApplicationController
   # dossiers#index
   # GET dossiers_path
   def index
-    # raise params.inspect
-    @title = "Dashboard"
-    if params[:search]
-      @dossiers = Dossier.joins(:user).where(:users => {:first_name => params[:search]})
-    elsif params[:status]
-      @dossiers = Dossier.where(:aasm_state => params[:status])
-    elsif params[:sort_by]
-      @dossiers = Dossier.sort_by(params[:sort_by])
-    else
-      @dossiers = Dossier.joins(:user).find(:all)
-    end
+    @title = "Dossier Index"
+    @statuses = Dossier.aasm.states.collect(&:to_s)
+
+    @dossiers = Dossier
+    @dossiers = @dossiers.with_user_name(params[:name]) if params[:name].present?
+    @dossiers = @dossiers.with_hashtag(params[:hashtag]) if params[:hashtag].present?
+    @dossiers = @dossiers.with_status(params[:status]) if params[:status].present?
+    @dossiers = @dossiers.all
     authorize! :index, @dossiers
   end
   
-  # def filter
-  #   raise params.inspect
-  # end
-
-  def filter_by
-    if DossierStatus.list.include? params[:filter]
-      @dossiers = Dossier.filter_by(params[:filter])
-    elsif params[:filter] == "all"
-      @dossiers = Dossier.find(:all)
-    else
-      @dossiers = []
-    end
-  end
-
   def show
     @dossier = Dossier.find(params[:id])
     authorize! :read, @dossier
