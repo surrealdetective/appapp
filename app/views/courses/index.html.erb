@@ -88,16 +88,19 @@
       <table class="table table-hover">
         <tbody>  
           <tr>
-            <td>
+            <td style="width:50%; margin: 0 auto; display:block;">
               <img src="http://placekitten.com/150/150">
             </td>
             
-            <td>
-              <%= form_tag(display_hashtags_path(dossier), method: "post") %>
-              <%= select_tag "Add Hashtag", "<option>hello</option><option>pow</option>".html_safe, :style=>"width:100px;" %>
-            </td>
-            <td>
-              <%= select_tag "Add Hashtag", "<option>hello</option><option>pow</option>".html_safe, :style=>"width:100px;" %>
+            <td style="width:50%;">
+              <!-- status -->
+              <div class="label label-info" style="display:block; width:77%; margin: 15px auto; text-align:center;"><%= dossier.aasm_state %></div>
+
+              <!-- see app -->
+              <a class="btn-flat default icon-heart-empty fancybox" data-href="<%= dossier_path(dossier.id, :layout => "false") %>" href="#" style="display:block; width:65%; margin: 0 auto;">
+                See App
+              </a>
+
             </td>
 
           </tr>
