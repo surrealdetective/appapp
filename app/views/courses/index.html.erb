@@ -97,7 +97,7 @@
               <div class="label label-info" style="display:block; width:77%; margin: 15px auto; text-align:center;"><%= dossier.aasm_state %></div>
 
               <!-- see app -->
-              <a class="btn-flat default icon-heart-empty fancybox" data-href="<%= dossier_path(dossier.id, :layout => "false") %>" href="#" style="display:block; width:65%; margin: 0 auto;">
+              <a class="btn-flat default icon-heart-empty fancybox" data-href="<%= dossier_path(dossier.id, :layout => "false") %>" href="#" style="display:block; width:65%; margin: 0 auto; text-align: center;">
                 See App
               </a>
 
@@ -141,7 +141,7 @@
           </tr>
 
           <tr>
-            <td>
+            <td colspan="2">
               <% dossier.hashtags.each do |hashtag| %>
                 <%= hashtag.content %>
               <% end %>
