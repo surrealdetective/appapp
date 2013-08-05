@@ -1,6 +1,7 @@
 class ThinnerController < ApplicationController
   
   def index
+    @title = "Thinner Index"
     @dossiers = Dossier.where(:aasm_state => "new").limit(8)
     authorize! :index, @thinner
   end

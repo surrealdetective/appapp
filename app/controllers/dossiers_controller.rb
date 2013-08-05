@@ -4,12 +4,11 @@ class DossiersController < ApplicationController
   # dossiers#new
   # GET new_dossier_path
   def new
-     @user = User.new
-     @dossier = Dossier.new
-     # @user= User.find(params[:user_id])
-     @course = @dossier.build_course()
-
+    @user = User.new
+    @dossier = Dossier.new
+    @course = @dossier.build_course()
     @course_list = Course.list_for_selectbox
+    @title = "New Dossier"
   end
 
 
@@ -60,6 +59,7 @@ class DossiersController < ApplicationController
     authorize! :read, @dossier
     @body_classes = "dossier-form-bg"
     @user = @dossier.user
+    @title = "#{@user.full_name}'s Dossier"
     respond_to do |format|
       if params[:layout] == "false"
         format.html {render :layout => 'simple'}

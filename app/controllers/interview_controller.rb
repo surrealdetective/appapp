@@ -13,7 +13,8 @@ class InterviewController < ApplicationController
     @prev_dossier = @dossier.prev_with_state(state)
     @next_dossier = @dossier.next_with_state(state)
     @user = @dossier.user
-    @score = Score.new  
+    @score = Score.new
+    @title = "Interview #{@user.full_name}"
   end
 
   def claim
@@ -32,6 +33,9 @@ class InterviewController < ApplicationController
 
   def schedule
     @days = Date.tomorrow..(Date.tomorrow+6.day)
+    @dossier = Dossier.find(params[:id])
+    @user = @dossier.user
+    @title = "Schedule interview with #{@user.full_name}"
   end
 
   def create
@@ -44,7 +48,7 @@ class InterviewController < ApplicationController
   def index
     @interviews = Interview.joins(:dossier).where("dossiers.aasm_state" => ["needs_interview", "needs_code_interview"]).where("interviews.interview_time IS NOT NULL")
     #possibly, add a date cutoff, using orderby interview_time, then .last, since we assume only one interview occurs at a time.
-    
+    @title = "Interview Index"
   end
   
 end

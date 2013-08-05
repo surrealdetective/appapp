@@ -1,6 +1,7 @@
 class CoursesController < ApplicationController
   def new
     @course = Course.new
+    @title = "New Course"
   end
 
   def create
@@ -12,6 +13,7 @@ class CoursesController < ApplicationController
   end
 
   def index
+    @title = "All Courses"
     #for needs decision
     @dossiers = Dossier.where(:aasm_state => "needs_decision")
 
@@ -38,6 +40,7 @@ class CoursesController < ApplicationController
   end
 
   def dashboard
+    @title = "Course Dashboard"
     @course = Course.first
   end
 
