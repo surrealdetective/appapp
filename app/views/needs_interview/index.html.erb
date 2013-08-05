@@ -4,9 +4,9 @@
   <table class="table table-hover">
     <thead>
       <tr>
-          <%= render "dossiers/table_header_dynamic_sort", :link_name => "Name", :link_path => dossier_interview_path(sort_by: "user") %>
+          <%= render "dossiers/table_header_dynamic_sort", :link_name => "Interview Me!", :link_path => dossier_interview_path(sort_by: "user") %>
 
-          <%= render "dossiers/table_header_dynamic_sort", :link_name => "Email", :link_path => dossier_interview_path(sort_by: "email") %>
+        
 
           <!-- checking sort_by method to accept interview attributes -->
           <%= render "dossiers/table_header_dynamic_sort", :link_name => "Date Offer Sent", :link_path => dossier_interview_path(sort_by: "interview_created_at") %>
@@ -14,11 +14,11 @@
 
           <!-- Interview Time use render once date/time exsist!!!!1 -->
           <th class="span2">
-              <span class="line"></span>Interview Time
+              <span class="line"></span>Time till Interview
           </th>
 
 
-          <%= render "dossiers/table_header_dynamic_sort", :link_name => "Interview Type", :link_path => dossier_interview_path(sort_by: :aasm_state) %>
+          <%= render "dossiers/table_header_dynamic_sort", :link_name => "Interview Status", :link_path => dossier_interview_path(sort_by: :aasm_state) %>
 
           <%= render "dossiers/table_header_static_sort", :header_name => "Interviewer"%>
       </tr>

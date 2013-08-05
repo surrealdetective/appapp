@@ -18,13 +18,27 @@
         <%= button_tag "← Previous", :class => "btn glow", :disabled => "disabled" %>
       <% end %>
       
-      <%= link_to transition_path(@dossier, :reject), method: :put, data: { confirm: 'Are you sure?' }, :class => "btn glow" do %>
-        <span class="icon"> </span> <span class="text">Reject</span>
-      <% end %>
+            <%= link_to transition_path(@dossier, :reject), method: :put, data: { confirm: 'Are you sure?' }, :class => "btn-flat danger icon-remove-sign" do %>
+              <span class="icon"> </span> <span class="text">Reject</span>
+            <% end %>
 
-      <%= link_to transition_path(@dossier, :mark_as_needs_interview), method: :put, data: { confirm: 'Are you sure?' }, :class => "btn glow" do %>
-        <span class="icon"> </span> <span class="text"><i class="icon-ok-sign"> Move to Interviews</i></span>
-      <% end %>
+                  <div class="btn-group">
+                    <button class="btn-flat inverse icon-thumbs-down"><i class="icon-thumbs-up"></i></button>
+                    <button class="btn glow dropdown-toggle" data-toggle="dropdown">
+                      <span class="caret"></span>
+                    </button>
+                      <ul class="dropdown-menu">
+                        <% @dossier.aasm.events.each do |admin_action| %>
+                          <li>
+                            <%= link_to admin_action.to_s.humanize, transition_path(@dossier, admin_action), method: :put, data: {confirm: 'Are you sure?'} %>
+                          </li>
+                          <li><%= link_to "Reject", transition_path(@dossier, :reject), method: :put, data: { confirm: 'Are you sure?' } %>
+                          </li>
+                          <li><%= link_to "Accept", transition_path(@dossier, :accept), method: :put, data: { confirm: 'Are you sure?' } %>
+                          </li>
+                        <% end %>
+                      </ul>
+                  </div>
       
       <% if @next_dossier %>
         <%= link_to "Next →", needs_review_show_path(@next_dossier), :class => "btn glow"%>
@@ -71,13 +85,28 @@
                                 <%= button_tag "← Previous", :class => "btn glow", :disabled => "disabled" %>
                               <% end %>
                               
-                              <%= link_to transition_path(@dossier, :reject), method: :put, data: { confirm: 'Are you sure?' }, :class => "btn glow" do %>
-                                <span class="icon"> </span> <span class="text"><i class="icon-trash"> Reject</i></span>
-                              <% end %>
+                              <%= link_to transition_path(@dossier, :reject), method: :put, data: { confirm: 'Are you sure?' }, :class => "btn-flat danger icon-remove-sign" do %>
+                                  <span class="icon"> </span> <span class="text">Reject</span>
+                                  <% end %>
 
-                              <%= link_to transition_path(@dossier, :mark_as_needs_interview), method: :put, data: { confirm: 'Are you sure?' }, :class => "btn glow" do %>
-                                <span class="icon"> </span> <span class="text"><i class="icon-ok-sign"> Needs Interview</i></span>
-                              <% end %>
+                                      <div class="btn-group">
+                                        <button class="btn-flat inverse icon-thumbs-down"><i class="icon-thumbs-up"></i></button>
+                                        <button class="btn glow dropdown-toggle" data-toggle="dropdown">
+                                          <span class="caret"></span>
+                                        </button>
+                                          <ul class="dropdown-menu">
+                                            <% @dossier.aasm.events.each do |admin_action| %>
+                                              <li>
+                                                <%= link_to admin_action.to_s.humanize, transition_path(@dossier, admin_action), method: :put, data: {confirm: 'Are you sure?'} %>
+                                              </li>
+                                              <li><%= link_to "Reject", transition_path(@dossier, :reject), method: :put, data: { confirm: 'Are you sure?' } %>
+                                              </li>
+                                              <li><%= link_to "Accept", transition_path(@dossier, :accept), method: :put, data: { confirm: 'Are you sure?' } %>
+                                              </li>
+                                            <% end %>
+                                          </ul>
+                                      </div>
+      
                               
                               <% if @next_dossier %>
                                 <%= link_to "Next →", needs_review_show_path(@next_dossier), :class => "btn glow"%>
