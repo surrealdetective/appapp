@@ -19,11 +19,19 @@ class CoursesController < ApplicationController
     @pending = Dossier.where(:aasm_state => "needs_payment")
     # authorize! :index, @pending
     @courses = Course.all
+    
 
-    if params[:hashtag].empty?
-      @confirmed = Dossier.where(:aasm_state => "committed")
-    elsif params[:hashtag]
-      @confirmed = Dossier.where(:aasm_state => "committed").with_hashtag(params[:hashtag])
+
+
+    @course = Course.first
+
+
+    if params[:hashtag]
+      if params[:hashtag].empty?
+        @confirmed = Dossier.where(:aasm_state => "committed")
+      else
+        @confirmed = Dossier.where(:aasm_state => "committed").with_hashtag(params[:hashtag])
+      end
     else
       @confirmed = Dossier.where(:aasm_state => "committed")
     end
