@@ -17,9 +17,16 @@ class CoursesController < ApplicationController
 
     # for class
     @pending = Dossier.where(:aasm_state => "needs_payment")
-    authorize! :index, @pending
-    @confirmed = Dossier.where(:aasm_state => "committed")
+    # authorize! :index, @pending
     @courses = Course.all
+
+    if params[:hashtag].empty?
+      @confirmed = Dossier.where(:aasm_state => "committed")
+    elsif params[:hashtag]
+      @confirmed = Dossier.where(:aasm_state => "committed").with_hashtag(params[:hashtag])
+    else
+      @confirmed = Dossier.where(:aasm_state => "committed")
+    end
   end
 
   def dashboard

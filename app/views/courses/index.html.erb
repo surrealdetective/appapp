@@ -26,7 +26,11 @@
 
 <!-- filter by search status view -->
 <hr>
-
+<%= form_tag courses_path, :method => "get" do %>
+  <%= text_field_tag "hashtag", params[:hashtag], :placeholder => "Filter by hashtag", :class => "span3 search" %>
+  <%= submit_tag :Filter, :class => "btn btn-flat white" %>
+<% end %>
+<hr>
 
 <!-- the needs decision view -->
 <div class="needs_decision">
