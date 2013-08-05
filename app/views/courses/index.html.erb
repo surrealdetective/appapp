@@ -1,18 +1,19 @@
 <!-- current courses select box -->
-<h1>
-  List of courses
-</h1>
 
-<div>
-<% @courses.each do |course| %>
-  <div>
-    <%= course.semester %>
+<div class="course-select">
+  <div class="btn-group float-right">
+    <button class="glow left"><%= @courses.first.semester %></button>
+    <% @courses[1..-2].each do |course| %>
+      <button class="glow middle"><%= course.semester %></button>
+    <% end %>
+    <button class="glow right"><%= @courses.last.semester %></button>
   </div>
-<% end %>
+
+  <h4 class="float-right h4-float" style="display: inline; margin-top: 3px; margin-right:14px;">Select a Course:</h4>
 </div>
 
 <!-- class stats view -->
-<div class="class-stats">
+<div class="class-stats clear-both">
 </div>
 
 
@@ -106,44 +107,9 @@
           </tr>
 
           <tr>
-            <td class="half-row-width">
-              <!-- select box for add hashtags -->
-              <div class="btn-group center-table-detail">
-                <button class="btn-flat info">Show Hashtag</button>
-                <button class="btn glow dropdown-toggle" data-toggle="dropdown">
-                  <span class="caret"></span>
-                </button>
-                  <ul class="dropdown-menu">
-                    <% dossier.hashtags.each do |hashtag| %>
-                      <li>
-                        <%= link_to hashtag.content, "#" %>
-                      </li>
-                    <% end %>
-                  </ul>
-              </div>
-            </td>
-            <td class="half-row-width">
-              <!-- select box for subtract hashtags -->
-              <div class="btn-group center-table-detail">
-                <button class="btn-flat gray">Hide Hashtag</button>
-                <button class="btn glow dropdown-toggle" data-toggle="dropdown">
-                  <span class="caret"></span>
-                </button>
-                  <ul class="dropdown-menu">
-                    <% dossier.hashtags.each do |hashtag| %>
-                      <li>
-                        <%= link_to hashtag.content, "#" %>
-                      </li>
-                    <% end %>
-                  </ul>
-              </div>
-            </td>
-          </tr>
-
-          <tr>
             <td colspan="2">
               <% dossier.hashtags.each do |hashtag| %>
-                <%= hashtag.content unless hashtag.hidden %>
+                <%= hashtag.content %>
               <% end %>
             </td>
           </tr>
