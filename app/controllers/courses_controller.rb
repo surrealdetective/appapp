@@ -25,19 +25,33 @@ class CoursesController < ApplicationController
     
 
     if params[:course]
-      @course = Course.all[params[:course].to_i]
+      @course = @courses[params[:course].to_i]
     else
-      @course = Course.first
+      @course = @courses.first
     end
 
+#we have a problem here...
+  #you send EITHER params[:course] or params[:hashtag]
+  # therefore you are NOT searching the current course, which gets automatically
+  #set to course[0] when you refresh it.
     if params[:hashtag]
       if params[:hashtag].empty?
-        @confirmed = Dossier.where(:aasm_state => "committed")
+        @course = @courses[params[:course].to_i]
+        @confirmed = Dossier.joins(:course)
+        .where('dossiers.aasm_state' => "committed")
+        .where('courses.id' => @course.id)
       else
-        @confirmed = Dossier.where(:aasm_state => "committed").with_hashtag(params[:hashtag])
+        @course = @courses[params[:course].to_i]
+        raise params.inspect
+        @confirmed = Dossier.joins(:course)
+      .where('dossiers.aasm_state' => "committed")
+      .where('courses.id' => @course.id).with_hashtag(params[:hashtag])
       end
     else
-      @confirmed = Dossier.where(:aasm_state => "committed")
+      @course = @courses[params[:course].to_i]
+      @confirmed = Dossier.joins(:course)
+      .where('dossiers.aasm_state' => "committed")
+      .where('courses.id' => @course.id)
     end
   end
 
