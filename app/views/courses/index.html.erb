@@ -39,11 +39,22 @@
               </a>
             </td>
 
+<!-- replace the below with the right select box button. -->
             <!-- column 3 -->
             <td class="quarter-width">
-              <a class="btn-flat inverse icon-thumbs-down fancybox" data-href="<%= admin_act_path(dossier.id, :layout=>"false") %>" href="#">
-                <i class="icon-thumbs-up"></i>
-              </a>
+
+              <div class="btn-group">
+                <button class="btn-flat inverse icon-thumbs-down"><i class="icon-thumbs-up"></i></button>
+                <button class="btn glow dropdown-toggle" data-toggle="dropdown">
+                  <span class="caret"></span>
+                </button>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Option one</a></li>
+                    <li><a href="#">Option two</a></li>
+                    <li><a href="#">Option three</a></li>
+                    <li><a href="#">Option four</a></li>
+                  </ul>
+              </div>
             </td>
           </tr>
 
