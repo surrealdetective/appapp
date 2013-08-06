@@ -38,4 +38,42 @@ total score of all classes<br>
 
   <% @treehouse = HTTParty.get('http://teamtreehouse.com/josephgiralt.json')%>
 
+  <br>
+  TREE HOUSE API BELOW
+<br>
+  profilename
+  <br>
+  <%= @treehouse.parsed_response["profile_name"] %>
+  <br>
+  total points
+  <br>
+  <%= @treehouse.parsed_response["points"]["total"]%>
+  <br>
+
+  html points
+  <br>
+  <%=@treehouse.parsed_response["points"]["html"]  %>
+  <br>
+  css points
+  <br>
+  <%= @treehouse.parsed_response["points"]["css"] %>
+  <br>
+  javascript points
+  <br>
+  <%= @treehouse.parsed_response["points"]["javascript"] %>
+  <br>
+  ruby points
+  <br>
+  <%= @treehouse.parsed_response["points"]["ruby"] %>
+  <br>
+  ios points
+  <br>
+  <%= @treehouse.parsed_response["points"]["ios"] %>
+  <br>
+  design points<br>
+  <%= @treehouse.parsed_response["points"]["design"] %>
+  <br>
+  devtools points<br>
+  <%= @treehouse.parsed_response["points"]["dev tools"] %>
+
 
