@@ -1,28 +1,51 @@
-<h1>Dashboard Info for <%= @course.semester %></h1>
-
-
-<h2>Million Mile View</h2>
-<div class="million">
-  <h4>People who have been accepted</h4>
-  <h5><%= course_count_by_state("needs_payment", @course) %></h5>
-
-  <h4>People who have confirmed</h4>
-  <h5><%= course_count_by_state("committed", @course) %></h5>
-
-  <h4>Total Applications for <%= @course.semester%></h4>
-  <h5><%= course_count_all(@course) %></h5>
-
-  <h4>Days Left till Class Begins</h4>
-  <h5><%= (@course.starting_date - Date.today).to_i %> days</h5>
-</div>
-
-
-<h2>Workflow Gauge</h2>
-<div class="workflows">
-
-  <h4>People who have been accepted this week for <%= @course.semester %> </h4>
-  <h5><%= course_count_by_state_and_week("needs payment", @course) %></h5>
+<h1>Dashboard</h1>
+<br>
 
 
 
-</div>
+<table>
+  <thead>
+    <tr>
+      <th>Course</th>
+      <th>Spots Left</th>
+      <th>Time Left</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @courses.each do |course| %>
+      <tr>
+        <td>
+          <%= course.semester %>
+        </td>
+        <td>
+          <%= course.seats - course.count_dossiers_with_status("committed") %>
+        </td>
+        <td>
+          <%= (course.starting_date - Date.today).to_i %> days
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+<hr>
+
+
+
+<h3>Total applications by each course</h3>
+
+<% @courses.each do |course| %>
+  <p><%= course.semester %>: <%= course_count_all(course) %></p>
+<% end %>
+
+
+
+<h3>Total needs_payment actions this past week by course</h3>
+<p>(People who have been accepted this week. is that accurate?)</p>
+
+<% @courses.each do |course| %>
+  <p><%= course.count_actions_this_past_week_by_status("needs payment") %></p>
+<% end %>
+

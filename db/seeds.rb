@@ -22,6 +22,7 @@ avi = User.create(
 
 adam_and_avi = [adam, avi]
 example_hashtags = ["lol", "wow", "wtf", "weirdo", "winner", "cool", "smart", "charismatic", "passionate", "unsure", "wonderful", "love", "omg", "genius", "deliberate", "apt", "loser", "GA", "wack", "dunno"]
+genders = ["male", "female", "other", "male", "female"]
 
 # create 300 users with one dossier each
 300.times do |i|
@@ -52,7 +53,8 @@ example_hashtags = ["lol", "wow", "wtf", "weirdo", "winner", "cool", "smart", "c
     :analytic_skills    => Populator.paragraphs(3),
     :tidbits            => Populator.paragraphs(3),
     :course             => courses.sample,
-    :skype              => "#{Populator.words(1)}#{rand(999)}"
+    :skype              => "#{Populator.words(1)}#{rand(999)}",
+    :gender             => genders.sample
   })
 
   # picks a random status for the last dossier

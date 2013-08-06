@@ -2,7 +2,7 @@ class Dossier < ActiveRecord::Base
   attr_accessible :aasm_state, :tagline, :phone_number, :city, :twitter,
                   :linkedin, :blog, :github, :website, :other_links,
                   :career, :purpose, :code_skills, :analytic_skills, :tidbits,
-                  :user_id, :course, :skype
+                  :user_id, :course, :skype, :gender
   belongs_to :user
   has_many :dossier_statuses
   has_many :dossier_comments

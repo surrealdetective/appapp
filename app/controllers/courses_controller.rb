@@ -54,6 +54,7 @@ class CoursesController < ApplicationController
 
   def dashboard
     @title = "Course Dashboard"
+    @courses = Course.all
     @course = Course.first
   end
 

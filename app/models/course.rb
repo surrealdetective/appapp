@@ -22,4 +22,20 @@ class Course < ActiveRecord::Base
     self.starting_date = Date.new(year, month, day)
   end
 
+  def count_dossiers_with_status(status)
+    Course.joins(:dossiers)
+      .where("courses.id" => self.id)
+      .where("dossiers.aasm_state" => status).count
+  end
+
+  def count_actions_this_past_week_by_status(status)
+    time_range = (Time.now.midnight - 7.day)..Time.now
+    Course.joins(dossiers: :dossier_statuses)
+        .where('dossier_statuses.status' => status)
+        .where('courses.id' => self.id)
+        .where('dossier_statuses.created_at' => time_range)
+        .count
+  end
+
+
 end
