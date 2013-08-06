@@ -56,6 +56,9 @@ class CoursesController < ApplicationController
     @title = "Course Dashboard"
     @courses = Course.all
     @course = Course.first
+    @male_count = Course.joins(:dossiers).where("dossiers.gender" => "male").count
+    @female_count = Course.joins(:dossiers).where("dossiers.gender" => "female").count
+    @other_count = Course.joins(:dossiers).where("dossiers.gender" => "other").count
   end
 
 end

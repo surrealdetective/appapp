@@ -42,3 +42,5 @@
 <% @courses.each do |course| %>
   <p><%= course.count_actions_this_past_week_by_status("needs payment") %></p>
 <% end %>
+
+<div style="width: 250px" data-male="<%= @male_count %>" data-female="<%= @female_count %>" data-other="<%= @other_count %>" id="donut-example"></div>
