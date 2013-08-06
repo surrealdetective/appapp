@@ -13,6 +13,10 @@ class CoursesController < ApplicationController
   end
 
   def index
+    redirect_to course_path(Course.where("starting_date >= :today", {today: Date.today}).order(:starting_date).first)
+  end
+
+  def show
     @title = "All Courses"
     #for needs decision
     # raise params.inspect

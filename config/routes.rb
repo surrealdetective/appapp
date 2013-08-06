@@ -1,6 +1,6 @@
 Appapp::Application.routes.draw do
   
-  resources :courses, :only => [:new, :create, :index]
+  resources :courses, :only => [:new, :create, :show, :index]
   get "/courses/dashboard" => "courses#dashboard", :as => "courses_dashboard"
 
   get "/class" => "class#index"
