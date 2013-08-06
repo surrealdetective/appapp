@@ -54,7 +54,9 @@ courses = Course.all
     :tidbits            => Populator.paragraphs(3),
     :course             => courses.sample,
     :skype              => "#{Populator.words(1)}#{rand(999)}",
-    :gender             => genders.sample
+    :gender             => genders.sample,
+    :treehouse_link     => "http://teamtreehouse.com/josephgiralt.json",
+    :codeschool_link    => "http://www.codeschool.com/users/alosaperau.json" 
   })
 
   # picks a random status for the last dossier
