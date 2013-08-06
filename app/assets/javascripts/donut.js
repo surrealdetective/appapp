@@ -12,4 +12,5 @@ $(document).ready(function() {
       {label: "Other", value: other_count}
     ]
   });
+  
 });

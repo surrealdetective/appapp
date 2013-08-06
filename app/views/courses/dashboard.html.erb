@@ -43,4 +43,10 @@
   <p><%= course.count_actions_this_past_week_by_status("needs payment") %></p>
 <% end %>
 
+<h3>Gender breakdown</h3>
+
 <div style="width: 250px" data-male="<%= @male_count %>" data-female="<%= @female_count %>" data-other="<%= @other_count %>" id="donut-example"></div>
+
+<h3>Velocity</h3>
+
+<div id="bar-example" data-accepted_today="<%= @accepted_today %>" data-accepted_yesterday="<%= @accepted_yesterday %>" data-rejected_today="<%= @rejected_today %>" data-rejected_yesterday="<%= @rejected_yesterday %>"></div>

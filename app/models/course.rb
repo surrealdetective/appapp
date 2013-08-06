@@ -37,6 +37,21 @@ class Course < ActiveRecord::Base
         .count
   end
 
+  #when a dossier_status is updated, this method counts when that was created_at
+  # a time_range must be passed to count when those created_at times were updated.
+  def self.count_actions(status, time_range)
+    case time_range
+    when "today"
+      time_range = (Time.now - 1.day)..Time.now
+    when "yesterday"
+      time_range = (Time.now-2.day)..(Time.now-1.day)
+    end
+    self.joins(dossiers: :dossier_statuses)
+        .where('dossier_statuses.status' => status)
+        .where('dossier_statuses.created_at' => time_range)
+        .count
+  end
+
   def count_all
     Course.joins(:dossiers).where("courses.id" => self.id).count
   end
