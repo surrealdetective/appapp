@@ -55,6 +55,12 @@ class DossiersController < ApplicationController
   end
   
   def show
+    #playing with HTTParty
+    
+    
+
+
+
     @dossier = Dossier.find(params[:id])
     authorize! :read, @dossier
     @body_classes = "dossier-form-bg"
