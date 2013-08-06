@@ -64,7 +64,9 @@
       </li>
       
     <% else %>
-      <% if !current_user %>
+      <% if current_user %>
+        <li><a href="http://twitter.com/flatironschool">@flatironschool</a></li>
+      <% else %>
         <%= render :partial => "layouts/sidebar_pointer", :locals => {:controller_action => ["dossiers", "new"]} %>
           <%= link_to new_dossier_path do %>
             <i class="icon-edit"></i>
