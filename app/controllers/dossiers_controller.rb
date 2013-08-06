@@ -65,6 +65,8 @@ class DossiersController < ApplicationController
     authorize! :read, @dossier
     @body_classes = "dossier-form-bg"
     @user = @dossier.user
+    @codeschool = @dossier.codeschool_link
+    @treehouse  = @dossier.treehouse_link
     @title = "#{@user.full_name}'s Dossier"
     respond_to do |format|
       if params[:layout] == "false"
