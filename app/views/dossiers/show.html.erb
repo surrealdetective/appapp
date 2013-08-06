@@ -18,3 +18,24 @@
     <%= render "dossiers/comments" %>
   <% end %>
 </div>
+
+
+<% @codeschool = HTTParty.get('http://www.codeschool.com/users/alosaperau.json')%>
+
+<!-- if @response.response.code = "200" render code-->
+<%= @codeschool.response.code %> 
+username from code school<br>
+<%= @codeschool.parsed_response["user"]["username"]%><br>
+gravatarlink<br>
+<%= @codeschool.parsed_response["user"]["avatar"] %><br>
+total score of all classes<br>
+<%= @codeschool.parsed_response["user"]["total_score"] %><br>
+
+<%@codeschool.parsed_response["courses"]["completed"].each do |x| %>
+  <%=image_tag x['badge']%><br>
+  <%=link_to x['title'], x['url']%>
+  <% end %> 
+
+  <% @treehouse = HTTParty.get('http://teamtreehouse.com/josephgiralt.json')%>
+
+
