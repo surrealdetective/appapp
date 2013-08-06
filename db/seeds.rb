@@ -67,3 +67,8 @@ example_hashtags = ["lol", "wow", "wtf", "weirdo", "winner", "cool", "smart", "c
     user.last_dossier.add_hashtag example_hashtags.sample, adam_and_avi.sample
   end
 end
+
+dhh = User.last
+dhh.email = "dhh@dhh.com"
+dhh.password = "dhh"
+dhh.save
