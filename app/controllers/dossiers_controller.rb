@@ -52,6 +52,7 @@ class DossiersController < ApplicationController
     @dossiers = @dossiers.with_status(params[:status]) if params[:status].present?
     @dossiers = @dossiers.includes(:user).includes(:dossier_statuses).all
     authorize! :index, @dossiers
+    # render :json =>  @dossiers
   end
   
   def show
