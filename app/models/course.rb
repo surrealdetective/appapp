@@ -37,5 +37,9 @@ class Course < ActiveRecord::Base
         .count
   end
 
+  def count_all
+    Course.joins(:dossiers).where("courses.id" => self.id).count
+  end
+
 
 end
