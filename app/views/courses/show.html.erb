@@ -38,7 +38,7 @@
 <hr>
 
 <!-- the needs decision view -->
-<div class="needs_decision">
+<div class="needs_decision column">
   <h2 style="text-align:center;">Applicants who Need a Decision</h2>
   <div class="row-fluid table">
     <table class="table table-hover">
@@ -101,7 +101,7 @@
 
 
 
-<div class="current_class">
+<div class="current_class column pull-right">
   <h2 style="text-align: center">Accepted Students</h2>
   <% @confirmed.each do |dossier| %>
   <div class="one_student" style="width:420px; height:250px; border:2px solid #0088CC; display:inline-block;">
@@ -139,5 +139,7 @@
     </div>
   </div>
   <% end %>
-</div>
 
+</div>
+<div style="height:4420px;">
+</div>

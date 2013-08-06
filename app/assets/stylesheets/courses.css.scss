@@ -3,12 +3,15 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .current_class {
-  float: right;
-  width: 70%;
+  position: absolute;
+  right: 10px;
+  left:630px;
+  width: 75%;
 }
 
 .needs_decision {
-  float:left;
+  position: absolute;
+  top: 482px;
   width: 550px;
 }
 
