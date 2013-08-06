@@ -4,13 +4,13 @@
 <!-- Show all courses -->
 <div class="course-select">
   <div class="btn-group float-right">
-    <button class="glow left"><%= link_to @courses.first.semester, courses_path(:course => 0) %></button>
+    <button class="glow left"><%= link_to @courses.first.semester, course_path(@courses.first) %></button>
     
     <% @courses[1..-2].each_with_index do |course, index| %>
-      <button class="glow middle"><%= link_to course.semester, courses_path(:course => index+1) %></button>
+      <button class="glow middle"><%= link_to course.semester, course_path(course) %></button>
     <% end %>
 
-    <button class="glow right"><%= link_to @courses.last.semester, courses_path(:course => @courses.count - 1) %></button>
+    <button class="glow right"><%= link_to @courses.last.semester, course_path(@courses.last) %></button>
   </div>
 
   <h4 class="float-right h4-float" style="display: inline; margin-top: 3px; margin-right:14px;">Select a Course:</h4>
@@ -30,10 +30,9 @@
 
 <!-- filter by search status view -->
 <hr>
-<%= form_tag courses_path, :method => "get", :style=> "text-align:center;" do %>
+<%= form_tag course_path(@course), :method => "get", :style=> "text-align:center;" do %>
   <%= text_field_tag "hashtag", params[:hashtag], :placeholder => "Filter by hashtag", :class => "span3 search" %>
   <!-- @course.id MUST equal its position in the index -->
-  <%= hidden_field_tag :course, @courses.index(@course) %>
   <%= submit_tag :Filter, :class => "btn btn-flat white" %>
 <% end %>
 <hr>
