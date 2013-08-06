@@ -6,7 +6,7 @@
     <%#= [params[:controller], params[:action]].inspect %>
     <% if can? :manage, Dossier %>
       <%= render :partial => "layouts/sidebar_pointer", :locals => {:controller_action => ["courses", "dashboard"]} %>
-        <%= link_to courses_dashboard_path do %>
+        <%= link_to dashboard_path do %>
           <i class="icon-home"></i>
           <span>Dashboard</span>
         <% end %>

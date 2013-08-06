@@ -1,7 +1,7 @@
 Appapp::Application.routes.draw do
   
   resources :courses, :only => [:new, :create, :index]
-  get "/dashboard" => "courses#dashboard", :as => "courses_dashboard"
+  get "/dashboard" => "courses#dashboard", :as => "dashboard"
 
   get "/class" => "class#index"
   post "/class/:dossier_id/decision" => "class#decision", :as=> "class_decision"
