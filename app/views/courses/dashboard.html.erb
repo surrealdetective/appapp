@@ -1,8 +1,6 @@
 <h1>Dashboard</h1>
 <br>
 
-
-
 <table>
   <thead>
     <tr>
@@ -28,18 +26,14 @@
   </tbody>
 </table>
 
-
-
 <hr>
-
 
 
 <h3>Total applications by each course</h3>
 
 <% @courses.each do |course| %>
-  <p><%= course.semester %>: <%= course_count_all(course) %></p>
+  <p><%= course.semester %>: <%= course.count_all %></p>
 <% end %>
-
 
 
 <h3>Total needs_payment actions this past week by course</h3>
@@ -48,4 +42,3 @@
 <% @courses.each do |course| %>
   <p><%= course.count_actions_this_past_week_by_status("needs payment") %></p>
 <% end %>
-
