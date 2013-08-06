@@ -54,6 +54,13 @@
             <%= f.label :city, "Current City" %><%= mark_required(@dossier, :city) %>
             <%= f.text_field :city, :class => "span4", placeholder: "Willing to relocate to NYC?" %>
           </div>
+
+          <div class="field-box">
+            <%= f.label :twitter, "Twitter Handle"%><%= mark_required(@dossier, :twitter) %>
+            <%= f.text_field :twitter, :class => "span4", placeholder: "Gimmee that twitter handle...." %>
+             
+          </div>
+          
         </div>
         <br>
         <div class="span6 column pull-right">
@@ -63,15 +70,21 @@
 
        
 
-          <div class="field-box">
-            <%= f.label :twitter, "Twitter Handle"%><%= mark_required(@dossier, :twitter) %>
-            <%= f.text_field :twitter, :class => "span4", placeholder: "Gimmee that twitter handle...." %>
-             
-          </div>
+          
 
           <div class="field-box">
             <%= f.label :github %><%= mark_required(@dossier, :github) %>
             <%= f.url_field :github, :class => "span6", placeholder: "http://...." %>
+          </div>
+
+          <div class="field-box">
+            <%= f.label :codeschool_link %><%= mark_required(@dossier, :codeschool_link) %>
+            <%= f.url_field :codeschool_link, :class => "span6", placeholder: "http://...." %>
+          </div>
+
+          <div class="field-box">
+            <%= f.label :treehouse_link %><%= mark_required(@dossier, :treehouse_link) %>
+            <%= f.url_field :treehouse_link, :class => "span6", placeholder: "http://...." %>
           </div>
 
           <div class="field-box">
@@ -84,10 +97,7 @@
             <%= f.url_field :linkedin, :class => "span6", placeholder: "http://...." %>
           </div>
 
-          <div class="field-box">
-            <%= f.label :website, "Your Website" %><%= mark_required(@dossier, :website) %>
-            <%= f.url_field :website, :class => "span6", placeholder: "http://...." %>
-          </div>
+          
         </div><br><br><br>
       </div>
     </div>
@@ -125,6 +135,11 @@
              <div class="field-box">
             <%= f.label :tidbits, "Is there anything else you'd like us to know?" %><%= mark_required(@dossier, :tidbits) %><br />
             <%= f.text_area :tidbits, :cols => "25", :rows => "5" %>
+          </div>
+
+          <div class="field-box">
+            <%= f.label :website, "Your Website" %><%= mark_required(@dossier, :website) %>
+            <%= f.url_field :website, :class => "span6", placeholder: "http://...." %>
           </div>
 
              <%= fields_for  @course do |c| %>
