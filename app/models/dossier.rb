@@ -34,7 +34,6 @@ class Dossier < ActiveRecord::Base
                 ###################
                 ##### States ######
                 ###################
-    persist_time_in_state = Proc.new {|d| AvgTime.update(d)}            
     # new:
     # the application has been created
     # calls the dossier_is_new method
@@ -44,18 +43,18 @@ class Dossier < ActiveRecord::Base
 
     # needs_review:
     # the application has been read and not rejected
-    state :needs_review, :before_enter => persist_time_in_state, :after_enter => Proc.new { |d| d.add_status "needs review"}
+    state :needs_review, :after_enter => Proc.new { |d| d.add_status "needs review"}
 
 
     # needs_interview:
     # not quite ready to make a decision
-    state :needs_interview, :before_enter => persist_time_in_state, :after_enter => Proc.new { |d| d.add_status "needs interview"}
+    state :needs_interview, :after_enter => Proc.new { |d| d.add_status "needs interview"}
 
     # needs_code_interview:
-    state :needs_code_interview, :before_enter => persist_time_in_state, :after_enter => Proc.new { |d| d.add_status "needs code interview" }
+    state :needs_code_interview, :after_enter => Proc.new { |d| d.add_status "needs code interview" }
 
     # needs_decision:
-    state :needs_decision, :before_enter => persist_time_in_state, :after_enter => Proc.new { |d| d.add_status "needs decision" }
+    state :needs_decision, :after_enter => Proc.new { |d| d.add_status "needs decision" }
 
 
 
@@ -69,19 +68,19 @@ class Dossier < ActiveRecord::Base
 
     # needs_payment:
     # accepted but has not yet confirmed, by paying
-    state :needs_payment, :before_enter => persist_time_in_state, :after_enter => Proc.new { |d| d.add_status "accepted"; d.add_status "needs payment"}
+    state :needs_payment, :after_enter => Proc.new { |d| d.add_status "accepted"; d.add_status "needs payment"}
 
     # committed:
     # one of the three final states (the nicer one)
-    state :committed, :before_enter => persist_time_in_state, :after_enter => Proc.new { |d| d.add_status "committed"}
+    state :committed, :after_enter => Proc.new { |d| d.add_status "committed"}
 
     # rejected:
     # another final state
-    state :rejected, :before_enter => persist_time_in_state, :after_enter => Proc.new { |d| d.add_status "rejected"}
+    state :rejected, :after_enter => Proc.new { |d| d.add_status "rejected"}
 
     # wont_attend
     # we offered but they did not commit
-    state :wont_attend, :before_enter => persist_time_in_state, :after_enter => Proc.new { |d| d.add_status "won't attend"}
+    state :wont_attend, :after_enter => Proc.new { |d| d.add_status "won't attend"}
 
             ###################
             ##### Events ######
