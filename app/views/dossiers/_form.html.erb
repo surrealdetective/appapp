@@ -118,7 +118,7 @@
           </div>
 
              <div class="field-box">
-            <%= f.label :purpose, "Describe your background with computer programming (if any). Feel free to include links to any online resources you've completed." %><%= mark_required(@dossier, :purpose) %><br />
+            <%= f.label :purpose, "Why are you applying to Flatiron School?" %><%= mark_required(@dossier, :purpose) %><br />
             <%= f.text_area :purpose, :cols => "25", :rows => "3" %>
           </div>
 
@@ -145,7 +145,7 @@
           <div class="field-box">
             <%= f.label :course_id, "Choose a semester" %> <%= mark_required(@dossier, :course_id) %>
             <br>
-            <%= f.select :course_id, @course_list, :selected => :course_id %>
+            <%= f.select :course_id, @course_list, :value => @dossier.course_id %>
           </div>
 
           <div class="actions">
