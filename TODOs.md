@@ -39,3 +39,18 @@ Some scratchpad stuff:
 Course Topic permissions
 
 can :manage, Topic, :course_id => user.teaching_course_ids
+
+## user-facing analytics
+
+when you log in, we want to tell you the average time spent in this status
+
+steps:
+
+- check what status they're at
+- look up all dossier_statuses of the same type
+- reject all the ones that are STILL in that type
+- 
+
+
+
+
