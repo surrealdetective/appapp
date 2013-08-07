@@ -1,16 +1,13 @@
 <!-- proof of pudding: the course -->
 <h1 style="text-align:center;"><%= @course.semester %></h1>
 
+
 <!-- Show all courses -->
 <div class="course-select">
   <div class="btn-group float-right">
-    <button class="glow left"><%= link_to @courses.first.semester, course_path(@courses.first) %></button>
-    
-    <% @courses[1..-2].each_with_index do |course, index| %>
-      <button class="glow middle"><%= link_to course.semester, course_path(course) %></button>
+    <% @courses.each do |course| %>
+      <%= link_to @courses.first.semester, course_path(@courses.first), :class=> "btn btn-flat info" %>
     <% end %>
-
-    <button class="glow right"><%= link_to @courses.last.semester, course_path(@courses.last) %></button>
   </div>
 
   <h4 class="float-right h4-float" style="display: inline; margin-top: 3px; margin-right:14px;">Select a Course:</h4>
