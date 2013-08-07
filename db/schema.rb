@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20130806161212) do
-=======
 ActiveRecord::Schema.define(:version => 20130806202230) do
->>>>>>> adds AddsCodeschoolLinkTreehouseLinkToDossiers migration
 
   create_table "courses", :force => true do |t|
     t.string   "subject"
@@ -62,12 +58,9 @@ ActiveRecord::Schema.define(:version => 20130806202230) do
     t.string   "aasm_state"
     t.integer  "course_id"
     t.string   "skype"
-<<<<<<< HEAD
-    t.string   "gender"
-=======
     t.string   "codeschool_link"
     t.string   "treehouse_link"
->>>>>>> adds AddsCodeschoolLinkTreehouseLinkToDossiers migration
+    t.string   "gender"
   end
 
   create_table "hashtags", :force => true do |t|

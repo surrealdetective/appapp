@@ -57,7 +57,6 @@ courses = Course.all
     :gender             => genders.sample,
     :treehouse_link     => "http://teamtreehouse.com/josephgiralt.json",
     :codeschool_link    => "http://www.codeschool.com/users/alosaperau.json" 
-    :gender             => genders.sample
   })
 
   user.save
