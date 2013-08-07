@@ -77,6 +77,14 @@ class DossiersController < ApplicationController
     end
   end
 
+  def edit
+    # show the edit form
+  end
+
+  def update
+    # PUT the new information
+  end
+
   def transition
     @dossier = Dossier.find(params[:id])
     @dossier.send(params[:transition])

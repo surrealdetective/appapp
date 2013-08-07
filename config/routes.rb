@@ -23,7 +23,7 @@ Appapp::Application.routes.draw do
   root :to => 'welcome#home'
   
 
-  resources :dossiers, :only => [:new, :create, :show, :index] do
+  resources :dossiers, :except => [:destroy] do
     resources :dossier_statuses, :only => [:new, :create]
     resources :dossier_comments, :only => [:create, :edit, :update, :destroy]
     resources :score, :only => [:create, :edit, :update, :destroy]
