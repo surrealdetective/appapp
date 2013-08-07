@@ -59,12 +59,12 @@ courses = Course.all
     :codeschool_link    => "http://www.codeschool.com/users/alosaperau.json" 
   })
 
+  user.save
+
   # picks a random status for the last dossier
   # and moves it thru the states to arrive there
   # with a history
   user.last_dossier.random_status!
-
-  user.save
 
   # add 3 hashtags to dossier
   3.times do
