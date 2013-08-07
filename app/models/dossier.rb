@@ -34,7 +34,7 @@ class Dossier < ActiveRecord::Base
                 ###################
                 ##### States ######
                 ###################
-
+    persist_time_in_state = Proc.new {|d| AvgTime.update(d)}            
     # new:
     # the application has been created
     # calls the dossier_is_new method
@@ -44,7 +44,8 @@ class Dossier < ActiveRecord::Base
 
     # needs_review:
     # the application has been read and not rejected
-    state :needs_review, :after_enter => Proc.new { |d| d.add_status "needs review"}
+    state :needs_review, :before_enter => persist_time_in_state, :after_enter => Proc.new { |d| d.add_status "needs review"}
+
 
     # needs_interview:
     # not quite ready to make a decision

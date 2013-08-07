@@ -3,6 +3,7 @@ class Course < ActiveRecord::Base
 
   has_many :dossiers
   has_many :dossier_statuses, :through => :dossiers
+  has_many :avg_times
 
   #reads the class name
   def semester
