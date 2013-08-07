@@ -23,6 +23,7 @@ avi = User.create(
 adam_and_avi = [adam, avi]
 example_hashtags = ["lol", "wow", "wtf", "weirdo", "winner", "cool", "smart", "charismatic", "passionate", "unsure", "wonderful", "love", "omg", "genius", "deliberate", "apt", "loser", "GA", "wack", "dunno"]
 genders = ["male", "female", "other", "male", "female"]
+courses = Course.all
 
 # create 300 users with one dossier each
 300.times do |i|
@@ -35,7 +36,6 @@ genders = ["male", "female", "other", "male", "female"]
   user.set_role(:applicant)
 
   city = [Faker::Address.city, "NYC", "Brooklyn", "Queens", "New Jersey"]
-  courses = Course.all
 
   user.dossiers.build({
     :tagline            => Faker::Company.bs,
