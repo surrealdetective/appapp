@@ -24,7 +24,6 @@ class DossiersController < ApplicationController
       UserMailer.welcome_email(@user).deliver
     # end
     @dossier = @user.dossiers.build(params[:dossier])
-    @dossier.course_id = params[:course][:semester]
     @dossier.save
     if @user.save_with_dossier_status("submitted")
       session[:user_id] = @user.id
@@ -80,10 +79,21 @@ class DossiersController < ApplicationController
 
   def edit
     # show the edit form
+    
+    @dossier = Dossier.find(params[:id])
+    @user = @dossier.user
+    @course = @dossier.course
+    @course_list = Course.list_for_selectbox
+    @title = "Edit #{@user.full_name}'s Dossier"
   end
 
   def update
     # PUT the new information
+    @dossier = Dossier.find(params[:id])
+    @user = @dossier.user
+    @dossier.update_attributes(params[:dossier])
+    @user.update_attributes(params[:user])
+    redirect_to @dossier
   end
 
   def transition
