@@ -12,7 +12,7 @@
   <!-- APPLICATION SUMMARY BOX -->
   <%= render "dossiers/application_summary" %>
 
-  <% if can? :update, @dossier  %>
+  <% if can? :manage, @dossier  %>
     <!-- COMMENTS BOX  --> 
     <!-- HIDE FROM APPLICANTS -->
     <%= render "dossiers/comments" %>
