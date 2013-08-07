@@ -54,5 +54,5 @@ total score of all classes<br>
 
 <p>Dossier state: <%= @dossier.aasm_state %></p>
 <% if can? :update, @dossier %>
-  <p><a href="#">Edit this dossier</a></p>
+  <p><%= link_to "Edit this dossier", edit_dossier_path(@dossier) %></p>
 <% end %>
