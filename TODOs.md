@@ -2,6 +2,10 @@
 
 (first of all, this should be in trello; acknowledged.)
 
+## class-maker
+-seed file properly for scores
+-show the scores in a pie chart
+
 ## sidebar for logged in applicants
 
 - link to prework

@@ -24,6 +24,7 @@ adam_and_avi = [adam, avi]
 example_hashtags = ["lol", "wow", "wtf", "weirdo", "winner", "cool", "smart", "charismatic", "passionate", "unsure", "wonderful", "love", "omg", "genius", "deliberate", "apt", "loser", "GA", "wack", "dunno"]
 genders = ["male", "female", "other", "male", "female"]
 courses = Course.all
+scores = [1, 2, 3, 4, 5]
 
 # create 300 users with one dossier each
 300.times do |i|
@@ -65,6 +66,7 @@ courses = Course.all
   # and moves it thru the states to arrive there
   # with a history
   user.last_dossier.random_status!
+  user.last_dossier.create_score(:leadership => scores.sample, :tech => scores.sample, :passion => scores.sample)
 
   # add 3 hashtags to dossier
   3.times do
