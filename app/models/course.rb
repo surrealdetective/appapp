@@ -41,16 +41,39 @@ class Course < ActiveRecord::Base
   #when a dossier_status is updated, this method counts when that was created_at
   # a time_range must be passed to count when those created_at times were updated.
   def self.count_actions(status, time_range)
+
     case time_range
     when "today"
-      time_range = (Time.now - 1.day)..Time.now
+      time_range = Time.now.midnight..Time.now
     when "yesterday"
-      time_range = (Time.now-2.day)..(Time.now-1.day)
+      time_range = (Time.now.midnight-1.day)..Time.now.midnight
+    when "this week"
+      time_range = Time.now.beginning_of_week..Time.now
+    when "last week"
+      time_range = (Time.now.beginning_of_week - 1.week)..Time.now.beginning_of_week
+    when "this month"
+      time_range = Time.now.beginning_of_month..Time.now
+    when "last month"
+      time_range = (Time.now.beginning_of_month - 1.month)..Time.now.beginning_of_month
     end
-    self.joins(dossiers: :dossier_statuses)
-        .where('dossier_statuses.status' => status)
-        .where('dossier_statuses.created_at' => time_range)
-        .count
+
+    case status
+    when "resolved"
+      self.joins(:dossiers => :dossier_statuses)
+          .where("dossier_statuses.status = ? or dossier_statuses.status = ? or dossier_statuses.status = ?", "accepted", "rejected", "won't attend")
+          .where('dossier_statuses.created_at' => time_range)
+          .count
+    when "reviewed"
+      self.joins(:dossiers => :dossier_statuses)
+          .where("dossier_statuses.status = ? or dossier_statuses.status = ?", "needs interview", "needs code interview")
+          .where('dossier_statuses.created_at' => time_range)
+          .count
+    else
+      self.joins(:dossiers => :dossier_statuses)
+          .where('dossier_statuses.status' => status)
+          .where('dossier_statuses.created_at' => time_range)
+          .count
+    end
   end
 
   def count_all

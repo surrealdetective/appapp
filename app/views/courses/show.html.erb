@@ -6,7 +6,7 @@
 <div class="course-select">
   <div class="btn-group float-right">
     <% @courses.each do |course| %>
-      <%= link_to @courses.first.semester, course_path(@courses.first), :class=> "btn btn-flat info" %>
+      <%= link_to course.semester, course_path(course), :class=> "btn btn-flat info" %>
     <% end %>
   </div>
 
@@ -19,6 +19,7 @@
 <div class="class-stats collapsible">
   <div>
     <div>Gender:</div>
+    <div style="width: 250px" data-male="<%= @male_count %>" data-female="<%= @female_count %>" data-other="<%= @other_count %>" id="donut-example"></div>
     <div>Age less than 25 </div>
     <div>Locations</div>
     <div>Average Passion</div>

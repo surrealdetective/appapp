@@ -31,6 +31,9 @@ class CoursesController < ApplicationController
     # end
 
     @course = Course.find_by_id(params[:id])
+    @male_count = Course.joins(:dossiers).where("courses.id" => @course.id).where("dossiers.gender" => "male").count
+    @female_count = Course.joins(:dossiers).where("courses.id" => @course.id).where("dossiers.gender" => "female").count
+    @other_count = Course.joins(:dossiers).where("courses.id" => @course.id).where("dossiers.gender" => "other").count
 
 #we have a problem here...
   #you send EITHER params[:course] or params[:hashtag]
@@ -66,11 +69,18 @@ class CoursesController < ApplicationController
     @other_count = Course.joins(:dossiers).where("dossiers.gender" => "other").count
 
     # velocity data
-    @accepted_today = Course.count_actions("accepted", "today")
-    @accepted_yesterday = Course.count_actions("accepted", "yesterday")
+    @viewed_today     = Course.count_actions("needs review", "today")
+    @viewed_yesterday = Course.count_actions("needs review", "yesterday")
 
-    @rejected_today = Course.count_actions("rejected", "today")
-    @rejected_yesterday = Course.count_actions("rejected", "yesterday")
+    @reviewed_today     = Course.count_actions "reviewed", "today"
+    @reviewed_yesterday = Course.count_actions "reviewed", "yesterday"
+
+    @interviewed_today     = Course.count_actions("needs decision", "today")
+    @interviewed_yesterday = Course.count_actions("needs decision", "yesterday")
+
+    @resolved_today     = Course.count_actions "resolved", "today"
+    @resolved_yesterday = Course.count_actions "resolved", "yesterday"
+
   end
 
 end
