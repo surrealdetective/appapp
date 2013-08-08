@@ -2,7 +2,9 @@
 
 <div class="dossier-form-container">
   
-  <h2><%= @user.full_name %>'s Application Status (<%= @dossier.semester %>) </h2>
+  <h2>
+    <%= @user.full_name %>'s Application Status (<%= @dossier.semester %>) 
+  </h2>
   
   <%= render "dossiers/collapser_button" %>
 
@@ -10,12 +12,15 @@
     
     <ul>
       <% @dossier.dossier_statuses.each do |status| %>
+        
         <li>
           Marked as <em><%= status.status.humanize.downcase %></em> on <%= status.created_at.strftime("%A, %b %d at %I:%M %p") %>
         </li>
+      
       <% end %>
     
     </ul>
+    
     <p>You have been in this status for 
       <strong> 
         <%= distance_of_time_in_words Time.now, @dossier.dossier_statuses.last.created_at  %>
@@ -40,6 +45,7 @@
       </p>
     
     <% end %>
+
   </div>
 
 </div>
