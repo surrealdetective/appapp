@@ -1,53 +1,41 @@
-<h1>Dashboard</h1>
-<br>
-
-<table>
-  <thead>
+<h2 style="text-align:center;">Course Dashboard</h2>
+<div class="row-fluid table">
+  <table class="table table-hover">
+    <thead>
     <tr>
       <th>Course</th>
+      <th>Total Applications</th>
       <th>Spots Left</th>
       <th>Time Left</th>
     </tr>
-  </thead>
-  <tbody>
-    <% @courses.each do |course| %>
-      <tr>
-        <td>
-          <%= course.semester %>
-        </td>
-        <td>
-          <%= course.seats - course.count_dossiers_with_status("committed") %>
-        </td>
-        <td>
-          <%= (course.starting_date - Date.today).to_i %> days
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @courses.each do |course| %>
+        <tr>
+          <td>
+            <%= link_to course.semester, course_path(course) %>
+          </td>
+          <td>
+            <%= course.count_all %>
+          </td>
+          <td>
+            <%= course.seats - course.count_dossiers_with_status("committed") %>
+          </td>
+          <td>
+            <%= (course.starting_date - Date.today).to_i %> days
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <hr>
 
 
-<h3>Total applications by each course</h3>
 
-<% @courses.each do |course| %>
-  <p><%= course.semester %>: <%= course.count_all %></p>
-<% end %>
-
-
-<h3>Total needs_payment actions this past week by course</h3>
-<p>(People who have been accepted this week. is that accurate?)</p>
-
-<% @courses.each do |course| %>
-  <p><%= course.count_actions_this_past_week_by_status("needs payment") %></p>
-<% end %>
-
-<h3>Gender breakdown</h3>
-
-<div style="width: 250px" data-male="<%= @male_count %>" data-female="<%= @female_count %>" data-other="<%= @other_count %>" id="donut-example"></div>
-
-<h3>Velocity</h3>
+<h2 style="text-align:center;">Velocity</h2>
 
 <div id="bar-example" data-viewed_today="<%= @viewed_today %>" data-viewed_yesterday="<%= @viewed_yesterday %>" data-interviewed_today="<%= @interviewed_today %>" data-interviewed_yesterday="<%= @interviewed_yesterday %>"data-reviewed_today="<%= @reviewed_today %>" data-reviewed_yesterday="<%= @reviewed_yesterday %>" data-resolved_today="<%= @resolved_today %>" data-resolved_yesterday="<%= @resolved_yesterday %>">
 </div>
