@@ -25,6 +25,9 @@ gem 'twitter-text'
 #parsing JSON from online code school/academies
 gem 'httparty'
 
+#implements gravatar
+gem 'digest/md5'
+
 
 group :development do
   gem "better_errors"
