@@ -4,16 +4,25 @@ $(document).ready(function() {
    *
    * Why not try some of the options above?
    */
-   var accepted_today = $("#bar-example").data("accepted_today");
-   var accepted_yesterday = $("#bar-example").data("accepted_yesterday");
-   var rejected_today = $("#bar-example").data("rejected_today");
-   var rejected_yesterday = $("#bar-example").data("rejected_yesterday");
+   var viewed_today = $("#bar-example").data("viewed_today");
+   var viewed_yesterday = $("#bar-example").data("viewed_yesterday");
+
+   var reviewed_today = $("#bar-example").data("reviewed_today");
+   var reviewed_yesterday = $("#bar-example").data("reviewed_yesterday");
+
+   var interviewed_today = $("#bar-example").data("interviewed_today");
+   var interviewed_yesterday = $("#bar-example").data("interviewed_yesterday");
+
+   var resolved_today = $("#bar-example").data("resolved_today");
+   var resolved_yesterday = $("#bar-example").data("resolved_yesterday");
 
   Morris.Bar({
     element: 'bar-example',
     data: [
-      { y: 'Accepted', a: accepted_today, b: accepted_yesterday },
-      { y: 'Rejected', a: rejected_today, b: rejected_yesterday }
+      { y: 'Viewed', a: viewed_today, b: viewed_yesterday },
+      { y: 'Reviewed', a: reviewed_today, b: reviewed_yesterday },
+      { y: 'Interviewed', a: interviewed_today, b: interviewed_yesterday },
+      { y: 'Resolved', a: resolved_today, b: resolved_yesterday }
     ],
     xkey: 'y',
     ykeys: ['a', 'b'],
