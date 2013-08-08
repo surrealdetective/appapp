@@ -31,6 +31,9 @@ class CoursesController < ApplicationController
     # end
 
     @course = Course.find_by_id(params[:id])
+    @male_count = Course.joins(:dossiers).where("courses.id" => @course.id).where("dossiers.gender" => "male").count
+    @female_count = Course.joins(:dossiers).where("courses.id" => @course.id).where("dossiers.gender" => "female").count
+    @other_count = Course.joins(:dossiers).where("courses.id" => @course.id).where("dossiers.gender" => "other").count
 
 #we have a problem here...
   #you send EITHER params[:course] or params[:hashtag]
