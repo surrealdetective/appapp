@@ -66,16 +66,16 @@ class CoursesController < ApplicationController
     @other_count = Course.joins(:dossiers).where("dossiers.gender" => "other").count
 
     # velocity data
-    @viewed_today = Course.count_actions("needs review", "today")
+    @viewed_today     = Course.count_actions("needs review", "today")
     @viewed_yesterday = Course.count_actions("needs review", "yesterday")
 
-    @reviewed_today = Course.count_actions("needs interview", "today") + Course.count_actions("needs code interview", "today")
-    @reviewed_yesterday = Course.count_actions("needs interview", "yesterday") + Course.count_actions("needs code interview", "yesterday")
+    @reviewed_today     = Course.count_actions "reviewed", "today"
+    @reviewed_yesterday = Course.count_actions "reviewed", "yesterday"
 
-    @interviewed_today = Course.count_actions("needs decision", "today")
+    @interviewed_today     = Course.count_actions("needs decision", "today")
     @interviewed_yesterday = Course.count_actions("needs decision", "yesterday")
 
-    @resolved_today = Course.count_actions "resolved", "today"
+    @resolved_today     = Course.count_actions "resolved", "today"
     @resolved_yesterday = Course.count_actions "resolved", "yesterday"
 
   end
