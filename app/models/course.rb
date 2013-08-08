@@ -43,9 +43,17 @@ class Course < ActiveRecord::Base
   def self.count_actions(status, time_range)
     case time_range
     when "today"
-      time_range = (Time.now.midnight)..Time.now
+      time_range = Time.now.midnight..Time.now
     when "yesterday"
-      time_range = (Time.now.midnight-1.day)..(Time.now.midnight)
+      time_range = (Time.now.midnight-1.day)..Time.now.midnight
+    when "this week"
+      time_range = Time.now.beginning_of_week..Time.now
+    when "last week"
+      time_range = (Time.now.beginning_of_week - 1.week)..Time.now.beginning_of_week
+    when "this month"
+      time_range = Time.now.beginning_of_month..Time.now
+    when "last month"
+      time_range = (Time.now.beginning_of_month - 1.month)..Time.now.beginning_of_month
     end
     self.joins(dossiers: :dossier_statuses)
         .where('dossier_statuses.status' => status)
