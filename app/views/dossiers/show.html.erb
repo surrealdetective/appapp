@@ -38,14 +38,37 @@
         <div class="container-fluid">
             <div class="settings-wrapper" id="pad-wrapper">
                 <!-- avatar column -->
-                <div class="span3 avatar-box">
-                    <div class="personal-image">
-                        <img src="img/personal-info.png" class="avatar img-circle">
-                        <%= image_tag ("http://www.gravatar.com/avatar/#{@avatar_hash}")%>
-
-                        <p>Upload a different photo...</p>
+                <div class="span2 avatar-box">
+                    <div class="personal-image ">
                         
-                        <input type="file" />
+                        <%= image_tag ("http://www.gravatar.com/avatar/#{@avatar_hash}"),:class => "avatar img-circle"%>
+
+                        <p>
+                          Don't have an Avatar yet?
+                        </p>
+                        <p>
+                          Sign up for gravatar <%= link_to "here", "https://en.gravatar.com/"%>
+                        </p>
+                        <br>
+                        <br>
+
+                        <p>
+                          <strong>
+                            Position in Pipeline
+                          </strong>
+                        </p> 
+
+                          <span class="label label-success">
+                            <%= @dossier.aasm_state.humanize %>
+                          </span>
+                           
+                        </p>
+                        <p>
+                          <% if can? :update, @dossier %>
+                            <%= link_to "Edit this dossier", edit_dossier_path(@dossier) %>
+                          <% end %>
+                        </p>
+
                     </div>
                 </div>
 
