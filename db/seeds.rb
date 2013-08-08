@@ -54,7 +54,7 @@ example_hashtags = ["lol", "wow", "wtf", "weirdo", "winner", "cool", "smart", "c
     :course             => courses.sample,
     :skype              => "#{Populator.words(1)}#{rand(999)}",
     :treehouse_link     => "http://teamtreehouse.com/josephgiralt.json",
-    :codeschool_link    => "http://teamtreehouse.com/josephgiralt.json" 
+    :codeschool_link    => "http://www.codeschool.com/users/alosaperau.json" 
   })
 
   # picks a random status for the last dossier

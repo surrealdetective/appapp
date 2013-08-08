@@ -61,6 +61,10 @@ class DossiersController < ApplicationController
     @user = @dossier.user
     @codeschool = HTTParty.get(@dossier.codeschool_link)
     @treehouse  = HTTParty.get(@dossier.treehouse_link)
+    email_address = @user.email.downcase
+    @avatar_hash = Digest::MD5.hexdigest(email_address)
+
+
     
     @title = "#{@user.full_name}'s Dossier"
     respond_to do |format|
@@ -80,6 +84,8 @@ class DossiersController < ApplicationController
     @course = @dossier.course
     @course_list = Course.list_for_selectbox
     @title = "Edit #{@user.full_name}'s Dossier"
+    email_address = @user.email.downcase
+    @avatar_hash = Digest::MD5.hexdigest(email_address)
   end
 
   def update
