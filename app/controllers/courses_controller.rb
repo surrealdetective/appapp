@@ -35,6 +35,12 @@ class CoursesController < ApplicationController
     @female_count = Course.joins(:dossiers).where("courses.id" => @course.id).where("dossiers.gender" => "female").count
     @other_count = Course.joins(:dossiers).where("courses.id" => @course.id).where("dossiers.gender" => "other").count
 
+    @passion_one_count = Score.joins(:dossier => :course).where("courses.id" => 1).where("scores.passion" => 1).count
+    @passion_two_count = Score.joins(:dossier => :course).where("courses.id" => 1).where("scores.passion" => 2).count
+    @passion_three_count = Score.joins(:dossier => :course).where("courses.id" => 1).where("scores.passion" => 3).count
+    @passion_four_count = Score.joins(:dossier => :course).where("courses.id" => 1).where("scores.passion" => 4).count
+    @passion_five_count = Score.joins(:dossier => :course).where("courses.id" => 1).where("scores.passion" => 5).count
+
 #we have a problem here...
   #you send EITHER params[:course] or params[:hashtag]
   # therefore you are NOT searching the current course, which gets automatically
