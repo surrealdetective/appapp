@@ -18,11 +18,17 @@
 <%= render 'courses/collapser_course_button' %>
 <div class="class-stats collapsible">
   <div>
-    <div>Gender:</div>
-    <div style="width: 250px" data-male="<%= @male_count %>" data-female="<%= @female_count %>" data-other="<%= @other_count %>" id="donut-example"></div>
+    <div style="graphs">
+      <h3>Gender:</h3>
+      <div style="width: 250px" data-male="<%= @male_count %>" data-female="<%= @female_count %>" data-other="<%= @other_count %>" id="donut-example">
+      </div>
+    </div>
     
-    <div>Passion</div>
-    <div style="width: 250px" data-passion_one="<%= @passion_one_count %>" data-passion_two="<%= @passion_two_count %>" data-passion_three="<%= @passion_three_count %>" data-passion_four="<%= @passion_four_count %>" data-passion_five="<%= @passion_five_count %>" id="donut-passion"></div>
+    <div style="graphs">
+      <h3>Passion:</h3>
+      <div style="width: 250px" data-passion_one="<%= @passion_one_count %>" data-passion_two="<%= @passion_two_count %>" data-passion_three="<%= @passion_three_count %>" data-passion_four="<%= @passion_four_count %>" data-passion_five="<%= @passion_five_count %>" id="donut-passion">
+      </div>
+    </div>
 
     <div>Tech</div>
     <div>Leadership</div>
