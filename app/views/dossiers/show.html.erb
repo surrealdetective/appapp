@@ -1,3 +1,98 @@
+
+
+  <!-- main container .wide-content is used for this layout without sidebar :)  -->
+   
+        <div class="container-fluid">
+            <div class="settings-wrapper" id="pad-wrapper">
+                <!-- avatar column -->
+                <div class="span3 avatar-box">
+                    <div class="personal-image">
+                        <%=image_tag  (@codeschool.parsed_response["user"]["avatar"])%>
+                        <p>Upload a different photo...</p>
+                        
+                        <input type="file" />
+                    </div>
+                </div>
+
+                <!-- edit form column -->
+                <div class="span7 personal-info">
+                    <div class="alert alert-info">
+                        <i class="icon-lightbulb"></i>
+                        This page shows an example of an alternative layout with the main navbar on the top
+                        <br> using <strong>.content.wide-content</strong> for this main container
+                    </div>
+                    <h5 class="personal-title">Personal info</h5>
+
+                    <form>
+                        <div class="field-box">
+                            <label>First name:</label>
+                            <input class="span5 inline-input" type="text" value="Alejandra" />
+                        </div>
+                        <div class="field-box">
+                            <label>Last name:</label>
+                            <input class="span5 inline-input" type="text" value="Galvan" />
+                        </div>
+                        <div class="field-box">
+                            <label>Company:</label>
+                            <input class="span5 inline-input" type="text" value="Design Co." />
+                        </div>
+                        <div class="field-box">
+                            <label>Email:</label>
+                            <input class="span5 inline-input" type="text" value="alejandra@design.com" />
+                        </div>
+                        <div class="field-box">
+                            <label>Time Zone:</label>
+                            <div class="ui-select">
+                                <select id="user_time_zone" name="user[time_zone]">
+                                    <option value="Hawaii">(GMT-10:00) Hawaii</option>
+                                    <option value="Alaska">(GMT-09:00) Alaska</option>
+                                    <option value="Pacific Time (US &amp; Canada)">(GMT-08:00) Pacific Time (US &amp; Canada)</option>
+                                    <option value="Arizona">(GMT-07:00) Arizona</option>
+                                    <option value="Mountain Time (US &amp; Canada)">(GMT-07:00) Mountain Time (US &amp; Canada)</option>
+                                    <option value="Central Time (US &amp; Canada)" selected="selected">(GMT-06:00) Central Time (US &amp; Canada)</option>
+                                    <option value="Eastern Time (US &amp; Canada)">(GMT-05:00) Eastern Time (US &amp; Canada)</option>
+                                    <option value="Indiana (East)">(GMT-05:00) Indiana (East)</option>                                    
+                                </select>
+                            </div>
+                        </div>
+                        <div class="field-box">
+                            <label>Username:</label>
+                            <input class="span5 inline-input" type="text" value="alegalvan" />
+                        </div>
+                        <div class="field-box">
+                            <label>Password:</label>
+                            <input class="span5 inline-input" type="password" value="blablablabla" />
+                        </div>
+                        <div class="field-box">
+                            <label>Confirm password:</label>
+                            <input class="span5 inline-input" type="password" value="blablablabla" />
+                        </div>
+                        <div class="span6 field-box actions">
+                            <input type="button" class="btn-glow primary" value="Save Changes">
+                            <span>OR</span>
+                            <input type="reset" value="Cancel" class="reset">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end main container -->
+
+
+  <!-- scripts -->
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/theme.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
 <div class="container">
 
   <!-- APPLICATION STATUS BOX -->
@@ -20,35 +115,35 @@
 </div>
 
 
-<% codeschool = HTTParty.get(@codeschool)%>
+
 
 <!-- if @response.response.code = "200" render code-->
-<%= codeschool.response.code %> 
+<%= @codeschool.response.code %> 
 username from code school<br>
-<%= codeschool.parsed_response["user"]["username"]%><br>
+<%= @codeschool.parsed_response["user"]["username"]%><br>
 gravatarlink<br>
-<%= codeschool.parsed_response["user"]["avatar"] %><br>
+<%= @codeschool.parsed_response["user"]["avatar"] %><br>
 total score of all classes<br>
-<%= codeschool.parsed_response["user"]["total_score"] %><br>
+<%= @codeschool.parsed_response["user"]["total_score"] %><br>
 <h3>completed</h3>
-<%codeschool.parsed_response["courses"]["completed"].each do |x| %>
+<%@codeschool.parsed_response["courses"]["completed"].each do |x| %>
   <%=image_tag x['badge']%><br>
   <%=link_to x['title'], x['url']%>
 <% end %>
 
 <h3>in progress</h3>
 
-<%codeschool.parsed_response["courses"]["in_progress"].each do |x| %>
+<%@codeschool.parsed_response["courses"]["in_progress"].each do |x| %>
   <%=image_tag x['badge']%><br>
   <%=link_to x['title'], x['url']%>
 <% end %> 
 
-<% treehouse = HTTParty.get(@treehouse)%>
+
 
 <h3>Tree House</h3>
 
-<p>Profile name: <%= treehouse.parsed_response["profile_name"] %></p>
-<% treehouse.parsed_response["points"].each do |category, points| %>
+<p>Profile name: <%= @treehouse.parsed_response["profile_name"] %></p>
+<% @treehouse.parsed_response["points"].each do |category, points| %>
   <p><%= category %> points: <%= points %></p>
 <% end %>
 
