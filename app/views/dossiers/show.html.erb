@@ -38,46 +38,27 @@
         <div class="container-fluid">
             <div class="settings-wrapper" id="pad-wrapper">
                 <!-- avatar column -->
-                <div class="span2 avatar-box">
-                    <div class="personal-image ">
-                        
-                        <%= image_tag ("http://www.gravatar.com/avatar/#{@avatar_hash}"),:class => "avatar img-circle"%>
-
-                        <p>
-                          Don't have an Avatar yet?
-                        </p>
-                        <p>
-                          Sign up for gravatar <%= link_to "here", "https://en.gravatar.com/"%>
-                        </p>
-                        <br>
-                        <br>
-
-                        <p>
-                          <strong>
-                            Position in Pipeline
-                          </strong>
-                        </p> 
-
-                          <span class="label label-success">
-                            <%= @dossier.aasm_state.humanize %>
-                          </span>
-                           
-                        </p>
-                        <p>
-                          <% if can? :update, @dossier %>
-                            <%= link_to "Edit this dossier", edit_dossier_path(@dossier) %>
-                          <% end %>
-                        </p>
-
-                    </div>
-                </div>
+                
 
                 <!-- edit form column -->
                 <div class="span7 personal-info">
                     <div class="alert alert-info">
-                        <i class="icon-lightbulb"></i>
-                        This page shows an example of an alternative layout with the main navbar on the top
-                        <br> using <strong>.content.wide-content</strong> for this main container
+                        <h4>
+                          
+                          <%= @user.full_name %>'s Application Status
+                        
+                      </h4>
+                      <br>
+                        <p>
+                         <strong>
+                            Current Position in Pipeline for 
+                            <%= @dossier.semester %>       
+                         </strong>
+                        </p> 
+
+                        <span class="label label-success">
+                              <%= @dossier.aasm_state.humanize %>
+                        </span>
                     </div>
                     <h5 class="personal-title">Personal info</h5>
 
@@ -132,10 +113,114 @@
                         </div>
                     </form>
                 </div>
+                
+
+
+<!-- Rightside -->
+                <div class="span2 avatar-box">
+                    <div class="personal-image ">
+                        <div class="alert alert-info">
+                        <%= image_tag ("http://www.gravatar.com/avatar/#{@avatar_hash}"),:class => "avatar img-circle"%>
+                        <br>
+                        <br>
+
+                        <p>
+                          Don't have an Avatar yet?
+                        </p>
+                        <p>
+                          Sign up for gravatar <%= link_to "here", "https://en.gravatar.com/"%>
+                        </p>
+                       
+
+                        
+                        <p>
+                          <% if can? :update, @dossier %>
+                            <%= link_to "Edit this dossier", edit_dossier_path(@dossier) %>
+                          <% end %>
+                        </p>
+
+                        <br>
+                        <br>
+
+
+                        <%= render "dossiers/application_status" %>
+                       </div>
+                    </div>
+
+                </div>
+                <% if can? :manage, @dossier  %>
+
+    <!-- COMMENTS BOX  --> 
+    <!-- HIDE FROM APPLICANTS -->
+    <%= render "dossiers/comments" %>
+  <% end %>
+</div>
+
+
+
+<div class="span12 img-box" >
+    <h4>
+    total score of all classes
+  </h4>
+<!-- if @response.response.code = "200" render code-->
+<% if  @codeschool.response.code == "200" %> 
+  
+ 
+ 
+
+  <%= @codeschool.parsed_response["user"]["total_score"] %><br>
+  <h3>completed</h3>
+  <%@codeschool.parsed_response["courses"]["completed"].each do |x| %>
+  <div class="img-box" style="border: 1px solid blue;width: 118px;float:left;">
+    <%=link_to image_tag(x['badge']), x['url'] %>
+      <%@codeschool.parsed_response["courses"]["in_progress"].each do |x| %>
+    <%=link_to image_tag(x['badge']), x['url'] %><br>
+    
+  <% end %> 
+   
+  </div>
+  <% end %>
+<%end%>
+<br>
+</div>
+<div style ="float:left;">
+
+
+
+
+  <h3>Tree House</h3>
+
+  <p>Profile name: <%= @treehouse.parsed_response["profile_name"] %></p>
+  <% @treehouse.parsed_response["points"].each do |category, points| %>
+    <p><%= category %> points: <%= points %></p>
+  <% end %>
+
+  <p>Dossier state: <%= @dossier.aasm_state %></p>
+  <% if can? :update, @dossier %>
+    <p><%= link_to "Edit this dossier", edit_dossier_path(@dossier) %></p>
+  <% end %>
+</div>
+
+            
+
+
+
+
+
+
+
+
+
+
+
             </div>
+
+
         </div>
     </div>
     <!-- end main container -->
+
+    <!-- end of right side -->
 
 
   <!-- scripts -->
@@ -151,61 +236,5 @@
 
 
 
-<div class="container">
-
-  <!-- APPLICATION STATUS BOX -->
-  <%= render "dossiers/application_status" %>
-
-  <% if current_user.id == @dossier.user_id  %>
-    <!-- PREWORK BOX --> 
-    <!-- HIDE FROM ADMINS -->
-    <%= render "dossiers/prework" %>
-  <% end %>
-
-  <!-- APPLICATION SUMMARY BOX -->
-  <%= render "dossiers/application_summary" %>
-
-  <% if can? :manage, @dossier  %>
-    <!-- COMMENTS BOX  --> 
-    <!-- HIDE FROM APPLICANTS -->
-    <%= render "dossiers/comments" %>
-  <% end %>
-</div>
 
 
-
-
-<!-- if @response.response.code = "200" render code-->
-<%= @codeschool.response.code %> 
-username from code school<br>
-<%= @codeschool.parsed_response["user"]["username"]%><br>
-gravatarlink<br>
-<%= @codeschool.parsed_response["user"]["avatar"] %><br>
-total score of all classes<br>
-<%= @codeschool.parsed_response["user"]["total_score"] %><br>
-<h3>completed</h3>
-<%@codeschool.parsed_response["courses"]["completed"].each do |x| %>
-  <%=image_tag x['badge']%><br>
-  <%=link_to x['title'], x['url']%>
-<% end %>
-
-<h3>in progress</h3>
-
-<%@codeschool.parsed_response["courses"]["in_progress"].each do |x| %>
-  <%=image_tag x['badge']%><br>
-  <%=link_to x['title'], x['url']%>
-<% end %> 
-
-
-
-<h3>Tree House</h3>
-
-<p>Profile name: <%= @treehouse.parsed_response["profile_name"] %></p>
-<% @treehouse.parsed_response["points"].each do |category, points| %>
-  <p><%= category %> points: <%= points %></p>
-<% end %>
-
-<p>Dossier state: <%= @dossier.aasm_state %></p>
-<% if can? :update, @dossier %>
-  <p><%= link_to "Edit this dossier", edit_dossier_path(@dossier) %></p>
-<% end %>

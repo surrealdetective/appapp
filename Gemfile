@@ -26,8 +26,7 @@ gem 'twitter-text'
 gem 'httparty'
 
 #implements gravatar
-gem 'digest/md5'
-
+gem 'gravatar-ultimate'
 
 group :development do
   gem "better_errors"
