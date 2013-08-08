@@ -6,7 +6,7 @@
 <div class="course-select">
   <div class="btn-group float-right">
     <% @courses.each do |course| %>
-      <%= link_to @courses.first.semester, course_path(@courses.first), :class=> "btn btn-flat info" %>
+      <%= link_to course.semester, course_path(course), :class=> "btn btn-flat info" %>
     <% end %>
   </div>
 
