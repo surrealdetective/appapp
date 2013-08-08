@@ -39,3 +39,7 @@ Some scratchpad stuff:
 Course Topic permissions
 
 can :manage, Topic, :course_id => user.teaching_course_ids
+
+## user-facing analytics
+
+Also: how long has the user been here?

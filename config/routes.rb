@@ -1,8 +1,7 @@
 Appapp::Application.routes.draw do
   
-  resources :courses, :only => [:new, :create, :show, :index]
-  get "/courses/dashboard" => "courses#dashboard", :as => "courses_dashboard"
-
+  resources :courses, :only => [:new, :create, :index, :show]
+  get "/dashboard" => "courses#dashboard", :as => "dashboard"
   get "/class" => "class#index"
   post "/class/:dossier_id/decision" => "class#decision", :as=> "class_decision"
 
@@ -10,7 +9,6 @@ Appapp::Application.routes.draw do
   get "/testing" => "thinner#testing"
   post "/thinner/:dossier_id/decision" => "thinner#decision", :as=>"thinner_decision"
 
-  get "/dashboard" => "dossiers#index"
 
   get '/login' => "sessions#new"
   post '/login' => "sessions#create"

@@ -24,5 +24,7 @@
 //= require ../../../vendor/assets/javascripts/jquery.fancybox-media.js
 //= require ../../../vendor/assets/javascripts/applyfancybox
 //= require ../../../vendor/assets/javascripts/select2.min.js
+//= require ../../../vendor/assets/javascripts/raphael.min.js
+//= require ../../../vendor/assets/javascripts/morris.min.js
 
 //= require_tree .

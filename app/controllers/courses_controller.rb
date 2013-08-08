@@ -57,7 +57,20 @@ class CoursesController < ApplicationController
 
   def dashboard
     @title = "Course Dashboard"
+    @courses = Course.all
     @course = Course.first
+
+    # gender breakdown data
+    @male_count = Course.joins(:dossiers).where("dossiers.gender" => "male").count
+    @female_count = Course.joins(:dossiers).where("dossiers.gender" => "female").count
+    @other_count = Course.joins(:dossiers).where("dossiers.gender" => "other").count
+
+    # velocity data
+    @accepted_today = Course.count_actions("accepted", "today")
+    @accepted_yesterday = Course.count_actions("accepted", "yesterday")
+
+    @rejected_today = Course.count_actions("rejected", "today")
+    @rejected_yesterday = Course.count_actions("rejected", "yesterday")
   end
 
 end

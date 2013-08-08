@@ -5,8 +5,8 @@
   <ul id="dashboard-menu">
     <%#= [params[:controller], params[:action]].inspect %>
     <% if can? :manage, Dossier %>
-      <%= render :partial => "layouts/sidebar_pointer", :locals => {:controller_action => ["dossiers", "index"]} %>
-        <%= link_to dossiers_path do %>
+      <%= render :partial => "layouts/sidebar_pointer", :locals => {:controller_action => ["courses", "dashboard"]} %>
+        <%= link_to dashboard_path do %>
           <i class="icon-home"></i>
           <span>Dashboard</span>
         <% end %>

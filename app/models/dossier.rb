@@ -2,8 +2,8 @@ class Dossier < ActiveRecord::Base
   attr_accessible :aasm_state, :tagline, :phone_number, :city, :twitter,
                   :linkedin, :blog, :github, :website, :other_links,
                   :career, :purpose, :code_skills, :analytic_skills, :tidbits,
-                  :user_id, :course, :skype, :codeschool_link, :treehouse_link,
-                  :course_id
+                  :user_id, :course, :skype, :gender, :course_id,
+                  :codeschool_link, :treehouse_link
   belongs_to :user
   has_many :dossier_statuses
   has_many :dossier_comments
@@ -34,7 +34,6 @@ class Dossier < ActiveRecord::Base
                 ###################
                 ##### States ######
                 ###################
-
     # new:
     # the application has been created
     # calls the dossier_is_new method
@@ -45,6 +44,7 @@ class Dossier < ActiveRecord::Base
     # needs_review:
     # the application has been read and not rejected
     state :needs_review, :after_enter => Proc.new { |d| d.add_status "needs review"}
+
 
     # needs_interview:
     # not quite ready to make a decision

@@ -1,28 +1,52 @@
-<h1>Dashboard Info for <%= @course.semester %></h1>
+<h1>Dashboard</h1>
+<br>
+
+<table>
+  <thead>
+    <tr>
+      <th>Course</th>
+      <th>Spots Left</th>
+      <th>Time Left</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @courses.each do |course| %>
+      <tr>
+        <td>
+          <%= course.semester %>
+        </td>
+        <td>
+          <%= course.seats - course.count_dossiers_with_status("committed") %>
+        </td>
+        <td>
+          <%= (course.starting_date - Date.today).to_i %> days
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<hr>
 
 
-<h2>Million Mile View</h2>
-<div class="million">
-  <h4>People who have been accepted</h4>
-  <h5><%= course_count_by_state("needs_payment", @course) %></h5>
+<h3>Total applications by each course</h3>
 
-  <h4>People who have confirmed</h4>
-  <h5><%= course_count_by_state("committed", @course) %></h5>
-
-  <h4>Total Applications for <%= @course.semester%></h4>
-  <h5><%= course_count_all(@course) %></h5>
-
-  <h4>Days Left till Class Begins</h4>
-  <h5><%= (@course.starting_date - Date.today).to_i %> days</h5>
-</div>
+<% @courses.each do |course| %>
+  <p><%= course.semester %>: <%= course.count_all %></p>
+<% end %>
 
 
-<h2>Workflow Gauge</h2>
-<div class="workflows">
+<h3>Total needs_payment actions this past week by course</h3>
+<p>(People who have been accepted this week. is that accurate?)</p>
 
-  <h4>People who have been accepted this week for <%= @course.semester %> </h4>
-  <h5><%= course_count_by_state_and_week("needs payment", @course) %></h5>
+<% @courses.each do |course| %>
+  <p><%= course.count_actions_this_past_week_by_status("needs payment") %></p>
+<% end %>
 
+<h3>Gender breakdown</h3>
 
+<div style="width: 250px" data-male="<%= @male_count %>" data-female="<%= @female_count %>" data-other="<%= @other_count %>" id="donut-example"></div>
 
-</div>
+<h3>Velocity</h3>
+
+<div id="bar-example" data-accepted_today="<%= @accepted_today %>" data-accepted_yesterday="<%= @accepted_yesterday %>" data-rejected_today="<%= @rejected_today %>" data-rejected_yesterday="<%= @rejected_yesterday %>"></div>
