@@ -36,11 +36,13 @@ class CoursesController < ApplicationController
     @female_count = @gender_count.where("dossiers.gender" => "female").count
     @other_count = @gender_count.where("dossiers.gender" => "other").count
 
-    @passion_one_count = Score.joins(:dossier => :course).where("courses.id" => 1).where("scores.passion" => 1).count
-    @passion_two_count = Score.joins(:dossier => :course).where("courses.id" => 1).where("scores.passion" => 2).count
-    @passion_three_count = Score.joins(:dossier => :course).where("courses.id" => 1).where("scores.passion" => 3).count
-    @passion_four_count = Score.joins(:dossier => :course).where("courses.id" => 1).where("scores.passion" => 4).count
-    @passion_five_count = Score.joins(:dossier => :course).where("courses.id" => 1).where("scores.passion" => 5).count
+    @passion_count = Score.joins(:dossier => :course).where("courses.id = ? OR courses.id = ? OR courses.id = ? OR courses.id = ? OR courses.id = ?", 1, 2, 3, 4, 5)
+
+    @passion_one_count = @passion_count.where("scores.passion" => 1).count
+    @passion_two_count = @passion_count.where("scores.passion" => 2).count
+    @passion_three_count = @passion_count.where("scores.passion" => 3).count
+    @passion_four_count = @passion_count.where("scores.passion" => 4).count
+    @passion_five_count = @passion_count.where("scores.passion" => 5).count
 
 #we have a problem here...
   #you send EITHER params[:course] or params[:hashtag]
