@@ -12,9 +12,47 @@
   <!-- APPLICATION SUMMARY BOX -->
   <%= render "dossiers/application_summary" %>
 
-  <% if can? :update, @dossier  %>
+  <% if can? :manage, @dossier  %>
     <!-- COMMENTS BOX  --> 
     <!-- HIDE FROM APPLICANTS -->
     <%= render "dossiers/comments" %>
   <% end %>
 </div>
+
+
+<% codeschool = HTTParty.get(@codeschool)%>
+
+<!-- if @response.response.code = "200" render code-->
+<%= codeschool.response.code %> 
+username from code school<br>
+<%= codeschool.parsed_response["user"]["username"]%><br>
+gravatarlink<br>
+<%= codeschool.parsed_response["user"]["avatar"] %><br>
+total score of all classes<br>
+<%= codeschool.parsed_response["user"]["total_score"] %><br>
+<h3>completed</h3>
+<%codeschool.parsed_response["courses"]["completed"].each do |x| %>
+  <%=image_tag x['badge']%><br>
+  <%=link_to x['title'], x['url']%>
+<% end %>
+
+<h3>in progress</h3>
+
+<%codeschool.parsed_response["courses"]["in_progress"].each do |x| %>
+  <%=image_tag x['badge']%><br>
+  <%=link_to x['title'], x['url']%>
+<% end %> 
+
+<% treehouse = HTTParty.get(@treehouse)%>
+
+<h3>Tree House</h3>
+
+<p>Profile name: <%= treehouse.parsed_response["profile_name"] %></p>
+<% treehouse.parsed_response["points"].each do |category, points| %>
+  <p><%= category %> points: <%= points %></p>
+<% end %>
+
+<p>Dossier state: <%= @dossier.aasm_state %></p>
+<% if can? :update, @dossier %>
+  <p><%= link_to "Edit this dossier", edit_dossier_path(@dossier) %></p>
+<% end %>

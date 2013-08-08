@@ -13,18 +13,24 @@ class CoursesController < ApplicationController
   end
 
   def index
+    redirect_to course_path(Course.where("starting_date >= :today", {today: Date.today}).order(:starting_date).first)
+  end
+
+  def show
     @title = "All Courses"
     #for needs decision
     # raise params.inspect
     @dossiers = Dossier.where(:aasm_state => "needs_decision")
-    @courses = Course.all
+    @courses = Course.where("starting_date >= :today", {today: Date.today}).order(:starting_date)
     authorize! :index, @courses
 
-    if params[:course]
-      @course = @courses[params[:course].to_i]
-    else
-      @course = @courses.first
-    end
+    # if params[:course]
+    #   @course = @courses[params[:course].to_i]
+    # else
+    #   @course = Course.find_by_id(params[:id])
+    # end
+
+    @course = Course.find_by_id(params[:id])
 
 #we have a problem here...
   #you send EITHER params[:course] or params[:hashtag]
@@ -34,18 +40,15 @@ class CoursesController < ApplicationController
       if params[:hashtag].empty?
         #to be set correctly,
         #@course should equal its position in the index
-        @course = @courses[params[:course].to_i]
         @confirmed = Dossier.joins(:course)
         .where('dossiers.aasm_state = ? or dossiers.aasm_state = ?', "committed", "needs_payment")
         .where('courses.id' => @course.id)
       else
-        @course = @courses[params[:course].to_i]
         @confirmed = Dossier.joins(:course)
         .where('dossiers.aasm_state = ? or dossiers.aasm_state = ?', "committed", "needs_payment")
         .where('courses.id' => @course.id).with_hashtag(params[:hashtag])
       end
     else
-      @course = @courses[params[:course].to_i]
       @confirmed = Dossier.joins(:course)
       .where('dossiers.aasm_state = ? or dossiers.aasm_state = ?', "committed", "needs_payment")
       .where('courses.id' => @course.id)

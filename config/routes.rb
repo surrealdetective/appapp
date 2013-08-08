@@ -1,8 +1,7 @@
 Appapp::Application.routes.draw do
   
-  resources :courses, :only => [:new, :create, :index]
+  resources :courses, :only => [:new, :create, :index, :show]
   get "/dashboard" => "courses#dashboard", :as => "dashboard"
-
   get "/class" => "class#index"
   post "/class/:dossier_id/decision" => "class#decision", :as=> "class_decision"
 
@@ -22,7 +21,7 @@ Appapp::Application.routes.draw do
   root :to => 'welcome#home'
   
 
-  resources :dossiers, :only => [:new, :create, :show, :index] do
+  resources :dossiers, :except => [:destroy] do
     resources :dossier_statuses, :only => [:new, :create]
     resources :dossier_comments, :only => [:create, :edit, :update, :destroy]
     resources :score, :only => [:create, :edit, :update, :destroy]

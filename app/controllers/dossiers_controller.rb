@@ -24,7 +24,6 @@ class DossiersController < ApplicationController
       UserMailer.welcome_email(@user).deliver
     # end
     @dossier = @user.dossiers.build(params[:dossier])
-    @dossier.course_id = params[:course][:semester]
     @dossier.save
     if @user.save_with_dossier_status("submitted")
       session[:user_id] = @user.id
@@ -56,10 +55,18 @@ class DossiersController < ApplicationController
   end
   
   def show
+    #playing with HTTParty
+    
+    
+
+
+
     @dossier = Dossier.find(params[:id])
     authorize! :read, @dossier
     @body_classes = "dossier-form-bg"
     @user = @dossier.user
+    @codeschool = @dossier.codeschool_link
+    @treehouse  = @dossier.treehouse_link
     @title = "#{@user.full_name}'s Dossier"
     respond_to do |format|
       if params[:layout] == "false"
@@ -68,6 +75,25 @@ class DossiersController < ApplicationController
         format.html
       end
     end
+  end
+
+  def edit
+    # show the edit form
+    
+    @dossier = Dossier.find(params[:id])
+    @user = @dossier.user
+    @course = @dossier.course
+    @course_list = Course.list_for_selectbox
+    @title = "Edit #{@user.full_name}'s Dossier"
+  end
+
+  def update
+    # PUT the new information
+    @dossier = Dossier.find(params[:id])
+    @user = @dossier.user
+    @dossier.update_attributes(params[:dossier])
+    @user.update_attributes(params[:user])
+    redirect_to @dossier
   end
 
   def transition

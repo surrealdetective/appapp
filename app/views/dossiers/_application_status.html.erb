@@ -14,6 +14,13 @@
         </li>
       <% end %>
     </ul>
+    <p>You have been in this status for <strong> <%= distance_of_time_in_words Time.now, @dossier.dossier_statuses.last.created_at  %></strong></p>
+    <% diff = @dossier.dossier_statuses.last.avg_time %>
+    <% if diff.zero? %>
+      <p>Congrats! No one has ever gotten this far along for this course yet. We can't calculate this information!</p>
+    <% else %>
+      <p>Average time in this status is: <strong><%= distance_of_time_in_words diff %></strong></p>
+    <% end %>
   </div>
 
 </div>

@@ -22,6 +22,9 @@ gem 'pry'
 #parsing comment content for hash tags
 gem 'twitter-text'
 
+#parsing JSON from online code school/academies
+gem 'httparty'
+
 
 group :development do
   gem "better_errors"

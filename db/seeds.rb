@@ -23,6 +23,7 @@ avi = User.create(
 adam_and_avi = [adam, avi]
 example_hashtags = ["lol", "wow", "wtf", "weirdo", "winner", "cool", "smart", "charismatic", "passionate", "unsure", "wonderful", "love", "omg", "genius", "deliberate", "apt", "loser", "GA", "wack", "dunno"]
 genders = ["male", "female", "other", "male", "female"]
+courses = Course.all
 
 # create 300 users with one dossier each
 300.times do |i|
@@ -35,7 +36,6 @@ genders = ["male", "female", "other", "male", "female"]
   user.set_role(:applicant)
 
   city = [Faker::Address.city, "NYC", "Brooklyn", "Queens", "New Jersey"]
-  courses = Course.all
 
   user.dossiers.build({
     :tagline            => Faker::Company.bs,
@@ -54,15 +54,17 @@ genders = ["male", "female", "other", "male", "female"]
     :tidbits            => Populator.paragraphs(3),
     :course             => courses.sample,
     :skype              => "#{Populator.words(1)}#{rand(999)}",
-    :gender             => genders.sample
+    :gender             => genders.sample,
+    :treehouse_link     => "http://teamtreehouse.com/josephgiralt.json",
+    :codeschool_link    => "http://www.codeschool.com/users/alosaperau.json" 
   })
+
+  user.save
 
   # picks a random status for the last dossier
   # and moves it thru the states to arrive there
   # with a history
   user.last_dossier.random_status!
-
-  user.save
 
   # add 3 hashtags to dossier
   3.times do
