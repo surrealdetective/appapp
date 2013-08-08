@@ -75,8 +75,9 @@ class CoursesController < ApplicationController
     @interviewed_today = Course.count_actions("needs decision", "today")
     @interviewed_yesterday = Course.count_actions("needs decision", "yesterday")
 
-    @resolved_today = Course.count_actions("accepted", "today") + Course.count_actions("rejected", "today") + Course.count_actions("won't attend", "today")
-    @resolved_yesterday = Course.count_actions("accepted", "yesterday") + Course.count_actions("rejected", "yesterday") + Course.count_actions("won't attend", "today")
+    @resolved_today = Course.count_actions "resolved", "today"
+    @resolved_yesterday = Course.count_actions "resolved", "yesterday"
+
   end
 
 end
