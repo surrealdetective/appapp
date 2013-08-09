@@ -18,6 +18,7 @@
 <%= render 'courses/collapser_course_button' %>
 <div class="class-stats collapsible">
   <div class="graph-set">
+    
     <div class="graphs">
       <h3 style="center-text">Gender:</h3>
       <div style="graph" data-male="<%= @male_count %>" data-female="<%= @female_count %>" data-other="<%= @other_count %>" id="donut-example">
@@ -35,8 +36,6 @@
       <div style="graph" data-tech_one="<%= @tech_one_count %>" data-tech_two="<%= @tech_two_count %>" data-tech_three="<%= @tech_three_count %>" data-tech_four="<%= @tech_four_count %>" data-tech_five="<%= @tech_five_count %>" id="donut-tech">
       </div>
     </div>
-
-
     
     <div class="graphs">
       <h3 style="center-text">Leadership:</h3>
