@@ -6,6 +6,10 @@ gem 'debugger'
 gem 'thin'
 gem 'jquery-rails'
 
+# helps us seed
+gem 'faker'
+gem 'populator'
+
 # state machine
 gem 'aasm'
 
@@ -45,8 +49,6 @@ group :assets do
 end
 
 group :development do
-  gem 'populator'
-  gem 'faker'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'quiet_assets'
