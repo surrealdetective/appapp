@@ -40,6 +40,7 @@ Appapp::Application.routes.draw do
   
   get '/needs_review' => 'needs_review#redirect_to_first', :as => :needs_review_first
   get '/needs_review/:id' => 'needs_review#show', :as => :needs_review_show
+  get '/dossiers/:id/brief' => 'needs_review#fancybox', :as => :fancybox
 
   # get '/dossiers/:id/needs-review' => 'needs_review#index', as: :dossier_review
   get '/needs_interview' => 'needs_interview#index', as: :dossier_interview

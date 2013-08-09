@@ -23,6 +23,20 @@ class NeedsReviewController < ApplicationController
     end
   end
 
+  def fancybox
+    @dossier = Dossier.find(params[:id])
+    @user = @dossier.user
+    authorize! :show, @user
+    @title = @user.full_name
+    respond_to do |format|
+      if params[:layout] == "false"
+        format.html {render :layout => 'simple'}
+      else
+        format.html
+      end
+    end    
+  end
+
   def index
     @dossiers = Dossier.where(:aasm_state => "needs_review").sort_by(params[:sort_by])
 
