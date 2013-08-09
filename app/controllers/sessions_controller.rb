@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password]) 
       session[:user_id] = user.id
       if user.admin?
-        redirect_to dashboard_path, :notice => "Welcome back #{user.first_name}"
+        redirect_to dashboard_path, :notice => "Welcome back, #{user.first_name}"
       else
         if user.has_dossiers?
           redirect_to user.last_dossier, :notice => "Welcome back"
