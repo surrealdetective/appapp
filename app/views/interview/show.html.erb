@@ -76,11 +76,13 @@
                                 <h6>Additional Tidbits</h6>
                                 <p><%= @dossier.tidbits %></p>
                             </div>
-                              <% if can? :update, @dossier  %>
+
+                              <% if can? :read, Score  %>
                                 <!-- COMMENTS BOX  --> 
                                 <!-- HIDE FROM APPLICANTS -->
                               <%= render "interview/attribute_definer", :score => @score %>
                               <%end%>
+
                             <div class="span12">
                             <div class="pull-right">
 
@@ -126,7 +128,7 @@
                           
                             <!-- new comment form -->
                              <div class="span12 section comment">
-                            <% if can? :update, @dossier  %>
+                            <% if can? :read, DossierComment %>
                               <!-- COMMENTS BOX  --> 
                               <!-- HIDE FROM APPLICANTS -->
                               <%= render "dossiers/comments" %>
