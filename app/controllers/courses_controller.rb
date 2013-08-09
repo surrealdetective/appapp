@@ -36,7 +36,7 @@ class CoursesController < ApplicationController
     @female_count = @gender_count.where("dossiers.gender" => "female").count
     @other_count = @gender_count.where("dossiers.gender" => "other").count
 
-    @passion_count = Score.joins(:dossier => :course).where("courses.id = ? OR courses.id = ? OR courses.id = ? OR courses.id = ? OR courses.id = ?", 1, 2, 3, 4, 5)
+    @passion_count = Score.joins(:dossier => :course).where("courses.id" => @course.id).where("scores.passion= ? OR scores.passion= ? OR scores.passion= ? OR scores.passion= ? OR scores.passion= ?", 1, 2, 3, 4, 5)
 
     @passion_one_count = @passion_count.where("scores.passion" => 1).count
     @passion_two_count = @passion_count.where("scores.passion" => 2).count
