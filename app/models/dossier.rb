@@ -260,6 +260,14 @@ class Dossier < ActiveRecord::Base
     self.attributes.values.inject {|sum, value| sum += value.to_s.length}
   end
 
+  def link_count
+    link_count = 0
+    [self.twitter, self.github, self.codeschool_link, self.treehouse_link, self.blog, self.linkedin, self.website].each do |link|
+      link_count += 1 if link.present?
+    end
+    link_count.to_s + "/7"
+  end
+
   # [new, needs_review, needs_interview, needs_code_interview, needs_decision, needs_payment, committed, rejected, wont_attend] 
   def random_status!
     
