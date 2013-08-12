@@ -1,7 +1,7 @@
 <% dossiers.each do |dossier| %>
         <tr id="dossier-<%= dossier.id %>">
           <td>
-            <img src="http://placekitten.com/55/55" class="img-circle avatar hidden-phone" />
+            <%= image_tag ("http://www.gravatar.com/avatar/#{dossier.user.gravatar_id}"),:class => "avatar img-circle hidden-phone"%>
             <%= link_to dossier.user.full_name, interview_show_path(dossier), :class => "name" %>
           </td>
         

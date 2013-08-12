@@ -113,6 +113,7 @@ ActiveRecord::Schema.define(:version => 20130812183040) do
     t.string   "password_digest"
     t.integer  "roles"
     t.string   "last_name"
+    t.string   "gravatar_id"
   end
 
 end
