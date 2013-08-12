@@ -1,7 +1,7 @@
 <!-- sidebar -->
 <div id="sidebar-nav">
   <ul id="dashboard-menu">
-    <%= [params[:controller], params[:action]].inspect %>
+    <%#= [params[:controller], params[:action]].inspect %>
     <% if can? :manage, Dossier %>
       <%= render :partial => "layouts/sidebar_pointer", :locals => {:controller_action => ["courses", "dashboard"]} %>
         <%= link_to dashboard_path do %>
@@ -9,23 +9,23 @@
           <span>Dashboard</span>
         <% end %>
       </li>
-      <li>
-        <%= link_to thinner_path, :class => active?("thinner", "index") do %>
+      <%= render :partial => "layouts/sidebar_pointer", :locals => {:controller_action => ["thinner", "index"]} %>
+        <%= link_to thinner_path do %>
           Elevator Pitches
         <% end %>
       </li>
-      <li>
-        <%= link_to dossiers_path, :class => active?("needs_review", "show") do %>
+      <%= render :partial => "layouts/sidebar_pointer", :locals => {:controller_action => ["dossiers", "index"]} %>
+        <%= link_to dossiers_path do %>
           Reviewer
         <% end %>
       </li>
-      <li>
-        <%= link_to dossier_interview_path, :class => active?("needs_interview", "index") do %>
+      <%= render :partial => "layouts/sidebar_pointer", :locals => {:controller_action => ["needs_interview", "index"]} %>
+        <%= link_to dossier_interview_path do %>
           Interviewer
         <% end %>
       </li>
-      <li>
-        <%= link_to courses_path, :class => active?("courses", "index") do %>
+      <%= render :partial => "layouts/sidebar_pointer", :locals => {:controller_action => ["courses", "show"]} %>
+        <%= link_to courses_path do %>
           Class Maker
         <% end %>
       </li>
