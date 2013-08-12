@@ -1,18 +1,15 @@
 <% @dossiers.each do |dossier| %>
-  <%  next if dossier.aasm_state == "rejected" %>
   <tr id="dossier-<%= dossier.id %>">
-    
+
     <td>
       <%= image_tag ("http://www.gravatar.com/avatar/#{dossier.user.gravatar_id}"),:class => "avatar img-circle hidden-phone"%>
-      <%= link_to dossier.user.full_name, needs_review_first_path, :class => "name"%>
+      <span><%= dossier.user.full_name %></span>
     </td>
-    
-    
-    
+
     <td>
       <%= dossier.aasm_state.humanize %>
     </td>
-    
+
     <td>
       <div class="btn-group">
         <button class="btn-flat primary icon-flag"><i>Status History </i></button>
@@ -25,7 +22,7 @@
         <% end %>
       </ul>
     </td>
-    
+
     <td>
       <div class="btn-group">
         <button class="btn-flat inverse icon-thumbs-down"><i class="icon-thumbs-up"></i></button>
@@ -42,7 +39,7 @@
             <li><%= link_to "Reject", transition_path(dossier, :reject), method: :put, data: { confirm: 'Are you sure?' } %></li>
             <li><%= link_to "Accept", transition_path(dossier, :accept), method: :put, data: { confirm: 'Are you sure?' } %></li>
           <% end %>
-          
+
           </ul>
       </div>
 
