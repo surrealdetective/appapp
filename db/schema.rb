@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130807192214) do
+ActiveRecord::Schema.define(:version => 20130812183040) do
 
   create_table "avg_times", :force => true do |t|
     t.integer  "course_id"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(:version => 20130807192214) do
     t.string   "codeschool_link"
     t.string   "treehouse_link"
     t.string   "gender"
+    t.string   "nyc"
   end
 
   create_table "hashtags", :force => true do |t|
