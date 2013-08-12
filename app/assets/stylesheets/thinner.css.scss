@@ -39,9 +39,8 @@
 }
 
 .detail-position-big {
-  position: absolute;
-  top: 8px;
-  right: 41px;
+  vertical-align: top;
+  height: 30px;
 }
 
 .detail-width {
@@ -93,4 +92,12 @@
 
 .hundred-width {
   width: 100px;
+}
+
+.push-it-up {
+  vertical-align:top;
+}
+
+.btn-group > .btn.glow.dropdown-toggle {
+  padding-bottom:8px;
 }
