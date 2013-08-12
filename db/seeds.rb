@@ -63,7 +63,7 @@ nycs = ['yes', 'no', 'maybe']
   user.gravatar_id = gravatar_ids[gender].shift || gravatar_ids["other"].shift || ""
 
   user.dossiers.build({
-    :tagline            => Faker::Company.bs,
+    :tagline            => Faker::Company.bs + Faker::Company.bs + Faker::Company.bs,
     :phone_number       => Faker::PhoneNumber.phone_number, #10.times.map{rand(9)}.insert(3, "-").insert(7, "-").join,
     :city               => city,
     :twitter            => Faker::Internet.user_name,
