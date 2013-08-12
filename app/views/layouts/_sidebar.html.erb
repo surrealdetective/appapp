@@ -11,27 +11,32 @@
       </li>
       <%= render :partial => "layouts/sidebar_pointer", :locals => {:controller_action => ["dossiers", "index"]} %>
         <%= link_to dossiers_path do %>
-          Applications
+          <i class="icon-reorder"></i>
+          <span>Applications</span>
         <% end %>
       </li>
       <%= render :partial => "layouts/sidebar_pointer", :locals => {:controller_action => ["thinner", "index"]} %>
         <%= link_to thinner_path do %>
-          Elevator Pitches
-        <% end %>
-      </li>
-      <%= render :partial => "layouts/sidebar_pointer", :locals => {:controller_action => ["needs_interview", "index"]} %>
-        <%= link_to dossier_interview_path do %>
-          Interviewer
+          <i class="icon-fighter-jet"></i>
+          <span>Glancer</span>
         <% end %>
       </li>
       <%= render :partial => "layouts/sidebar_pointer", :locals => {:controller_action => ["needs_review", "show"]} %>
         <%= link_to needs_review_first_path do %>
-          Reviewer
+          <i class="icon-pencil"></i>
+          <span>Reviewer</span>
+        <% end %>
+      </li>
+      <%= render :partial => "layouts/sidebar_pointer", :locals => {:controller_action => ["needs_interview", "index"]} %>
+        <%= link_to dossier_interview_path do %>
+          <i class="icon-comment"></i>
+          <span>Interviewer</span>
         <% end %>
       </li>
       <%= render :partial => "layouts/sidebar_pointer", :locals => {:controller_action => ["courses", "show"]} %>
         <%= link_to courses_path do %>
-          Class Maker
+          <i class="icon-beaker"></i>
+          <span>Class Maker</span>
         <% end %>
       </li>
 
