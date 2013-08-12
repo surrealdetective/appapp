@@ -33,7 +33,7 @@
 
   <div class="content">  
 
-    <% if can? :manage, Dossier %>
+    <% if params[:controller] == "courses" && params[:action] == "dashboard" %>
       <%= render "layouts/stats" %>
     <% end %>
 
