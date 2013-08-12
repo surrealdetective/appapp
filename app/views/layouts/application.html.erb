@@ -33,7 +33,7 @@
 
   <div class="content">  
 
-    <% if params[:controller] == "courses" && params[:action] == "dashboard" %>
+    <% if (params[:controller] == "courses" && params[:action] == "dashboard") or (params[:controller] == "dossiers" && params[:action] == "index") %>
       <%= render "layouts/stats" %>
     <% end %>
 
