@@ -256,6 +256,10 @@ class Dossier < ActiveRecord::Base
     "https://twitter.com/#{twitter}"
   end
 
+  def word_count
+    self.attributes.values.inject {|sum, value| sum += value.to_s.length}
+  end
+
   # [new, needs_review, needs_interview, needs_code_interview, needs_decision, needs_payment, committed, rejected, wont_attend] 
   def random_status!
     
@@ -341,5 +345,6 @@ class Dossier < ActiveRecord::Base
       where("aasm_state = ?", query)
     end
   end
+
 
 end
