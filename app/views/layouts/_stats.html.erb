@@ -5,7 +5,7 @@
       <span class="title">New <br> Applicants</span>
     </li>
     <li data-target="#step2" class='<%= active? "dossiers", "index" %>'>
-      <span class="step"><%= link_to dossier_count_by_state(:needs_review), dossiers_path %></span>
+      <span class="step"><%= link_to dossier_count_by_state(:needs_review), dossiers_path(:status => "needs_review") %></span>
       <span class="title">Review <br> Applicants</span>
     </li>
     <li data-target="#step3" class='<%= active? "needs_interview", "index" %>'>
