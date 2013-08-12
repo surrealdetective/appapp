@@ -157,13 +157,13 @@
 </div>
 
 
-
+<!-- if @response.response.code = "200" render code-->
+<% if  @codeschool.response.code == "200" %> 
 <div class="span12 img-box" >
     <h4>
     total score of all classes
   </h4>
-<!-- if @response.response.code = "200" render code-->
-<% if  @codeschool.response.code == "200" %> 
+
   
  
  
@@ -187,17 +187,20 @@
 
 
 
+  <!-- if @response.response.code = "200" render code-->
+  <% if  @treehouse.response.code == "200" %> 
 
   <h3>Tree House</h3>
 
-  <p>Profile name: <%= @treehouse.parsed_response["profile_name"] %></p>
-  <% @treehouse.parsed_response["points"].each do |category, points| %>
-    <p><%= category %> points: <%= points %></p>
-  <% end %>
+    <p>Profile name: <%= @treehouse.parsed_response["profile_name"] %></p>
+    <% @treehouse.parsed_response["points"].each do |category, points| %>
+      <p><%= category %> points: <%= points %></p>
+    <% end %>
 
-  <p>Dossier state: <%= @dossier.aasm_state %></p>
-  <% if can? :update, @dossier %>
-    <p><%= link_to "Edit this dossier", edit_dossier_path(@dossier) %></p>
+    <p>Dossier state: <%= @dossier.aasm_state %></p>
+    <% if can? :update, @dossier %>
+      <p><%= link_to "Edit this dossier", edit_dossier_path(@dossier) %></p>
+    <% end %>
   <% end %>
 </div>
 
