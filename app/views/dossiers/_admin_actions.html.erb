@@ -1,5 +1,3 @@
-<h4><%= dossier.user.full_name %></h4>
-
 <ul>
   <% dossier.aasm.events.each do |event| %>
     <li><%= link_to event.to_s.humanize, transition_path(dossier, event), method: :put, data: { confirm: 'Are you sure?' } %></li>
