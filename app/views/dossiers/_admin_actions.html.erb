@@ -1,4 +1,4 @@
-<ul>
+<ul class="dropdown-menu">
   <% dossier.aasm.events.each do |event| %>
     <li><%= link_to event.to_s.humanize, transition_path(dossier, event), method: :put, data: { confirm: 'Are you sure?' } %></li>
   <% end %>
