@@ -14,11 +14,11 @@ class NeedsReviewController < ApplicationController
     # not sure if these 'and return's are necessary
     if !@dossier.needs_review?
       if @next_dossier
-        redirect_to needs_review_show_path(@next_dossier) and return
+        redirect_to needs_review_show_path(@next_dossier)
       elsif @prev_dossier
-        redirect_to needs_review_show_path(@prev_dossier) and return
+        redirect_to needs_review_show_path(@prev_dossier)
       else
-        redirect_to dashboard_path and return
+        redirect_to dashboard_path
       end
     end
   end
