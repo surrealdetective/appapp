@@ -1,218 +1,194 @@
-<div>
-        
-        <!-- settings changer -->
-    
-        
-        <div class="container-fluid">
-            <div id="pad-wrapper" class="user-profile">
-                <!-- header -->
-                <div class="row-fluid header">
-                    <div class="span8">
-                        <%= image_tag ("http://www.gravatar.com/avatar/#{@dossier.user.gravatar_id}"),:class => "avatar img-circle"%>
-                        <h3 class="name"><%=@dossier.user.full_name%></h3>
-                        <span class="area"><%=@dossier.tagline%></span>
-                    </div>
-                    <% if @prev_dossier %>
+<div class="container-fluid">
+  <div id="pad-wrapper" class="user-profile">
+
+    <!-- header -->
+    <div class="row-fluid header">
+
+      <div class="span8">
+        <%= image_tag ("http://www.gravatar.com/avatar/#{@dossier.user.gravatar_id}"),:class => "avatar img-circle"%>
+        <h3 class="name"><%=@dossier.user.full_name%></h3>
+        <span class="area"><%=@dossier.tagline%></span>
+      </div>
+
+      <% if @prev_dossier %>
         <%= link_to "← Previous", needs_review_show_path(@prev_dossier), :class => "btn glow"%>
       <% else %>
         <%= button_tag "← Previous", :class => "btn glow", :disabled => "disabled" %>
       <% end %>
-      
-            <%= link_to transition_path(@dossier, :reject), method: :put, data: { confirm: 'Are you sure?' }, :class => "btn-flat danger icon-remove-sign" do %>
-              <span class="icon"> </span> <span class="text">Reject</span>
-            <% end %>
 
-                  <div class="btn-group">
-                    <button class="btn-flat inverse icon-thumbs-down"><i class="icon-thumbs-up"></i></button>
-                    <button class="btn glow dropdown-toggle" data-toggle="dropdown">
-                      <span class="caret"></span>
-                    </button>
-                      <ul class="dropdown-menu">
-                        <% @dossier.aasm.events.each do |admin_action| %>
-                          <li>
-                            <%= link_to admin_action.to_s.humanize, transition_path(@dossier, admin_action), method: :put, data: {confirm: 'Are you sure?'} %>
-                          </li>
-                          <li><%= link_to "Reject", transition_path(@dossier, :reject), method: :put, data: { confirm: 'Are you sure?' } %>
-                          </li>
-                          <li><%= link_to "Accept", transition_path(@dossier, :accept), method: :put, data: { confirm: 'Are you sure?' } %>
-                          </li>
-                        <% end %>
-                      </ul>
-                  </div>
+      <%= render "reject_button", :dossier => @dossier %>
+
+      <div class="btn-group">
+
+        <button class="btn-flat inverse icon-thumbs-down">
+          <i class="icon-thumbs-up"></i>
+        </button>
+
+        <button class="btn glow dropdown-toggle" data-toggle="dropdown">
+          <span class="caret"></span>
+        </button>
+
+        <ul class="dropdown-menu">
+          <% @dossier.aasm.events.each do |admin_action| %>
+
+            <li>
+              <%= link_to admin_action.to_s.humanize, transition_path(@dossier, admin_action), method: :put, data: {confirm: 'Are you sure?'} %>
+            </li>
+
+            <li>
+              <%= link_to "Reject", transition_path(@dossier, :reject), method: :put, data: { confirm: 'Are you sure?' } %>
+            </li>
+
+            <li>
+              <%= link_to "Accept", transition_path(@dossier, :accept), method: :put, data: { confirm: 'Are you sure?' } %>
+            </li>
+
+          <% end %>
+        </ul>
+
+      </div>
       
       <% if @next_dossier %>
         <%= link_to "Next →", needs_review_show_path(@next_dossier), :class => "btn glow"%>
       <% else %>
         <%= button_tag "Next →", :class => "btn glow", :disabled => "disabled" %>
       <% end %>
-                </div>
-                <div class="row-fluid profile">
-                    <!-- bio, new note & orders column -->
-                    <div class="span9 bio">
-                        <div class="profile-box">
-                            <!-- biography -->
-                            <%= render 'dossiers/collapser_button' %>
-                            <div class="span12 section collapsible">
-                                <h6>Career & Ed.</h6>
-                                <p><%= @dossier.career %></p>
-                            </div>
-                            <%= render 'dossiers/collapser_button' %>
-                            <div class="span12 section collapsible">
-                                <h6>Purpose</h6>
-                                <p><%= @dossier.purpose %></p>
-                            </div>
-                            <%= render 'dossiers/collapser_button' %>
-                            <div class="span12 section collapsible">
-                                <h6>Code Skills</h6>
-                                <p><%= @dossier.code_skills %></p>
-                            </div>
-                            <%= render 'dossiers/collapser_button' %>
-                            <div class="span12 section collapsible">
-                                <h6>Analytical Skills</h6>
-                                <p><%= @dossier.analytic_skills %></p>
-                            </div>
-                            <%= render 'dossiers/collapser_button' %>
-                            <div class="span12 section collapsible">
-                                <h6>Additional Tidbits</h6>
-                                <p><%= @dossier.tidbits %></p>
-                            </div>
-                            <div class="span12">
-                            <div class="pull-right">
 
-                              <% if @prev_dossier %>
-                                <%= link_to "← Previous", needs_review_show_path(@prev_dossier), :class => "btn glow"%>
-                              <% else %>
-                                <%= button_tag "← Previous", :class => "btn glow", :disabled => "disabled" %>
-                              <% end %>
-                              
-                              <%= link_to transition_path(@dossier, :reject), method: :put, data: { confirm: 'Are you sure?' }, :class => "btn-flat danger icon-remove-sign" do %>
-                                  <span class="icon"> </span> <span class="text">Reject</span>
-                                  <% end %>
-
-                                      <div class="btn-group">
-                                        <button class="btn-flat inverse icon-thumbs-down"><i class="icon-thumbs-up"></i></button>
-                                        <button class="btn glow dropdown-toggle" data-toggle="dropdown">
-                                          <span class="caret"></span>
-                                        </button>
-                                          <ul class="dropdown-menu">
-                                            <% @dossier.aasm.events.each do |admin_action| %>
-                                              <li>
-                                                <%= link_to admin_action.to_s.humanize, transition_path(@dossier, admin_action), method: :put, data: {confirm: 'Are you sure?'} %>
-                                              </li>
-                                              <li><%= link_to "Reject", transition_path(@dossier, :reject), method: :put, data: { confirm: 'Are you sure?' } %>
-                                              </li>
-                                              <li><%= link_to "Accept", transition_path(@dossier, :accept), method: :put, data: { confirm: 'Are you sure?' } %>
-                                              </li>
-                                            <% end %>
-                                          </ul>
-                                      </div>
-      
-                              
-                              <% if @next_dossier %>
-                                <%= link_to "Next →", needs_review_show_path(@next_dossier), :class => "btn glow"%>
-                              <% else %>
-                                <%= button_tag "Next →", :class => "btn glow", :disabled => "disabled" %>
-                              <% end %>
-                            </div>
-                            <br>
-                          </div>
-                        
-
-
-                          
-                            <!-- new comment form -->
-                             <div class="span12 section comment">
-                            <% if can? :update, @dossier  %>
-                              <!-- COMMENTS BOX  --> 
-                              <!-- HIDE FROM APPLICANTS -->
-                              <%= render "dossiers/comments" %>
-                            <% end %>
-
-                            
-                                
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- side address column -->
-                    <div class="span3 address pull-right">
-                        
-                        <ul>
-                            <li class="ico-li">
-                                <i class="icon-map-marker"></i>
-                                <%= @dossier.city %>
-                               
-                            </li>
-                            <li class="ico-li">
-                                <i class="icon-phone"></i>
-                                <%= @dossier.phone_number %>
-                            </li>
-                             <li class="ico-li">
-                                <i class="ico-mail"></i>
-                                <a href="#"><%= @user.email %></a>
-                            </li>
-                            <li class="ico-li">
-                              <%= link_to "skype:#{@dossier.skype}" do %>
-                                <i class="icon-phone-sign"></i>
-                                <span>
-                                  skype
-                                  <%= @dossier.skype %>
-                                </span>
-                              <% end %>
-                            </li><br>
-                            <li class="ico-li">
-                                <i class="icon-twitter"></i>
-                                <a href="#"><%= @dossier.twitter %></a>
-                            </li>
-                            <li class="ico-li">
-                                <i class="icon-linkedin-sign"></i>
-                                <a href="#"><%= @dossier.linkedin %></a>
-                            </li>
-                            <li class="ico-li">
-                                <i class="icon-github"></i>
-                                <a href="#"><%= @dossier.github %></a>
-                            </li>
-                            <li class="ico-li">
-                                <i class="icon-edit"></i>
-                                <a href="#"><%= @dossier.blog %></a>
-                            </li><br>
-
-                            <li class="ico-li">
-                                <i class="icon-globe"></i>
-                                <a href="#"><%= @dossier.website %></a>
-                            </li>
-
-                            <li class="ico-li">
-                                <i class="icon-globe"></i>
-                                <a href="#"><%= @dossier.other_links %></a>
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-                <div class="span12">
-    
     </div>
-    <br>
-  </div>
-</div>
+
+    <div class="row-fluid profile">
+        <!-- bio, new note & orders column -->
+        <div class="span9 bio">
+          <div class="profile-box">
+            
+            <!-- biography -->
+            <%= render 'dossiers/collapser_button' %>
+            <div class="span12 section collapsible">
+              <h6>Career &amp; Ed.</h6>
+              <p><%= @dossier.career %></p>
             </div>
+
+            <%= render 'dossiers/collapser_button' %>
+            <div class="span12 section collapsible">
+              <h6>Purpose</h6>
+              <p><%= @dossier.purpose %></p>
+            </div>
+
+            <%= render 'dossiers/collapser_button' %>
+            <div class="span12 section collapsible">
+              <h6>Code Skills</h6>
+              <p><%= @dossier.code_skills %></p>
+            </div>
+
+            <%= render 'dossiers/collapser_button' %>
+            <div class="span12 section collapsible">
+              <h6>Analytical Skills</h6>
+              <p><%= @dossier.analytic_skills %></p>
+            </div>
+
+            <%= render 'dossiers/collapser_button' %>
+            <div class="span12 section collapsible">
+              <h6>Additional Tidbits</h6>
+              <p><%= @dossier.tidbits %></p>
+            </div>
+
+            <div class="span12">
+              <div class="pull-right">
+                <% if @prev_dossier %>
+                  <%= link_to "← Previous", needs_review_show_path(@prev_dossier), :class => "btn glow"%>
+                <% else %>
+                  <%= button_tag "← Previous", :class => "btn glow", :disabled => "disabled" %>
+                <% end %>
+                <%= link_to transition_path(@dossier, :reject), method: :put, data: { confirm: 'Are you sure?' }, :class => "btn-flat danger icon-remove-sign" do %>
+                  <span class="icon"> </span> <span class="text">Reject</span>
+                <% end %>
+
+                <div class="btn-group">
+                  <button class="btn-flat inverse icon-thumbs-down">
+                    <i class="icon-thumbs-up"></i>
+                  </button>
+                  <button class="btn glow dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <% @dossier.aasm.events.each do |admin_action| %>
+                      <li>
+                        <%= link_to admin_action.to_s.humanize, transition_path(@dossier, admin_action), method: :put, data: {confirm: 'Are you sure?'} %>
+                      </li>
+                      <li>
+                        <%= link_to "Reject", transition_path(@dossier, :reject), method: :put, data: { confirm: 'Are you sure?' } %>
+                      </li>
+                      <li>
+                        <%= link_to "Accept", transition_path(@dossier, :accept), method: :put, data: { confirm: 'Are you sure?' } %>
+                      </li>
+                    <% end %>
+                  </ul>
+                </div>
+                <% if @next_dossier %>
+                  <%= link_to "Next →", needs_review_show_path(@next_dossier), :class => "btn glow"%>
+                <% else %>
+                  <%= button_tag "Next →", :class => "btn glow", :disabled => "disabled" %>
+                <% end %>
+              </div>
+            </div>
+            <div class="span12 section comment">
+              <% if can? :read, DossierComment %>
+                <%= render "dossiers/comments" %>
+              <% end %>
+            </div>
+          </div>
         </div>
+
+        <!-- side address column -->
+        <div class="span3 address pull-right">
+          <ul>
+            <li class="ico-li">
+              <i class="icon-map-marker"></i>
+              <%= @dossier.city %>
+            </li>
+            <li class="ico-li">
+              <i class="icon-phone"></i>
+              <%= @dossier.phone_number %>
+            </li>
+             <li class="ico-li">
+              <i class="ico-mail"></i>
+              <a href="#"><%= @user.email %></a>
+            </li>
+            <li class="ico-li">
+              <%= link_to "skype:#{@dossier.skype}" do %>
+                <i class="icon-phone-sign"></i>
+                <span>
+                  skype <%= @dossier.skype %>
+                </span>
+              <% end %>
+            </li>
+            <li class="ico-li">
+              <i class="icon-twitter"></i>
+              <a href="#"><%= @dossier.twitter %></a>
+            </li>
+            <li class="ico-li">
+              <i class="icon-linkedin-sign"></i>
+              <a href="#"><%= @dossier.linkedin %></a>
+            </li>
+            <li class="ico-li">
+              <i class="icon-github"></i>
+              <a href="#"><%= @dossier.github %></a>
+            </li>
+            <li class="ico-li">
+              <i class="icon-edit"></i>
+              <a href="#"><%= @dossier.blog %></a>
+            </li>
+            <li class="ico-li">
+              <i class="icon-globe"></i>
+              <a href="#"><%= @dossier.website %></a>
+            </li>
+            <li class="ico-li">
+              <i class="icon-globe"></i>
+              <a href="#"><%= @dossier.other_links %></a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <!-- end main container -->
-
-
-
-
-
-
-
-  
-    </div>
-    <br>
   </div>
 </div>
-
-<!-- renders the dossier show page for this dossier beneath the above buttons -->
-
-
