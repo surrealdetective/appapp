@@ -1,6 +1,3 @@
-
-
-
 <h3><%= @dossiers.count %> Dossiers</h3>
 
 <div class="row-fluid table">
@@ -8,19 +5,13 @@
     <thead>
       <tr>
 
-
-        <!-- _table_header.html.erb -->
         <%= render "table_header_dynamic_sort", :link_name => "Review Me", :link_path => dashboard_path(sort_by: "user") %>
-
-        
-        
 
         <%= render "table_header_dynamic_sort", :link_name => "Status", :link_path => dashboard_path(sort_by: "aasm_state") %>
 
-
         <%= render "table_header_static_sort", :header_name => "Status History" %>
 
-        <%= render "table_header_static_sort", :header_name => "Change Status" %>        
+        <%= render "table_header_static_sort", :header_name => "Change Status" %>
 
       </tr>
     </thead>

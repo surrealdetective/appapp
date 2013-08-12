@@ -34,14 +34,13 @@ class NeedsReviewController < ApplicationController
       else
         format.html
       end
-    end    
+    end
   end
 
   def index
     @dossiers = Dossier.where(:aasm_state => "needs_review").sort_by(params[:sort_by])
 
-    
-    authorize! :index, @dossiers    
+    authorize! :index, @dossiers
   end
 
   def redirect_to_first
