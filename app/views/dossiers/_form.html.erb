@@ -51,14 +51,15 @@
           </div>
 
           <div class="field-box">
-            <%= f.label :city, "Current City" %><%= mark_required(@dossier, :city) %>
-            <%= f.text_field :city, :class => "span4", placeholder: "Willing to relocate to NYC?" %>
-          </div>
-
-          <div class="field-box">
             <%= f.label :twitter, "Twitter Handle"%><%= mark_required(@dossier, :twitter) %>
             <%= f.text_field :twitter, :class => "span4", placeholder: "Gimmee that twitter handle...." %>
              
+          </div>
+
+          <div class="field-box">
+            <%= f.label :nyc, "Can you commit to being in New York City during class?" %> <%= mark_required(@dossier, :course_id) %>
+            <br>
+            <%= f.select :nyc, [["Yes", "yes"], ["No", "no"], ["Maybe", "maybe"]] %>
           </div>
           
         </div>

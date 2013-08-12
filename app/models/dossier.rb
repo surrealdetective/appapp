@@ -1,6 +1,7 @@
 class Dossier < ActiveRecord::Base
   attr_accessible :aasm_state, :tagline, :phone_number, :city, :twitter,
                   :linkedin, :blog, :github, :website, :other_links,
+                  :nyc,
                   :career, :purpose, :code_skills, :analytic_skills, :tidbits,
                   :user_id, :course, :skype, :gender, :course_id,
                   :codeschool_link, :treehouse_link
