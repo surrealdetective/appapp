@@ -28,3 +28,33 @@
   margin-left: auto;
   margin-right: auto; 
 }
+
+.row-height {
+  height: 48px;
+}
+
+.detail-width-big {
+  position: relative;
+  width: 248px;
+}
+
+.detail-position-big {
+  position: absolute;
+  top: 8px;
+  right: 41px;
+}
+
+.detail-width {
+  position: relative;
+  width: 178px;
+}
+
+.detail-position {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+}
+
+.clear-both {
+  clear: both;
+}

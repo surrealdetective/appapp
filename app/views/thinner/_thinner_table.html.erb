@@ -3,15 +3,15 @@
     
     <tbody class="tbody-border">
 
-      <tr>
+      <tr class="row-height">
         <td class="quarter-width">
           <span class="label label-info">New</span>
         </td>
         <td class="quarter-width">
-          <h3><%= name(dossier.user) %></h3>
+          <h3 class="text-center"><%= name(dossier.user) %></h3>
         </td>
-        <td class="quarter-width">
-              <div class="btn-group">
+        <td class="quarter-width detail-width-big">
+              <div class="btn-group detail-position-big">
                 <button class="btn-flat inverse icon-thumbs-down">Admin Actions<i class="icon-thumbs-up"></i></button>
                 <button class="btn glow dropdown-toggle" data-toggle="dropdown">
                   <span class="caret"></span>
@@ -21,8 +21,8 @@
         </td>
 
 
-        <td class="quarter-width">
-        <a class = "btn-flat default icon-heart-empty fancybox" data-href="<%= fancybox_path(dossier.id, :layout => "false") %>" href="#">
+        <td class="quarter-width detail-width">
+        <a class = "btn-flat default icon-heart-empty fancybox detail-position" data-href="<%= fancybox_path(dossier.id, :layout => "false") %>" href="#">
             See My Dossier
             <i class=""></i>
           </a>
@@ -42,7 +42,7 @@
 
         </td>
       </tr>
-      <tr>
+      <tr class="clear-both">
 
          
       </tr>
@@ -50,7 +50,7 @@
         
       </tr>
 
-      <tr>
+      <tr class="row-height">
         <td class="quarter-width">
 
           <%= link_to "Reject", transition_path(dossier, :reject), method: :put, :class => "btn-flat danger icon-remove-sign" %>
@@ -59,9 +59,9 @@
         <td class="half-width" colspan="2">
           <h4 style="text-align:center;"><%= dossier.tagline %></h4>
         </td>
-        <td class="quarter-width">
+        <td class="quarter-width detail-width">
 
-          <%= link_to "Review Further", transition_path(dossier, :mark_as_needs_review), method: :put, :class => "btn-flat success icon-check"%>
+          <%= link_to "Review Further", transition_path(dossier, :mark_as_needs_review), method: :put, :class => "btn-flat success icon-check detail-position"%>
 
         </td>
       </tr>
