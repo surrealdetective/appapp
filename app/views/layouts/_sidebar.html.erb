@@ -1,5 +1,3 @@
-
-
 <!-- sidebar -->
 <div id="sidebar-nav">
   <ul id="dashboard-menu">
@@ -11,43 +9,26 @@
           <span>Dashboard</span>
         <% end %>
       </li>
-      <li>
-        <a class="dropdown-toggle ui-elements" href="#">
-          <i class="icon-code-fork"></i>
-          <span>Admin Flow</span>
-          <i class="icon-chevron-down"></i>
-        </a>
-        <% if ['thinner index', 'needs_review show', 'needs_interview index', 'courses index'].include? "#{params[:controller]} #{params[:action]}" %>
-          <ul class='submenu active'>
-            <div class="pointer">
-              <div class="arrow"></div>
-              <div class="arrow_border"></div>
-            </div>
-        <% else %>
-          <ul class='submenu'>
+      <%= render :partial => "layouts/sidebar_pointer", :locals => {:controller_action => ["thinner", "index"]} %>
+        <%= link_to thinner_path do %>
+          Elevator Pitches
         <% end %>
-          <li>
-            <%= link_to thinner_path, :class => active?("thinner", "index") do %>
-              Elevator Pitches
-            <% end %>
-          </li>
-          <li>
-            <%= link_to dossiers_path, :class => active?("needs_review", "show") do %>
-              Reviewer
-            <% end %>
-          </li>
-          <li>
-            <%= link_to dossier_interview_path, :class => active?("needs_interview", "index") do %>
-              Interviewer
-            <% end %>
-          </li>
-          <li>
-            <%= link_to courses_path, :class => active?("courses", "index") do %>
-              Class Maker
-            <% end %>
-          </li>
-        </ul>
-      </li>          
+      </li>
+      <%= render :partial => "layouts/sidebar_pointer", :locals => {:controller_action => ["dossiers", "index"]} %>
+        <%= link_to dossiers_path do %>
+          Reviewer
+        <% end %>
+      </li>
+      <%= render :partial => "layouts/sidebar_pointer", :locals => {:controller_action => ["needs_interview", "index"]} %>
+        <%= link_to dossier_interview_path do %>
+          Interviewer
+        <% end %>
+      </li>
+      <%= render :partial => "layouts/sidebar_pointer", :locals => {:controller_action => ["courses", "show"]} %>
+        <%= link_to courses_path do %>
+          Class Maker
+        <% end %>
+      </li>
 
       <li>
         <a class="dropdown-toggle" href="#">
@@ -63,10 +44,16 @@
         </ul>
       </li>
       
-    <% else %>
-      <% if current_user %>
-        <li><a href="http://twitter.com/flatironschool">@flatironschool</a></li>
-      <% else %>
+    <% else # current user cannot manage dossiers %>
+      <% if current_user # and someone is logged in... ok this is an applicant! %>
+        <%= render :partial => "layouts/sidebar_pointer", :locals => {:controller_action => ["dossiers", "new"]} %>
+          <%= link_to new_dossier_path do %>
+            <i class="icon-edit"></i>
+            <span>New Dossier</span>
+          <% end %>
+        </li>
+        <%= render "layouts/flatiron_links" %>
+      <% else # no one is logged in... okay let's show the logged out stuff: %>
         <%= render :partial => "layouts/sidebar_pointer", :locals => {:controller_action => ["dossiers", "new"]} %>
           <%= link_to new_dossier_path do %>
             <i class="icon-edit"></i>
@@ -79,6 +66,7 @@
             <span>Login</span>
           <% end %>
         </li>
+        <%= render "layouts/flatiron_links" %>
       <% end %>
     <% end %>
   </ul>
