@@ -49,9 +49,7 @@
 }
 
 .detail-position {
-  position: absolute;
-  top: 8px;
-  right: 12px;
+  height:30px;
 }
 
 .detail-position-review {
@@ -74,6 +72,18 @@
 
 .thinner-med-stat {
   margin-left: 51px;
+}
+
+tr.thinner:first-child td {
+  text-align:center;
+}
+
+tr.thinner:first-child td:first-child {
+  text-align: left;
+}
+
+tr.thinner:first-child td:last-child {
+  text-align: right;
 }
 
 .thinner-long-stat {
