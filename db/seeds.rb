@@ -3,6 +3,26 @@ Course.create(:season => "Fall 2013", :seats => 32, :subject => "Rails", :starti
 Course.create(:season => "Fall 2013", :seats => 20, :subject => "iOS", :starting_date => Date.new(2013, 9, 30))
 Course.create(:season => "Spring 2014", :seats => 30, :subject => "Rails", :starting_date => Date.new(2014, 2, 3))
 
+male_names = ["tom", "alex", "max", "joe"]
+men = HTTParty.get(
+ "https://api.github.com/legacy/user/search/#{male_names.sample}"
+)["users"].collect{|u| u['gravatar_id']}
+
+female_names = ["sally", "samantha", "sarah", "kristen"]
+women = HTTParty.get(
+  "https://api.github.com/legacy/user/search/#{female_names.sample}"
+)["users"].collect{|u| u['gravatar_id']}
+
+rubies = HTTParty.get(
+  "https://api.github.com/legacy/user/search/ruby"
+)["users"].collect{|u| u['gravatar_id']}
+
+gravatar_ids = {
+  "male" => men,
+  "female" => women,
+  "other" => rubies
+}
+
 # create two admins
 adam = User.create(
   :first_name => "Adam",
@@ -27,8 +47,8 @@ courses = Course.all
 scores = [1, 2, 3, 4, 5]
 nycs = ['yes', 'no', 'maybe']
 
-# create 300 users with one dossier each
-300.times do |i|
+# create 200 users with one dossier each
+200.times do |i|
   user = User.new
   user.first_name = Faker::Name.first_name
   user.last_name = Faker::Name.last_name
@@ -37,12 +57,15 @@ nycs = ['yes', 'no', 'maybe']
   user.password = Populator.words(1)
   user.set_role(:applicant)
 
-  city = [Faker::Address.city, "NYC", "Brooklyn", "Queens", "New Jersey"]
+  city = [Faker::Address.city, "NYC", "Brooklyn", "Queens", "New Jersey"].sample
+  gender = genders.sample
+
+  user.gravatar_id = gravatar_ids[gender].shift || gravatar_ids["other"].shift || ""
 
   user.dossiers.build({
     :tagline            => Faker::Company.bs,
     :phone_number       => Faker::PhoneNumber.phone_number, #10.times.map{rand(9)}.insert(3, "-").insert(7, "-").join,
-    :city               => city.sample,
+    :city               => city,
     :twitter            => Faker::Internet.user_name,
     :linkedin           => "http://www.linkedin.com/in/#{Populator.words(1)}#{rand(999)}",
     :blog               => "http://#{Populator.words(1)}#{rand(999)}.tumblr.com",
@@ -56,7 +79,7 @@ nycs = ['yes', 'no', 'maybe']
     :tidbits            => Populator.paragraphs(3),
     :course             => courses.sample,
     :skype              => "#{Populator.words(1)}#{rand(999)}",
-    :gender             => genders.sample,
+    :gender             => gender,
     :treehouse_link     => "http://teamtreehouse.com/josephgiralt.json",
     :codeschool_link    => "http://www.codeschool.com/users/alosaperau.json",
     :nyc                => nycs.sample

@@ -8,7 +8,7 @@
                 <!-- header -->
                 <div class="row-fluid header">
                     <div class="span8">
-                        <img src="http://placekitten.com/150/150" class="avatar img-circle">
+                        <%= image_tag ("http://www.gravatar.com/avatar/#{@dossier.user.gravatar_id}"),:class => "avatar img-circle"%>
                         <h3 class="name"><%=@dossier.user.full_name%></h3>
                         <span class="area"><%=@dossier.tagline%></span>
                     </div>

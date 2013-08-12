@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
     :applicant => 100
   }
 
-  attr_accessible :email, :first_name, :last_name, :dossiers, :password, :password_confirmation, :roles
+  attr_accessible :email, :first_name, :last_name, :dossiers, :password, :password_confirmation, :roles, :gravatar_id
   has_many :dossiers
   has_many :dossier_comments # meaning, they've written many
   has_many :user_dossier_hashtags
