@@ -1,10 +1,9 @@
 <% @dossiers.each do |dossier| %>
-  <%  next if dossier.aasm_state == "rejected" %>
   <tr id="dossier-<%= dossier.id %>">
 
     <td>
       <%= image_tag ("http://www.gravatar.com/avatar/#{dossier.user.gravatar_id}"),:class => "avatar img-circle hidden-phone"%>
-      <%= link_to dossier.user.full_name, needs_review_first_path, :class => "name"%>
+      <span><%= dossier.user.full_name %></span>
     </td>
 
     <td>
