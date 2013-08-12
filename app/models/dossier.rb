@@ -334,8 +334,11 @@ class Dossier < ActiveRecord::Base
   end
 
   def self.with_status(query)
-    where("aasm_state = ?", query)
+    if query == "needs_interview_and_code_interview"
+      where("aasm_state = ? OR aasm_state = ?", "needs_interview", "needs_code_interview")
+    else
+      where("aasm_state = ?", query)
+    end
   end
-
 
 end
