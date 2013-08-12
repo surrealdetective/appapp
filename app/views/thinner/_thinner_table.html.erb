@@ -55,17 +55,17 @@
       </tr>
 
       <tr class="row-height">
-        <td class="quarter-width">
+        <td class="quarter-width hundred-width">
 
           <%= link_to "Reject", transition_path(dossier, :reject), method: :put, :class => "btn-flat danger icon-remove-sign" %>
 
         </td>
         <td class="half-width" colspan="2">
-          <h4 style="text-align:center;"><%= dossier.tagline %></h4>
+          <h4 class="text-center thinner-tagline"><%= one_hundred_forty_chars(dossier.tagline) %></h4>
         </td>
         <td class="quarter-width detail-width">
 
-          <%= link_to "Review Further", transition_path(dossier, :mark_as_needs_review), method: :put, :class => "btn-flat success icon-check detail-position"%>
+          <%= link_to "Review Further", transition_path(dossier, :mark_as_needs_review), method: :put, :class => "btn-flat success icon-check detail-position-review"%>
 
         </td>
       </tr>
