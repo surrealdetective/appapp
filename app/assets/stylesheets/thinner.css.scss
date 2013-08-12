@@ -53,9 +53,7 @@
 }
 
 .detail-position-review {
-  position: absolute;
-  bottom:12px;
-  right: 12px;
+
 }
 
 .clear-both {
@@ -72,6 +70,10 @@
 
 .thinner-med-stat {
   margin-left: 51px;
+}
+
+tr.thinner-last-row:last-child td:last-child {
+  text-align:right;
 }
 
 tr.thinner:first-child td {
