@@ -354,5 +354,9 @@ class Dossier < ActiveRecord::Base
     end
   end
 
+  def aasm_events_with_extras
+    self.aasm.events.map{|e| e.to_s } + ["accept", "reject", "wont_attend"]
+  end
+
 
 end
