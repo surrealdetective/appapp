@@ -1,7 +1,7 @@
 <div id="fuelux-wizard" class="wizard row-fluid">
   <ul class="wizard-steps">
     <li data-target="#step1" class='<%= active? "thinner", "index" %>'>
-      <span class="step"><%= link_to dossier_count_by_state(:new), thinner_path %></span>
+      <span class="step"><%= link_to dossier_count_by_state(:new), dossiers_path(:status => "new") %></span>
       <span class="title">New <br> Applicants</span>
     </li>
     <li data-target="#step2" class='<%= active? "dossiers", "index" %>'>
@@ -14,7 +14,7 @@
     </li>
     <li data-target="#step4" class='<%= active? "courses", "index" %>'>
       <span class="step"><%= link_to dossier_count_by_state(:needs_decision), courses_path %></span>
-      <span class="title">Make a <br> Class</span>
+      <span class="title">Resolve <br> Applicants</span>
     </li>
   </ul>                            
 </div>
