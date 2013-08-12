@@ -153,8 +153,11 @@
                             </li>
                             <li class="ico-li">
                               <%= link_to "skype:#{@dossier.skype}" do %>
-                                <%= image_tag("skype_call.png") %>
-                                <%= @dossier.skype %>
+                                <i class="icon-phone-sign"></i>
+                                <span>
+                                  skype
+                                  <%= @dossier.skype %>
+                                </span>
                               <% end %>
                             </li><br>
                             <li class="ico-li">
@@ -175,12 +178,12 @@
                             </li><br>
 
                             <li class="ico-li">
-                                <i class="icon-sign-blank"></i>
+                                <i class="icon-globe"></i>
                                 <a href="#"><%= @dossier.website %></a>
                             </li>
 
                             <li class="ico-li">
-                                <i class="icon-sign-blank"></i>
+                                <i class="icon-globe"></i>
                                 <a href="#"><%= @dossier.other_links %></a>
                             </li>
                         </ul>
