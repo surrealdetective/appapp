@@ -9,19 +9,24 @@
           <span>Dashboard</span>
         <% end %>
       </li>
+      <%= render :partial => "layouts/sidebar_pointer", :locals => {:controller_action => ["dossiers", "index"]} %>
+        <%= link_to dossiers_path do %>
+          Applications
+        <% end %>
+      </li>
       <%= render :partial => "layouts/sidebar_pointer", :locals => {:controller_action => ["thinner", "index"]} %>
         <%= link_to thinner_path do %>
           Elevator Pitches
         <% end %>
       </li>
-      <%= render :partial => "layouts/sidebar_pointer", :locals => {:controller_action => ["dossiers", "index"]} %>
-        <%= link_to dossiers_path do %>
-          Reviewer
-        <% end %>
-      </li>
       <%= render :partial => "layouts/sidebar_pointer", :locals => {:controller_action => ["needs_interview", "index"]} %>
         <%= link_to dossier_interview_path do %>
           Interviewer
+        <% end %>
+      </li>
+      <%= render :partial => "layouts/sidebar_pointer", :locals => {:controller_action => ["needs_review", "show"]} %>
+        <%= link_to needs_review_first_path do %>
+          Reviewer
         <% end %>
       </li>
       <%= render :partial => "layouts/sidebar_pointer", :locals => {:controller_action => ["courses", "show"]} %>
