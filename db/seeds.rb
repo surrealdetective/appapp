@@ -25,6 +25,7 @@ example_hashtags = ["lol", "wow", "wtf", "weirdo", "winner", "cool", "smart", "c
 genders = ["male", "female", "other", "male", "female"]
 courses = Course.all
 scores = [1, 2, 3, 4, 5]
+nycs = ['yes', 'no', 'maybe']
 
 # create 300 users with one dossier each
 300.times do |i|
@@ -57,7 +58,8 @@ scores = [1, 2, 3, 4, 5]
     :skype              => "#{Populator.words(1)}#{rand(999)}",
     :gender             => genders.sample,
     :treehouse_link     => "http://teamtreehouse.com/josephgiralt.json",
-    :codeschool_link    => "http://www.codeschool.com/users/alosaperau.json" 
+    :codeschool_link    => "http://www.codeschool.com/users/alosaperau.json",
+    :nyc                => nycs.sample
   })
 
   user.save
