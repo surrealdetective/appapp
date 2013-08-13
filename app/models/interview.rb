@@ -16,3 +16,6 @@ class Interview < ActiveRecord::Base
 
 
 end
+
+
+# time_till_interview = time_ago_in_words(DateTime.now - #interview-time.to_datetime
