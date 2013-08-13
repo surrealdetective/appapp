@@ -76,6 +76,19 @@ class UserMailer < ActionMailer::Base
       We got your second payment for #{@user.last_dossier.semester}. Looking forward to seeing you soon!") 
   end
 
+  def reminder_email(receiver)
+    @user = receiver
+
+    mail(:to => @user.email, :subject => "Remember to sign up for a Flatiron interview!", :body => "Hi #{@user.first_name}, \n \
+      We're really excited about interviewing you. Please remember to sign up for an interview time at http://localhost:3000/dossiers/#{@user.last_dossier.id}/schedule!")    
+  end
+
+  def reschedule_email(receiver)
+    @user = receiver
+
+    mail(:to => @user.email, :subject => "Reschedule your Flatiron interview!", :body => "Hi #{@user.first_name}, \n \
+      We're really excited about interviewing you. Please sign up for your interview time at http://localhost:3000/dossiers/#{@user.last_dossier.id}/schedule!")    
+  end
 
 
   #EMAILS TO ADMIN

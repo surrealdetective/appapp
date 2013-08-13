@@ -359,5 +359,12 @@ class Dossier < ActiveRecord::Base
     events
   end
 
+  def last_interview_time
+    Interview.with_dossier(self)
+  end
+
+  def links
+    [{"Twitter: " => self.twitter},{"Github: " => self.github}, {"LinkedIn: " => self.linkedin}, {"Blog: " => self.blog}, {"Website: " => self.website}, {"Codeschool: " => self.codeschool_link}, {"Treehouse: " => self.treehouse_link}]
+  end
 
 end
