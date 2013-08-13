@@ -72,7 +72,7 @@
                         <div class="bio-item">
                           <%= render 'dossiers/collapser_button' %>
                           <strong>Your Career &amp; Ed.</strong>
-                          <div class="collapsed">
+                          <div class="collapsible collapsed">
                             <p><%= @dossier.career %></p>
                           </div>
                         </div>
@@ -82,7 +82,7 @@
                         <div class="bio-item">
                           <%= render 'dossiers/collapser_button' %>
                           <strong>Your Purpose For Applying</strong>
-                          <div class="collapsed">
+                          <div class="collapsible collapsed">
                             <p><%= @dossier.purpose %></p>
                           </div>
                         </div>
@@ -91,8 +91,8 @@
 
                         <div class="bio-item">
                           <%= render 'dossiers/collapser_button' %>
-                          <strong>Your Code Skill</strong>
-                          <div class="collapsed">
+                          <strong>Your Past Coding Skills</strong>
+                          <div class="collapsible collapsed">
                             <p><%= @dossier.code_skills %></p>
                           </div>
                         </div>
@@ -101,8 +101,8 @@
 
                         <div class="bio-item">
                           <%= render 'dossiers/collapser_button' %>
-                          <strong>Your Analytical Skills</strong>
-                          <div class="collapsed">
+                          <strong>Your Past Analytical Skills</strong>
+                          <div class="collapsible collapsed">
                             <p><%= @dossier.analytic_skills %></p>
                           </div>
                         </div>
@@ -112,7 +112,7 @@
                         <div class="bio-item">
                           <%= render 'dossiers/collapser_button' %>
                           <strong>Additional Tidbits</strong>
-                          <div class="collapsed">
+                          <div class="collapsible collapsed">
                             <p><%= @dossier.tidbits %></p>
                           </div>
                         </div>
@@ -171,67 +171,52 @@
 
 
 <!-- if @response.response.code = "200" render code-->
-<% if  @codeschool.response.code == "200" %> 
-<div class="span12 img-box" >
-    <h4>
-    total score of all classes
-  </h4>
+              <% if  @codeschool.response.code == "200" %> 
+              <div class="span12 img-box" >
+                  <h4>
+                  total score of all classes
+                </h4>
 
-  
- 
- 
+                
+               
+               
 
-  <%= @codeschool.parsed_response["user"]["total_score"] %><br>
-  <h3>completed</h3>
-  <%@codeschool.parsed_response["courses"]["completed"].each do |x| %>
-  <div class="img-box" style="border: 1px solid blue;width: 118px;float:left;">
-    <%=link_to image_tag(x['badge']), x['url'] %>
-      <%@codeschool.parsed_response["courses"]["in_progress"].each do |x| %>
-    <%=link_to image_tag(x['badge']), x['url'] %><br>
-    
-  <% end %> 
-   
-  </div>
-  <% end %>
-<%end%>
-<br>
-</div>
-<div style ="float:left;">
-
-
-
-  <!-- if @response.response.code = "200" render code-->
-  <% if  @treehouse.response.code == "200" %> 
-
-  <h3>Tree House</h3>
-
-    <p>Profile name: <%= @treehouse.parsed_response["profile_name"] %></p>
-    <% @treehouse.parsed_response["points"].each do |category, points| %>
-      <p><%= category %> points: <%= points %></p>
-    <% end %>
-
-    <p>Dossier state: <%= @dossier.aasm_state %></p>
-    <% if can? :update, @dossier %>
-      <p><%= link_to "Edit this dossier", edit_dossier_path(@dossier) %></p>
-    <% end %>
-  <% end %>
-</div>
-
-            
+                <%= @codeschool.parsed_response["user"]["total_score"] %><br>
+                <h3>completed</h3>
+                <%@codeschool.parsed_response["courses"]["completed"].each do |x| %>
+                <div class=" row-fluid span12 img-box" style="width: 118px;float:left;">
+                  <%=link_to image_tag(x['badge']), x['url'] %>
+                    <%@codeschool.parsed_response["courses"]["in_progress"].each do |x| %>
+                  <%=link_to image_tag(x['badge']), x['url'] %><br>
+                  
+                <% end %> 
+                 
+                </div>
+                <% end %>
+              <%end%>
+              <br>
+              </div>
+              <div style ="float:left;">
 
 
 
+                <!-- if @response.response.code = "200" render code-->
+                <% if  @treehouse.response.code == "200" %> 
 
+                <h3>Tree House</h3>
 
+                  <p>Profile name: <%= @treehouse.parsed_response["profile_name"] %></p>
+                  <% @treehouse.parsed_response["points"].each do |category, points| %>
+                    <p><%= category %> points: <%= points %></p>
+                  <% end %>
 
-
-
-
-
-
+                  <p>Dossier state: <%= @dossier.aasm_state %></p>
+                  <% if can? :update, @dossier %>
+                    <p><%= link_to "Edit this dossier", edit_dossier_path(@dossier) %></p>
+                  <% end %>
+                <% end %>
+              </div>
             </div>
-
-
         </div>
     </div>
     <!-- end main container -->
