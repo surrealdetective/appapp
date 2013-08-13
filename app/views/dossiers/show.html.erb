@@ -70,9 +70,9 @@
                       <div>
 
                         <div class="bio-item">
-                          <%= render 'dossiers/collapser_button' %>
+                          <%= render 'shared/uncollapser_button' %>
                           <strong>Your Career &amp; Ed.</strong>
-                          <div class="collapsed">
+                          <div class="collapsible collapsed">
                             <p><%= @dossier.career %></p>
                           </div>
                         </div>
@@ -80,9 +80,9 @@
                         <hr>
 
                         <div class="bio-item">
-                          <%= render 'dossiers/collapser_button' %>
+                          <%= render 'shared/collapser_button' %>
                           <strong>Your Purpose For Applying</strong>
-                          <div class="collapsed">
+                          <div class="collapsible">
                             <p><%= @dossier.purpose %></p>
                           </div>
                         </div>
@@ -90,9 +90,9 @@
                         <hr>
 
                         <div class="bio-item">
-                          <%= render 'dossiers/collapser_button' %>
+                          <%= render 'shared/uncollapser_button' %>
                           <strong>Your Code Skill</strong>
-                          <div class="collapsed">
+                          <div class="collapsible collapsed">
                             <p><%= @dossier.code_skills %></p>
                           </div>
                         </div>
@@ -100,9 +100,9 @@
                         <hr>
 
                         <div class="bio-item">
-                          <%= render 'dossiers/collapser_button' %>
+                          <%= render 'shared/uncollapser_button' %>
                           <strong>Your Analytical Skills</strong>
-                          <div class="collapsed">
+                          <div class="collapsible collapsed">
                             <p><%= @dossier.analytic_skills %></p>
                           </div>
                         </div>
@@ -110,9 +110,9 @@
                         <hr>
 
                         <div class="bio-item">
-                          <%= render 'dossiers/collapser_button' %>
+                          <%= render 'shared/uncollapser_button' %>
                           <strong>Additional Tidbits</strong>
-                          <div class="collapsed">
+                          <div class="collapsible collapsed">
                             <p><%= @dossier.tidbits %></p>
                           </div>
                         </div>
