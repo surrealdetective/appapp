@@ -21,6 +21,7 @@ class DossiersController < ApplicationController
       @user = User.new(params[:user])
       @user.password = rand(36**12).to_s(36)
       @user.set_role(:applicant)
+      # move this mailer to assm after_enter new
       UserMailer.welcome_email(@user).deliver
     # end
     @dossier = @user.dossiers.build(params[:dossier])

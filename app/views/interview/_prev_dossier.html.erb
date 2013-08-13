@@ -1,0 +1,5 @@
+<% if prev_dossier %>
+  <%= link_to "← Previous", interview_show_path(prev_dossier), :class => "btn btn-flat white"%>
+<% else %>
+  <%= button_tag "← Previous", :class => "btn btn-flat white", :disabled => "disabled" %>
+<% end %>
