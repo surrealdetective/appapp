@@ -8,7 +8,7 @@
           <%= render "reject_button", :dossier => @dossier %>
           <%= render "admin_actions", :dossier => @dossier %>
           <%= render "next_dossier", :next_dossier => @next_dossier %>
-        </div> <!-- /.pull-right -->
+        </div>
       </div>
     </div>
 
@@ -17,8 +17,8 @@
         <%= image_tag ("http://www.gravatar.com/avatar/#{@dossier.user.gravatar_id}"),:class => "avatar img-circle"%>
         <h3 class="name"><%=@dossier.user.full_name%></h3>
         <span class="area"><%=@dossier.tagline%></span>
-      </div> <!-- /.span8  -->
-    </div> <!-- /row-fluid.header -->
+      </div>
+    </div>
 
     <div class="row-fluid">
       <div class="span9">
@@ -73,13 +73,13 @@
 
         <hr>
 
-      </div> <!-- /.span9.bio -->
+      </div>
 
       <div class="span3 address">
         <%= render "needs_review_sidebar", :dossier => @dossier, :user => @user %>
-      </div> <!-- /.span3.address -->
+      </div>
 
-    </div> <!-- /.row-fluid -->
+    </div>
 
     <div class="row-fluid">
       <div class="span6">
@@ -96,10 +96,8 @@
           <%= render "reject_button", :dossier => @dossier %>
           <%= render "admin_actions", :dossier => @dossier %>
           <%= render "next_dossier", :next_dossier => @next_dossier %>
-        </div> <!-- /.pull-right -->
+        </div>
       </div>
     </div>
-    
-    
-  </div> <!-- /.user-profile#pad-wrapper -->
-</div> <!-- /container-fluid -->
+  </div>
+</div>
