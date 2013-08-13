@@ -33,7 +33,13 @@ class NeedsInterviewController < ApplicationController
 
   def email
     @user = User.find_by_id(params[:recipient])
-    UserMailer.reminder_email(@user).deliver
+    email_to_send = params[:email]
+    case email_to_send
+    when "reminder"
+      UserMailer.reminder_email(@user).deliver
+    when "reschedule"
+      UserMailer.reschedule_email(@user).deliver
+    end
     redirect_to :back
   end
 
