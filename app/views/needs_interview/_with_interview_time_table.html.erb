@@ -87,7 +87,7 @@
         </td>
         <td class="quarter-width detail-width">
 
-          <%= link_to "Skype", transition_path(dossier, :mark_as_needs_review), method: :put, :class => "btn-flat success icon-check detail-position-review"%>
+          <%= link_to "Skype", "skype:#{dossier.skype}", :class => "btn-flat success icon-check detail-position-review"%>
 
         </td>
       </tr>
