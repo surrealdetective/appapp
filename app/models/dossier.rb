@@ -204,7 +204,6 @@ class Dossier < ActiveRecord::Base
       self.joins(:interviews).order("interviews.created_at #{direction}")
     when :interview_stage
       self.joins(:interviews).order("interviews.stage #{direction}")
-      
     else
       self.order("#{column} #{direction}")
     end
@@ -355,7 +354,9 @@ class Dossier < ActiveRecord::Base
   end
 
   def aasm_events_with_extras
-    self.aasm.events.map{|e| e.to_s } + ["reject", "accept"]
+    events = self.aasm.events.map{|e| e.to_s }
+    events += ["reject", "accept"] unless ["accepted", "committed", "rejected", "wont_attend", "needs_payment"].include? self.aasm_state
+    events
   end
 
 

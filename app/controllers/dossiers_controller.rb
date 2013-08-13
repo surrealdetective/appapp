@@ -47,10 +47,11 @@ class DossiersController < ApplicationController
     @statuses = Dossier.aasm.states.collect(&:to_s)
 
     @dossiers = Dossier
-    @dossiers = @dossiers.with_user_name(params[:name]) if params[:name].present?
+    @dossiers = @dossiers.with_user_name(params[:name])  if params[:name].present?
     @dossiers = @dossiers.with_hashtag(params[:hashtag]) if params[:hashtag].present?
-    @dossiers = @dossiers.with_status(params[:status]) if params[:status].present?
-    @dossiers = @dossiers.includes(:user).includes(:dossier_statuses).all
+    @dossiers = @dossiers.with_status(params[:status])   if params[:status].present?
+    @dossiers = @dossiers.sort_by(params[:sort_by])      if params[:sort_by].present?
+    @dossiers = @dossiers.includes(:user, :dossier_statuses).all
     authorize! :index, @dossiers
     # render :json =>  @dossiers
   end
@@ -65,9 +66,6 @@ class DossiersController < ApplicationController
     @treehouse  = HTTParty.get(@dossier.treehouse_link)
     email_address = @user.email.downcase
     @avatar_hash = Digest::MD5.hexdigest(email_address)
-
-
-    
     @title = "#{@user.full_name}'s Dossier"
     respond_to do |format|
       if params[:layout] == "false"
