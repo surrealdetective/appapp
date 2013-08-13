@@ -31,5 +31,10 @@ class NeedsInterviewController < ApplicationController
     authorize! :index, @dossiers    
   end
 
+  def email
+    @user = User.find_by_id(params[:recipient])
+    UserMailer.reminder_email(@user).deliver
+    redirect_to :back
+  end
 
 end
