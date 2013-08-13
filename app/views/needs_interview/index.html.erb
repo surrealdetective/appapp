@@ -1,22 +1,14 @@
-<h1>With Decision</h1>
-
 <% @dossiers_with_decision.each do |dossier| %>
   <%= render 'needs_interview/with_decision_table', :dossier => dossier %>
 <% end %>
-
-<h1>With Interview Time</h1>
 
 <% @dossiers_with_interview_time.each do |dossier| %>
   <%= render 'needs_interview/with_interview_time_table', :dossier => dossier %>
 <% end %>
 
-<h1>With Interview without time</h1>
-
 <% @dossiers_with_interview_without_time.each do |dossier| %>
   <%= render 'needs_interview/with_interview_without_time_table', :dossier => dossier %>
 <% end %>
-
-<h1>With Interview without time ends</h1>
 
 <% @dossiers_without_interview.each do |dossier| %>
   <%= render 'needs_interview/without_interview_table', :dossier => dossier %>
