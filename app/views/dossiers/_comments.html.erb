@@ -1,48 +1,30 @@
-<!-- COMMENT BOX -->
 <%= render 'dossiers/collapser_button' %>
+<strong>Add a quick note about <%= @user.full_name %></strong>
 <div class="dossier-form-container collapsible">
+  <div class="comments">
+    <p><%= pluralize(@dossier.dossier_comments.count, 'Comment') %></p>
+    <% @dossier.dossier_comments.each do |comment| %>
+      <div class="comment">
+        <strong><%= comment.user.full_name %></strong>: <%= comment.content %>
+      </div>
+    <% end %>
 
-  
-  <h6>Add a quick note about  <%= @user.full_name %></h6>
-
-  
-  <div>
-    <div class="comments">
-      <p><%= pluralize(@dossier.dossier_comments.count, 'Comment') %></p>
-      <% @dossier.dossier_comments.each do |comment| %>
-        <div class="comment">
-          <strong><%= comment.user.full_name %></strong>: <%= comment.content %>
-        </div>
-      <% end %>
-    </div>
-
-    
     <%= form_tag dossier_dossier_comments_path(@dossier) do %>
       <%= label_tag "Comment" %>
       <%= text_area_tag "dossier_comment[content]" %>
       <%= hidden_field_tag "dossier_comment[dossier_id]", @dossier.id  %>
       <%= hidden_field_tag 'dossier_comment[user_id]', current_user.id %>
-  <div class="span12 submit-box pull-right">
       <%= submit_tag "Submit Comment", :class => "btn-glow primary" %>
-
     <% end %>
 
-   <!-- show the hashtags -->
-   
-
-    
-
-
   </div>
-
-    <!-- show the hashtags -->
-    <h6>Hashtags from comments:</h6>
-    
-      <% @dossier.hashtags.each do |hashtag| %>
-        <span class="label label-info icon-star-empty">     <%= hashtag.content %></span>
+  <div class="hashtags">
+    <strong>Hashtags from comments:</strong>
+    <br>
+    <% @dossier.hashtags.each do |hashtag| %>
+      <%= link_to dossiers_path(:hashtag => hashtag.content) do %>
+        <span class="label label-info icon-star-empty"><%= hashtag.content %></span>
       <% end %>
-    
-
+    <% end %>
   </div>
-  
 </div>

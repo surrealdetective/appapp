@@ -1,0 +1,20 @@
+<div class="btn-group">
+  
+  <button class="btn btn-flat inverse">
+    <i class="icon-thumbs-up"></i>
+    <i class="icon-thumbs-down"></i>
+  </button>
+
+  <button class="btn btn-flat inverse dropdown-toggle" data-toggle="dropdown">
+    <span class="caret"></span>
+  </button>
+
+  <ul class="dropdown-menu">
+    <% dossier.aasm_events_with_extras.each do |admin_action| %>
+      <li>
+        <%= link_to admin_action.humanize, transition_path(dossier, admin_action), :method => :put, :data => {:confirm => 'Are you sure?'} %>
+      </li>
+    <% end %>
+  </ul>
+
+</div>

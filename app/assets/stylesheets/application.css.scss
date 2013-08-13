@@ -8,8 +8,6 @@
   * You're free to add application-wide styles to this file and they'll appear at the top of the
   * compiled file, but it's generally better to create a new file per style scope.
   *
-  
-  * FUCK THE TREE.: require_tree .
 
   *= require ../../../vendor/assets/stylesheets/lib/bootstrap.css
   *= require ../../../vendor/assets/stylesheets/lib/bootstrap-responsive.css
@@ -35,6 +33,8 @@
   *= require ../../../vendor/assets/stylesheets/lib/jquery.fancybox-thumbs.css
   *= require ../../../vendor/assets/stylesheets/form-wizard.scss
   *= require ../../../vendor/assets/stylesheets/lib/select2.css
+  *= require collapsers.css.scss
+  *= require needs_review.css.scss
   *= require custom.css.scss
   *= require thinner.css.scss
   *= require courses.css.scss

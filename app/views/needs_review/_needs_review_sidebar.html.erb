@@ -1,0 +1,62 @@
+<ul>
+  <li class="sidebar-icon-item">
+    <i class="icon-map-marker"></i>
+    <span>
+      <%= dossier.city %>
+    </span>
+  </li>
+  <li class="sidebar-icon-item">
+    <i class="icon-phone"></i>
+    <span>
+      <%= dossier.phone_number %>
+    </span>
+  </li>
+   <li class="sidebar-icon-item">
+    <i class="icon-reply"></i>
+    <span>
+      <%= link_to user.email, "mailto:#{user.email}" %>
+    </span>
+  </li>
+  <li class="sidebar-icon-item">
+    <i class="icon-phone-sign"></i>
+    <span>
+      <%= link_to "skype #{dossier.skype}", "skype:#{dossier.skype}" %>
+    </span>
+  </li>
+  <li class="sidebar-icon-item">
+    <i class="icon-twitter"></i>
+    <span>
+      <%= link_to dossier.twitter, dossier.twitter_url %>
+    </span>
+  </li>
+  <li class="sidebar-icon-item">
+    <i class="icon-linkedin-sign"></i>
+    <span>
+      <%= link_to dossier.linkedin, dossier.linkedin %>
+    </span>
+  </li>
+  <li class="sidebar-icon-item">
+    <i class="icon-github"></i>
+    <span>
+      <%= link_to dossier.github, dossier.github %>
+    </span>
+  </li>
+  <li class="sidebar-icon-item">
+    <i class="icon-globe"></i>
+    <span>
+      <%= link_to dossier.blog, dossier.blog %>
+    </span>
+  </li>
+  <li class="sidebar-icon-item">
+    <i class="icon-globe"></i>
+    <span>
+      <%= link_to dossier.website, dossier.website %>
+    </span>
+  </li>
+  <li class="sidebar-icon-item">
+    <i class="icon-globe"></i>
+    <span>
+      <%= link_to dossier.other_links, dossier.other_links %>
+    </span>
+  </li>
+</ul>
