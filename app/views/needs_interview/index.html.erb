@@ -51,12 +51,14 @@
           </div>
         </td>
         <td class="half-width" rowspan="3" colspan="2">
-          <% dossier.links.each do |link| %>
-            <div>
-              <p class="one-line"><%= link %></p>
-            </div>
+          <dl>
+          <% dossier.links.each do |link| %> 
+              <div>
+                <dt class="interview-link-term"><%= link.keys.first %></dt>
+                <dd class="interview-link-detail"><%= link.values.first %></dd>
+              </div>
           <% end %>
-
+          </dl>
         </td>
       </tr class="fifty-width">
       <tr class="clear-both">
