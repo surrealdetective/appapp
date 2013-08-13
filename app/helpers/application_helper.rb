@@ -15,6 +15,8 @@ module ApplicationHelper
     "active" if controller == params[:controller] && action == params[:action]
   end
 
-end
+  def stats_active?(status)
+    "active" if params[:status] == status
+  end
 
-  
+end

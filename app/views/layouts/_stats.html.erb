@@ -1,20 +1,20 @@
 <div id="fuelux-wizard" class="wizard row-fluid">
   <ul class="wizard-steps">
-    <li data-target="#step1" class='<%= active? "thinner", "index" %>'>
+    <li data-target="#step1" class='<%= stats_active? "new" %>'>
       <span class="step"><%= link_to dossier_count_by_state(:new), dossiers_path(:status => "new") %></span>
       <span class="title">New <br> Applicants</span>
     </li>
-    <li data-target="#step2" class='<%= active? "dossiers", "index" %>'>
+    <li data-target="#step2" class='<%= stats_active? "needs_review" %>'>
       <span class="step"><%= link_to dossier_count_by_state(:needs_review), dossiers_path(:status => "needs_review") %></span>
       <span class="title">Review <br> Applicants</span>
     </li>
-    <li data-target="#step3" class='<%= active? "needs_interview", "index" %>'>
+    <li data-target="#step3" class='<%= stats_active? "needs_interview_and_code_interview" %>'>
       <span class="step"><%= link_to dossier_count_by_state(:needs_interview), dossiers_path(:status => "needs_interview_and_code_interview") %> </span>
       <span class="title">Inteview <br> Applicants</span>
     </li>
-    <li data-target="#step4" class='<%= active? "courses", "index" %>'>
+    <li data-target="#step4" class='<%= stats_active? "needs_decision" %>'>
       <span class="step"><%= link_to dossier_count_by_state(:needs_decision), dossiers_path(:status => "needs_decision") %></span>
       <span class="title">Resolve <br> Applicants</span>
     </li>
-  </ul>                            
+  </ul>
 </div>
