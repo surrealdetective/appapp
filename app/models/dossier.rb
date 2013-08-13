@@ -363,7 +363,7 @@ class Dossier < ActiveRecord::Base
   end
 
   def links
-    [self.twitter, self.github, self.linkedin, self.blog, self.website, self.codeschool_link, self.treehouse_link]
+    [{"Twitter: " => self.twitter},{"Github: " => self.github}, "LinkedIn: " => self.linkedin}, {"Blog: " => self.blog}, {"Website: " => self.website}, {"Codeschool: " => self.codeschool}, {"Treehouse: " => self.treehouse_link}]
   end
 
 end
