@@ -170,34 +170,49 @@
           
 
         </div>
+        <hr>
 
 
 <!-- if @response.response.code = "200" render code-->
               <% if  @codeschool.response.code == "200" %> 
-              <div class="span12 img-box" >
-                  <h4>
-                  total score of all classes
-                </h4>
+                <div class="row-fluid">
+                  <h3>
+                    Total Score of All Code School Classes
+                  </h3><br>
+                  <%= @codeschool.parsed_response["user"]["total_score"] %>
+                  <hr>
 
-                
-               
-               
-
-                <%= @codeschool.parsed_response["user"]["total_score"] %><br>
-                <h3>completed</h3>
-                <%@codeschool.parsed_response["courses"]["completed"].each do |x| %>
-                <div class=" row-fluid span12 img-box" style="width: 118px;float:left;">
-                  <%=link_to image_tag(x['badge']), x['url'] %>
-                    <%@codeschool.parsed_response["courses"]["in_progress"].each do |x| %>
-                  <%=link_to image_tag(x['badge']), x['url'] %><br>
                   
-                <% end %> 
-                 
+                <div class="row-fluid img-box" > <!-- completed -->
+            
+                    <h3>Completed Code School Classes</h3><br>
+                    <%@codeschool.parsed_response["courses"]["completed"].each do |x| %>
+                    <div class=" row-fluid span12 img-box" style="width: 118px;float:left;">
+                      <%=link_to image_tag(x['badge']), x['url'] %>
+                    </div>
+                   
+                  
+                      <%end%>
+                      <%end%>   <br>
                 </div>
-                <% end %>
-              <%end%>
-              <br>
-              </div>
+                <hr>
+
+                <div class="row-fluid img-box" > <!-- in progress -->
+                                     
+                    <h3>In progress</h3>
+                    <%@codeschool.parsed_response["courses"]["in_progress"].each do |x| %>
+                    <div class=" row-fluid span12 img-box" style="width: 118px;float:left;">
+                      <%=link_to image_tag(x['badge']), x['url'] %>
+                    </div>
+                      <%end%>   <br>
+                </div>
+                <hr>
+              
+              
+
+
+
+
               <div style ="float:left;">
 
 
