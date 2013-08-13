@@ -36,15 +36,17 @@
         <td class="half-width" rowspan="3" colspan="2">
           <div>
             <p class="one-line">Time till Interview:</p>
-            <span class="label label-info thinner-short-stat"><%= dossier.last_interview %></span>
+            <span class="label label-info thinner-short-stat"><%= dossier.last_interview_time %></span>
           </div>
           <div>
             <p class="one-line">Interview Invite Sent Out:</p><span class="label label-info thinner-long-stat">
+
             <% if dossier.interviews.present? %>
-              <%= time_ago_in_words(dossier.interviews.created_at) %>
+              <%= time_ago_in_words(dossier.interviews.last.created_at) %>
             <% else %>
               <%= "No invite sent" %>
             <% end %>
+
             </span>
           </div>
         </td>

@@ -358,7 +358,7 @@ class Dossier < ActiveRecord::Base
     self.aasm.events.map{|e| e.to_s } + ["reject", "accept"]
   end
 
-  def last_interview
+  def last_interview_time
     Interview.with_dossier(self)
   end
 

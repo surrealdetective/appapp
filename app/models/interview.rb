@@ -3,10 +3,12 @@ class Interview < ActiveRecord::Base
   belongs_to :dossier
   belongs_to :user
 
+#finds the last interview and it's interview time
   def self.with_dossier(dossier)
-    interview_time = self.where(:dossier_id => dossier.id).last #.where("interview_time >= :today", {today: Date.today})
-    if interview_time
-      interview_time     
+    last_interview = self.where(:dossier_id => dossier.id).last #.where("interview_time >= :today", {today: Date.today})
+    if last_interview
+      return "No Interview Scheduled" unless last_interview.interview_time != nil
+      last_interview.interview_time    
     else
       return "No Interview Scheduled"
     end
