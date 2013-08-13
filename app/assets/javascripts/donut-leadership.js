@@ -9,11 +9,11 @@ $(document).ready(function() {
     Morris.Donut({
       element: 'donut-leadership',
       data: [
-        {label: "Score 1", value: leadership_one},
-        {label: "Score 2", value: leadership_two},
-        {label: "Score 3", value: leadership_three},
-        {label: "Score 4", value: leadership_four},
-        {label: "Score 5", value: leadership_five}
+        {label: "1-Abysmal", value: leadership_one},
+        {label: "2-Avg Joe", value: leadership_two},
+        {label: "3-Organized", value: leadership_three},
+        {label: "4-Natural Born Ldr", value: leadership_four},
+        {label: "5-Superhuman", value: leadership_five}
       ]
     });
   }

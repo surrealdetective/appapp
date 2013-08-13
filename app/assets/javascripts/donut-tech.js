@@ -9,11 +9,11 @@ $(document).ready(function() {
     Morris.Donut({
       element: 'donut-tech',
       data: [
-        {label: "Score 1", value: tech_one},
-        {label: "Score 2", value: tech_two},
-        {label: "Score 3", value: tech_three},
-        {label: "Score 4", value: tech_four},
-        {label: "Score 5", value: tech_five}
+        {label: "1-Dismal", value: tech_one},
+        {label: "2-Average", value: tech_two},
+        {label: "3-Tech Savvy", value: tech_three},
+        {label: "4-Regular Einstein", value: tech_four},
+        {label: "5-Superhuman", value: tech_five}
       ]
     });
   }
