@@ -358,5 +358,12 @@ class Dossier < ActiveRecord::Base
     self.aasm.events.map{|e| e.to_s } + ["reject", "accept"]
   end
 
+  def last_interview
+    Interview.with_dossier(self)
+  end
+
+  def links
+    [self.twitter, self.github, self.linkedin, self.blog, self.website, self.codeschool_link, self.treehouse_link]
+  end
 
 end

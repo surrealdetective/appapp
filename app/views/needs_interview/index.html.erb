@@ -1,33 +1,97 @@
-<h3><%= pluralize @dossiers.count, "Dossier" %> </h3>
+<% @dossiers.each do |dossier| %>
 
 <div class="row-fluid table">
-  <table class="table table-hover">
-    <thead>
-      <tr>
-          <%= render "dossiers/table_header_dynamic_sort", :link_name => "Interview Me!", :link_path => dossier_interview_path(sort_by: "user") %>
+  <table class="table table-hover thinner-table">
+    
+    
+    <tbody class="tbody-border">
 
-        
+      <tr class="row-height thinner">
+        <td class="quarter-width">
+          <span class="label label-info"><%= dossier.last_status.status %></span>
+        </td>
+        <td class="quarter-width">
+          <h3 class="text-center"><%= name(dossier.user) %></h3>
+        </td>
+        <td class="quarter-width detail-width-big">
+              <div class="btn-group detail-position-big">
+                <button class="btn-flat inverse icon-thumbs-down push-it-up">Admin Actions<i class="icon-thumbs-up"></i></button>
+                <button class="btn glow dropdown-toggle push-it-up" data-toggle="dropdown">
+                  <span class="caret"></span>
+                </button>
+                <%= render "dossiers/admin_actions", :dossier => dossier %>
+              </div>
+        </td>
 
-          <!-- checking sort_by method to accept interview attributes -->
-          <%= render "dossiers/table_header_dynamic_sort", :link_name => "Date Offer Sent", :link_path => dossier_interview_path(sort_by: "interview_created_at") %>
 
-
-          <!-- Interview Time use render once date/time exsist!!!!1 -->
-          <th class="span2">
-              <span class="line"></span>Time till Interview
-          </th>
-
-
-          <%= render "dossiers/table_header_dynamic_sort", :link_name => "Interview Status", :link_path => dossier_interview_path(sort_by: :aasm_state) %>
-
-          <%= render "dossiers/table_header_static_sort", :header_name => "Interviewer"%>
+        <td class="quarter-width detail-width">
+        <a class = "btn-flat default icon-heart-empty fancybox detail-position" data-href="<%= fancybox_path(dossier.id, :layout => "false") %>" href="#">
+            See My Dossier
+            <i class=""></i>
+          </a>
+        </td>
       </tr>
-    </thead>
-    <%= render "needs_interview_table_details", :dossiers => @dossiers %>
 
-    <!-- interview index table details -->
-    <tbody>
-      
+      <tr class="fifty-width">
+        <td class="half-width" rowspan="3" colspan="2">
+          <div>
+            <p class="one-line">Time till Interview:</p>
+            <span class="label label-info thinner-short-stat"><%= dossier.last_interview %></span>
+          </div>
+          <div>
+            <p class="one-line">Interview Invite Sent Out:</p><span class="label label-info thinner-long-stat">
+            <% if dossier.interviews.present? %>
+              <%= time_ago_in_words(dossier.interviews.created_at) %>
+            <% else %>
+              <%= "No invite sent" %>
+            <% end %>
+            </span>
+          </div>
+        </td>
+        <td class="half-width" rowspan="3" colspan="2">
+          <% dossier.links.each do |link| %>
+            <div>
+              <p class="one-line"><%= link %></p>
+            </div>
+          <% end %>
+
+        </td>
+      </tr class="fifty-width">
+      <tr class="clear-both">
+
+         
+      </tr>
+      <tr>
+        
+      </tr>
+
+      <tr class="row-height thinner-last-row">
+        <td class="quarter-width hundred-width">
+
+          <%= link_to "Reject", transition_path(dossier, :reject), method: :put, :class => "btn-flat danger icon-remove-sign" %>
+
+        </td>
+        <td class="half-width" colspan="2">
+          <h4 class="text-center thinner-tagline">
+            <% dossier.hashtags.each do |hashtag| %>
+              <%= link_to dossiers_path(:hashtag => hashtag.content) do %>
+                <span class="label label-info icon-star-empty"><%= hashtag.content %></span>
+              <% end %>
+            <% end %>
+          </h4>
+        </td>
+        <td class="quarter-width detail-width">
+
+          <%= link_to "Claim Interview", transition_path(dossier, :mark_as_needs_review), method: :put, :class => "btn-flat success icon-check detail-position-review"%>
+
+        </td>
+      </tr>
+
     </tbody>
+
   </table>
 </div>
+
+
+
+    <% end %>
