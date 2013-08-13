@@ -220,35 +220,34 @@
                 <!-- if @response.response.code = "200" render code-->
                 <% if  @treehouse.response.code == "200" %> 
 
-                <h3>Tree House</h3>
+                <h3>Accrued Tree House Points </h3>
                  <% @html = @treehouse.parsed_response["points"]["html"].to_i %>
                  <% @css = @treehouse.parsed_response["points"]["css"].to_i %>
                  <% @ruby = @treehouse.parsed_response["points"]["ruby"].to_i %>
                  <% @javascript = @treehouse.parsed_response["points"]["javascript"].to_i %>
                  <% @design = @treehouse.parsed_response["points"]["design"].to_i %>
 
-                <div class="graphs">
-                  <h3 style="center-text">Treehouse:</h3>
-                  <div style="graph" data-html="<%= @html %>" data-css="<%= @css %>" data-ruby="<%= @ruby %>" data-javascript="<%= @javascript %>" data-design="<%= @design %>" id="donut-treehouse">
-                  </div>
-                </div>
+                
               
                 
 
 
 
-                  <p>Profile name: <%= @treehouse.parsed_response["profile_name"] %></p>
-                  <% @treehouse.parsed_response["points"].each do |category, points| %>
-                    <p><%= category %> points: <%= points %></p>
-                  <% end %>
+               
 
-                  <p>Dossier state: <%= @dossier.aasm_state %></p>
+                  <p><% @dossier.aasm_state %></p>
                   <% if can? :update, @dossier %>
                     <p><%= link_to "Edit this dossier", edit_dossier_path(@dossier) %></p>
                   <% end %>
                 <% end %>
               </div>
+              
+
             </div>
+        </div>
+        <div class="graphs" style>  
+          <div style="graph" data-html="<%= @html %>" data-css="<%= @css %>" data-ruby="<%= @ruby %>" data-javascript="<%= @javascript %>" data-design="<%= @design %>" id="donut-treehouse">
+          </div>
         </div>
     </div>
     <!-- end main container -->
