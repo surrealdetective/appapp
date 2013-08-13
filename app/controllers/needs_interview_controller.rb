@@ -39,6 +39,9 @@ class NeedsInterviewController < ApplicationController
       UserMailer.reminder_email(@user).deliver
     when "reschedule"
       UserMailer.reschedule_email(@user).deliver
+      interview_state = Interview.find_by_dossier_id(@user.last_dossier.id)
+      interview_state.interview_time = nil
+      interview_state.save
     end
     redirect_to :back
   end
