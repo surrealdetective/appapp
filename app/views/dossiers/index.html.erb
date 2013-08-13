@@ -12,7 +12,7 @@
     <thead>
       <tr>
         <%= render "table_header_dynamic_sort", :link_name   => "Name", :link_path => dossiers_path(:sort_by => "user") %>
-        <%= render "table_header_dynamic_sort", :link_name   => "Status",    :link_path => dossiers_path(:sort_by => "aasm_state") %>
+        <%= render "table_header_dynamic_sort", :link_name   => "Status", :link_path => dossiers_path(:sort_by => "aasm_state") %>
         <%= render "table_header_static_sort",  :header_name => "Status History" %>
         <%= render "table_header_static_sort",  :header_name => "Change Status"  %>
       </tr>

@@ -25,6 +25,6 @@ $ ->
     e.preventDefault()
     which_sorter = $(this).text().toLowerCase()
     switch which_sorter
-      when "name" then $("#dossier_sort_by").val "user"
+      when "name"   then $("#dossier_sort_by").val "user"
       when "status" then $("#dossier_sort_by").val "aasm_state"
     $("#dossier_search").click()
