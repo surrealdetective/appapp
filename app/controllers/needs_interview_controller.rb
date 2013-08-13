@@ -19,7 +19,7 @@ class NeedsInterviewController < ApplicationController
     .where("dossiers.aasm_state=? OR dossiers.aasm_state =?", "needs_interview", "needs_code_interview")
     
     @dossiers_with_interview_time = Dossier.joins(:interviews)
-    .where("interviews.interview_time <= :today", {today: DateTime.now})
+    .where("interviews.interview_time >= :today", {today: DateTime.now})
     .where("dossiers.aasm_state=? OR dossiers.aasm_state =?", "needs_interview", "needs_code_interview")
     
     @dossiers_with_interview_without_time = Dossier.joins(:interviews).where("interviews.interview_time" => nil)

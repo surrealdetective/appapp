@@ -1,104 +1,23 @@
+<h1>With Decision</h1>
+
 <% @dossiers_with_decision.each do |dossier| %>
+  <%= render 'needs_interview/with_decision_table', :dossier => dossier %>
+<% end %>
 
-<div class="row-fluid table">
-  <table class="table table-hover thinner-table">
-    
-    
-    <tbody class="tbody-border">
+<h1>With Interview Time</h1>
 
-      <tr class="row-height thinner">
-        <td class="quarter-width">
-          <span class="label label-info"><%= dossier.last_status.status %></span>
-        </td>
-        <td class="quarter-width">
-          <h3 class="text-center"><%= name(dossier.user) %></h3>
-        </td>
-        <td class="quarter-width detail-width-big">
-              <div class="btn-group detail-position-big">
-                <button class="btn-flat inverse icon-thumbs-down push-it-up">Admin Actions<i class="icon-thumbs-up"></i></button>
-                <button class="btn glow dropdown-toggle push-it-up" data-toggle="dropdown">
-                  <span class="caret"></span>
-                </button>
-                <%= render "dossiers/admin_actions", :dossier => dossier %>
-              </div>
-        </td>
+<% @dossiers_with_interview_time.each do |dossier| %>
+  <%= render 'needs_interview/with_interview_time_table', :dossier => dossier %>
+<% end %>
 
+<h1>With Interview without time</h1>
 
-        <td class="quarter-width detail-width">
-        <a class = "btn-flat default icon-heart-empty fancybox detail-position" data-href="<%= fancybox_path(dossier.id, :layout => "false") %>" href="#">
-            See My Dossier
-            <i class=""></i>
-          </a>
-        </td>
-      </tr>
+<% @dossiers_with_interview_without_time.each do |dossier| %>
+  <%= render 'needs_interview/with_interview_without_time_table', :dossier => dossier %>
+<% end %>
 
-      <tr class="fifty-width">
-        <td class="half-width" rowspan="3" colspan="2">
-          <dl>
+<h1>With Interview without time ends</h1>
 
-            <dt class="interview-time-term">Interview Time:</dt>
-            <dd class="interview-link-detail"><span class="label label-info thinner-short-stat"><%= dossier.last_interview_time %></span></dd>
-
-
-
-            <dt class="interview-time-term">Interview Invite Sent Out:</dt>
-            <dd class="interview-link-detail">
-              <span class="label label-info thinner-short-stat">
-                <% if dossier.interviews.present? %>
-                  <%= time_ago_in_words(dossier.interviews.last.created_at) %>
-                <% else %>
-                  <%= "No invite sent" %>
-                <% end %>
-              </span>
-            </dd>
-          </dl>
-        </td>
-        <td class="half-width" rowspan="3" colspan="2">
-          <dl>
-          <% dossier.links.each do |link| %> 
-              <div>
-                <dt class="interview-link-term"><%= link.keys.first %></dt>
-                <dd class="interview-link-detail"><%= link.values.first %></dd>
-              </div>
-          <% end %>
-          </dl>
-        </td>
-      </tr class="fifty-width">
-      <tr class="clear-both">
-
-         
-      </tr>
-      <tr>
-        
-      </tr>
-
-      <tr class="row-height thinner-last-row">
-        <td class="quarter-width hundred-width">
-
-          <%= link_to "Reject", transition_path(dossier, :reject), method: :put, :class => "btn-flat danger icon-remove-sign" %>
-
-        </td>
-        <td class="half-width" colspan="2">
-          <h4 class="text-center thinner-tagline">
-            <% dossier.hashtags.each do |hashtag| %>
-              <%= link_to dossiers_path(:hashtag => hashtag.content) do %>
-                <span class="label label-info icon-star-empty"><%= hashtag.content %></span>
-              <% end %>
-            <% end %>
-          </h4>
-        </td>
-        <td class="quarter-width detail-width">
-
-          <%= link_to "Claim Interview", transition_path(dossier, :mark_as_needs_review), method: :put, :class => "btn-flat success icon-check detail-position-review"%>
-
-        </td>
-      </tr>
-
-    </tbody>
-
-  </table>
-</div>
-
-
-
-    <% end %>
+<% @dossiers_without_interview.each do |dossier| %>
+  <%= render 'needs_interview/without_interview_table', :dossier => dossier %>
+<% end %>
