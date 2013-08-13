@@ -178,14 +178,14 @@
                 <div class="row-fluid">
                   <h3>
                     Total Score of All Code School Classes
-                  </h3><br>
+                  </h3>
                   <%= @codeschool.parsed_response["user"]["total_score"] %>
                   <hr>
 
                   
                 <div class="row-fluid img-box" > <!-- completed -->
             
-                    <h3>Completed Code School Classes</h3><br>
+                    <h3>Completed Code School Classes</h3>
                     <%@codeschool.parsed_response["courses"]["completed"].each do |x| %>
                     <div class=" row-fluid span12 img-box" style="width: 118px;float:left;">
                       <%=link_to image_tag(x['badge']), x['url'] %>
@@ -221,6 +221,21 @@
                 <% if  @treehouse.response.code == "200" %> 
 
                 <h3>Tree House</h3>
+                 <% @html = @treehouse.parsed_response["points"]["html"].to_i %>
+                 <% @css = @treehouse.parsed_response["points"]["css"].to_i %>
+                 <% @ruby = @treehouse.parsed_response["points"]["ruby"].to_i %>
+                 <% @javascript = @treehouse.parsed_response["points"]["javascript"].to_i %>
+                 <% @design = @treehouse.parsed_response["points"]["design"].to_i %>
+
+                <div class="graphs">
+                  <h3 style="center-text">Treehouse:</h3>
+                  <div style="graph" data-html="<%= @html %>" data-css="<%= @css %>" data-ruby="<%= @ruby %>" data-javascript="<%= @javascript %>" data-design="<%= @design %>" id="donut-treehouse">
+                  </div>
+                </div>
+              
+                
+
+
 
                   <p>Profile name: <%= @treehouse.parsed_response["profile_name"] %></p>
                   <% @treehouse.parsed_response["points"].each do |category, points| %>
