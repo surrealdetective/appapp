@@ -92,7 +92,9 @@ class CoursesController < ApplicationController
   def dashboard
     @title = "Course Dashboard"
     @courses = Course.all
+    authorize! :read, @courses
     @course = Course.first
+
 
     # gender breakdown data
     @male_count = Course.joins(:dossiers).where("dossiers.gender" => "male").count
