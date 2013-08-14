@@ -3,7 +3,7 @@
 
     <td>
       <%= image_tag ("http://www.gravatar.com/avatar/#{dossier.user.gravatar_id}"),:class => "avatar img-circle hidden-phone"%>
-      <span><%= dossier.user.full_name %></span>
+      <span><%= link_to dossier.user.full_name, dossier %></span>
     </td>
 
     <td>
