@@ -367,4 +367,19 @@ class Dossier < ActiveRecord::Base
     [{"Twitter: " => self.twitter},{"Github: " => self.github}, {"LinkedIn: " => self.linkedin}, {"Blog: " => self.blog}, {"Website: " => self.website}, {"Codeschool: " => self.codeschool_link}, {"Treehouse: " => self.treehouse_link}]
   end
 
+  def path_to_workflow
+    case self.aasm_state
+    when "new"
+      Rails.application.routes.url_helpers.thinner_path
+    when "needs_review"
+      Rails.application.routes.url_helpers.needs_review_first_path
+    when "needs_interview", "needs_code_interview"
+      Rails.application.routes.url_helpers.dossier_interview_path
+    when "needs_decision", "needs_payment", "committed"
+      Rails.application.routes.url_helpers.course_path(self.course_id)
+    when "rejected", "wont_attend"
+      Rails.application.routes.url_helpers.dossiers_path(:aasm_state => self.aasm_state)
+    end
+  end
+
 end

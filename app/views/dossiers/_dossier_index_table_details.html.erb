@@ -7,7 +7,7 @@
     </td>
 
     <td>
-      <%= dossier.aasm_state.humanize %>
+      <%= link_to dossier.aasm_state.humanize, dossier.path_to_workflow %>
     </td>
 
     <td>
