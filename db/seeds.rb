@@ -97,9 +97,28 @@ nycs = ['yes', 'no', 'maybe']
   3.times do
     user.last_dossier.add_hashtag example_hashtags.sample, adam_and_avi.sample
   end
+  user.last_dossier.add_hashtag( user.last_dossier.gender, adam_and_avi.sample)
 end
 
 dhh = User.last
 dhh.email = "dhh@dhh.com"
 dhh.password = "dhh"
 dhh.save
+
+to_interview = Dossier.where("aasm_state" => "needs_interview").all
+
+to_interview.each do |dossier|
+  Interview.create(user: adam, dossier: dossier, :stage => dossier.aasm_state)
+end
+
+interviews = Interview.all
+
+interviews[0..4].each do |interview|
+  interview.interview_time = DateTime.now + 1.day
+  interview.save
+end
+
+interviews[5..9].each do |interview|
+  interview.interview_time = DateTime.now - 1.day
+  interview.save
+end
