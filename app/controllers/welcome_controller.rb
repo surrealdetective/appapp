@@ -1,9 +1,10 @@
 class WelcomeController < ApplicationController
-
+ 
   # you don't need to be logged in for this controller
   skip_before_filter :login_required
 
   def home
+    render layout: false
 
     if current_user
       if current_user.admin?
