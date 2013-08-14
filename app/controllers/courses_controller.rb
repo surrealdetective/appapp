@@ -2,6 +2,7 @@ class CoursesController < ApplicationController
   def new
     @course = Course.new
     @title = "New Course"
+    authorize! :create, @course
   end
 
   def create
