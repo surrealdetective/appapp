@@ -286,6 +286,9 @@ class Dossier < ActiveRecord::Base
       return
     end
 
+    self.mark_as_needs_decision
+    return if choice == :needs_decision
+
     self.mark_as_accepted
 
     return if choice == :needs_payment
@@ -293,6 +296,16 @@ class Dossier < ActiveRecord::Base
     self.mark_as_committed
 
     return if choice == :committed
+
+    
+
+    if choice == :rejected
+      self.mark_as_rejected
+      return
+    elsif choice == :rejected
+      self.mark_as_wont_attend
+      return
+    end
 
     #add rejected and wont_attend later.
     # if choice == :needs_decision_from_interview
