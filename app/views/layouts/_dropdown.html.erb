@@ -15,9 +15,12 @@
       </li>
     <% end %>
 
-    <li>
-      <%= link_to "Create New Course", new_course_path %>
-    </li>
+    <% if current_user.admin? %>
+      <li>
+        <%= link_to "Create New Course", new_course_path %>
+      </li>
+    <% end %>
+
     <li>
       <%= link_to "Log Out", logout_path %>
     </li>
