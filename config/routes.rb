@@ -5,8 +5,7 @@ Appapp::Application.routes.draw do
   get "/class" => "class#index"
   post "/class/:dossier_id/decision" => "class#decision", :as=> "class_decision"
 
-  get "/thinner" => "thinner#index"
-  get "/testing" => "thinner#testing"
+  get "/glancer" => "thinner#index", :as => "thinner"
   post "/thinner/:dossier_id/decision" => "thinner#decision", :as=>"thinner_decision"
 
 
