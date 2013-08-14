@@ -1,11 +1,15 @@
 class SessionsController < ApplicationController
 
+
   skip_before_filter :login_required, :only => [:new, :create]
 
   # sessions#new
   # GET login_path
   def new
     @title = "Login"
+
+    
+
   end
 
   # sessions#create
