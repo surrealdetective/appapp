@@ -23,7 +23,7 @@
 
         <td class="quarter-width detail-width">
         <a class = "btn-flat default icon-heart-empty fancybox detail-position" data-href="<%= fancybox_path(dossier.id, :layout => "false") %>" href="#">
-            See My Dossier
+            See Application
             <i class=""></i>
           </a>
         </td>
@@ -65,7 +65,7 @@
         </td>
         <td class="quarter-width detail-width">
 
-          <%= link_to "Review Further", transition_path(dossier, :mark_as_needs_review), method: :put, :class => "btn-flat success icon-check detail-position-review"%>
+          <%= link_to "Keep", transition_path(dossier, :mark_as_needs_review), method: :put, :class => "btn-flat success icon-check detail-position-review"%>
 
         </td>
       </tr>
