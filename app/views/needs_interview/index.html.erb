@@ -1,17 +1,26 @@
-<% @dossiers_with_decision.each do |dossier| %>
-  <%= render 'needs_interview/with_decision_table', :dossier => dossier %>
-<% end %>
+<div class="interview-index">
+  <% @dossiers_with_decision.each do |dossier| %>
+    <%= render 'needs_interview/with_decision_table', :dossier => dossier %>
+  <% end %>
 
-<% @dossiers_with_interview_time.each do |dossier| %>
-  <%= render 'needs_interview/with_interview_time_table', :dossier => dossier %>
-<% end %>
+  <% @dossiers_with_interview_time.each do |dossier| %>
+    <%= render 'needs_interview/with_interview_time_table', :dossier => dossier %>
+  <% end %>
 
-<% @dossiers_with_interview_without_time.each do |dossier| %>
-  <%= render 'needs_interview/with_interview_without_time_table', :dossier => dossier %>
-<% end %>
+  <% @dossiers_with_interview_without_time.each do |dossier| %>
+    <%= render 'needs_interview/with_interview_without_time_table', :dossier => dossier %>
+  <% end %>
 
-<% @dossiers_without_interview.each do |dossier| %>
-  <%= render 'needs_interview/without_interview_table', :dossier => dossier %>
-<% end %>
+  <% @dossiers_without_interview.each do |dossier| %>
+    <%= render 'needs_interview/without_interview_table', :dossier => dossier %>
+  <% end %>
+</div>
+<div class="show-interviewer">
+  <ul>
+    <li>"What's going on</li>
+    <li><%= link_to "testing email", "mailto:" + "doesthiswork@gmail.com" %>"Testing, testing"</li>
+  </ul>
+</div>
 
-
+<a href="mailto:someone@example.com?Subject=Hello%20again" target="_top">
+Send Mail</a>

@@ -87,7 +87,7 @@
         </td>
         <td class="quarter-width detail-width">
 
-          <%= link_to "Custom Email", transition_path(dossier, :mark_as_needs_review), method: :put, :class => "btn-flat success icon-check detail-position-review"%>
+          <%= link_to "Custom Email", "mailto:" + dossier.user.email + "?Subject=Checking%20in%20from%20Flatiron%20School&Body=Dear%20" + name(dossier.user) + ",", :class => "btn-flat success icon-check detail-position-review"%>
 
         </td>
       </tr>
