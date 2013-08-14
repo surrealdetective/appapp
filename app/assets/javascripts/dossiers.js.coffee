@@ -28,3 +28,7 @@ $ ->
       when "name"   then $("#dossier_sort_by").val "user"
       when "status" then $("#dossier_sort_by").val "aasm_state"
     $("#dossier_search").click()
+
+  $(".btn-group").on "click", ->
+    if $(this).find(".dropdown-toggle").length is 1
+      $(this).find("ul").toggle()
