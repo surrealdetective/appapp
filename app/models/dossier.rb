@@ -378,7 +378,7 @@ class Dossier < ActiveRecord::Base
     when "needs_decision", "needs_payment", "committed"
       Rails.application.routes.url_helpers.course_path(self.course_id)
     when "rejected", "wont_attend"
-      Rails.application.routes.url_helpers.dossiers_path(:aasm_state => self.aasm_state)
+      Rails.application.routes.url_helpers.dossiers_path(:status => self.aasm_state)
     end
   end
 
