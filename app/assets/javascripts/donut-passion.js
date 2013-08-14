@@ -9,11 +9,11 @@ $(document).ready(function() {
     Morris.Donut({
       element: 'donut-passion',
       data: [
-        {label: "1-Apathetic", value: passion_one},
-        {label: "2-Average Joe", value: passion_two},
-        {label: "3-Enthused", value: passion_three},
-        {label: "4-Most Avid in the Room", value: passion_four},
-        {label: "5-SuperHuman", value: passion_five}
+        {label: "Undesirable", value: passion_one},
+        {label: "Below Average", value: passion_two},
+        {label: "Average", value: passion_three},
+        {label: "Above Average", value: passion_four},
+        {label: "Excellent", value: passion_five}
       ]
     });
   }
