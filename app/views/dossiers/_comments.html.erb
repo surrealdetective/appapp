@@ -10,7 +10,8 @@
     <% end %>
 
     <%= form_tag dossier_dossier_comments_path(@dossier) do %>
-      <%= label_tag "Comment" %>
+      <%= label_tag "Comment", nil, :style=> "display:inline;" %>
+      <h5 class="use-hashtags">Prepend a "#" to any given word to add a #hashtag</h5>
       <%= text_area_tag "dossier_comment[content]" %>
       <%= hidden_field_tag "dossier_comment[dossier_id]", @dossier.id  %>
       <%= hidden_field_tag 'dossier_comment[user_id]', current_user.id %>
