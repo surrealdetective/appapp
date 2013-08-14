@@ -270,7 +270,7 @@ class Dossier < ActiveRecord::Base
   # [new, needs_review, needs_interview, needs_code_interview, needs_decision, needs_payment, committed, rejected, wont_attend] 
   def random_status!
     
-    choice = Dossier.aasm.states.sample.to_s.to_sym
+    choice = [:new, :needs_review, :needs_interview, :needs_interview, :needs_code_interview, :needs_decision, :needs_payment, :committed, :rejected, :rejected, :rejected, :rejected, :wont_attend, :wont_attend].sample
     return if choice == :new
 
     #convention: after setting the state, return if the choice equals that.
