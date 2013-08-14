@@ -1,4 +1,4 @@
-<div class="row-fluid table">
+<div class="row-fluid table dossier-container" id="<%= dossier.id %>">
   <table class="table table-hover thinner-table">
     
     
@@ -23,10 +23,10 @@
 
 
         <td class="quarter-width detail-width">
-        <a class = "btn-flat default icon-heart-empty fancybox detail-position" data-href="<%= fancybox_path(dossier.id, :layout => "false") %>" href="#">
-            See My Dossier
-            <i class=""></i>
-          </a>
+        <%= link_to '#', :class => "btn-flat see-my-dossier", :"data-href" => interview_show_path(dossier.id, :layout => false) do %>
+          <i class="icon-heart-empty"></i>
+          <span>See My Dossier</span>
+        <% end %>
         </td>
       </tr>
 

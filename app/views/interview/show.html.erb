@@ -12,97 +12,100 @@
       </div>
     </div>
 
-    <div class="row-fluid header">
-      <div class="span12">
-        <%= image_tag ("http://www.gravatar.com/avatar/#{@dossier.user.gravatar_id}"),:class => "avatar img-circle"%>
-        <h3 class="name"><%=@dossier.user.full_name%></h3>
-        <span class="area"><%=@dossier.tagline%></span>
-      </div>
-    </div>
+    <div id="simple">
 
-    <div class="row-fluid">
-      <div class="span9">
-
-        <div class="bio-item">
-          <%= render 'shared/collapser_button' %>
-          <strong>Career &amp; Ed.</strong>
-          <div class="collapsible">
-            <p><%= @dossier.career %></p>
-          </div>
-        </div>
-
-        <hr>
-
-        <div class="bio-item">
-          <%= render 'shared/collapser_button' %>
-          <strong>Purpose</strong>
-          <div class="collapsible">
-            <p><%= @dossier.purpose %></p>
-          </div>
-        </div>
-
-        <hr>
-
-        <div class="bio-item">
-          <%= render 'shared/collapser_button' %>
-          <strong>Code Skill</strong>
-          <div class="collapsible">
-            <p><%= @dossier.code_skills %></p>
-          </div>
-        </div>
-
-        <hr>
-
-        <div class="bio-item">
-          <%= render 'shared/collapser_button' %>
-          <strong>Analytic Skills</strong>
-          <div class="collapsible">
-            <p><%= @dossier.analytic_skills %></p>
-          </div>
-        </div>
-
-        <hr>
-
-        <div class="bio-item">
-          <%= render 'shared/collapser_button' %>
-          <strong>Additional Tidbits</strong>
-          <div class="collapsible">
-            <p><%= @dossier.tidbits %></p>
-          </div>
-        </div>
-
-        <hr>
-
-      </div>
-
-      <div class="span3 address">
-        <%= render "needs_review/needs_review_sidebar", :dossier => @dossier, :user => @user %>
-      </div>
-
-    </div>
-    
-    <% if can? :read, Score  %>
-      <div class="row-fluid">
+      <div class="row-fluid header">
         <div class="span12">
+          <%= image_tag ("http://www.gravatar.com/avatar/#{@dossier.user.gravatar_id}"),:class => "avatar img-circle"%>
+          <h3 class="name"><%=@dossier.user.full_name%></h3>
+          <span class="area"><%=@dossier.tagline%></span>
+        </div>
+      </div>
 
-          <div class="scores">
+      <div class="row-fluid">
+        <div class="span9">
+
+          <div class="bio-item">
             <%= render 'shared/collapser_button' %>
-            <strong>How do you rate this interviewee?</strong>
+            <strong>Career &amp; Ed.</strong>
             <div class="collapsible">
-              <%= render "interview/attribute_definer", :score => @score %>
+              <p><%= @dossier.career %></p>
             </div>
           </div>
+
+          <hr>
+
+          <div class="bio-item">
+            <%= render 'shared/collapser_button' %>
+            <strong>Purpose</strong>
+            <div class="collapsible">
+              <p><%= @dossier.purpose %></p>
+            </div>
+          </div>
+
+          <hr>
+
+          <div class="bio-item">
+            <%= render 'shared/collapser_button' %>
+            <strong>Code Skill</strong>
+            <div class="collapsible">
+              <p><%= @dossier.code_skills %></p>
+            </div>
+          </div>
+
+          <hr>
+
+          <div class="bio-item">
+            <%= render 'shared/collapser_button' %>
+            <strong>Analytic Skills</strong>
+            <div class="collapsible">
+              <p><%= @dossier.analytic_skills %></p>
+            </div>
+          </div>
+
+          <hr>
+
+          <div class="bio-item">
+            <%= render 'shared/collapser_button' %>
+            <strong>Additional Tidbits</strong>
+            <div class="collapsible">
+              <p><%= @dossier.tidbits %></p>
+            </div>
+          </div>
+
           <hr>
 
         </div>
-      </div>
-    <%end%>
 
-    <div class="row-fluid">
-      <div class="span6">
-        <% if can? :read, DossierComment %>
-          <%= render "dossiers/comments" %>
-        <% end %>
+        <div class="span3 address">
+          <%= render "needs_review/needs_review_sidebar", :dossier => @dossier, :user => @user %>
+        </div>
+
+      </div>
+      
+      <% if can? :read, Score  %>
+        <div class="row-fluid">
+          <div class="span12">
+
+            <div class="scores">
+              <%= render 'shared/collapser_button' %>
+              <strong>How do you rate this interviewee?</strong>
+              <div class="collapsible">
+                <%= render "interview/attribute_definer", :score => @score %>
+              </div>
+            </div>
+            <hr>
+
+          </div>
+        </div>
+      <%end%>
+
+      <div class="row-fluid">
+        <div class="span6">
+          <% if can? :read, DossierComment %>
+            <%= render "dossiers/comments" %>
+          <% end %>
+        </div>
       </div>
     </div>
 

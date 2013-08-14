@@ -16,16 +16,19 @@ class NeedsInterviewController < ApplicationController
   def index
     @dossiers_with_decision = Dossier.joins(:interviews)
     .where("interviews.interview_time <= :today", {today: DateTime.now})
-    .where("dossiers.aasm_state=? OR dossiers.aasm_state =?", "needs_interview", "needs_code_interview")
+    .where("dossiers.aasm_state = ? OR dossiers.aasm_state = ?", "needs_interview", "needs_code_interview")
+    .includes(:dossier_statuses, :hashtags)
     
     @dossiers_with_interview_time = Dossier.joins(:interviews)
     .where("interviews.interview_time >= :today", {today: DateTime.now})
-    .where("dossiers.aasm_state=? OR dossiers.aasm_state =?", "needs_interview", "needs_code_interview")
-    
+    .where("dossiers.aasm_state = ? OR dossiers.aasm_state = ?", "needs_interview", "needs_code_interview")
+    .includes(:dossier_statuses, :hashtags, :user)
+
     @dossiers_with_interview_without_time = Dossier.joins(:interviews).where("interviews.interview_time" => nil)
-   
+   .includes(:dossier_statuses, :hashtags, :user)
+
     dossier_with_interviews = @dossiers_with_decision + @dossiers_with_interview_time + @dossiers_with_interview_without_time
-    @dossiers_without_interview = Dossier.where("dossiers.aasm_state=? OR dossiers.aasm_state =?", "needs_interview", "needs_code_interview") - dossier_with_interviews
+    @dossiers_without_interview = Dossier.where("dossiers.aasm_state=? OR dossiers.aasm_state =?", "needs_interview", "needs_code_interview").includes(:dossier_statuses, :hashtags, :user) - dossier_with_interviews
 
     @title = "Needs Interview Index"
     authorize! :index, @dossiers    
