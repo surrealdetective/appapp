@@ -16,6 +16,12 @@
 
       <% end %>
 
+      <% if ! current_user %>
+        <li class="dropdown">
+          <%= link_to "Login", login_path %>
+        </li>        
+      <% end %>
+
     </ul>
   </div>
 </div> <!-- end navbar>
