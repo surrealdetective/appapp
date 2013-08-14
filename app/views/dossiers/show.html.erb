@@ -144,9 +144,9 @@
               <% if  @codeschool.response.code == "200" %> 
                 <div class="row-fluid">
                   <h3>
-                    Total Score of All Code School Classes
+                    Code School Classes: <%= @codeschool.parsed_response["user"]["total_score"].html_safe %>
                   </h3>
-                  <%= @codeschool.parsed_response["user"]["total_score"].html_safe %>
+                  
                   <hr>
 
                   
