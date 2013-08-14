@@ -35,7 +35,9 @@
 
 
 
-<h2 style="text-align:center;">Daily Activity</h2>
+<h2 style="text-align:center;">Admissions Activity</h2>
+  <%= link_to "Daily", dashboard_path(:graph => "daily"), :class=> "btn glow left active" %>
+  <%= link_to "Weekly", dashboard_path(:graph => "weekly"), :class=> "btn glow right" %>
 
 <div id="bar-example" data-viewed_today="<%= @viewed_today %>" data-viewed_yesterday="<%= @viewed_yesterday %>" data-interviewed_today="<%= @interviewed_today %>" data-interviewed_yesterday="<%= @interviewed_yesterday %>"data-reviewed_today="<%= @reviewed_today %>" data-reviewed_yesterday="<%= @reviewed_yesterday %>" data-resolved_today="<%= @resolved_today %>" data-resolved_yesterday="<%= @resolved_yesterday %>">
 </div>

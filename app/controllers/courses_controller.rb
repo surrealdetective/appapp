@@ -99,17 +99,31 @@ class CoursesController < ApplicationController
     @other_count = Course.joins(:dossiers).where("dossiers.gender" => "other").count
 
     # velocity data
-    @viewed_today     = Course.count_actions("needs review", "today")
-    @viewed_yesterday = Course.count_actions("needs review", "yesterday")
+    if params[:graph] == "weekly"
+      @viewed_today     = Course.count_actions("needs review", "this week")
+      @viewed_yesterday = Course.count_actions("needs review", "last week")
 
-    @reviewed_today     = Course.count_actions "reviewed", "today"
-    @reviewed_yesterday = Course.count_actions "reviewed", "yesterday"
+      @reviewed_today     = Course.count_actions "reviewed", "this week"
+      @reviewed_yesterday = Course.count_actions "reviewed", "last week"
 
-    @interviewed_today     = Course.count_actions("needs decision", "today")
-    @interviewed_yesterday = Course.count_actions("needs decision", "yesterday")
+      @interviewed_today     = Course.count_actions("needs decision", "this week")
+      @interviewed_yesterday = Course.count_actions("needs decision", "last week")
 
-    @resolved_today     = Course.count_actions "resolved", "today"
-    @resolved_yesterday = Course.count_actions "resolved", "yesterday"
+      @resolved_today     = Course.count_actions "resolved", "this week"
+      @resolved_yesterday = Course.count_actions "resolved", "last week"     
+    else
+      @viewed_today     = Course.count_actions("needs review", "today")
+      @viewed_yesterday = Course.count_actions("needs review", "yesterday")
+
+      @reviewed_today     = Course.count_actions "reviewed", "today"
+      @reviewed_yesterday = Course.count_actions "reviewed", "yesterday"
+
+      @interviewed_today     = Course.count_actions("needs decision", "today")
+      @interviewed_yesterday = Course.count_actions("needs decision", "yesterday")
+
+      @resolved_today     = Course.count_actions "resolved", "today"
+      @resolved_yesterday = Course.count_actions "resolved", "yesterday"
+    end
 
   end
 
