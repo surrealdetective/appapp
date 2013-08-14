@@ -18,13 +18,4 @@
     <% end %>
 
   </div>
-  <div class="hashtags">
-    <strong>Hashtags from comments:</strong>
-    <br>
-    <% @dossier.hashtags.each do |hashtag| %>
-      <%= link_to dossiers_path(:hashtag => hashtag.content) do %>
-        <span class="label label-info icon-star-empty"><%= hashtag.content %></span>
-      <% end %>
-    <% end %>
-  </div>
 </div>
