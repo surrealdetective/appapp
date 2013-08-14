@@ -31,15 +31,20 @@
 
       <tr class="fifty-width">
         <td class="half-width" rowspan="3" colspan="2">
-          <div>
-            <p class="one-line">Can attend in NYC?</p><span class="label label-info thinner-short-stat"><%= dossier.nyc %></span>
-          </div>
-          <div>
-            <p class="one-line">Tech Links:</p><span class="label label-info thinner-long-stat"><%= dossier.link_count %></span>
-          </div>
-          <div>
-            <p class="one-line">Word Count:</p><span class="label label-info thinner-med-stat"><%= dossier.word_count %></span>
-          </div>
+          <dl>
+            <dt class="interview-time-term">Can attend in NYC?</dt>
+            <dd class="interview-link-detail"><span class="label label-info thinner-short-stat"><%= dossier.nyc %></span></dd>
+
+            <dt class="interview-time-term">Tech Links:</dt>
+            <dd class="interview-link-detail">
+              <span class="label label-info thinner-short-stat"><%= dossier.link_count %></span>
+            </dd>
+
+            <dt class="interview-time-term">Word Count:</dt>
+            <dd class="interview-link-detail">
+              <span class="label label-info thinner-short-stat"><%= dossier.word_count %></span>
+            </dd>
+          </dl>
         </td>
         <td class="half-width" rowspan="3" colspan="2">
         <%= four_hundred_twenty_chars(dossier.purpose) %>
