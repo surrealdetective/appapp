@@ -1,16 +1,5 @@
 <div class="container-fluid">
   <div class="user-profile">
-    
-    <div class="row-fluid">
-      <div class="span12">
-        <div class="pull-right">
-          <%= render "prev_dossier", :prev_dossier => @prev_dossier %>
-          <%= render "needs_review/reject_button", :dossier => @dossier %>
-          <%= render "needs_review/admin_actions", :dossier => @dossier %>
-          <%= render "next_dossier", :next_dossier => @next_dossier %>
-        </div>
-      </div>
-    </div>
 
     <div id="simple">
 
@@ -112,18 +101,6 @@
           <% if can? :read, DossierComment %>
             <%= render "dossiers/comments" %>
           <% end %>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="row-fluid">
-      <div class="span12">
-        <div class="pull-right">
-          <%= render "prev_dossier", :prev_dossier => @prev_dossier %>
-          <%= render "needs_review/reject_button", :dossier => @dossier %>
-          <%= render "needs_review/admin_actions", :dossier => @dossier %>
-          <%= render "next_dossier", :next_dossier => @next_dossier %>
         </div>
       </div>
     </div>
