@@ -17,7 +17,14 @@
       <div class="row-fluid header">
         <div class="span12">
           <%= image_tag ("http://www.gravatar.com/avatar/#{@dossier.user.gravatar_id}"),:class => "avatar img-circle"%>
-          <h3 class="name"><%=@dossier.user.full_name%></h3>
+          <h3 class="name reviewer-hashtags"><%=@dossier.user.full_name%></h3>
+          <span>
+          <% @dossier.hashtags.each do |hashtag| %>
+            <%= link_to dossiers_path(:hashtag => hashtag.content) do %>
+              <span class="label label-info icon-star-empty"><%= hashtag.content %></span>
+            <% end %>
+          <% end %>
+        </span>
           <span class="area"><%=@dossier.tagline%></span>
         </div>
       </div>
