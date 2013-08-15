@@ -73,7 +73,7 @@
       <tr class="row-height thinner-last-row">
         <td class="quarter-width hundred-width">
 
-          <%= link_to "Reject", transition_path(dossier, :reject), method: :put, :class => "btn-flat danger icon-remove-sign" %>
+          <%= link_to "Reject", transition_path(dossier, :reject), method: :put, :class => "btn-flat danger icon-remove-sign", data: {confirm: 'Are you sure?'} %>
 
         </td>
         <td class="half-width" colspan="2">
