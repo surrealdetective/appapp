@@ -4,7 +4,7 @@ $(document).ready(function() {
     $('.fancybox').fancybox({
         type: 'iframe',
         beforeLoad: function() {
-            this.href = this.element.data('href');
+            this.href = this.element.data('href') + "#simple";
         }
     });
   });
