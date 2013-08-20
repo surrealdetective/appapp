@@ -89,4 +89,21 @@ class Course < ActiveRecord::Base
     [male_count, female_count, other_count]
   end
 
+
+  def score_count(attribute)
+    score_counts = Score.joins(:dossier => :course).where("courses.id" => self.id)
+    case attribute
+    when :passion
+      passion_count = score_counts.where("scores.passion= ? OR scores.passion= ? OR scores.passion= ? OR scores.passion= ? OR scores.passion= ?", 1, 2, 3, 4, 5)
+      passion_one_count = passion_count.where("scores.passion" => 1).count
+      passion_two_count = passion_count.where("scores.passion" => 2).count
+      passion_three_count = passion_count.where("scores.passion" => 3).count
+      passion_four_count = passion_count.where("scores.passion" => 4).count
+      passion_five_count = passion_count.where("scores.passion" => 5).count   
+      [passion_one_count, passion_two_count, passion_three_count, passion_four_count, passion_five_count]
+    end
+  end
+    
+
+
 end

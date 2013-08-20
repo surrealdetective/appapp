@@ -27,14 +27,15 @@ class CoursesController < ApplicationController
     #use this for all score counts
     @score_counts = Score.joins(:dossier => :course).where("courses.id" => @course.id)
 
-    #use for all passion counts
-    @passion_count = @score_counts.where("scores.passion= ? OR scores.passion= ? OR scores.passion= ? OR scores.passion= ? OR scores.passion= ?", 1, 2, 3, 4, 5)
+    # #use for all passion counts
+    # @passion_count = @score_counts.where("scores.passion= ? OR scores.passion= ? OR scores.passion= ? OR scores.passion= ? OR scores.passion= ?", 1, 2, 3, 4, 5)
 
-    @passion_one_count = @passion_count.where("scores.passion" => 1).count
-    @passion_two_count = @passion_count.where("scores.passion" => 2).count
-    @passion_three_count = @passion_count.where("scores.passion" => 3).count
-    @passion_four_count = @passion_count.where("scores.passion" => 4).count
-    @passion_five_count = @passion_count.where("scores.passion" => 5).count
+    # @passion_one_count = @passion_count.where("scores.passion" => 1).count
+    # @passion_two_count = @passion_count.where("scores.passion" => 2).count
+    # @passion_three_count = @passion_count.where("scores.passion" => 3).count
+    # @passion_four_count = @passion_count.where("scores.passion" => 4).count
+    # @passion_five_count = @passion_count.where("scores.passion" => 5).count
+    @passion = @course.score_count(:passion)
 
     @leadership_count = @score_counts.where("scores.leadership = ? OR scores.leadership = ? OR scores.leadership = ? OR scores.leadership = ? OR scores.leadership = ?", 1, 2, 3, 4, 5)
 
