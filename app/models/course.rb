@@ -95,28 +95,25 @@ class Course < ActiveRecord::Base
     case attribute
     when :passion
       passion_count       = score_counts.where("scores.passion= ? OR scores.passion= ? OR scores.passion= ? OR scores.passion= ? OR scores.passion= ?", 1, 2, 3, 4, 5)
-      passion_one_count   = passion_count.where("scores.passion" => 1).count
-      passion_two_count   = passion_count.where("scores.passion" => 2).count
-      passion_three_count = passion_count.where("scores.passion" => 3).count
-      passion_four_count  = passion_count.where("scores.passion" => 4).count
-      passion_five_count  = passion_count.where("scores.passion" => 5).count   
-      [passion_one_count, passion_two_count, passion_three_count, passion_four_count, passion_five_count]
+      [ passion_count.where("scores.passion" => 1).count, 
+        passion_count.where("scores.passion" => 2).count,
+        passion_count.where("scores.passion" => 3).count,
+        passion_count.where("scores.passion" => 4).count,
+        passion_count.where("scores.passion" => 5).count]
     when :leadership
       leadership_count        = score_counts.where("scores.leadership = ? OR scores.leadership = ? OR scores.leadership = ? OR scores.leadership = ? OR scores.leadership = ?", 1, 2, 3, 4, 5)
-      leadership_one_count    = leadership_count.where("scores.leadership" => 1).count
-      leadership_two_count    = leadership_count.where("scores.leadership" => 2).count
-      leadership_three_count  = leadership_count.where("scores.leadership" => 3).count
-      leadership_four_count   = leadership_count.where("scores.leadership" => 4).count
-      leadership_five_count   = leadership_count.where("scores.leadership" => 5).count
-      [leadership_one_count, leadership_two_count, leadership_three_count, leadership_four_count, leadership_five_count]
+      [leadership_count.where("scores.leadership" => 1).count,
+       leadership_count.where("scores.leadership" => 2).count,
+       leadership_count.where("scores.leadership" => 3).count,
+       leadership_count.where("scores.leadership" => 4).count,
+       leadership_count.where("scores.leadership" => 5).count]
     when :tech
       tech_count = score_counts.where("scores.tech = ? OR scores.tech = ? OR scores.tech = ? OR scores.tech = ? OR scores.tech = ?", 1, 2, 3, 4, 5)
-      tech_one_count = tech_count.where("scores.tech" => 1).count
-      tech_two_count = tech_count.where("scores.tech" => 2).count
-      tech_three_count = tech_count.where("scores.tech" => 3).count
-      tech_four_count = tech_count.where("scores.tech" => 4).count
-      tech_five_count = tech_count.where("scores.tech" => 5).count
-      [tech_one_count, tech_two_count, tech_three_count, tech_four_count, tech_five_count]
+      [tech_count.where("scores.tech" => 1).count,
+       tech_count.where("scores.tech" => 2).count,
+       tech_count.where("scores.tech" => 3).count,
+       tech_count.where("scores.tech" => 4).count,
+       tech_count.where("scores.tech" => 5).count]
     end
 
   end
