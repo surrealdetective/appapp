@@ -83,10 +83,11 @@ class Course < ActiveRecord::Base
 
   def gender_count
     gender_count = Course.joins(:dossiers).where("courses.id" => self.id).where("dossiers.gender = ? OR dossiers.gender = ? OR dossiers.gender = ?", "male", "female", "other")
-    male_count = gender_count.where("dossiers.gender" => "male").count
-    female_count = gender_count.where("dossiers.gender" => "female").count
-    other_count = gender_count.where("dossiers.gender" => "other").count
-    [male_count, female_count, other_count]
+    data = []
+    ['male', 'female', 'other'].each do |gender|
+      data << gender_count.where(['dossiers', 'gender'].join('.') => gender ).count
+    end
+    data
   end
 
 
