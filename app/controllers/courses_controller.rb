@@ -32,11 +32,7 @@ class CoursesController < ApplicationController
     # end
 
     @course = Course.find_by_id(params[:id])
-    @gender_count = Course.joins(:dossiers).where("courses.id" => @course.id).where("dossiers.gender = ? OR dossiers.gender = ? OR dossiers.gender = ?", "male", "female", "other")
-    @male_count = @gender_count.where("dossiers.gender" => "male").count
-    @female_count = @gender_count.where("dossiers.gender" => "female").count
-    @other_count = @gender_count.where("dossiers.gender" => "other").count
-    @gender = [@male_count, @female_count, @other_count]
+    @gender = @course.gender_count
 
     #use this for all score counts
     @score_counts = Score.joins(:dossier => :course).where("courses.id" => @course.id)
