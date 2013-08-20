@@ -1,19 +1,14 @@
 $(document).ready(function() {
   if($("#donut-leadership").length > 0) {
-    var leadership_one = $("#donut-leadership").data("leadership_one");
-    var leadership_two = $("#donut-leadership").data("leadership_two");
-    var leadership_three = $("#donut-leadership").data("leadership_three");
-    var leadership_four = $("#donut-leadership").data("leadership_four");
-    var leadership_five = $("#donut-leadership").data("leadership_five");
-
+    var leadership = $("#donut-leadership").data("leadership");
     Morris.Donut({
       element: 'donut-leadership',
       data: [
-        {label: "Undesirable", value: leadership_one},
-        {label: "Below Average", value: leadership_two},
-        {label: "Average", value: leadership_three},
-        {label: "Above Average", value: leadership_four},
-        {label: "Excellent", value: leadership_five}
+        {label: "Undesirable", value: leadership[0]},   //score 1
+        {label: "Below Average", value: leadership[1]}, //score 2
+        {label: "Average", value: leadership[2]},       //score 3
+        {label: "Above Average", value: leadership[3]}, //score 4
+        {label: "Excellent", value: leadership[4]}      //score 5
       ]
     });
   }

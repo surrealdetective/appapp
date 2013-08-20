@@ -22,46 +22,16 @@ class CoursesController < ApplicationController
     authorize! :index, @courses
     @dossiers = Dossier.where(:aasm_state => "needs_decision")
     @course = Course.find_by_id(params[:id])
+    
+    #Info for pie charts
     @gender = @course.gender_count
-
-    #use this for all score counts
-    @score_counts = Score.joins(:dossier => :course).where("courses.id" => @course.id)
-
-    # #use for all passion counts
-    # @passion_count = @score_counts.where("scores.passion= ? OR scores.passion= ? OR scores.passion= ? OR scores.passion= ? OR scores.passion= ?", 1, 2, 3, 4, 5)
-
-    # @passion_one_count = @passion_count.where("scores.passion" => 1).count
-    # @passion_two_count = @passion_count.where("scores.passion" => 2).count
-    # @passion_three_count = @passion_count.where("scores.passion" => 3).count
-    # @passion_four_count = @passion_count.where("scores.passion" => 4).count
-    # @passion_five_count = @passion_count.where("scores.passion" => 5).count
     @passion = @course.score_count(:passion)
+    @leadership = @course.score_count(:leadership)
+    @tech = @course.score_count(:tech)
 
-    @leadership_count = @score_counts.where("scores.leadership = ? OR scores.leadership = ? OR scores.leadership = ? OR scores.leadership = ? OR scores.leadership = ?", 1, 2, 3, 4, 5)
-
-    @leadership_one_count = @leadership_count.where("scores.leadership" => 1).count
-    @leadership_two_count = @leadership_count.where("scores.leadership" => 2).count
-    @leadership_three_count = @leadership_count.where("scores.leadership" => 3).count
-    @leadership_four_count = @leadership_count.where("scores.leadership" => 4).count
-    @leadership_five_count = @leadership_count.where("scores.leadership" => 5).count
-
-    @tech_count = @score_counts.where("scores.tech = ? OR scores.tech = ? OR scores.tech = ? OR scores.tech = ? OR scores.tech = ?", 1, 2, 3, 4, 5)
-
-    @tech_one_count = @tech_count.where("scores.tech" => 1).count
-    @tech_two_count = @tech_count.where("scores.tech" => 2).count
-    @tech_three_count = @tech_count.where("scores.tech" => 3).count
-    @tech_four_count = @tech_count.where("scores.tech" => 4).count
-    @tech_five_count = @tech_count.where("scores.tech" => 5).count
-
-
-#we have a problem here...
-  #you send EITHER params[:course] or params[:hashtag]
-  # therefore you are NOT searching the current course, which gets automatically
-  #set to course[0] when you refresh it.
+    #Logic for Search-by-Hashtag
     if params[:hashtag]
       if params[:hashtag].empty?
-        #to be set correctly,
-        #@course should equal its position in the index
         @confirmed = Dossier.joins(:course)
         .where('dossiers.aasm_state = ? or dossiers.aasm_state = ?', "committed", "needs_payment")
         .where('courses.id' => @course.id)
@@ -82,12 +52,6 @@ class CoursesController < ApplicationController
     @courses = Course.all
     authorize! :read, @courses
     @course = Course.first
-
-
-    # gender breakdown data
-    @male_count = Course.joins(:dossiers).where("dossiers.gender" => "male").count
-    @female_count = Course.joins(:dossiers).where("dossiers.gender" => "female").count
-    @other_count = Course.joins(:dossiers).where("dossiers.gender" => "other").count
 
     # velocity data
     if params[:graph] == "weekly"

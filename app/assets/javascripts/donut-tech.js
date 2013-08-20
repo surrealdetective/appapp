@@ -1,19 +1,15 @@
 $(document).ready(function() {
   if($("#donut-tech").length > 0) {
-    var tech_one = $("#donut-tech").data("tech_one");
-    var tech_two = $("#donut-tech").data("tech_two");
-    var tech_three = $("#donut-tech").data("tech_three");
-    var tech_four = $("#donut-tech").data("tech_four");
-    var tech_five = $("#donut-tech").data("tech_five");
+    var tech = $("#donut-tech").data("tech");
 
     Morris.Donut({
       element: 'donut-tech',
       data: [
-        {label: "Undesirable", value: tech_one},
-        {label: "Below Average", value: tech_two},
-        {label: "Average", value: tech_three},
-        {label: "Above Average", value: tech_four},
-        {label: "Excellent", value: tech_five}
+        {label: "Undesirable", value: tech[0]},   //score 1
+        {label: "Below Average", value: tech[1]}, //score 2
+        {label: "Average", value: tech[2]},       //score 3
+        {label: "Above Average", value: tech[3]}, //score 4
+        {label: "Excellent", value: tech[4]}      //score 5
       ]
     });
   }
