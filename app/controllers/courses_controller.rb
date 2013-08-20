@@ -6,7 +6,6 @@ class CoursesController < ApplicationController
   end
 
   def create
-    # raise params.inspect
     @course = Course.new(params[:course])
     @course.add_starting_date(params[:date])
     @course.save
@@ -19,18 +18,9 @@ class CoursesController < ApplicationController
 
   def show
     @title = "All Courses"
-    #for needs decision
-    # raise params.inspect
-    @dossiers = Dossier.where(:aasm_state => "needs_decision")
     @courses = Course.where("starting_date >= :today", {today: Date.today}).order(:starting_date)
     authorize! :index, @courses
-
-    # if params[:course]
-    #   @course = @courses[params[:course].to_i]
-    # else
-    #   @course = Course.find_by_id(params[:id])
-    # end
-
+    @dossiers = Dossier.where(:aasm_state => "needs_decision")
     @course = Course.find_by_id(params[:id])
     @gender = @course.gender_count
 
