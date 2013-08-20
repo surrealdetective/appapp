@@ -99,8 +99,13 @@ class DossiersController < ApplicationController
 
   def transition
     @dossier = Dossier.find(params[:id])
-    @dossier.send(params[:transition])
-    redirect_to :back
+    if Dossier.aasm.events.keys.map(&:to_s).include? params[:transition]
+      authorize! :manage, @dossier
+      @dossier.send(params[:transition])
+      redirect_to :back
+    else
+      render :json => {}, :status => 400 # bad request
+    end
   end
 
   def admin_act
