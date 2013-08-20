@@ -92,30 +92,11 @@ class Course < ActiveRecord::Base
 
   def score_count(attribute)
     score_counts = Score.joins(:dossier => :course).where("courses.id" => self.id)
-    case attribute
-    when :passion
-      passion_count       = score_counts.where("scores.passion= ? OR scores.passion= ? OR scores.passion= ? OR scores.passion= ? OR scores.passion= ?", 1, 2, 3, 4, 5)
-      [ passion_count.where("scores.passion" => 1).count, 
-        passion_count.where("scores.passion" => 2).count,
-        passion_count.where("scores.passion" => 3).count,
-        passion_count.where("scores.passion" => 4).count,
-        passion_count.where("scores.passion" => 5).count]
-    when :leadership
-      leadership_count        = score_counts.where("scores.leadership = ? OR scores.leadership = ? OR scores.leadership = ? OR scores.leadership = ? OR scores.leadership = ?", 1, 2, 3, 4, 5)
-      [leadership_count.where("scores.leadership" => 1).count,
-       leadership_count.where("scores.leadership" => 2).count,
-       leadership_count.where("scores.leadership" => 3).count,
-       leadership_count.where("scores.leadership" => 4).count,
-       leadership_count.where("scores.leadership" => 5).count]
-    when :tech
-      tech_count = score_counts.where("scores.tech = ? OR scores.tech = ? OR scores.tech = ? OR scores.tech = ? OR scores.tech = ?", 1, 2, 3, 4, 5)
-      [tech_count.where("scores.tech" => 1).count,
-       tech_count.where("scores.tech" => 2).count,
-       tech_count.where("scores.tech" => 3).count,
-       tech_count.where("scores.tech" => 4).count,
-       tech_count.where("scores.tech" => 5).count]
+    data = []
+    5.times do |n|
+      data << score_counts.where(['scores', attribute.to_s].join('.') => n+1).count
     end
-
+    data
   end
     
 
