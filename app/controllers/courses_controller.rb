@@ -36,6 +36,7 @@ class CoursesController < ApplicationController
     @male_count = @gender_count.where("dossiers.gender" => "male").count
     @female_count = @gender_count.where("dossiers.gender" => "female").count
     @other_count = @gender_count.where("dossiers.gender" => "other").count
+    @gender = [@male_count, @female_count, @other_count]
 
     #use this for all score counts
     @score_counts = Score.joins(:dossier => :course).where("courses.id" => @course.id)
