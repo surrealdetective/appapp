@@ -83,21 +83,13 @@ class Course < ActiveRecord::Base
 
   def gender_count
     gender_count = Course.joins(:dossiers).where("courses.id" => self.id).where("dossiers.gender = ? OR dossiers.gender = ? OR dossiers.gender = ?", "male", "female", "other")
-    data = []
-    ['male', 'female', 'other'].each do |gender|
-      data << gender_count.where(['dossiers', 'gender'].join('.') => gender ).count
-    end
-    data
+    ['male', 'female', 'other'].collect { |gender| gender_count.where(['dossiers', 'gender'].join('.') => gender ).count}
   end
 
 
   def score_count(attribute)
     score_counts = Score.joins(:dossier => :course).where("courses.id" => self.id)
-    data = []
-    5.times do |n|
-      data << score_counts.where(['scores', attribute.to_s].join('.') => n+1).count
-    end
-    data
+    [1, 2, 4, 5, 5].collect {|score| score_counts.where(['scores', attribute.to_s].join('.') => score).count}
   end
     
 
